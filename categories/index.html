@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      DvJiang&#39;s Blog
+      categories | DvJiang&#39;s Blog
     
   </title>
   <meta name="author" content="DvJiang">
@@ -101,7 +101,7 @@
 	<!-- Page title -->
 	<p>
 		
-			主页
+			分类
 		
 	</p>
 
@@ -185,58 +185,40 @@
 			
 		<!--main-->
 		<main>
-			
+			<!--content start-->
+<div class="layout-page">	
+	<div class="layout-page-container">
 
-
-
-	<!--cart style-->
-	<div class="layout-cart">
-	<div id="layout-cart">
-		
-			<div class="post" id="post">
-				<a class="post-cover" href="/2022/01/20/hello-world/" title=" Hello World " target="_blank">
-					
-					<img class="lazy" src="/img/lazy.gif" data-src="/img/hw"/>
-				</a>
-
-				<div class="post-text">
-					<p class="post-time">
-						一月 20日, 2022
-					</p>	
-					<h3 class="post-title" id="post-title-index">
-						<a href="/2022/01/20/hello-world/" title="Hello World">							
-							
-	<a href="/2022/01/20/hello-world/" itemprop="url">
-		Hello World
-	</a>
-
-						</a>
-					</h3>
-					<p class="post-content">
-						
-							Welcome to Hexo! This is your very first post. Check documentation for more i...
-						
-					</p>
-					<p class="post-meta">
-						
-
-
-
-					</p>
-				</div>
-			</div>
-		
-	</div>
-	
-	
-	<div id="pagination">
-		
-	</div>
+		<div class="layout-page-header">
 
 	
 
+		<i class="fa fa-pencil-square-o">总计 1  分类</i>
+
+	
+	
 </div>
+
+		
+
+			<div class="category">
+				<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">1</span></li></ul>
+			</div>
+
+		
+	</div>
+
 	
+		<!-- 
+			ajax 查询相应标签or分类的文章 
+			We can use "Content filtering plugin" to instead ajax!
+		-->
+		<div class="TCP-container">
+			<div id="TCP-title"></div>
+			<div id="TCP-content"></div>
+		</div>
+	
+</div>
 
 		</main>
 
