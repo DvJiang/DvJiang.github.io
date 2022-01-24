@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-01-23T08:59:36.656Z</updated>
+  <updated>2022-01-24T03:22:29.496Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,26 +17,28 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://example.com/2022/01/20/hello-world/"/>
-    <id>http://example.com/2022/01/20/hello-world/</id>
-    <published>2022-01-19T16:00:00.000Z</published>
-    <updated>2022-01-23T08:59:36.656Z</updated>
+    <title>创刊号</title>
+    <link href="http://example.com/2019/01/24/%E5%88%9B%E5%88%8A%E5%8F%B7/"/>
+    <id>http://example.com/2019/01/24/%E5%88%9B%E5%88%8A%E5%8F%B7/</id>
+    <published>2019-01-23T16:00:00.000Z</published>
+    <updated>2022-01-24T03:22:29.496Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="创刊号"><a href="#创刊号" class="headerlink" title="创刊号"></a>创刊号</h1><p><strong>数十年后，如若我回头看去，希望我看到的，不是空如白纸的些微回忆，而是我坚实踩下的痕迹，顺着来时的路，我们或许可以找到未来。</strong></p><hr><p>搭建这样一个供自己记录的平台的想法是几个月前才有的，但想要写写东西，记录生活的想法却由来已久。在大学忙碌的生活中，我已经逐渐变得急躁。看不了，也写不下思想的长文，面前的路迷茫而不知去向，但我却在逐渐失去思考的能力，这无疑是令人感到恐怖的。高中时令我感到骄傲，并支撑我来到这所大学的那些优良品质正在逐渐被浮躁的现代生活消磨。</p><p><strong>我必须得做点什么。</strong></p><p>还记得我在年底时曾回顾那一年的所见所得，可是记忆正如被风侵蚀的沙城，稍加触碰不免分崩离析。我已经快要忘记自己曾经做过的那些事了，那些尝试，那些实践。当我在旧物堆翻出相应的痕迹时，才会惊叹，原来我还有干这种事的一天啊。</p><p>记忆是不可靠的，于是我打算把它记录下来，就像自己的日记本一样，公开，但又隐蔽。</p><p>大概是为了偷懒，我曾经一度坚信阅读不需要作笔记，因为我们在书中的所见所闻自然会影响我们的思想和性格，改变我们的人生。如今我虽然依然这样认为，但在阅读之后，我需要写下我的看法，即为书评。书评带来思考，而这便是我所看重的。</p><p>我如今的生活节奏很快，闲暇间充满了快餐式的娱乐方式，这很快乐，快乐之余也带来了空虚，思考也随之失去了扎根的土壤。通过写作和笔记，我希望能不断学习和反省，并为以后留下回忆的路标。</p><p>希望当十年后的我打开这个博客，在孤寂无人的夜里，或是喧嚣沸腾的热闹中，看到这世间自己走过的痕迹，想起数年来的酸酸甜甜，可以会心一笑，千丝万缕尽在不言中。</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+    <summary type="html">&lt;h1 id=&quot;创刊号&quot;&gt;&lt;a href=&quot;#创刊号&quot; class=&quot;headerlink&quot; title=&quot;创刊号&quot;&gt;&lt;/a&gt;创刊号&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;数十年后，如若我回头看去，希望我看到的，不是空如白纸的些微回忆，而是我坚实踩下的痕迹，顺着来时的路，我们或许可以找到</summary>
       
     
     
     
-    <category term="测试" scheme="http://example.com/categories/%E6%B5%8B%E8%AF%95/"/>
+    <category term="杂谈" scheme="http://example.com/categories/%E6%9D%82%E8%B0%88/"/>
     
     
-    <category term="测试" scheme="http://example.com/tags/%E6%B5%8B%E8%AF%95/"/>
+    <category term="纪念" scheme="http://example.com/tags/%E7%BA%AA%E5%BF%B5/"/>
+    
+    <category term="乱语" scheme="http://example.com/tags/%E4%B9%B1%E8%AF%AD/"/>
     
   </entry>
   
