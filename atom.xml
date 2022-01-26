@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-01-25T02:49:17.190Z</updated>
+  <updated>2022-01-26T03:01:51.167Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,22 +17,75 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Markdown 基本语法</title>
+    <link href="http://example.com/2022/01/26/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"/>
+    <id>http://example.com/2022/01/26/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</id>
+    <published>2022-01-25T16:00:00.000Z</published>
+    <updated>2022-01-26T03:01:51.167Z</updated>
+    
+    <content type="html"><![CDATA[<p>1.代码块：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//代码块语法</span></span><br></pre></td></tr></table></figure><p>用三个`</p><hr><p>2.标题</p><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级"><a href="#二级" class="headerlink" title="二级"></a>二级</h2><h3 id="三级"><a href="#三级" class="headerlink" title="三级"></a>三级</h3><h4 id="四级"><a href="#四级" class="headerlink" title="四级"></a>四级</h4><h5 id="五级"><a href="#五级" class="headerlink" title="五级"></a>五级</h5><h6 id="六级"><a href="#六级" class="headerlink" title="六级"></a>六级</h6><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 一级标题</span></span><br><span class="line"><span class="section">## 二级</span></span><br><span class="line"><span class="section">### 三级</span></span><br><span class="line"><span class="section">#### 四级</span></span><br><span class="line"><span class="section">##### 五级</span></span><br><span class="line"><span class="section">###### 六级</span></span><br></pre></td></tr></table></figure><hr><p>3.字体样式</p><p><strong>粗体</strong><br><em>斜体</em><br><del>删除线</del><br><code>高亮</code></p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="strong">**粗体**</span></span><br><span class="line"><span class="emphasis">*斜体*</span></span><br><span class="line">~~删除线~~</span><br><span class="line"><span class="code">`高亮`</span></span><br></pre></td></tr></table></figure><hr><p>4.引用</p><blockquote><p>引用</p></blockquote><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;引用</span><br></pre></td></tr></table></figure><p>5.分割线（全屏长度）</p><hr><hr><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"><span class="strong">**<span class="emphasis">*</span></span></span></span><br><span class="line"><span class="emphasis"><span class="strong"><span class="section">---</span></span></span></span><br></pre></td></tr></table></figure><hr><p>6.图片</p><p>正常：<br><code>![name](图片地址)</code></p><p>img-paste:<br><img src="/images/mk-2022-01-21-22-57-58.png" alt="test"></p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">正常：</span><br><span class="line"><span class="code">`![name](图片地址)`</span></span><br><span class="line"></span><br><span class="line">img-paste:</span><br><span class="line">![<span class="string">test</span>](<span class="link">/images/mk-2022-01-21-22-57-58.png</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure><hr><p>7.超链接<br><a href="https://www.baidu.com/">百度</a></p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">百度</span>](<span class="link">https://www.baidu.com</span>)</span><br></pre></td></tr></table></figure><hr><p>8.列表</p><ol><li>有序列表</li><li><code>1 + . + 空格</code><ul><li>无序列表</li></ul></li></ol><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet"> 1.</span> 有序列表</span><br><span class="line"><span class="bullet"> 2.</span> <span class="code">`1 + . + 空格`</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 无序列表</span><br></pre></td></tr></table></figure><hr><p>9.表格</p><table><thead><tr><th align="left">左对齐</th><th align="center">居中</th><th align="right">右对齐</th></tr></thead><tbody><tr><td align="left"><code>:-</code></td><td align="center"><code>:--:</code></td><td align="right"><code>--:</code></td></tr></tbody></table><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">|左对齐|居中|右对齐|</span><br><span class="line">|:-----|:-----:|-----:|</span><br><span class="line">|<span class="code">`:-`</span>|<span class="code">`:--:`</span>|<span class="code">`--:`</span>|</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;1.代码块：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;</summary>
+      
+    
+    
+    
+    <category term="笔记" scheme="http://example.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Markdown" scheme="http://example.com/tags/Markdown/"/>
+    
+    <category term="学习" scheme="http://example.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HTML 基本语法</title>
+    <link href="http://example.com/2022/01/25/HTML%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"/>
+    <id>http://example.com/2022/01/25/HTML%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</id>
+    <published>2022-01-24T16:00:00.000Z</published>
+    <updated>2022-01-25T14:47:32.085Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="零碎"><a href="#零碎" class="headerlink" title="零碎"></a>零碎</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>一级标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>二级标题<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>小标题<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span>换行</span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span>分割线</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>分区<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span>&gt;</span>输入框</span><br></pre></td></tr></table></figure><blockquote><p>多个空格算一个</p></blockquote><hr><h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><ul><li>成对标签</li><li>&lt;开始标签&gt;…&lt;/结束标签&gt;</li><li>称为元素（标签）</li><li>自结束标签</li><li>新：&lt;标签&gt;</li><li>旧：&lt;标签 /&gt;</li><li>属性</li><li>在开始标签或自结束标签可设置属性</li><li>属性=属性值（引号或单引号）</li><li>属性名=属性值一样时，可不写属性值</li><li>eg：  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> = <span class="string">&quot;text&quot;</span>&gt;</span> 文字</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> = <span class="string">&quot;radio&quot;</span>&gt;</span>单选</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> = <span class="string">&quot;checkbox&quot;</span> <span class="attr">checked</span>&gt;</span>可选，已选</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> = <span class="string">&quot;submit&quot;</span>&gt;</span>提交按钮</span><br></pre></td></tr></table></figure></li></ul><hr><h2 id="实体"><a href="#实体" class="headerlink" title="实体"></a>实体</h2><ul><li>用途：相当于转义  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a<span class="tag">&lt;<span class="name">b</span>&gt;</span>c</span><br><span class="line">&lt; 写成：<span class="symbol">&amp;lt;</span></span><br><span class="line">&gt; 写成：<span class="symbol">&amp;gt;</span></span><br><span class="line">copyright：<span class="symbol">&amp;copy;</span></span><br><span class="line">空格：<span class="symbol">&amp;nbsp;</span></span><br></pre></td></tr></table></figure></li></ul><hr><h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2>  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--注释--&gt;</span></span><br></pre></td></tr></table></figure><hr><h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        头部（不显示）</span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        主干</span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;零碎&quot;&gt;&lt;a href=&quot;#零碎&quot; class=&quot;headerlink&quot; title=&quot;零碎&quot;&gt;&lt;/a&gt;零碎&lt;/h2&gt;&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span c</summary>
+      
+    
+    
+    
+    <category term="笔记" scheme="http://example.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="学习" scheme="http://example.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="HTML" scheme="http://example.com/tags/HTML/"/>
+    
+  </entry>
+  
+  <entry>
     <title>分类与标签约定</title>
     <link href="http://example.com/2022/01/25/%E5%88%86%E7%B1%BB%E4%B8%8E%E6%A0%87%E7%AD%BE%E7%BA%A6%E5%AE%9A/"/>
     <id>http://example.com/2022/01/25/%E5%88%86%E7%B1%BB%E4%B8%8E%E6%A0%87%E7%AD%BE%E7%BA%A6%E5%AE%9A/</id>
     <published>2022-01-24T16:00:00.000Z</published>
-    <updated>2022-01-25T02:49:17.190Z</updated>
+    <updated>2022-01-26T03:07:21.001Z</updated>
     
-    <content type="html"><![CDATA[<p>本站范围内，对分类及标签约定如下：</p><p>每篇文章只能拥有一个分类，但可以拥有多个标签。</p><hr><h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ul><li>笔记<ul><li>自学笔记，课程笔记</li></ul></li><li>阅读<ul><li>阅读笔记，书评，阅读感想</li></ul></li><li>杂谈<ul><li>所感，散文等</li></ul></li><li>其它<ul><li>无法分类的特殊内容，如公告，信息等</li></ul></li></ul><h3 id="To-be-continued-未完待续"><a href="#To-be-continued-未完待续" class="headerlink" title="To be continued 未完待续"></a>To be continued 未完待续</h3><hr><h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><ul><li>学习<ul><li>与学习，技能有关的内容</li></ul></li><li>纪念<ul><li>对特殊事件和时间的纪念，如新年等</li></ul></li><li>乱语<ul><li>所想所感</li></ul></li><li>其它标签：<ul><li>即与相关内容有关</li></ul></li></ul><h3 id="To-be-continued-未完待续-1"><a href="#To-be-continued-未完待续-1" class="headerlink" title="To be continued 未完待续"></a>To be continued 未完待续</h3><hr>]]></content>
+    <content type="html"><![CDATA[<p>本站范围内，对分类及标签约定如下：</p><p>每篇文章只能拥有一个分类，但可以拥有多个标签。</p><p>标签页中，标签越大，所包含的内容越多</p><hr><h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ul><li>笔记<ul><li>自学笔记，课程笔记</li></ul></li><li>阅读<ul><li>阅读笔记，书评，阅读感想</li></ul></li><li>杂谈<ul><li>所感，散文等</li></ul></li><li>其它<ul><li>无法分类的特殊内容，如公告，信息等</li></ul></li></ul><h3 id="To-be-continued-未完待续"><a href="#To-be-continued-未完待续" class="headerlink" title="To be continued 未完待续"></a>To be continued 未完待续</h3><hr><h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><ul><li>学习<ul><li>与学习，技能有关的内容</li></ul></li><li>纪念<ul><li>对特殊事件和时间的纪念，如新年等</li></ul></li><li>乱语<ul><li>所想所感</li></ul></li><li>其它标签：<ul><li>即与相关内容有关</li></ul></li></ul><h3 id="To-be-continued-未完待续-1"><a href="#To-be-continued-未完待续-1" class="headerlink" title="To be continued 未完待续"></a>To be continued 未完待续</h3><hr>]]></content>
     
     
       
       
     <summary type="html">&lt;p&gt;本站范围内，对分类及标签约定如下：&lt;/p&gt;
 &lt;p&gt;每篇文章只能拥有一个分类，但可以拥有多个标签。&lt;/p&gt;
+&lt;p&gt;标签页中，标签越大，所包含的内容越多&lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 id=&quot;分类&quot;&gt;&lt;a href=&quot;#分类&quot; class=&quot;headerlink&quot; title=&quot;分类&quot;&gt;&lt;/a&gt;分类&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;笔记&lt;</summary>
+&lt;h2 id=&quot;分类&quot;&gt;&lt;a href=&quot;#分类&quot; class=&quot;headerlink&quot; title=&quot;分</summary>
       
     
     
@@ -46,10 +99,10 @@
   
   <entry>
     <title>创刊号</title>
-    <link href="http://example.com/2019/01/24/%E5%88%9B%E5%88%8A%E5%8F%B7/"/>
-    <id>http://example.com/2019/01/24/%E5%88%9B%E5%88%8A%E5%8F%B7/</id>
-    <published>2019-01-23T16:00:00.000Z</published>
-    <updated>2022-01-24T15:18:05.185Z</updated>
+    <link href="http://example.com/2022/01/24/%E5%88%9B%E5%88%8A%E5%8F%B7/"/>
+    <id>http://example.com/2022/01/24/%E5%88%9B%E5%88%8A%E5%8F%B7/</id>
+    <published>2022-01-23T16:00:00.000Z</published>
+    <updated>2022-01-25T14:53:02.747Z</updated>
     
     <content type="html"><![CDATA[<p><strong>数十年后，如若我回头看去，希望我看到的，不是空如白纸的些微回忆，而是我坚实踩下的痕迹，顺着来时的路，我们或许可以找到未来。</strong></p><hr><p>搭建这样一个供自己记录的平台的想法是几个月前才有的，但想要写写东西，记录生活的想法却由来已久。在大学忙碌的生活中，我已经逐渐变得急躁。看不了，也写不下思想的长文，面前的路迷茫而不知去向，但我却在逐渐失去思考的能力，这无疑是令人感到恐怖的。高中时令我感到骄傲，并支撑我来到这所大学的那些优良品质正在逐渐被浮躁的现代生活消磨。</p><p><strong>我必须得做点什么。</strong></p><p>还记得我在年底时曾回顾那一年的所见所得，可是记忆正如被风侵蚀的沙城，稍加触碰不免分崩离析。我已经快要忘记自己曾经做过的那些事了，那些尝试，那些实践。当我在旧物堆翻出相应的痕迹时，才会惊叹，原来我还有干这种事的一天啊。</p><p>记忆是不可靠的，于是我打算把它记录下来，就像自己的日记本一样，公开，但又隐蔽。</p><p>大概是为了偷懒，我曾经一度坚信阅读不需要作笔记，因为我们在书中的所见所闻自然会影响我们的思想和性格，改变我们的人生。如今我虽然依然这样认为，但在阅读之后，我需要写下我的看法，即为书评。书评带来思考，而这便是我所看重的。</p><p>我如今的生活节奏很快，闲暇间充满了快餐式的娱乐方式，这很快乐，快乐之余也带来了空虚，思考也随之失去了扎根的土壤。通过写作和笔记，我希望能不断学习和反省，并为以后留下回忆的路标。</p><p>希望当十年后的我打开这个博客，在孤寂无人的夜里，或是喧嚣沸腾的热闹中，看到这世间自己走过的痕迹，想起数年来的酸酸甜甜，可以会心一笑，千丝万缕尽在不言中。</p>]]></content>
     
