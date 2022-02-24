@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-02-24T02:38:17.205Z</updated>
+  <updated>2022-02-24T10:34:19.188Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git与GitHub简介</title>
+    <link href="http://example.com/2022/02/24/Git%E4%B8%8EGithub%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"/>
+    <id>http://example.com/2022/02/24/Git%E4%B8%8EGithub%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</id>
+    <published>2022-02-23T16:00:00.000Z</published>
+    <updated>2022-02-24T10:34:19.188Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="Git与GitHub"><a href="#Git与GitHub" class="headerlink" title="Git与GitHub"></a>Git与GitHub</h3><p><code>Git</code>是一款代码管理软件，一般使用它的命令行模式。<code>GitHub</code>是著名的<del>全球最大同性交友网站</del>，也是代码管理仓库。它提供了海量的存储空间，二者合用可以很好的实现多人合作项目，对像我一样的多个设备切换记录和书写的<code>Blogger</code>也很实用。</p><h2 id="GiT与GitHub基本信息"><a href="#GiT与GitHub基本信息" class="headerlink" title="GiT与GitHub基本信息"></a>GiT与GitHub基本信息</h2><h3 id="Git基本框架"><a href="#Git基本框架" class="headerlink" title="Git基本框架"></a>Git基本框架</h3><p><code>Git</code>的管理由三块组成，分别是工作区，暂存区，和版本库。</p><p>改动的部分通过<code>add</code>由工作区传至暂存区，然后由<code>commit</code>传至版本库，最后通过<code>push</code>发送至远程仓库（即<code>GitHub</code>）</p><h3 id="GitHub基本连接"><a href="#GitHub基本连接" class="headerlink" title="GitHub基本连接"></a>GitHub基本连接</h3><p><code>GitHub</code>需要与电脑进行<code>ssh</code>连接，将电脑的<code>ssh</code>输入相应的<code>GitHub</code>账号中，通过相应的命令语句确认。</p><p><code>GitHub</code>与<code>Git</code>的连接：对于弹出的登录框，<code>username</code>输入<code>GitHub</code>用户名，但密码输入由<code>GitHub</code>网页产生的特殊令牌。</p><p>相关连接不再赘述。</p><h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><p>首先对文件夹<code>git bush</code>，建立仓库，输入：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git init</span></span><br></pre></td></tr></table></figure><p>随后验证<code>ssh</code>是否匹配：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh -T git@github.com</span></span><br></pre></td></tr></table></figure><p>第一次输入时，有询问，输入<code>yes</code>即可</p><p>出现以下信息表示连接成功：(<code>DvJiang</code>即为<code>GitHub</code>用户名)</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi DvJiang! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure><p>在<code>GitHub</code>上建立新仓库，取其<code>Http</code>为<code>XXX</code>，先对远程仓库起别名(别名取为<code>repo</code>)：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git remote add repo XXX</span></span><br></pre></td></tr></table></figure><p>通过<code>remote</code>指令可以查看别名：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git remote -v</span></span><br></pre></td></tr></table></figure><p>随后对该仓库建立分支，取名为<code>main</code>分支：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git branch main</span></span><br></pre></td></tr></table></figure><p>随后先将这个空白分支的内容拉取到本地（防止推送出现问题）：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git pull repo main</span></span><br></pre></td></tr></table></figure><p>对仓库内容修改完后，将仓库内容推送入远程仓库：(若全部更新，用<code>-A</code>)</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git add -A</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git commit -m <span class="string">&quot;add the explain&quot;</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git push repo main</span></span><br></pre></td></tr></table></figure><p>如果推送失败，显示网络无法连接到服务器，尝试用<code>ssh</code>先行连接，再推送。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;h3 id=&quot;Git与GitHub&quot;&gt;&lt;a href=&quot;#Git与GitHub&quot; class=&quot;headerlink&quot; title=&quot;Git与G</summary>
+      
+    
+    
+    
+    <category term="笔记" scheme="http://example.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="学习" scheme="http://example.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="Git" scheme="http://example.com/tags/Git/"/>
+    
+  </entry>
   
   <entry>
     <title>区块链与边缘计算概念</title>
