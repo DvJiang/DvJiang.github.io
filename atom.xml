@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-03-01T05:13:28.551Z</updated>
+  <updated>2022-03-01T13:26:42.402Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>命令行基本语法与Vim基本操作</title>
+    <link href="http://example.com/2022/03/02/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E4%B8%8EVim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"/>
+    <id>http://example.com/2022/03/02/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E4%B8%8EVim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</id>
+    <published>2022-03-01T16:00:00.000Z</published>
+    <updated>2022-03-01T13:26:42.402Z</updated>
+    
+    <content type="html"><![CDATA[<p>这段时间有简单接触各种shell语言和vim语法，深感这种东西属于不需要掌握很深，但需要有一点了解和基本知识的，所以按照惯例用一篇文章记录下来。</p><p>本文旨在简单入门和提醒命令行基本知识以及基本vim语句，不打算做成字典 XD。</p><blockquote><p>系统：Linux命令行，但大部分Win也能用</p></blockquote><hr><h2 id="命令行语句"><a href="#命令行语句" class="headerlink" title="命令行语句"></a>命令行语句</h2><hr><h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>命令行代码一般分为以下部分：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> [命令名字]   [命令选项]   [命令对象]</span></span><br></pre></td></tr></table></figure><p>若记忆有误，可在命令后接 <code>--help</code> 以获得相关帮助信息。</p><p><code>help</code>帮助规范：</p><table><thead><tr><th align="center">符号</th><th align="center">含义</th></tr></thead><tbody><tr><td align="center">&lt;尖括号&gt;</td><td align="center">必选参数</td></tr><tr><td align="center">{大括号}</td><td align="center">必选，从括号内选择</td></tr><tr><td align="center">[中括号]</td><td align="center">可选参数</td></tr><tr><td align="center">(小括号)</td><td align="center">默认参数</td></tr><tr><td align="center">或|</td><td align="center">只能选一个</td></tr><tr><td align="center">省略号···</td><td align="center">可重复选择</td></tr></tbody></table><hr><h3 id="一些简单语法"><a href="#一些简单语法" class="headerlink" title="一些简单语法"></a>一些简单语法</h3><h4 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h4><p><strong>可用<code>up</code>，<code>down</code>移动回到之前的输入命令。</strong></p><p><strong>避免使用<code>Ctrl+C</code>复制，因为在命令行中这代表结束当前运行。</strong></p><p><strong>按<code>Tab</code>可补全代码/文件名</strong></p><h4 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h4><p>打开文件，路径为XXX：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> XXX</span></span><br></pre></td></tr></table></figure><p>通过vim新建/打开文件XXX：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vim XXX</span></span><br></pre></td></tr></table></figure><p>删除文件XXX：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> rm XXX</span></span><br></pre></td></tr></table></figure><h4 id="目录操作"><a href="#目录操作" class="headerlink" title="目录操作"></a>目录操作</h4><p>当前目录：<code>.</code></p><p>上级目录：<code>..</code></p><p>根目录：<code>~</code></p><p>( <em>文件路径也是这套相对路径</em> )</p><p>结合打开文件操作可以任意跳转：(回到上一级目录)</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> ..</span></span><br></pre></td></tr></table></figure><p>查看目录下文件：<code>ls</code></p><hr><h2 id="Vim基本操作"><a href="#Vim基本操作" class="headerlink" title="Vim基本操作"></a>Vim基本操作</h2><hr><h3 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h3><p>Vim是一种历史悠久的编辑器，其设计主要面对不愿意使用鼠标的人群，并由于其为数众多的拓展和自定义快捷键广受推崇。</p><p>在命令行上vim更加常见，尤其是在win系统下，很多文件因为不能直接打开，不得不使用vim编辑方式。</p><hr><h3 id="结构-1"><a href="#结构-1" class="headerlink" title="结构"></a>结构</h3><p>vim拥有模式系统，被分为命令模式，底线命令模式和编辑模式。</p><p>命令模式相当于主菜单，负责一般的命令输入和文本变化。底线命令执行长命令。编辑模式负责代码输入。</p><p>通过一些输入可在三个模式间相互切换。</p><hr><h3 id="模式与命令"><a href="#模式与命令" class="headerlink" title="模式与命令"></a>模式与命令</h3><h4 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h4><p>用户进入时首先进入命令模式，此时支持简单字母的命令，不需要按回车即可运行，一般有命令：</p><table><thead><tr><th>i</th><th>x</th><th>h</th><th>j</th><th>k</th><th>l</th><th>:</th></tr></thead><tbody><tr><td>进入编辑模式</td><td>删除</td><td>左</td><td>下</td><td>上</td><td>右</td><td>进入底线模式</td></tr></tbody></table><h4 id="编辑模式"><a href="#编辑模式" class="headerlink" title="编辑模式"></a>编辑模式</h4><p>通过命令模式按<code>i</code>（insert）进入，负责更改代码。</p><p>按<code>Esc</code>退出，进入命令模式。</p><h4 id="底线命令模式"><a href="#底线命令模式" class="headerlink" title="底线命令模式"></a>底线命令模式</h4><p>通过在命令模式按<code>:</code>进入，一般会在退出时使用。</p><p>保存退出：<code>:wq</code></p><p>不保存退出：<code>:q</code>，只保存文件：<code>:w</code></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;这段时间有简单接触各种shell语言和vim语法，深感这种东西属于不需要掌握很深，但需要有一点了解和基本知识的，所以按照惯例用一篇文章记录下来。&lt;/p&gt;
+&lt;p&gt;本文旨在简单入门和提醒命令行基本知识以及基本vim语句，不打算做成字典 XD。&lt;/p&gt;
+&lt;blockquote&gt;
+</summary>
+      
+    
+    
+    
+    <category term="笔记" scheme="http://example.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="学习" scheme="http://example.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="Linux" scheme="http://example.com/tags/Linux/"/>
+    
+    <category term="vim" scheme="http://example.com/tags/vim/"/>
+    
+  </entry>
   
   <entry>
     <title>Github连接超时处理方式</title>
