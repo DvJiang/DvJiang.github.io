@@ -1,0 +1,658 @@
+<!--
+	作者：Sariay
+	时间：2018-08-26
+	描述：There may be a bug, but don't worry, Qiling(器灵) says that it can work normally! aha!
+-->
+<!DOCTYPE html>
+<html class="html-loading">
+		
+
+<head>
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <title>
+    
+      Matplot点状图绘图初探 | DvJiang&#39;s Blog
+    
+  </title>
+  <meta name="author" content="DvJiang">
+  <meta name="keywords" content="blog" />
+  <meta name="description" content="" />
+	<!-- favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+
+  <!-- css -->
+  
+<link rel="stylesheet" href="/css/Annie.css">
+
+  
+  <!-- jquery -->
+	
+<script src="/plugin/jquery/jquery.min.js"></script>
+
+
+<script>
+    const CONFIG_BGIMAGE = {
+      mode: 'normal',
+      normalSrc: '/img/header-bg.jpg',
+      randomYouMax: 110,
+      randomYouSrc: 'https://sariay.github.io/Random-img/',
+	  randomOtherSrc: 'https://api.berryapi.net/?service=App.Bing.Images&day=-0',
+	  preloaderEnable: true
+    }
+	
+    const CONFIG_LEACLOUD_COUNT = {
+      enable: false,
+	  appId: 'AU8...',
+	  appKey: '4cU...',
+	  serverURLs: 'http' || ' '
+    }
+  </script>
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+	<body>
+		<!-- Preloader -->
+
+	<div id="preloader">
+		<div class="pre-container">
+			
+				<div class="spinner">
+					<div class="double-bounce1"></div>
+					<div class="double-bounce2"></div>
+				</div>
+						
+		</div>
+	</div>
+
+
+<!-- header -->
+<header class="fixbackground bg-pan-br">
+	<div class="mask">
+		<!-- motto -->
+		<div class="h-body">	
+			
+				<div class="motto text-shadow-pop-left">
+					<p class="content" id="motto-content">获取中...</p>
+					<p>-<p>
+					<p class="author" id="motto-author">Just a minute...</p>
+				</div>
+			
+		</div>
+		
+		<!-- others: such as time... -->			
+		<div class="h-footer">
+			<a href="javascript:;" id="read-more" class="scroll-down">
+				<span class="icon-anchor1 animation-scroll-down"></span>
+			</a>
+		</div>
+	</div>
+</header>
+
+<div id="navigation-hide">
+	<!-- Progress bar -->
+	<div id="progress-bar"></div>
+
+	<!-- Progress percent -->
+	<div id="progress-percentage"><span>0.0%</span></div>
+
+	<div class="toc-switch"><span class="switch-button">目录</span></div>
+
+	<!-- Page title -->
+	<p>
+		
+			「Matplot点状图绘图初探」
+		
+	</p>
+
+	
+	
+
+	<!-- Nav trigger for navigation-H-->
+	<a class="nav-trigger"><span></span></a>
+</div>
+
+<!-- Navigation in div(id="navigation-H") -->
+<nav class="nav-container" id="cd-nav">
+	<div class="nav-header">
+		<span class="logo"> 
+			<img src="/img/logo.png">
+		</span>
+		<a href="javascript:;" class="nav-close"></a>
+	</div>
+	
+	<div class="nav-body">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+	</div>
+	
+	<div class="nav-footer">
+		<ul id="global-social">
+	
+		<li>
+			<a href="https://github.com/DvJiang/" target="_blank">
+				<span class="icon-github"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<span class="icon-rss"></span>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+</nav>
+			
+		<!--main-->
+		<main>
+			<!--
+	时间：2018-11-17
+	描述：
+		插件名称：katelog.min.js
+		插件作者：KELEN
+		插件来源: https://github.com/KELEN/katelog
+-->
+
+	
+		<div class="layout-toc">
+			<div id="layout-toc">
+				<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
+			</div>
+		</div>
+
+		
+<script src="/plugin/toc/katelog.min.js"></script>
+
+
+		
+	 
+
+<div class="layout-post">
+	<div id="layout-post">
+		<div class="article-title">
+			
+	<a href="/2022/02/28/Matplot%E7%82%B9%E7%8A%B6%E5%9B%BE%E7%BB%98%E5%9B%BE%E5%88%9D%E6%8E%A2/" itemprop="url">
+		Matplot点状图绘图初探
+	</a>
+
+		</div>
+
+		<div class="article-meta">
+			<span>
+				<i class="icon-calendar1"></i>
+				
+				
+
+
+
+
+	更新于
+
+	<a href="/2022/02/28/Matplot%E7%82%B9%E7%8A%B6%E5%9B%BE%E7%BB%98%E5%9B%BE%E5%88%9D%E6%8E%A2/" itemprop="url">
+		<time datetime="2022-02-27T16:00:00.000Z" itemprop="dateUpdated">
+	  		2022-03-01
+	  </time>
+	</a> 
+
+
+
+			</span>
+			<span>
+				
+	<i class="icon-price-tags"></i>
+	
+		<a href="/tags/%E5%AD%A6%E4%B9%A0/" class=" ">
+			学习
+		</a>
+	
+		<a href="/tags/python/" class=" ">
+			python
+		</a>
+	
+		
+			</span>
+			
+			
+
+
+
+		</div>
+
+		<div class="article-content" id="article-content">
+			<p>完成<a target="_blank" rel="noopener" href="https://dvjiang.github.io/2022/02/26/Sklearn%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%9D%E6%8E%A2%E4%B8%8EKNN%E7%AE%97%E6%B3%95/">鸢尾花数据集</a>后，突然发现还要求一个直观的Matplot展示，不得已，尝试捡起丢掉已久的matplot和numpy。</p>
+<hr>
+<h2 id="代码目标与架构思路"><a href="#代码目标与架构思路" class="headerlink" title="代码目标与架构思路"></a>代码目标与架构思路</h2><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>将模型训练的结果直观化，形成一张彩色的图谱，图谱上有训练点和背景分区，当点的颜色和背景颜色不一致时，认为模型判断失误，否则模型预测成功。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>利用numpy生成一张500 * 500的数据矩阵作为背景，将其中的点全部通过模型预测（ <em>需要重新训练只接受两个点的模型，因为一张二维图只有两个参数</em> ），并将显示结果通过不同颜色加以区分，形成色块，以此形成带颜色的背景。</p>
+<p>再将真实值（ <em>训练数据</em> ）绘制成点标于其上即可。</p>
+<hr>
+<h2 id="涉及函数及参数简介"><a href="#涉及函数及参数简介" class="headerlink" title="涉及函数及参数简介"></a>涉及函数及参数简介</h2><h3 id="axis参数"><a href="#axis参数" class="headerlink" title="axis参数"></a>axis参数</h3><p>用于指定对矩阵的堆砌和拆分遵循行还是列，有0和1两种指标。</p>
+<h3 id="meshgrid"><a href="#meshgrid" class="headerlink" title="meshgrid"></a>meshgrid</h3><p>用于形成网格，分别输入需要形成网格的横纵坐标集合，输出网格的两个坐标的矩阵形式。</p>
+<p>上属：numpy</p>
+<h3 id="linspace"><a href="#linspace" class="headerlink" title="linspace"></a>linspace</h3><p>用于形成等差数组，输入依次为这个要形成的数组的最小值，最大值，数组元素个数，输出为数组。</p>
+<p>上属：numpy</p>
+<h3 id="flat"><a href="#flat" class="headerlink" title="flat"></a>flat</h3><p>用于将一个矩阵“扁平化”成一个数组，扁平化顺序一定。</p>
+<p>上属：相应矩阵</p>
+<h3 id="stack"><a href="#stack" class="headerlink" title="stack"></a>stack</h3><p>用于将两个大小相同的矩阵/或数组堆叠起来（axis参数为1时相当于取两个矩阵/数组位置相同的元素组合为一个坐标作为它新矩阵的元素）。输入为两个待处理矩阵和axis参数，输出为堆叠的矩阵。</p>
+<p>上属：numpy</p>
+<h3 id="ListedColormap"><a href="#ListedColormap" class="headerlink" title="ListedColormap"></a>ListedColormap</h3><p>用于形成后面上色的规则 cm（ <em>Colormap</em> ），格式为输入[‘XX’,’XX’,’XX’]，式中的XX表示颜色缩写或者具体编号，一般用RGB格式，其顺序就是上色顺序，因此数量和要上色的元素数量有关。输出为cm。</p>
+<p>上属：matplotlib.colors</p>
+<h3 id="xlim（ylim）"><a href="#xlim（ylim）" class="headerlink" title="xlim（ylim）"></a>xlim（ylim）</h3><p>设定显示的坐标轴范围，输入为（min，max），无输出。</p>
+<p>上属：matplotlib.pyplot</p>
+<h3 id="pcolormesh"><a href="#pcolormesh" class="headerlink" title="pcolormesh"></a>pcolormesh</h3><p>用于绘制分类背景，使得背景出现颜色。输入依次为需要构造的横纵坐标x1，x2，判定颜色的依据label，判定颜色的规则cmap = cm，无输出。</p>
+<p>上属：matplotlib.pyplot</p>
+<h3 id="reshape"><a href="#reshape" class="headerlink" title="reshape"></a>reshape</h3><p>用于调整相应矩阵大小，输入为需要调整成的结果，同样是一个矩阵，由于是直接的下属函数，无输出。</p>
+<p>上属：相应矩阵</p>
+<h3 id="scatter"><a href="#scatter" class="headerlink" title="scatter"></a>scatter</h3><p>用于绘制一连串有颜色的点作为标记点。输入依次为一串点的横纵坐标x1，x2，判定点的颜色的依据 c = label，判定点颜色的规则 cmap = cm，点的形状 maker， 点边缘颜色 edgecolors，无输出。</p>
+<p>上属：matplotlib.pyplot</p>
+<h3 id="坐标轴的标签函数"><a href="#坐标轴的标签函数" class="headerlink" title="坐标轴的标签函数"></a>坐标轴的标签函数</h3><p>xlabel/ylabel：设定xy轴名称。输入相应字符串，无输出。</p>
+<p>title：设定图像名称。输入相应字符串，无输出。</p>
+<p>上属皆为：matplotlib.pyplot</p>
+<hr>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>贴上代码，里面已经有注释了，思路简单，故不再赘述。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#绘图部分：</span></span><br><span class="line">    <span class="comment">#切割数据，只要前两个特征</span></span><br><span class="line">    x_train = x_train[:,<span class="number">0</span>:<span class="number">2</span>]</span><br><span class="line">    <span class="comment">#重新训练模型</span></span><br><span class="line">    my_model_2 = neighbors.KNeighborsClassifier(<span class="number">5</span>)</span><br><span class="line">    my_model_2.fit(x_train,lab_train)</span><br><span class="line">    <span class="comment">#绘图点数量：</span></span><br><span class="line">    m,n = <span class="number">500</span>, <span class="number">500</span></span><br><span class="line">    <span class="comment">#print(x_train)</span></span><br><span class="line">    x1_min,x2_min = x_train.<span class="built_in">min</span>(axis = <span class="number">0</span>)</span><br><span class="line">    x1_max,x2_max = x_train.<span class="built_in">max</span>(axis = <span class="number">0</span>)</span><br><span class="line">    <span class="comment">#绘制网格</span></span><br><span class="line">    x1, x2 = np.meshgrid(np.linspace(x1_min, x1_max, m), np.linspace(x2_min, x2_max, n))</span><br><span class="line">    <span class="comment">#将数据点堆叠起来形成数据集合</span></span><br><span class="line">    x_plot = np.stack((x1.flat,x2.flat),axis = <span class="number">1</span>)</span><br><span class="line">    <span class="comment">#print(x_plot)</span></span><br><span class="line">    <span class="comment">#利用模型预测</span></span><br><span class="line">    lab_predict = my_model_2.predict(x_plot)</span><br><span class="line">    <span class="comment">#设定颜色</span></span><br><span class="line">    cm_color= ListedColormap([<span class="string">&#x27;r&#x27;</span>,<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;b&#x27;</span>])</span><br><span class="line">    <span class="comment">#设定范围</span></span><br><span class="line">    plt.xlim(x1_min,x1_max)</span><br><span class="line">    plt.ylim(x2_min,x2_max)</span><br><span class="line">    <span class="comment">#绘制分类背景</span></span><br><span class="line">    plt.pcolormesh(x1, x2, lab_predict.reshape(x1.shape), cmap=cm_color)</span><br><span class="line">    <span class="comment">#绘制点</span></span><br><span class="line">    plt.scatter(x_train[:,<span class="number">0</span>],x_train[:,<span class="number">1</span>],c=lab_train, cmap = cm_color, marker= <span class="string">&#x27;o&#x27;</span>,edgecolors=<span class="string">&#x27;k&#x27;</span>)</span><br><span class="line">    <span class="comment">#坐标信息</span></span><br><span class="line">    plt.xlabel(<span class="string">&quot;Sepal.Length&quot;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&quot;Sepal.Width&quot;</span>)</span><br><span class="line">    plt.title(<span class="string">&quot;KNN for Iris&quot;</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>加上完整的前后文后效果如下：</p>
+<p><img src="/images/mk-2022-03-01-10-23-58.png" alt="KNN for Iris"></p>
+<p>可以看到，效果还是很不错的，颜色不相同的地方就是模型判断失误的地方。</p>
+<p>最后贴上完整代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> neighbors</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> metrics</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> matplotlib.colors <span class="keyword">import</span> ListedColormap</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 用于处理及观察数据集结构</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_data</span>():</span></span><br><span class="line">    data = load_iris()</span><br><span class="line"></span><br><span class="line">    <span class="comment">#数据结构</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;数据结构：&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;关键字:&quot;</span>,data.keys())</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;target:&quot;</span>,data.target)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;frame:&quot;</span> ,data.frame)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;target_names:&quot;</span> ,data.target_names)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;DESCR:&quot;</span> ,data.DESCR)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;feature_names:&quot;</span> ,data.feature_names)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;filename:&quot;</span> ,data.filename)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;data_module:&quot;</span> ,data.data_module)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#数据拆分，按7：3划分</span></span><br><span class="line">    x_tain,x_test,lab_train,lab_test = train_test_split(data.data,data.target,test_size = <span class="number">0.3</span>)</span><br><span class="line">    <span class="keyword">return</span> x_tain,x_test,lab_train,lab_test</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#主函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    x_train,x_test,lab_train,lab_test = load_data()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;------------ training and testing&quot;</span>)</span><br><span class="line">    <span class="comment">#建立KNN模型</span></span><br><span class="line">    my_model = neighbors.KNeighborsClassifier(<span class="number">5</span>)</span><br><span class="line">    <span class="comment">#训练模型</span></span><br><span class="line">    my_model.fit(x_train,lab_train)</span><br><span class="line">    <span class="comment">#对结果进行预测</span></span><br><span class="line">    lab_pre = my_model.predict(x_test)</span><br><span class="line">    <span class="comment">#将预测结果和实际结果相比较打分</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;score:&quot;</span>,metrics.accuracy_score(lab_test,lab_pre))</span><br><span class="line">    <span class="comment">#尝试另一种函数：</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;score:&quot;</span>,my_model.score(x_test,lab_test))</span><br><span class="line"></span><br><span class="line">    <span class="comment">#绘图部分：</span></span><br><span class="line">    <span class="comment">#切割数据，只要前两个特征</span></span><br><span class="line">    x_train = x_train[:,<span class="number">0</span>:<span class="number">2</span>]</span><br><span class="line">    <span class="comment">#重新训练模型</span></span><br><span class="line">    my_model_2 = neighbors.KNeighborsClassifier(<span class="number">5</span>)</span><br><span class="line">    my_model_2.fit(x_train,lab_train)</span><br><span class="line">    <span class="comment">#绘图点数量：</span></span><br><span class="line">    m,n = <span class="number">500</span>, <span class="number">500</span></span><br><span class="line">    <span class="comment">#print(x_train)</span></span><br><span class="line">    x1_min,x2_min = x_train.<span class="built_in">min</span>(axis = <span class="number">0</span>)</span><br><span class="line">    x1_max,x2_max = x_train.<span class="built_in">max</span>(axis = <span class="number">0</span>)</span><br><span class="line">    <span class="comment">#绘制网格</span></span><br><span class="line">    x1, x2 = np.meshgrid(np.linspace(x1_min, x1_max, m), np.linspace(x2_min, x2_max, n))</span><br><span class="line">    <span class="comment">#将数据点堆叠起来形成数据集合</span></span><br><span class="line">    x_plot = np.stack((x1.flat,x2.flat),axis = <span class="number">1</span>)</span><br><span class="line">    <span class="comment">#print(x_plot)</span></span><br><span class="line">    <span class="comment">#利用模型预测</span></span><br><span class="line">    lab_predict = my_model_2.predict(x_plot)</span><br><span class="line">    <span class="comment">#设定颜色</span></span><br><span class="line">    cm_color= ListedColormap([<span class="string">&#x27;r&#x27;</span>,<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;b&#x27;</span>])</span><br><span class="line">    <span class="comment">#设定范围</span></span><br><span class="line">    plt.xlim(x1_min,x1_max)</span><br><span class="line">    plt.ylim(x2_min,x2_max)</span><br><span class="line">    <span class="comment">#绘制分类背景</span></span><br><span class="line">    plt.pcolormesh(x1, x2, lab_predict.reshape(x1.shape), cmap=cm_color)</span><br><span class="line">    <span class="comment">#绘制点</span></span><br><span class="line">    plt.scatter(x_train[:,<span class="number">0</span>],x_train[:,<span class="number">1</span>],c=lab_train, cmap = cm_color, marker= <span class="string">&#x27;o&#x27;</span>,edgecolors=<span class="string">&#x27;k&#x27;</span>)</span><br><span class="line">    <span class="comment">#坐标信息</span></span><br><span class="line">    plt.xlabel(<span class="string">&quot;Sepal.Length&quot;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&quot;Sepal.Width&quot;</span>)</span><br><span class="line">    plt.title(<span class="string">&quot;KNN for Iris&quot;</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<p>锵锵锵~完成</p>
+	
+		</div>
+		
+		<div id="current-post-cover" data-scr="/img/post-cover/16.jpg"></div>
+
+		<!-- relate post, comment...-->
+		
+	</div>
+</div>
+
+<!-- show math formula -->
+
+
+
+	 
+	
+<script src="/plugin/clipboard/clipboard.js"></script>
+
+	<script>
+		// Copy code !
+	    function preprocessing() {
+	        $("#article-content .highlight").each(function() {
+	            $(this).wrap('<div id="post-code"></div>');
+	        })
+
+	        $("#article-content #post-code").each(function() {
+	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
+	        })
+
+	        $("#article-content .copy-nav").each(function() {
+	            let languageClass = $(this).next().attr('class'),
+	                language = ((languageClass.length > 9) && (languageClass != null)) ? languageClass.substr(10) : "none"; //why 9? Need to check language?
+
+	            $(this).find('.code-language').text(language);
+	            $(this).append('<span class="copy-btn icon-paste"></span>');
+	        });
+	    }
+
+		function copy() {
+		    $('#article-content #post-code').each(function(i) {
+		        let codeCopyId = 'codeCopy-' + i;
+
+		        let codeNode = $(this).find('.code'),
+		            copyButton = $(this).find('.copy-btn');
+
+		        codeNode.attr('id', codeCopyId);
+		        copyButton.attr('data-clipboard-target-id', codeCopyId);
+		    })
+   
+			let clipboard = new ClipboardJS('.copy-btn', {
+					target: function(trigger) {
+						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+					}
+		      	});
+
+			//pure js
+			function showTooltip(elem, msg) {		   
+				elem.setAttribute('aria-label', msg);
+				elem.setAttribute('class', 'copy-btn icon-clipboard1');
+				setTimeout(function() {
+					elem.setAttribute('class', 'copy-btn icon-paste');
+				}, 2000);
+			}
+
+			clipboard.on('success', function(e) {
+			    e.clearSelection();
+			    console.info('Action:', e.action);		   
+			    console.info('Trigger:', e.trigger);
+			    showTooltip(e.trigger, 'Copied!');   
+			});
+			
+			clipboard.on('error', function(e) {
+			    console.error('Action:', e.action);
+			    console.error('Trigger:', e.trigger);
+			});
+		}
+		
+		(function copyCode(){
+			if ($('.layout-post').length) {
+			    preprocessing();
+			    copy();
+			} 
+		})();
+	</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+
+<script src="/plugin/fancybox/jquery.fancybox.js"></script>
+
+
+<script type="text/javascript">
+	(function gallerySet(){
+		let titleID = $('.article-title a'),
+			imageID = $('.article-content img'),
+			videoID = $('.article-content video');
+		
+		let postTitle = titleID.text() ? titleID.text() : "No post title!";
+		
+		imageID.each(function() {
+			let imgPath = $(this).attr('src'),
+				imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox="gallery" data-caption="《 ' + postTitle + ' 》' + imgTitle + '"href="' + imgPath + '"> </a>');
+		});
+		
+		videoID.each(function() {
+			let videoPath = $(this).attr('src');
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
+		});
+		
+		//TODO：支持html5 video
+
+		if($('#layout-post').length) {
+			$('[data-fancybox="gallery"]').fancybox({
+				loop: true,
+				buttons: [
+					"zoom",
+					"share",
+					"slideShow",
+					"fullScreen",
+					//"download",
+					"thumbs",
+					"close"
+				],
+				protect: true
+			});
+		}
+	})();
+</script>
+
+
+		</main>
+
+		<!--footer-->
+		<footer>
+	<div id="navigation-show">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+	</div>
+
+	<div class="copyright">
+		<p>
+			 
+				&copy;2022, content by DvJiang. All Rights Reserved.
+			
+			
+			
+		</p>
+		<p>
+			
+
+	<!-- busuanzi -->
+	<!-- busuanzi -->
+
+		
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		<span id="busuanzi_container_page_pv">
+	  		本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</span>
+
+	
+
+
+
+
+			<!--
+			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
+			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>
+			-->				
+		</p>
+	</div>		
+</footer>
+		
+	<!-- Local or hitokoto! -->
+
+	
+<script src="/plugin/motto/motto.js"></script>
+
+	
+	<script type="text/javascript">
+		(function motto(){
+			let mottoText = getMingYanContent().split('</br> - </br>'),
+			
+			mottoTextContent = mottoText[0]?mottoText[0]:'请刷新...',
+			
+			mottoTextFrom = mottoText[1]?mottoText[1]:'one/一个';
+			
+			mottoTextContent = mottoTextContent.trim().substring(0, 100);
+		
+			$("#motto-content").html( mottoTextContent);
+			$("#motto-author").html( mottoTextFrom  );
+		})();	
+	</script>	
+
+
+
+<!-- love effect -->
+
+	
+<script src="/plugin/love/love.js"></script>
+
+
+
+<!-- back to top -->
+
+	<div id="totop">
+	<span class="icon-circle-up"></span>
+</div>
+
+
+
+<!-- site analysis -->
+
+
+	<!-- site-analysis -->
+	
+	
+	
+	
+	
+ 
+
+<!-- leancloud -->
+
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+	
+
+  
+
+	<!--
+	时间：2018-10-3
+	描述：
+		插件名称：hexo-generator-search-zip
+		插件来源: https://github.com/SuperKieran/hexo-generator-search-zip
+		代码参考：https://github.com/SuperKieran/TKL/blob/master/layout/_partial/search.ejs(Include: js & css)	
+-->
+<div class="popup search-popup local-search-popup scrollbar" >
+	<div class="local-search-container">
+		<span class="popup-btn-close">
+      		ESC
+   		</span>
+		<div class="local-search-header">
+			<div class="input-prompt">				
+			</div>
+			<input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+		</div>
+		<div class="local-search-body">
+			<div id="local-search-output"></div>
+		</div>
+		<div class="local-search-footer">
+			<div class="topN-post">				
+				
+								
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script src="/plugin/search/ziploader.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script type="text/javascript">
+	var search_path = 'search.json',
+		zip_Path = '/search.zip',
+		version_Path = '/searchVersion.txt',
+		input_Trigger = 'auto',
+		top_N = '2';
+
+	themeLocalSearch({
+		search_path, 
+		zip_Path, 
+		version_Path, 
+		input_Trigger, 
+		top_N
+	});
+</script>
+
+
+
+<script src="/plugin/chinese/chinese.js"></script>
+<script src="/plugin/imagelazyloader/yall.min.js"></script>
+<script src="/plugin/imageloaded/imagesloaded.pkgd.min.js"></script>
+<script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
+<script src="/plugin/resizediv/resizediv.js"></script>
+<script src="/js/main.js"></script>
+
+	</body>	
+</html>
