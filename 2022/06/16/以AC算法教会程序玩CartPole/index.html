@@ -1,0 +1,651 @@
+<!--
+	作者：Sariay
+	时间：2018-08-26
+	描述：There may be a bug, but don't worry, Qiling(器灵) says that it can work normally! aha!
+-->
+<!DOCTYPE html>
+<html class="html-loading">
+		
+
+<head>
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <title>
+    
+      以AC算法教会程序玩CartPole | DvJiang&#39;s Blog
+    
+  </title>
+  <meta name="author" content="DvJiang">
+  <meta name="keywords" content="blog" />
+  <meta name="description" content="" />
+	<!-- favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+
+  <!-- css -->
+  
+<link rel="stylesheet" href="/css/Annie.css">
+
+  
+  <!-- jquery -->
+	
+<script src="/plugin/jquery/jquery.min.js"></script>
+
+
+<script>
+    const CONFIG_BGIMAGE = {
+      mode: 'normal',
+      normalSrc: '/img/header-bg.jpg',
+      randomYouMax: 110,
+      randomYouSrc: 'https://sariay.github.io/Random-img/',
+	  randomOtherSrc: 'https://api.berryapi.net/?service=App.Bing.Images&day=-0',
+	  preloaderEnable: true
+    }
+	
+    const CONFIG_LEACLOUD_COUNT = {
+      enable: false,
+	  appId: 'AU8...',
+	  appKey: '4cU...',
+	  serverURLs: 'http' || ' '
+    }
+  </script>
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+	<body>
+		<!-- Preloader -->
+
+	<div id="preloader">
+		<div class="pre-container">
+			
+				<div class="cyclic">
+					<div><span></span></div>
+					<div><span></span></div>
+					<div><span></span></div>
+					<div><span></span></div>
+				</div>
+						
+		</div>
+	</div>
+
+
+<!-- header -->
+<header class="fixbackground bg-pan-br">
+	<div class="mask">
+		<!-- motto -->
+		<div class="h-body">	
+			
+				<div class="motto text-shadow-pop-left">
+					<p class="content" id="motto-content">获取中...</p>
+					<p>-<p>
+					<p class="author" id="motto-author">Just a minute...</p>
+				</div>
+			
+		</div>
+		
+		<!-- others: such as time... -->			
+		<div class="h-footer">
+			<a href="javascript:;" id="read-more" class="scroll-down">
+				<span class="icon-anchor1 animation-scroll-down"></span>
+			</a>
+		</div>
+	</div>
+</header>
+
+<div id="navigation-hide">
+	<!-- Progress bar -->
+	<div id="progress-bar"></div>
+
+	<!-- Progress percent -->
+	<div id="progress-percentage"><span>0.0%</span></div>
+
+	<div class="toc-switch"><span class="switch-button">目录</span></div>
+
+	<!-- Page title -->
+	<p>
+		
+			「以AC算法教会程序玩CartPole」
+		
+	</p>
+
+	
+	
+
+	<!-- Nav trigger for navigation-H-->
+	<a class="nav-trigger"><span></span></a>
+</div>
+
+<!-- Navigation in div(id="navigation-H") -->
+<nav class="nav-container" id="cd-nav">
+	<div class="nav-header">
+		<span class="logo"> 
+			<img src="/img/logo.png">
+		</span>
+		<a href="javascript:;" class="nav-close"></a>
+	</div>
+	
+	<div class="nav-body">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+	</div>
+	
+	<div class="nav-footer">
+		<ul id="global-social">
+	
+		<li>
+			<a href="https://github.com/DvJiang/" target="_blank">
+				<span class="icon-github"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<span class="icon-rss"></span>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+</nav>
+			
+		<!--main-->
+		<main>
+			<!--
+	时间：2018-11-17
+	描述：
+		插件名称：katelog.min.js
+		插件作者：KELEN
+		插件来源: https://github.com/KELEN/katelog
+-->
+
+	
+		<div class="layout-toc">
+			<div id="layout-toc">
+				<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
+			</div>
+		</div>
+
+		
+<script src="/plugin/toc/katelog.min.js"></script>
+
+
+		
+	 
+
+<div class="layout-post">
+	<div id="layout-post">
+		<div class="article-title">
+			
+	<a href="/2022/06/16/%E4%BB%A5AC%E7%AE%97%E6%B3%95%E6%95%99%E4%BC%9A%E7%A8%8B%E5%BA%8F%E7%8E%A9CartPole/" itemprop="url">
+		以AC算法教会程序玩CartPole
+	</a>
+
+		</div>
+
+		<div class="article-meta">
+			<span>
+				<i class="icon-calendar1"></i>
+				
+				
+
+
+
+
+	更新于
+
+	<a href="/2022/06/16/%E4%BB%A5AC%E7%AE%97%E6%B3%95%E6%95%99%E4%BC%9A%E7%A8%8B%E5%BA%8F%E7%8E%A9CartPole/" itemprop="url">
+		<time datetime="2022-06-15T16:00:00.000Z" itemprop="dateUpdated">
+	  		2022-06-30
+	  </time>
+	</a> 
+
+
+
+			</span>
+			<span>
+				
+	<i class="icon-price-tags"></i>
+	
+		<a href="/tags/%E5%AD%A6%E4%B9%A0/" class=" ">
+			学习
+		</a>
+	
+		<a href="/tags/python/" class=" ">
+			python
+		</a>
+	
+		
+			</span>
+			
+			
+
+
+
+		</div>
+
+		<div class="article-content" id="article-content">
+			<blockquote>
+<p>相关文件将会包含在我的GitHub仓库中</p>
+</blockquote>
+<h2 id="CartPole与AC算法简介"><a href="#CartPole与AC算法简介" class="headerlink" title="CartPole与AC算法简介"></a>CartPole与AC算法简介</h2><h3 id="CartPole"><a href="#CartPole" class="headerlink" title="CartPole"></a>CartPole</h3><p>CartPole是强化学习领域的经典题型了，题目就是一个小车和一个倒立摆，也就是一个可以左右移动的方块上有一跟可以自由倾斜的棍子，开始的时候环境给予棍子一个小的角度，然后让程序控制小车左右移动使得棍子尽量不掉下来。</p>
+<p>游戏的评分就是坚持的时间长短，环境会在倾斜15度或者超出小车移动范围的时候结束游戏。一般认为坚持超过200帧则游戏成功。</p>
+<h3 id="AC算法"><a href="#AC算法" class="headerlink" title="AC算法"></a>AC算法</h3><p>代码思想是强化学习中的<code>ActorCritic</code>算法，即“演员 - 评委”体系。</p>
+<p>首先需要介绍的是程序对游戏环境的识别。对于一个未知的状态体系（一般认为是马尔可夫状态），程序可能不能马上得到它走到这一步的价值如何（因为环境反馈的激励有可能不与当前状态直接关联），因此重点将在于如何评估到达一个状态后的价值，以及针对这样的状态-价值变换，我们如何进行抉择。我们一般将这样的两个问题分别称作评委和演员。</p>
+<p>一般来说，使用两个网络分别扮演演员和评委，演员输入当前状态，输出概率参数，而评委输入当前状态，选择后状态以及获得的激励，输出估计的价值。</p>
+<p>在训练的时候，根据价值网络（评委）的输出，我们可以训练动作网络（演员）的权重，然后通过估计价值和激励价值之差（TD-error）我们可以训练价值网络。</p>
+<h2 id="代码概述"><a href="#代码概述" class="headerlink" title="代码概述"></a>代码概述</h2><p>代码使用的是<code>VScode</code>的<code>python</code>环境，使用<code>OpenAI-gym</code>的<code>CartPole-v0</code>作为测试环境，<code>matplotlib</code>的<code>pyplot</code>和<code>animation</code>作为可视化以及<code>gif</code>动图的输出（注意，<code>gif</code>输出采用的<code>writer</code>是<code>ffmpeg</code>，这需要另行配置，程序会提示当前可用的<code>writer</code>），<code>AC</code>代码没有找到现成库，<code>Actor</code>和<code>Critic</code>均使用的<code>tensorflow</code>下的<code>keras</code>构建神经网络，而且都是3层网络（包括输出层和输入层）。</p>
+<p>在运行代码时，可以通过调整注释掉的代码改变代码的输出，得到想要的内容。另外，为避免奇怪的冲突，默认<code>gif</code>保存的位置为绝对位置D盘。注意，由于<code>plt.show()</code>的位置在输出<code>gif</code>的函数之前，关掉图像后才能获得gif动图（这是为了避免gif和图像被输出到一起）。</p>
+<p>程序在<code>AC</code>的C（<code>Critic</code>）中将<code>Advantage</code>，即<code>TD-error</code>作为评判标准。</p>
+<p>同时，由于<code>Advantage</code>中含有本来<code>model</code>自己的输出，使得<code>AC</code>结果不容易收敛，<code>Critic</code>代码采取了双神经网络的形式，一个网络负责进行训练，而另一个神经网络负责输出（作为副本），并以一定周期（程序内为5帧）与前一个神经网络进行同步（更新参数），由此加快收敛。</p>
+<p>##代码细节</p>
+<h3 id="AC部分"><a href="#AC部分" class="headerlink" title="AC部分"></a>AC部分</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关于Actor的部分</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Actor</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,learning_rate</span>):</span></span><br><span class="line">        self.lr = learning_rate</span><br><span class="line">        self.model = self.model_init()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 模型建立及设定</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">model_init</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 输入层，ob的特征有4个</span></span><br><span class="line">        input_layer = tf.keras.layers.Input(shape=(<span class="number">4</span>,))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 中间层，取20个神经元，激活函数用的relu</span></span><br><span class="line">        layer = keras.layers.Dense(</span><br><span class="line">            units=<span class="number">20</span>,</span><br><span class="line">            activation=keras.activations.relu,</span><br><span class="line">            kernel_initializer=tf.random_normal_initializer(<span class="number">0.</span>, <span class="number">.1</span>),</span><br><span class="line">            bias_initializer=tf.constant_initializer(<span class="number">0.1</span>),</span><br><span class="line">        )(input_layer)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 输出层，输出只有两个动作的概率（左和右），激活函数为softmax</span></span><br><span class="line">        output_layer = keras.layers.Dense(</span><br><span class="line">            units=<span class="number">2</span>,</span><br><span class="line">            activation=keras.activations.softmax,</span><br><span class="line">            kernel_initializer=tf.random_normal_initializer(<span class="number">0.</span>, <span class="number">.1</span>),</span><br><span class="line">            bias_initializer=tf.constant_initializer(<span class="number">0.1</span>),</span><br><span class="line">        )(layer)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 设置学习率</span></span><br><span class="line">        self.optimizer = keras.optimizers.Adam(learning_rate=self.lr)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 建立模型 损失函数选择交叉熵</span></span><br><span class="line">        model = keras.models.Model(inputs=input_layer, outputs=output_layer)</span><br><span class="line">        model.<span class="built_in">compile</span>(loss=<span class="string">&#x27;sparse_categorical_crossentropy&#x27;</span>, optimizer=self.optimizer)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> model</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 动作选择</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">choose_action</span>(<span class="params">self,state</span>):</span><span class="comment"># 有p的概率选择0</span></span><br><span class="line">        p = self.model(state)[<span class="number">0</span>].numpy()</span><br><span class="line">        rand_one = np.random.rand()</span><br><span class="line">        <span class="keyword">if</span> (rand_one &gt; p[<span class="number">0</span>]):</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 模型训练</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span>(<span class="params">self, state, action, weight</span>):</span></span><br><span class="line">        self.model.fit(state, np.array([action]), verbose=<span class="number">0</span>, sample_weight=weight)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关于critic的部分</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Critic</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,learning_rate,gama,iter_t</span>):</span></span><br><span class="line">        self.<span class="built_in">iter</span> = <span class="number">0</span> <span class="comment">#计算副本更新周期</span></span><br><span class="line">        self.iter_t = iter_t <span class="comment"># 副本更新周期</span></span><br><span class="line">        self.lr = learning_rate</span><br><span class="line">        self.gama = gama</span><br><span class="line">        self.model = self.model_init()</span><br><span class="line">        self.model_ = self.model <span class="comment"># 创建副本 周期更新</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 模型建立及设定</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">model_init</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 输入层，ob的特征有4个</span></span><br><span class="line">        input_layer = tf.keras.layers.Input(shape=(<span class="number">4</span>,))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 中间层，取20个神经元，激活函数用的relu</span></span><br><span class="line">        layer = keras.layers.Dense(</span><br><span class="line">            units=<span class="number">20</span>,</span><br><span class="line">            activation=keras.activations.relu,</span><br><span class="line">            kernel_initializer=tf.random_normal_initializer(<span class="number">0.</span>, <span class="number">.1</span>),</span><br><span class="line">            bias_initializer=tf.constant_initializer(<span class="number">0.1</span>),</span><br><span class="line">        )(input_layer)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 输出层</span></span><br><span class="line">        output_layer = keras.layers.Dense(</span><br><span class="line">            units=<span class="number">1</span>,</span><br><span class="line">            kernel_initializer=tf.random_normal_initializer(<span class="number">0.</span>, <span class="number">.1</span>),</span><br><span class="line">            bias_initializer=tf.constant_initializer(<span class="number">0.1</span>),</span><br><span class="line">        )(layer)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 设置学习率</span></span><br><span class="line">        self.optimizer = keras.optimizers.Adam(learning_rate=self.lr)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 建立模型</span></span><br><span class="line">        model = keras.models.Model(inputs=input_layer, outputs=output_layer)</span><br><span class="line">        model.<span class="built_in">compile</span>(loss=<span class="string">&#x27;mse&#x27;</span>, optimizer=self.optimizer)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> model</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span>(<span class="params">self, state, reward, state_</span>):</span></span><br><span class="line">        self.<span class="built_in">iter</span> += <span class="number">1</span></span><br><span class="line">        value = reward + self.model_(state_) * self.gama <span class="comment"># 使用副本，使得数据收敛更容易</span></span><br><span class="line">        td_error = value - self.model(state)</span><br><span class="line"></span><br><span class="line">        self.model.fit(state, value, verbose=<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span>(self.<span class="built_in">iter</span> &gt;= self.iter_t):</span><br><span class="line">            self.<span class="built_in">iter</span> = <span class="number">0</span></span><br><span class="line">            self.model_ = self.model</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> td_error</span><br></pre></td></tr></table></figure>
+
+<p>有基本的注释，实现了几个简单的功能。</p>
+<p>其中A的训练取了个巧，在激励为正的情况下，可以视为训练数据的权重变化带入，就不用打开神经网络里面了。</p>
+<h3 id="动画gif处理"><a href="#动画gif处理" class="headerlink" title="动画gif处理"></a>动画gif处理</h3><p>照网上写了个函数，然后在需要的帧添加进列表，最后组装即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">display_frames_as_gif</span>(<span class="params">frames,name</span>):</span></span><br><span class="line">    patch = plt.imshow(frames[<span class="number">0</span>])</span><br><span class="line">    plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">animate</span>(<span class="params">i</span>):</span></span><br><span class="line">        patch.set_data(frames[i])</span><br><span class="line"></span><br><span class="line">    anim = animation.FuncAnimation(plt.gcf(), animate, frames = <span class="built_in">len</span>(frames), interval=<span class="number">1</span>)</span><br><span class="line">    anim.save(<span class="string">&#x27;D:\\&#x27;</span>+name+<span class="string">&#x27;.gif&#x27;</span>, writer=<span class="string">&#x27;ffmpeg&#x27;</span>, fps=<span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+
+<p>添加帧：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frames.append(env.render(mode = <span class="string">&#x27;rgb_array&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>然后最后组装：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">display_frames_as_gif(frames,<span class="string">&#x27;result&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="主程序处理"><a href="#主程序处理" class="headerlink" title="主程序处理"></a>主程序处理</h3><p>主函数负责调用之前的库：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gym</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow <span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> animation </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    env = gym.make(<span class="string">&#x27;CartPole-v0&#x27;</span>)</span><br><span class="line">    frames1 = []</span><br><span class="line">    frames2 = []</span><br><span class="line">    time = []</span><br><span class="line">    actor = Actor(<span class="number">1e-3</span>)</span><br><span class="line">    critic = Critic(<span class="number">1e-2</span>,<span class="number">0.95</span>,<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;-------------------  start trying&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(animation.writers.<span class="built_in">list</span>())</span><br><span class="line">    <span class="keyword">for</span> epi <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">200</span>):</span><br><span class="line">        rewards = []</span><br><span class="line">        observation = env.reset(seed = <span class="number">1</span>)</span><br><span class="line">        observation = observation[np.newaxis, :]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000</span>):</span><br><span class="line">            <span class="comment">#env.render()# 是否渲染</span></span><br><span class="line">            <span class="comment"># if (epi &gt;= 0 and epi &lt;= 9):frames1.append(env.render(mode = &#x27;rgb_array&#x27;))</span></span><br><span class="line">            <span class="keyword">if</span> (epi &gt;= <span class="number">189</span> <span class="keyword">and</span> epi &lt;= <span class="number">199</span>):frames2.append(env.render(mode = <span class="string">&#x27;rgb_array&#x27;</span>))</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 选择</span></span><br><span class="line">            action = actor.choose_action(observation)</span><br><span class="line">            observation_, reward, done, info = env.step(action)<span class="comment"># action 0左1右 </span></span><br><span class="line">            observation_ = observation_[np.newaxis, :]</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 训练</span></span><br><span class="line">            <span class="keyword">if</span> (done <span class="keyword">and</span> t &lt; <span class="number">199</span>): reward = -<span class="number">20</span></span><br><span class="line">            <span class="keyword">if</span> (done <span class="keyword">and</span> t &gt;= <span class="number">199</span>): reward = <span class="number">20</span></span><br><span class="line">            rewards.append(reward)</span><br><span class="line">            td_error = critic.fit(observation, reward, observation_)</span><br><span class="line">            actor.fit(observation, action, td_error)</span><br><span class="line">            observation = observation_</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> done:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;Episode &#123;&#125;: &#123;&#125; timesteps&quot;</span>.<span class="built_in">format</span>(epi,t+<span class="number">1</span>))</span><br><span class="line">                time.append(t)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    env.close()</span><br></pre></td></tr></table></figure>
+
+	
+		</div>
+		
+		<div id="current-post-cover" data-scr="/img/post-cover/40.jpg"></div>
+
+		<!-- relate post, comment...-->
+		
+	</div>
+</div>
+
+<!-- show math formula -->
+
+
+
+	 
+	
+<script src="/plugin/clipboard/clipboard.js"></script>
+
+	<script>
+		// Copy code !
+	    function preprocessing() {
+	        $("#article-content .highlight").each(function() {
+	            $(this).wrap('<div id="post-code"></div>');
+	        })
+
+	        $("#article-content #post-code").each(function() {
+	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
+	        })
+
+	        $("#article-content .copy-nav").each(function() {
+	            let languageClass = $(this).next().attr('class'),
+	                language = ((languageClass.length > 9) && (languageClass != null)) ? languageClass.substr(10) : "none"; //why 9? Need to check language?
+
+	            $(this).find('.code-language').text(language);
+	            $(this).append('<span class="copy-btn icon-paste"></span>');
+	        });
+	    }
+
+		function copy() {
+		    $('#article-content #post-code').each(function(i) {
+		        let codeCopyId = 'codeCopy-' + i;
+
+		        let codeNode = $(this).find('.code'),
+		            copyButton = $(this).find('.copy-btn');
+
+		        codeNode.attr('id', codeCopyId);
+		        copyButton.attr('data-clipboard-target-id', codeCopyId);
+		    })
+   
+			let clipboard = new ClipboardJS('.copy-btn', {
+					target: function(trigger) {
+						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+					}
+		      	});
+
+			//pure js
+			function showTooltip(elem, msg) {		   
+				elem.setAttribute('aria-label', msg);
+				elem.setAttribute('class', 'copy-btn icon-clipboard1');
+				setTimeout(function() {
+					elem.setAttribute('class', 'copy-btn icon-paste');
+				}, 2000);
+			}
+
+			clipboard.on('success', function(e) {
+			    e.clearSelection();
+			    console.info('Action:', e.action);		   
+			    console.info('Trigger:', e.trigger);
+			    showTooltip(e.trigger, 'Copied!');   
+			});
+			
+			clipboard.on('error', function(e) {
+			    console.error('Action:', e.action);
+			    console.error('Trigger:', e.trigger);
+			});
+		}
+		
+		(function copyCode(){
+			if ($('.layout-post').length) {
+			    preprocessing();
+			    copy();
+			} 
+		})();
+	</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+
+<script src="/plugin/fancybox/jquery.fancybox.js"></script>
+
+
+<script type="text/javascript">
+	(function gallerySet(){
+		let titleID = $('.article-title a'),
+			imageID = $('.article-content img'),
+			videoID = $('.article-content video');
+		
+		let postTitle = titleID.text() ? titleID.text() : "No post title!";
+		
+		imageID.each(function() {
+			let imgPath = $(this).attr('src'),
+				imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox="gallery" data-caption="《 ' + postTitle + ' 》' + imgTitle + '"href="' + imgPath + '"> </a>');
+		});
+		
+		videoID.each(function() {
+			let videoPath = $(this).attr('src');
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
+		});
+		
+		//TODO：支持html5 video
+
+		if($('#layout-post').length) {
+			$('[data-fancybox="gallery"]').fancybox({
+				loop: true,
+				buttons: [
+					"zoom",
+					"share",
+					"slideShow",
+					"fullScreen",
+					//"download",
+					"thumbs",
+					"close"
+				],
+				protect: true
+			});
+		}
+	})();
+</script>
+
+
+		</main>
+
+		<!--footer-->
+		<footer>
+	<div id="navigation-show">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+	</div>
+
+	<div class="copyright">
+		<p>
+			 
+				&copy;2022, content by DvJiang. All Rights Reserved.
+			
+			
+			
+		</p>
+		<p>
+			
+
+	<!-- busuanzi -->
+	<!-- busuanzi -->
+
+		
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		<span id="busuanzi_container_page_pv">
+	  		本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</span>
+
+	
+
+
+
+
+			<!--
+			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
+			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>
+			-->				
+		</p>
+	</div>		
+</footer>
+		
+	<!-- Local or hitokoto! -->
+
+	
+<script src="/plugin/motto/motto.js"></script>
+
+	
+	<script type="text/javascript">
+		(function motto(){
+			let mottoText = getMingYanContent().split('</br> - </br>'),
+			
+			mottoTextContent = mottoText[0]?mottoText[0]:'请刷新...',
+			
+			mottoTextFrom = mottoText[1]?mottoText[1]:'one/一个';
+			
+			mottoTextContent = mottoTextContent.trim().substring(0, 100);
+		
+			$("#motto-content").html( mottoTextContent);
+			$("#motto-author").html( mottoTextFrom  );
+		})();	
+	</script>	
+
+
+
+<!-- love effect -->
+
+	
+<script src="/plugin/love/love.js"></script>
+
+
+
+<!-- back to top -->
+
+	<div id="totop">
+	<span class="icon-circle-up"></span>
+</div>
+
+
+
+<!-- site analysis -->
+
+
+	<!-- site-analysis -->
+	
+	
+	
+	
+	
+ 
+
+<!-- leancloud -->
+
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+	
+
+  
+
+	<!--
+	时间：2018-10-3
+	描述：
+		插件名称：hexo-generator-search-zip
+		插件来源: https://github.com/SuperKieran/hexo-generator-search-zip
+		代码参考：https://github.com/SuperKieran/TKL/blob/master/layout/_partial/search.ejs(Include: js & css)	
+-->
+<div class="popup search-popup local-search-popup scrollbar" >
+	<div class="local-search-container">
+		<span class="popup-btn-close">
+      		ESC
+   		</span>
+		<div class="local-search-header">
+			<div class="input-prompt">				
+			</div>
+			<input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+		</div>
+		<div class="local-search-body">
+			<div id="local-search-output"></div>
+		</div>
+		<div class="local-search-footer">
+			<div class="topN-post">				
+				
+								
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script src="/plugin/search/ziploader.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script type="text/javascript">
+	var search_path = 'search.json',
+		zip_Path = '/search.zip',
+		version_Path = '/searchVersion.txt',
+		input_Trigger = 'auto',
+		top_N = '2';
+
+	themeLocalSearch({
+		search_path, 
+		zip_Path, 
+		version_Path, 
+		input_Trigger, 
+		top_N
+	});
+</script>
+
+
+
+<script src="/plugin/chinese/chinese.js"></script>
+<script src="/plugin/imagelazyloader/yall.min.js"></script>
+<script src="/plugin/imageloaded/imagesloaded.pkgd.min.js"></script>
+<script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
+<script src="/plugin/resizediv/resizediv.js"></script>
+<script src="/js/main.js"></script>
+
+	</body>	
+</html>

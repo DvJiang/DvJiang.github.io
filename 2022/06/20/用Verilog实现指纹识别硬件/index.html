@@ -1,0 +1,655 @@
+<!--
+	作者：Sariay
+	时间：2018-08-26
+	描述：There may be a bug, but don't worry, Qiling(器灵) says that it can work normally! aha!
+-->
+<!DOCTYPE html>
+<html class="html-loading">
+		
+
+<head>
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <title>
+    
+      用Verilog实现指纹识别硬件 | DvJiang&#39;s Blog
+    
+  </title>
+  <meta name="author" content="DvJiang">
+  <meta name="keywords" content="blog" />
+  <meta name="description" content="" />
+	<!-- favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+
+  <!-- css -->
+  
+<link rel="stylesheet" href="/css/Annie.css">
+
+  
+  <!-- jquery -->
+	
+<script src="/plugin/jquery/jquery.min.js"></script>
+
+
+<script>
+    const CONFIG_BGIMAGE = {
+      mode: 'normal',
+      normalSrc: '/img/header-bg.jpg',
+      randomYouMax: 110,
+      randomYouSrc: 'https://sariay.github.io/Random-img/',
+	  randomOtherSrc: 'https://api.berryapi.net/?service=App.Bing.Images&day=-0',
+	  preloaderEnable: true
+    }
+	
+    const CONFIG_LEACLOUD_COUNT = {
+      enable: false,
+	  appId: 'AU8...',
+	  appKey: '4cU...',
+	  serverURLs: 'http' || ' '
+    }
+  </script>
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+	<body>
+		<!-- Preloader -->
+
+	<div id="preloader">
+		<div class="pre-container">
+			
+				<div class="cyclic">
+					<div><span></span></div>
+					<div><span></span></div>
+					<div><span></span></div>
+					<div><span></span></div>
+				</div>
+						
+		</div>
+	</div>
+
+
+<!-- header -->
+<header class="fixbackground bg-pan-br">
+	<div class="mask">
+		<!-- motto -->
+		<div class="h-body">	
+			
+				<div class="motto text-shadow-pop-left">
+					<p class="content" id="motto-content">获取中...</p>
+					<p>-<p>
+					<p class="author" id="motto-author">Just a minute...</p>
+				</div>
+			
+		</div>
+		
+		<!-- others: such as time... -->			
+		<div class="h-footer">
+			<a href="javascript:;" id="read-more" class="scroll-down">
+				<span class="icon-anchor1 animation-scroll-down"></span>
+			</a>
+		</div>
+	</div>
+</header>
+
+<div id="navigation-hide">
+	<!-- Progress bar -->
+	<div id="progress-bar"></div>
+
+	<!-- Progress percent -->
+	<div id="progress-percentage"><span>0.0%</span></div>
+
+	<div class="toc-switch"><span class="switch-button">目录</span></div>
+
+	<!-- Page title -->
+	<p>
+		
+			「用Verilog实现指纹识别硬件」
+		
+	</p>
+
+	
+	
+
+	<!-- Nav trigger for navigation-H-->
+	<a class="nav-trigger"><span></span></a>
+</div>
+
+<!-- Navigation in div(id="navigation-H") -->
+<nav class="nav-container" id="cd-nav">
+	<div class="nav-header">
+		<span class="logo"> 
+			<img src="/img/logo.png">
+		</span>
+		<a href="javascript:;" class="nav-close"></a>
+	</div>
+	
+	<div class="nav-body">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+	</div>
+	
+	<div class="nav-footer">
+		<ul id="global-social">
+	
+		<li>
+			<a href="https://github.com/DvJiang/" target="_blank">
+				<span class="icon-github"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<span class="icon-rss"></span>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+</nav>
+			
+		<!--main-->
+		<main>
+			<!--
+	时间：2018-11-17
+	描述：
+		插件名称：katelog.min.js
+		插件作者：KELEN
+		插件来源: https://github.com/KELEN/katelog
+-->
+
+	
+		<div class="layout-toc">
+			<div id="layout-toc">
+				<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
+			</div>
+		</div>
+
+		
+<script src="/plugin/toc/katelog.min.js"></script>
+
+
+		
+	 
+
+<div class="layout-post">
+	<div id="layout-post">
+		<div class="article-title">
+			
+	<a href="/2022/06/20/%E7%94%A8Verilog%E5%AE%9E%E7%8E%B0%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%E7%A1%AC%E4%BB%B6/" itemprop="url">
+		用Verilog实现指纹识别硬件
+	</a>
+
+		</div>
+
+		<div class="article-meta">
+			<span>
+				<i class="icon-calendar1"></i>
+				
+				
+
+
+
+
+	更新于
+
+	<a href="/2022/06/20/%E7%94%A8Verilog%E5%AE%9E%E7%8E%B0%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%E7%A1%AC%E4%BB%B6/" itemprop="url">
+		<time datetime="2022-06-19T16:00:00.000Z" itemprop="dateUpdated">
+	  		2022-06-30
+	  </time>
+	</a> 
+
+
+
+			</span>
+			<span>
+				
+	<i class="icon-price-tags"></i>
+	
+		<a href="/tags/%E5%AD%A6%E4%B9%A0/" class=" ">
+			学习
+		</a>
+	
+		<a href="/tags/verilog/" class=" ">
+			verilog
+		</a>
+	
+		
+			</span>
+			
+			
+
+
+
+		</div>
+
+		<div class="article-content" id="article-content">
+			<blockquote>
+<p>相关代码将会开源在我的Github中</p>
+</blockquote>
+<h2 id="零-背景引入"><a href="#零-背景引入" class="headerlink" title="零.背景引入"></a>零.背景引入</h2><p>在我们日常生活中，指纹的使用几乎已经成为了移动设备的标准配置。从手机解锁到上班打卡，再到身份证的个人信息验证，无一不需要指纹识别的辅助。但是，固定端，尤其以电脑为首的设别却罕见指纹识别系统，即使电脑在硬件上允许指纹的加入，很多公司和项目也会因为用户组的安全组策略，强制要求使用PIN码登录设备。面对这样的窘境，一个可以模拟键盘输入的外部指纹设备是极为有用的，它不仅可以使用户可以快速登录系统，而且由于密码和指纹都使用硬件本地管理，没有安全风险。用户在不记得密码的时候，也可以通过指纹重新打印密码。在如今密码的应用广泛的时代，设置类似的密码常常意味着安全性的降低，而设置完全没有关联的密码又容易忘掉，用户可以借助我们的指纹系统，在电脑上重新打印密码，使得密码的管理不再是一个难题。</p>
+<h2 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h2><p>该项目用于实现按下指纹解锁电脑的功能，一共有外部开关10个和指纹录入窗口，其中8个开关作为硬件密码开关，2个作为状态选择开关。</p>
+<p>通过拨动2位的状态开关，可以调整当前模式为录入指纹，检测指纹还是清空指纹库，当按下指纹时功能启动，其中录入指纹和清空指纹库需要额外的指纹管理权限。</p>
+<p>而通过拨动8个硬件开关，可以实现对指纹管理权限的调整。只有8位管理员密码正确，才能添加或删去指纹库中的指纹，否则将只能检测指纹是否正确。</p>
+<h2 id="硬件连接"><a href="#硬件连接" class="headerlink" title="硬件连接"></a>硬件连接</h2><p>该项目所用硬件有：Basys3的FPGA电路板一块， ZA620光学指纹模组一块，DIP排线转USB元件一块。</p>
+<p>其中FPGA负责控制电路，管理密码并模拟键盘USB输入。</p>
+<p>ZA620光学指纹模组负责将指纹的光学信号转换为电信号，并进行比对等操作，它通过UART简单通讯协议与控制模块FPGA连接。</p>
+<p>而FPGA在完成控制后，若密码正确，则会启动模拟键盘的模块，将自己的5个外部引脚分别控制为USB公口的4种电压信号（其中D+需要两个外部引脚，因为其中一个需要1.5k欧的上拉电阻，布线通过导线和电路板完成）。</p>
+<p>这些外部引脚通过导线和电路板连接到DIP排线转USB元件上，将形状变为USB公口的模样，使其可以插入电脑。</p>
+<h2 id="FPGA模块简介"><a href="#FPGA模块简介" class="headerlink" title="FPGA模块简介"></a>FPGA模块简介</h2><h3 id="控制模块"><a href="#控制模块" class="headerlink" title="控制模块"></a>控制模块</h3><p>状态控制模块<code>top</code>代码文件为<code>StateMachine.v</code>，用经典的状态控制三段式构成，它同时也是整个程序的<code>top</code>文件，通过这个模块，程序得以切换不同的指纹模式（录入，检测和清除指纹），并对下属的指纹交互模块和键盘模拟模块下达指令并收取反馈。</p>
+<h3 id="指纹交互模块"><a href="#指纹交互模块" class="headerlink" title="指纹交互模块"></a>指纹交互模块</h3><p>指纹交互模块的<code>top</code>文件为<code>FPcontrol.v</code>，由于负责人不同，与控制模块主要采用异步交互。其下属模块分为录入，检测和清除指纹3个，每种模块有着不同的功能。根据外部设备ZA620光学指纹模组的说明手册，利用简易的UART交互协议，每个模块都通过独自编写的分频器以及接收发送的移位器实现与模组的交互。</p>
+<h3 id="键盘USB模拟模块"><a href="#键盘USB模拟模块" class="headerlink" title="键盘USB模拟模块"></a>键盘USB模拟模块</h3><p>键盘USB模拟模块的<code>top</code>文件为<code>PwdToPc.v</code>，使用FPGA模拟USB-HID键盘设备。其下包括密码管理模块<code>PwdMgr.v</code>和键盘设备模拟模块<code>usb_hid_top.v</code>，前者负责密码的管理，后者则定义了USB-HID设备的各种参数（包括USB协议规定的设备描述符、配置描述符、接口描述符、端点描述符和字符串描述符，以及HID类设备额外规定的HID描述符、报告描述符和物理描述符），并将这些参数储存在ROM中。键盘设备与PC端通过使用usb2.0协议的全速模式（12Mbps）进行通信，USB2.0全速传输模块封装在<code>usbfs_core</code>ip核中。</p>
+<h2 id="经验与教训"><a href="#经验与教训" class="headerlink" title="经验与教训"></a>经验与教训</h2><ol>
+<li>在多人项目中，提前规划好每个人负责的内容以及相互间的接口尤为关键，释义不清的接口说明有时候将会产生巨大的麻烦（产生莫名其妙不易察觉的Bug）</li>
+<li>在项目规划时，尽量让两人间的接口限定在一个模块上（为连接方便，可以设置一个过渡的模块），理由与上面相同。</li>
+<li>进行后仿真仍无法发现问题，但在FPGA实际运行出错时，检查电路图（RTL-&gt;综合-&gt;映射），查看是否有信号悬空</li>
+<li>使用Git等类似工具进行版本管理，防止因为修Bug思路不对，难以回退到之前版本。</li>
+</ol>
+<h2 id="八-参考资料"><a href="#八-参考资料" class="headerlink" title="八.参考资料"></a>八.参考资料</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://www.usb.org/document-library/usb-20-specification">《Universal Serial Bus 2.0 Specification》</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.usb.org/documents?search=&items_per_page=50&page=2">《Device Class Definition for Human interface Devices》</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.usb.org/hid">《HID Usage Tables》</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weiaipan1314/category_10697813.html">《USB协议详解CSDN专栏》</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/avakar/usbcorev">《一个仅支持到了 transaction 层的USB-device 控制器》</a> </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/WangXuan95/FPGA-USB-Device.git">《USB2.0ip核》</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/tanjiaqi2554/article/details/78440726">《调试数据分析USB通信协议——USB键盘鼠标【HID类设备】(四)》</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.usbmadesimple.co.uk/">《USB Made Simple》</a> </li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_47092777/article/details/119638645">《UART协议简介》</a></li>
+<li>AS60x指纹识别SOC用户手册</li>
+<li>10631  ZA620光学指纹模组用户手册</li>
+</ol>
+	
+		</div>
+		
+		<div id="current-post-cover" data-scr="/img/post-cover/38.jpg"></div>
+
+		<!-- relate post, comment...-->
+		
+	</div>
+</div>
+
+<!-- show math formula -->
+
+
+
+	 
+	
+<script src="/plugin/clipboard/clipboard.js"></script>
+
+	<script>
+		// Copy code !
+	    function preprocessing() {
+	        $("#article-content .highlight").each(function() {
+	            $(this).wrap('<div id="post-code"></div>');
+	        })
+
+	        $("#article-content #post-code").each(function() {
+	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
+	        })
+
+	        $("#article-content .copy-nav").each(function() {
+	            let languageClass = $(this).next().attr('class'),
+	                language = ((languageClass.length > 9) && (languageClass != null)) ? languageClass.substr(10) : "none"; //why 9? Need to check language?
+
+	            $(this).find('.code-language').text(language);
+	            $(this).append('<span class="copy-btn icon-paste"></span>');
+	        });
+	    }
+
+		function copy() {
+		    $('#article-content #post-code').each(function(i) {
+		        let codeCopyId = 'codeCopy-' + i;
+
+		        let codeNode = $(this).find('.code'),
+		            copyButton = $(this).find('.copy-btn');
+
+		        codeNode.attr('id', codeCopyId);
+		        copyButton.attr('data-clipboard-target-id', codeCopyId);
+		    })
+   
+			let clipboard = new ClipboardJS('.copy-btn', {
+					target: function(trigger) {
+						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+					}
+		      	});
+
+			//pure js
+			function showTooltip(elem, msg) {		   
+				elem.setAttribute('aria-label', msg);
+				elem.setAttribute('class', 'copy-btn icon-clipboard1');
+				setTimeout(function() {
+					elem.setAttribute('class', 'copy-btn icon-paste');
+				}, 2000);
+			}
+
+			clipboard.on('success', function(e) {
+			    e.clearSelection();
+			    console.info('Action:', e.action);		   
+			    console.info('Trigger:', e.trigger);
+			    showTooltip(e.trigger, 'Copied!');   
+			});
+			
+			clipboard.on('error', function(e) {
+			    console.error('Action:', e.action);
+			    console.error('Trigger:', e.trigger);
+			});
+		}
+		
+		(function copyCode(){
+			if ($('.layout-post').length) {
+			    preprocessing();
+			    copy();
+			} 
+		})();
+	</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+
+<script src="/plugin/fancybox/jquery.fancybox.js"></script>
+
+
+<script type="text/javascript">
+	(function gallerySet(){
+		let titleID = $('.article-title a'),
+			imageID = $('.article-content img'),
+			videoID = $('.article-content video');
+		
+		let postTitle = titleID.text() ? titleID.text() : "No post title!";
+		
+		imageID.each(function() {
+			let imgPath = $(this).attr('src'),
+				imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox="gallery" data-caption="《 ' + postTitle + ' 》' + imgTitle + '"href="' + imgPath + '"> </a>');
+		});
+		
+		videoID.each(function() {
+			let videoPath = $(this).attr('src');
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
+		});
+		
+		//TODO：支持html5 video
+
+		if($('#layout-post').length) {
+			$('[data-fancybox="gallery"]').fancybox({
+				loop: true,
+				buttons: [
+					"zoom",
+					"share",
+					"slideShow",
+					"fullScreen",
+					//"download",
+					"thumbs",
+					"close"
+				],
+				protect: true
+			});
+		}
+	})();
+</script>
+
+
+		</main>
+
+		<!--footer-->
+		<footer>
+	<div id="navigation-show">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+	</div>
+
+	<div class="copyright">
+		<p>
+			 
+				&copy;2022, content by DvJiang. All Rights Reserved.
+			
+			
+			
+		</p>
+		<p>
+			
+
+	<!-- busuanzi -->
+	<!-- busuanzi -->
+
+		
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		<span id="busuanzi_container_page_pv">
+	  		本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</span>
+
+	
+
+
+
+
+			<!--
+			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
+			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>
+			-->				
+		</p>
+	</div>		
+</footer>
+		
+	<!-- Local or hitokoto! -->
+
+	
+<script src="/plugin/motto/motto.js"></script>
+
+	
+	<script type="text/javascript">
+		(function motto(){
+			let mottoText = getMingYanContent().split('</br> - </br>'),
+			
+			mottoTextContent = mottoText[0]?mottoText[0]:'请刷新...',
+			
+			mottoTextFrom = mottoText[1]?mottoText[1]:'one/一个';
+			
+			mottoTextContent = mottoTextContent.trim().substring(0, 100);
+		
+			$("#motto-content").html( mottoTextContent);
+			$("#motto-author").html( mottoTextFrom  );
+		})();	
+	</script>	
+
+
+
+<!-- love effect -->
+
+	
+<script src="/plugin/love/love.js"></script>
+
+
+
+<!-- back to top -->
+
+	<div id="totop">
+	<span class="icon-circle-up"></span>
+</div>
+
+
+
+<!-- site analysis -->
+
+
+	<!-- site-analysis -->
+	
+	
+	
+	
+	
+ 
+
+<!-- leancloud -->
+
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+	
+
+  
+
+	<!--
+	时间：2018-10-3
+	描述：
+		插件名称：hexo-generator-search-zip
+		插件来源: https://github.com/SuperKieran/hexo-generator-search-zip
+		代码参考：https://github.com/SuperKieran/TKL/blob/master/layout/_partial/search.ejs(Include: js & css)	
+-->
+<div class="popup search-popup local-search-popup scrollbar" >
+	<div class="local-search-container">
+		<span class="popup-btn-close">
+      		ESC
+   		</span>
+		<div class="local-search-header">
+			<div class="input-prompt">				
+			</div>
+			<input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+		</div>
+		<div class="local-search-body">
+			<div id="local-search-output"></div>
+		</div>
+		<div class="local-search-footer">
+			<div class="topN-post">				
+				
+								
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script src="/plugin/search/ziploader.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script type="text/javascript">
+	var search_path = 'search.json',
+		zip_Path = '/search.zip',
+		version_Path = '/searchVersion.txt',
+		input_Trigger = 'auto',
+		top_N = '2';
+
+	themeLocalSearch({
+		search_path, 
+		zip_Path, 
+		version_Path, 
+		input_Trigger, 
+		top_N
+	});
+</script>
+
+
+
+<script src="/plugin/chinese/chinese.js"></script>
+<script src="/plugin/imagelazyloader/yall.min.js"></script>
+<script src="/plugin/imageloaded/imagesloaded.pkgd.min.js"></script>
+<script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
+<script src="/plugin/resizediv/resizediv.js"></script>
+<script src="/js/main.js"></script>
+
+	</body>	
+</html>

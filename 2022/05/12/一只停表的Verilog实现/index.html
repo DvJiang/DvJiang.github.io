@@ -1,0 +1,687 @@
+<!--
+	作者：Sariay
+	时间：2018-08-26
+	描述：There may be a bug, but don't worry, Qiling(器灵) says that it can work normally! aha!
+-->
+<!DOCTYPE html>
+<html class="html-loading">
+		
+
+<head>
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <title>
+    
+      一只停表的Verilog实现 | DvJiang&#39;s Blog
+    
+  </title>
+  <meta name="author" content="DvJiang">
+  <meta name="keywords" content="blog" />
+  <meta name="description" content="" />
+	<!-- favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+
+  <!-- css -->
+  
+<link rel="stylesheet" href="/css/Annie.css">
+
+  
+  <!-- jquery -->
+	
+<script src="/plugin/jquery/jquery.min.js"></script>
+
+
+<script>
+    const CONFIG_BGIMAGE = {
+      mode: 'normal',
+      normalSrc: '/img/header-bg.jpg',
+      randomYouMax: 110,
+      randomYouSrc: 'https://sariay.github.io/Random-img/',
+	  randomOtherSrc: 'https://api.berryapi.net/?service=App.Bing.Images&day=-0',
+	  preloaderEnable: true
+    }
+	
+    const CONFIG_LEACLOUD_COUNT = {
+      enable: false,
+	  appId: 'AU8...',
+	  appKey: '4cU...',
+	  serverURLs: 'http' || ' '
+    }
+  </script>
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+	<body>
+		<!-- Preloader -->
+
+	<div id="preloader">
+		<div class="pre-container">
+			
+				<div class="cyclic">
+					<div><span></span></div>
+					<div><span></span></div>
+					<div><span></span></div>
+					<div><span></span></div>
+				</div>
+						
+		</div>
+	</div>
+
+
+<!-- header -->
+<header class="fixbackground bg-pan-br">
+	<div class="mask">
+		<!-- motto -->
+		<div class="h-body">	
+			
+				<div class="motto text-shadow-pop-left">
+					<p class="content" id="motto-content">获取中...</p>
+					<p>-<p>
+					<p class="author" id="motto-author">Just a minute...</p>
+				</div>
+			
+		</div>
+		
+		<!-- others: such as time... -->			
+		<div class="h-footer">
+			<a href="javascript:;" id="read-more" class="scroll-down">
+				<span class="icon-anchor1 animation-scroll-down"></span>
+			</a>
+		</div>
+	</div>
+</header>
+
+<div id="navigation-hide">
+	<!-- Progress bar -->
+	<div id="progress-bar"></div>
+
+	<!-- Progress percent -->
+	<div id="progress-percentage"><span>0.0%</span></div>
+
+	<div class="toc-switch"><span class="switch-button">目录</span></div>
+
+	<!-- Page title -->
+	<p>
+		
+			「一只停表的Verilog实现」
+		
+	</p>
+
+	
+	
+
+	<!-- Nav trigger for navigation-H-->
+	<a class="nav-trigger"><span></span></a>
+</div>
+
+<!-- Navigation in div(id="navigation-H") -->
+<nav class="nav-container" id="cd-nav">
+	<div class="nav-header">
+		<span class="logo"> 
+			<img src="/img/logo.png">
+		</span>
+		<a href="javascript:;" class="nav-close"></a>
+	</div>
+	
+	<div class="nav-body">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+	</div>
+	
+	<div class="nav-footer">
+		<ul id="global-social">
+	
+		<li>
+			<a href="https://github.com/DvJiang/" target="_blank">
+				<span class="icon-github"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<span class="icon-rss"></span>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+</nav>
+			
+		<!--main-->
+		<main>
+			<!--
+	时间：2018-11-17
+	描述：
+		插件名称：katelog.min.js
+		插件作者：KELEN
+		插件来源: https://github.com/KELEN/katelog
+-->
+
+	
+		<div class="layout-toc">
+			<div id="layout-toc">
+				<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
+			</div>
+		</div>
+
+		
+<script src="/plugin/toc/katelog.min.js"></script>
+
+
+		
+	 
+
+<div class="layout-post">
+	<div id="layout-post">
+		<div class="article-title">
+			
+	<a href="/2022/05/12/%E4%B8%80%E5%8F%AA%E5%81%9C%E8%A1%A8%E7%9A%84Verilog%E5%AE%9E%E7%8E%B0/" itemprop="url">
+		一只停表的Verilog实现
+	</a>
+
+		</div>
+
+		<div class="article-meta">
+			<span>
+				<i class="icon-calendar1"></i>
+				
+				
+
+
+
+
+	更新于
+
+	<a href="/2022/05/12/%E4%B8%80%E5%8F%AA%E5%81%9C%E8%A1%A8%E7%9A%84Verilog%E5%AE%9E%E7%8E%B0/" itemprop="url">
+		<time datetime="2022-05-11T16:00:00.000Z" itemprop="dateUpdated">
+	  		2022-07-01
+	  </time>
+	</a> 
+
+
+
+			</span>
+			<span>
+				
+	<i class="icon-price-tags"></i>
+	
+		<a href="/tags/%E5%AD%A6%E4%B9%A0/" class=" ">
+			学习
+		</a>
+	
+		<a href="/tags/verilog/" class=" ">
+			verilog
+		</a>
+	
+		
+			</span>
+			
+			
+
+
+
+		</div>
+
+		<div class="article-content" id="article-content">
+			<blockquote>
+<p>这是数字电路课的一个要求的实验，虽然理论上的过程很简单，但实际上踩了很多坑，于是想要记录下来</p>
+</blockquote>
+<h2 id="总体思路和目标"><a href="#总体思路和目标" class="headerlink" title="总体思路和目标"></a>总体思路和目标</h2><p>完成一只停表的设计和实现，这只表只有一个按钮，按一下进入计时，再按一下停止计时，再按一下复位。</p>
+<p>使用的硬件是Bsys3的FPGA，软件是Vivado。</p>
+<p>它的状态机简单明了，也只需要几个分频器，理论上是很简单的，但对于我这种刚开始上手的玩家，还是有很多意料之外的难题。通过这个实验，我学到了很多乱七八糟的知识。</p>
+<h2 id="分器件整理"><a href="#分器件整理" class="headerlink" title="分器件整理"></a>分器件整理</h2><hr>
+<h3 id="主程序-stopwatch"><a href="#主程序-stopwatch" class="headerlink" title="主程序 stopwatch"></a>主程序 stopwatch</h3><p>在开始实验的时候，我犯的第一个错误，就是把所有器件写在了一个文件夹。</p>
+<p>在vscode里，缩放功能并不能完全把一个module缩小在一行，所以代码看起来就界限不太明显，也不方便单独器件的调试。</p>
+<blockquote>
+<p>在几天后的另一个实验里，我才知道了有task和function的存在。</p>
+</blockquote>
+<p>主程序只需要负责连接各大器件罢了。</p>
+<p>其中，pulse_creator制造不同大小的脉冲。botton_check对按键进行滤波，因为按键需要消抖处理。system_control是状态控制模块，click为时钟输出，scan将时钟的BCD显示转换为数码管的输出。</p>
+<p>为了调试方便，我定义了很多输出，这些输出将控制一系列LED的亮灭，通过这些信息，我可以快速判断器件的运行情况。</p>
+<p>其代码如下：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> stopwatch (</span><br><span class="line">    <span class="keyword">input</span> clk,btnc,</span><br><span class="line">    <span class="keyword">output</span> [<span class="number">6</span>:<span class="number">0</span>]led_segs_n,[<span class="number">3</span>:<span class="number">0</span>]led_sel_n,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> bt,work,clear,dot,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> [<span class="number">7</span>:<span class="number">0</span>] msec</span><br><span class="line">);</span><br><span class="line"><span class="keyword">wire</span> [<span class="number">6</span>:<span class="number">0</span>]led_segs_n;<span class="keyword">wire</span> [<span class="number">3</span>:<span class="number">0</span>]led_sel_n;</span><br><span class="line"><span class="keyword">wire</span> work,clear,pulse_10ms,pulse_120hz,pulse_1ms,over_flow;</span><br><span class="line"><span class="keyword">wire</span> [<span class="number">7</span>:<span class="number">0</span>] sec;</span><br><span class="line">pulse_creator pulse_creator(<span class="variable">.clk</span>(clk),<span class="variable">.pulse_10ms</span>(pulse_10ms),<span class="variable">.pulse_1ms</span>(pulse_1ms),<span class="variable">.pulse_120hz</span>(pulse_120hz));</span><br><span class="line">botton_check botton_check (<span class="variable">.bt</span>(bt),<span class="variable">.clk</span>(pulse_10ms),<span class="variable">.btnc</span>(btnc));</span><br><span class="line">system_control system_control(<span class="variable">.bt</span>(bt),<span class="variable">.work</span>(work),<span class="variable">.clear</span>(clear),<span class="variable">.pulse_10ms</span>(pulse_10ms),<span class="variable">.over_flow</span>(over_flow));</span><br><span class="line">click click(<span class="variable">.pulse_1ms</span>(pulse_1ms),<span class="variable">.clear</span>(clear),<span class="variable">.work</span>(work),<span class="variable">.sec</span>(sec),<span class="variable">.msec</span>(msec),<span class="variable">.over_flow</span>(over_flow));</span><br><span class="line">scan scan(<span class="variable">.pulse_120hz</span>(pulse_120hz),<span class="variable">.sec</span>(sec),<span class="variable">.msec</span>(msec),<span class="variable">.led_segs_n</span>(led_segs_n),<span class="variable">.led_sel_n</span>(led_sel_n),<span class="variable">.dot</span>(dot));</span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span> <span class="comment">//stopwatch</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>注意串行变量和并行变量不能放在一排进行定义。同时，并行变量都需要单独定义，不能放在一排。</p>
+<hr>
+<h3 id="数码管显示器件-scan"><a href="#数码管显示器件-scan" class="headerlink" title="数码管显示器件 scan"></a>数码管显示器件 scan</h3><p>对于always语句，最好使用统一的时钟模块，不能用一个计数器去控制另一个模块的刷新，即always用来检测改变量的时候最好不用来计数。</p>
+<p>数码管的管脚一般有8个，7个用于控制数字的笔画亮灭，1个控制点的亮灭。</p>
+<p>另外还有4个管脚，负责控制到底是哪一个数字亮灭，这里也要注意是共阳还是共阴。</p>
+<p>小心查看说明书，共阳和共阴的01是反的，如果发现数码管显示的几乎全是8或者0，考虑是否是因为显示的01反了。</p>
+<p>代码如下：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> scan (</span><br><span class="line">    <span class="keyword">input</span> pulse_120hz,[<span class="number">7</span>:<span class="number">0</span>]sec,[<span class="number">7</span>:<span class="number">0</span>]msec,</span><br><span class="line">    <span class="keyword">output</span> [<span class="number">6</span>:<span class="number">0</span>]led_segs_n,[<span class="number">3</span>:<span class="number">0</span>]led_sel_n,dot</span><br><span class="line">);</span><br><span class="line"><span class="keyword">wire</span> [<span class="number">6</span>:<span class="number">0</span>]led_segs_n;<span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>]led_sel_n;</span><br><span class="line"><span class="keyword">reg</span> dot;</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">2</span>:<span class="number">0</span>]num;<span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>]ss;</span><br><span class="line"></span><br><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    num = <span class="number">0</span>;</span><br><span class="line">    led_sel_n = <span class="number">4&#x27;b01</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">bcd_decoder bcd_decoder(<span class="variable">.led_segs_n</span>(led_segs_n),<span class="variable">.ss</span>(ss));</span><br><span class="line"></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> pulse_120hz) <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">case</span> (num)</span><br><span class="line">        <span class="number">3&#x27;b000</span>:  <span class="keyword">begin</span></span><br><span class="line">            led_sel_n = <span class="number">4&#x27;b1110</span>;</span><br><span class="line">            ss = msec[<span class="number">3</span>:<span class="number">0</span>];</span><br><span class="line">            dot = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="number">3&#x27;b001</span>:  <span class="keyword">begin</span></span><br><span class="line">            led_sel_n = <span class="number">4&#x27;b1101</span>;</span><br><span class="line">            ss = msec[<span class="number">7</span>:<span class="number">4</span>];</span><br><span class="line">            dot = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="number">3&#x27;b010</span>:  <span class="keyword">begin</span></span><br><span class="line">            led_sel_n = <span class="number">4&#x27;b1011</span>;</span><br><span class="line">            ss = sec[<span class="number">3</span>:<span class="number">0</span>];</span><br><span class="line">            dot = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="number">3&#x27;b011</span>:  <span class="keyword">begin</span></span><br><span class="line">            led_sel_n = <span class="number">4&#x27;b0111</span>;</span><br><span class="line">            ss = sec[<span class="number">7</span>:<span class="number">4</span>];</span><br><span class="line">            dot = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">default</span> ;</span><br><span class="line">    <span class="keyword">endcase</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> pulse_120hz) <span class="keyword">begin</span></span><br><span class="line">    num &lt;= num + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (num == <span class="number">3&#x27;b100</span>)<span class="keyword">begin</span></span><br><span class="line">        num &lt;= <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<p>以及附加的另一个器件（负责十进制BCD到数码管的转换）:</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> bcd_decoder(ss,led_segs_n); </span><br><span class="line">    <span class="keyword">input</span> [<span class="number">3</span>:<span class="number">0</span>]ss;        </span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> [<span class="number">6</span>:<span class="number">0</span>]led_segs_n;</span><br><span class="line">    <span class="keyword">reg</span> a,b,c,d,e,f,g;</span><br><span class="line">    <span class="keyword">reg</span> s0,s1,s2,s3;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">always</span> @(ss) <span class="keyword">begin</span></span><br><span class="line">      s0 &lt;= ss[<span class="number">3</span>];s1 &lt;= ss[<span class="number">2</span>];s2 &lt;= ss[<span class="number">1</span>];s3 &lt;= ss[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">if</span> (!s0 &amp;&amp; !s1 &amp;&amp; !s2 &amp;&amp; !s3) <span class="keyword">begin</span><span class="comment">//0</span></span><br><span class="line">          a &lt;= <span class="number">1</span>;b &lt;= <span class="number">1</span>;c &lt;= <span class="number">1</span>;d &lt;= <span class="number">1</span>;e &lt;= <span class="number">1</span>;f &lt;= <span class="number">1</span>;g &lt;= <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">if</span> (!s0 &amp;&amp; !s1 &amp;&amp; !s2 &amp;&amp; s3) <span class="keyword">begin</span><span class="comment">//1</span></span><br><span class="line">          a &lt;= <span class="number">0</span>;b &lt;= <span class="number">1</span>;c &lt;= <span class="number">1</span>;d &lt;= <span class="number">0</span>;e &lt;= <span class="number">0</span>;f &lt;= <span class="number">0</span>;g &lt;= <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">if</span> (!s0 &amp;&amp; !s1 &amp;&amp; s2 &amp;&amp; !s3) <span class="keyword">begin</span><span class="comment">//2</span></span><br><span class="line">          a &lt;= <span class="number">1</span>;b &lt;= <span class="number">1</span>;c &lt;= <span class="number">0</span>;d &lt;= <span class="number">1</span>;e &lt;= <span class="number">1</span>;f &lt;= <span class="number">0</span>;g &lt;= <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">if</span> (!s0 &amp;&amp; !s1 &amp;&amp; s2 &amp;&amp; s3) <span class="keyword">begin</span><span class="comment">//3</span></span><br><span class="line">          a &lt;= <span class="number">1</span>;b &lt;= <span class="number">1</span>;c &lt;= <span class="number">1</span>;d &lt;= <span class="number">1</span>;e &lt;= <span class="number">0</span>;f &lt;= <span class="number">0</span>;g &lt;= <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">if</span> (!s0 &amp;&amp; s1 &amp;&amp; !s2 &amp;&amp; !s3) <span class="keyword">begin</span><span class="comment">//4</span></span><br><span class="line">          a &lt;= <span class="number">0</span>;b &lt;= <span class="number">1</span>;c &lt;= <span class="number">1</span>;d &lt;= <span class="number">0</span>;e &lt;= <span class="number">0</span>;f &lt;= <span class="number">1</span>;g &lt;= <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">if</span> (!s0 &amp;&amp; s1 &amp;&amp; !s2 &amp;&amp; s3) <span class="keyword">begin</span><span class="comment">//5</span></span><br><span class="line">          a &lt;= <span class="number">1</span>;b &lt;= <span class="number">0</span>;c &lt;= <span class="number">1</span>;d &lt;= <span class="number">1</span>;e &lt;= <span class="number">0</span>;f &lt;= <span class="number">1</span>;g &lt;= <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">if</span> (!s0 &amp;&amp; s1 &amp;&amp; s2 &amp;&amp; !s3) <span class="keyword">begin</span><span class="comment">//6</span></span><br><span class="line">          a &lt;= <span class="number">1</span>;b &lt;= <span class="number">0</span>;c &lt;= <span class="number">1</span>;d &lt;= <span class="number">1</span>;e &lt;= <span class="number">1</span>;f &lt;= <span class="number">1</span>;g &lt;= <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">if</span> (!s0 &amp;&amp; s1 &amp;&amp; s2 &amp;&amp; s3) <span class="keyword">begin</span><span class="comment">//7</span></span><br><span class="line">          a &lt;= <span class="number">1</span>;b &lt;= <span class="number">1</span>;c &lt;= <span class="number">1</span>;d &lt;= <span class="number">0</span>;e &lt;= <span class="number">0</span>;f &lt;= <span class="number">0</span>;g &lt;= <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">if</span> (s0 &amp;&amp; !s1 &amp;&amp; !s2 &amp;&amp; !s3) <span class="keyword">begin</span><span class="comment">//8</span></span><br><span class="line">          a &lt;= <span class="number">1</span>;b &lt;= <span class="number">1</span>;c &lt;= <span class="number">1</span>;d &lt;= <span class="number">1</span>;e &lt;= <span class="number">1</span>;f &lt;= <span class="number">1</span>;g &lt;= <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">if</span> (s0 &amp;&amp; !s1 &amp;&amp; !s2 &amp;&amp; s3) <span class="keyword">begin</span><span class="comment">//9</span></span><br><span class="line">          a &lt;= <span class="number">1</span>;b &lt;= <span class="number">1</span>;c &lt;= <span class="number">1</span>;d &lt;= <span class="number">0</span>;e &lt;= <span class="number">0</span>;f &lt;= <span class="number">1</span>;g &lt;= <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">      led_segs_n[<span class="number">6</span>] &lt;= !a;led_segs_n[<span class="number">5</span>] &lt;= !b;led_segs_n[<span class="number">4</span>] &lt;= !c;led_segs_n[<span class="number">3</span>] &lt;= !d;led_segs_n[<span class="number">2</span>] &lt;= !e; led_segs_n[<span class="number">1</span>] &lt;= !f;led_segs_n[<span class="number">0</span>] &lt;= !g;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="按键消抖器件-botton-check"><a href="#按键消抖器件-botton-check" class="headerlink" title="按键消抖器件 botton_check"></a>按键消抖器件 botton_check</h3><p>对一个按键来说，虽然有按下是高，松开为低这样的理论表现，其实际表现总会产生一些小脉冲。让这样的信号直接输入系统，会让系统误认为进行了多次按压，结果导致实际表现不好，会跳状态。</p>
+<p>因此，对按键信号的消抖是必不可少的。</p>
+<p>消抖的思路就是对信号进行多次检测，在一段间隔中始终保持高电平则认为按下按键一次。</p>
+<p>我尝试了多种消抖方式，就结果来看，有两种方式被证实是可行的。</p>
+<ul>
+<li>一种是在状态机中插入缓冲状态，通过状态的过渡达到目的。</li>
+<li>一种是写一个器件实现对按键信号的滤波处理，通过多次循环达到目的。</li>
+</ul>
+<p>最后实现的方式是第二种，因为这种方式对状态机依赖小，可以不用对我的主程序作太大修改。</p>
+<p>在调试过程中，建议先把按键检测的阈值提高，通过人手动长按检查程序是否运行正确，然后再逐步调低阈值，避免因为人眼无法观察到灯光闪动而误以为成功，实则不然。</p>
+<p>代码实现如下：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">     <span class="keyword">if</span>(btnc) <span class="keyword">begin</span></span><br><span class="line">           i &lt;= i + <span class="number">1</span>;</span><br><span class="line">         <span class="keyword">if</span>(i &gt;= <span class="number">5</span>)<span class="keyword">begin</span></span><br><span class="line">            bt &lt;= <span class="number">1</span>;</span><br><span class="line">         <span class="keyword">end</span></span><br><span class="line">         <span class="keyword">else</span> <span class="keyword">begin</span></span><br><span class="line">            bt &lt;= <span class="number">0</span>;</span><br><span class="line">         <span class="keyword">end</span></span><br><span class="line">     <span class="keyword">end</span></span><br><span class="line">     <span class="keyword">else</span> <span class="keyword">begin</span> </span><br><span class="line">        i &lt;= <span class="number">0</span>;</span><br><span class="line">        bt &lt;= <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="脉冲发生器件-pulse-creator"><a href="#脉冲发生器件-pulse-creator" class="headerlink" title="脉冲发生器件 pulse_creator"></a>脉冲发生器件 pulse_creator</h3><p>该器件输入FPGA自带的100MHz的震荡时钟，通过计数器分频的方式分成需要的频率，供其它器件驱使。</p>
+<p>这里采用的是integer计数的方式，通过定义不同的i,j,k实现，这里基本没有难度，不再赘述。</p>
+<p>代码如下：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> pulse_creator(</span><br><span class="line">    <span class="keyword">input</span> clk,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> pulse_10ms,pulse_1ms,pulse_120hz</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">integer</span> i;<span class="keyword">integer</span> j;<span class="keyword">integer</span> k;</span><br><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    i = <span class="number">0</span>;j = <span class="number">0</span>;k = <span class="number">0</span>;</span><br><span class="line">    pulse_10ms = <span class="number">0</span>;</span><br><span class="line">    pulse_1ms = <span class="number">0</span>;</span><br><span class="line">    pulse_120hz = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    i &lt;= i+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (i == <span class="number">100000</span>)<span class="keyword">begin</span></span><br><span class="line">        i &lt;= <span class="number">0</span>;</span><br><span class="line">        pulse_10ms &lt;= (pulse_10ms)?<span class="number">0</span>:<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    j &lt;= j+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (j == <span class="number">1000000</span>)<span class="keyword">begin</span></span><br><span class="line">        j &lt;= <span class="number">0</span>;</span><br><span class="line">        pulse_1ms &lt;= (pulse_1ms)?<span class="number">0</span>:<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    k &lt;= k+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (k == <span class="number">83333</span>)<span class="keyword">begin</span></span><br><span class="line">        k &lt;= <span class="number">0</span>;</span><br><span class="line">        pulse_120hz &lt;= (pulse_120hz)?<span class="number">0</span>:<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="时钟器件-click"><a href="#时钟器件-click" class="headerlink" title="时钟器件 click"></a>时钟器件 click</h3><p>该器件将纯粹的时钟信号转换为BCD编码的数字信号，本质上相当于是一个计数器，但是用逻辑语言实现就会非常简单。</p>
+<p>可以看到，对于一个串行数据[7:0]sec，也可以分成两块分别处理，就像[3:0]sec，[7:4]sec。</p>
+<p>其代码如下：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> click(</span><br><span class="line">    <span class="keyword">input</span> pulse_1ms,clear,work,</span><br><span class="line">    <span class="keyword">output</span> [<span class="number">7</span>:<span class="number">0</span>]sec,[<span class="number">7</span>:<span class="number">0</span>]msec,over_flow</span><br><span class="line">);</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>]sec; <span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>]msec; <span class="keyword">reg</span> over_flow;</span><br><span class="line"></span><br><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">over_flow &lt;= <span class="number">0</span>;</span><br><span class="line">sec &lt;= <span class="number">0</span>;</span><br><span class="line">msec &lt;= <span class="number">0</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> pulse_1ms) <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span> (clear) <span class="keyword">begin</span></span><br><span class="line">            sec &lt;= <span class="number">0</span>;</span><br><span class="line">            msec &lt;= <span class="number">0</span>;</span><br><span class="line">            over_flow &lt;= <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">if</span> (work &amp; !over_flow)<span class="keyword">begin</span></span><br><span class="line">            msec[<span class="number">3</span>:<span class="number">0</span>] = msec[<span class="number">3</span>:<span class="number">0</span>] + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (msec[<span class="number">3</span>:<span class="number">0</span>] == <span class="number">4&#x27;d10</span>)<span class="keyword">begin</span></span><br><span class="line">                msec[<span class="number">3</span>:<span class="number">0</span>] &lt;= <span class="number">0</span>;</span><br><span class="line">                msec[<span class="number">7</span>:<span class="number">4</span>] &lt;= msec[<span class="number">7</span>:<span class="number">4</span>] + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">if</span> (msec[<span class="number">7</span>:<span class="number">4</span>] == <span class="number">4&#x27;d6</span>)<span class="keyword">begin</span></span><br><span class="line">                msec[<span class="number">7</span>:<span class="number">4</span>] &lt;= <span class="number">0</span>;</span><br><span class="line">                sec[<span class="number">3</span>:<span class="number">0</span>] &lt;= sec[<span class="number">3</span>:<span class="number">0</span>] + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">if</span> (sec[<span class="number">3</span>:<span class="number">0</span>] == <span class="number">4&#x27;d10</span>)<span class="keyword">begin</span></span><br><span class="line">                sec[<span class="number">3</span>:<span class="number">0</span>] &lt;= <span class="number">0</span>;</span><br><span class="line">                sec[<span class="number">7</span>:<span class="number">4</span>] &lt;= sec[<span class="number">7</span>:<span class="number">4</span>] + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">if</span> (sec[<span class="number">7</span>:<span class="number">4</span>] == <span class="number">4&#x27;d6</span>)<span class="keyword">begin</span></span><br><span class="line">                over_flow &lt;= <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="状态控制器件-system-control"><a href="#状态控制器件-system-control" class="headerlink" title="状态控制器件 system_control"></a>状态控制器件 system_control</h3><p>该模块是一个简易的状态控制模块，由于这个停表的状态过于简单，所以只需要按顺序设计即可，没有区分状态转移和输出控制模块。</p>
+<p>需要注意的是，在always内部，代码是有顺序的，不正确的代码顺序会有严重后果。</p>
+<p>其代码如下：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> system_control(</span><br><span class="line">    <span class="keyword">input</span> bt,pulse_10ms,over_flow,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> work,clear</span><br><span class="line">);</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">1</span>:<span class="number">0</span>]state;</span><br><span class="line"></span><br><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    state = <span class="number">2&#x27;b00</span>;</span><br><span class="line">    work = <span class="number">0</span>;</span><br><span class="line">    clear = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> bt) <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">case</span> (state)</span><br><span class="line">            <span class="number">2&#x27;b00</span>: <span class="keyword">begin</span> </span><br><span class="line">                state = <span class="number">2&#x27;b01</span>;</span><br><span class="line">                work &lt;= <span class="number">1</span>;</span><br><span class="line">                clear &lt;= <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">            <span class="number">2&#x27;b01</span>: <span class="keyword">begin</span> </span><br><span class="line">                state = <span class="number">2&#x27;b10</span>;</span><br><span class="line">                work &lt;= <span class="number">0</span>;</span><br><span class="line">                clear &lt;= <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">            <span class="number">2&#x27;b10</span>: <span class="keyword">begin</span> </span><br><span class="line">                state = <span class="number">2&#x27;b00</span>;</span><br><span class="line">                work &lt;= <span class="number">0</span>;</span><br><span class="line">                clear &lt;= <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">endcase</span></span><br><span class="line">        <span class="keyword">if</span>(over_flow)<span class="keyword">begin</span></span><br><span class="line">            state = <span class="number">2&#x27;b00</span>;</span><br><span class="line">            work &lt;= <span class="number">0</span>;</span><br><span class="line">            clear &lt;= <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="合并与调试"><a href="#合并与调试" class="headerlink" title="合并与调试"></a>合并与调试</h2><p>将上面的代码都放在一个文件中，或放在一个文件夹下，并指定器件stopwatch为top器件即可。</p>
+<p>在调试中，注意需要提前设置时钟信号clk的专用端口为W5，否则会有很长一段关于时钟的报错，其它端口可以在排版后再行指定。</p>
+	
+		</div>
+		
+		<div id="current-post-cover" data-scr="/img/post-cover/33.jpg"></div>
+
+		<!-- relate post, comment...-->
+		
+	</div>
+</div>
+
+<!-- show math formula -->
+
+
+
+	 
+	
+<script src="/plugin/clipboard/clipboard.js"></script>
+
+	<script>
+		// Copy code !
+	    function preprocessing() {
+	        $("#article-content .highlight").each(function() {
+	            $(this).wrap('<div id="post-code"></div>');
+	        })
+
+	        $("#article-content #post-code").each(function() {
+	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
+	        })
+
+	        $("#article-content .copy-nav").each(function() {
+	            let languageClass = $(this).next().attr('class'),
+	                language = ((languageClass.length > 9) && (languageClass != null)) ? languageClass.substr(10) : "none"; //why 9? Need to check language?
+
+	            $(this).find('.code-language').text(language);
+	            $(this).append('<span class="copy-btn icon-paste"></span>');
+	        });
+	    }
+
+		function copy() {
+		    $('#article-content #post-code').each(function(i) {
+		        let codeCopyId = 'codeCopy-' + i;
+
+		        let codeNode = $(this).find('.code'),
+		            copyButton = $(this).find('.copy-btn');
+
+		        codeNode.attr('id', codeCopyId);
+		        copyButton.attr('data-clipboard-target-id', codeCopyId);
+		    })
+   
+			let clipboard = new ClipboardJS('.copy-btn', {
+					target: function(trigger) {
+						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+					}
+		      	});
+
+			//pure js
+			function showTooltip(elem, msg) {		   
+				elem.setAttribute('aria-label', msg);
+				elem.setAttribute('class', 'copy-btn icon-clipboard1');
+				setTimeout(function() {
+					elem.setAttribute('class', 'copy-btn icon-paste');
+				}, 2000);
+			}
+
+			clipboard.on('success', function(e) {
+			    e.clearSelection();
+			    console.info('Action:', e.action);		   
+			    console.info('Trigger:', e.trigger);
+			    showTooltip(e.trigger, 'Copied!');   
+			});
+			
+			clipboard.on('error', function(e) {
+			    console.error('Action:', e.action);
+			    console.error('Trigger:', e.trigger);
+			});
+		}
+		
+		(function copyCode(){
+			if ($('.layout-post').length) {
+			    preprocessing();
+			    copy();
+			} 
+		})();
+	</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+
+<script src="/plugin/fancybox/jquery.fancybox.js"></script>
+
+
+<script type="text/javascript">
+	(function gallerySet(){
+		let titleID = $('.article-title a'),
+			imageID = $('.article-content img'),
+			videoID = $('.article-content video');
+		
+		let postTitle = titleID.text() ? titleID.text() : "No post title!";
+		
+		imageID.each(function() {
+			let imgPath = $(this).attr('src'),
+				imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox="gallery" data-caption="《 ' + postTitle + ' 》' + imgTitle + '"href="' + imgPath + '"> </a>');
+		});
+		
+		videoID.each(function() {
+			let videoPath = $(this).attr('src');
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
+		});
+		
+		//TODO：支持html5 video
+
+		if($('#layout-post').length) {
+			$('[data-fancybox="gallery"]').fancybox({
+				loop: true,
+				buttons: [
+					"zoom",
+					"share",
+					"slideShow",
+					"fullScreen",
+					//"download",
+					"thumbs",
+					"close"
+				],
+				protect: true
+			});
+		}
+	})();
+</script>
+
+
+		</main>
+
+		<!--footer-->
+		<footer>
+	<div id="navigation-show">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+	</div>
+
+	<div class="copyright">
+		<p>
+			 
+				&copy;2022, content by DvJiang. All Rights Reserved.
+			
+			
+			
+		</p>
+		<p>
+			
+
+	<!-- busuanzi -->
+	<!-- busuanzi -->
+
+		
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		<span id="busuanzi_container_page_pv">
+	  		本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</span>
+
+	
+
+
+
+
+			<!--
+			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
+			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>
+			-->				
+		</p>
+	</div>		
+</footer>
+		
+	<!-- Local or hitokoto! -->
+
+	
+<script src="/plugin/motto/motto.js"></script>
+
+	
+	<script type="text/javascript">
+		(function motto(){
+			let mottoText = getMingYanContent().split('</br> - </br>'),
+			
+			mottoTextContent = mottoText[0]?mottoText[0]:'请刷新...',
+			
+			mottoTextFrom = mottoText[1]?mottoText[1]:'one/一个';
+			
+			mottoTextContent = mottoTextContent.trim().substring(0, 100);
+		
+			$("#motto-content").html( mottoTextContent);
+			$("#motto-author").html( mottoTextFrom  );
+		})();	
+	</script>	
+
+
+
+<!-- love effect -->
+
+	
+<script src="/plugin/love/love.js"></script>
+
+
+
+<!-- back to top -->
+
+	<div id="totop">
+	<span class="icon-circle-up"></span>
+</div>
+
+
+
+<!-- site analysis -->
+
+
+	<!-- site-analysis -->
+	
+	
+	
+	
+	
+ 
+
+<!-- leancloud -->
+
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+	
+
+  
+
+	<!--
+	时间：2018-10-3
+	描述：
+		插件名称：hexo-generator-search-zip
+		插件来源: https://github.com/SuperKieran/hexo-generator-search-zip
+		代码参考：https://github.com/SuperKieran/TKL/blob/master/layout/_partial/search.ejs(Include: js & css)	
+-->
+<div class="popup search-popup local-search-popup scrollbar" >
+	<div class="local-search-container">
+		<span class="popup-btn-close">
+      		ESC
+   		</span>
+		<div class="local-search-header">
+			<div class="input-prompt">				
+			</div>
+			<input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+		</div>
+		<div class="local-search-body">
+			<div id="local-search-output"></div>
+		</div>
+		<div class="local-search-footer">
+			<div class="topN-post">				
+				
+								
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script src="/plugin/search/ziploader.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script type="text/javascript">
+	var search_path = 'search.json',
+		zip_Path = '/search.zip',
+		version_Path = '/searchVersion.txt',
+		input_Trigger = 'auto',
+		top_N = '2';
+
+	themeLocalSearch({
+		search_path, 
+		zip_Path, 
+		version_Path, 
+		input_Trigger, 
+		top_N
+	});
+</script>
+
+
+
+<script src="/plugin/chinese/chinese.js"></script>
+<script src="/plugin/imagelazyloader/yall.min.js"></script>
+<script src="/plugin/imageloaded/imagesloaded.pkgd.min.js"></script>
+<script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
+<script src="/plugin/resizediv/resizediv.js"></script>
+<script src="/js/main.js"></script>
+
+	</body>	
+</html>

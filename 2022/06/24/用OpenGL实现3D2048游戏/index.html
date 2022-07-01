@@ -1,0 +1,694 @@
+<!--
+	作者：Sariay
+	时间：2018-08-26
+	描述：There may be a bug, but don't worry, Qiling(器灵) says that it can work normally! aha!
+-->
+<!DOCTYPE html>
+<html class="html-loading">
+		
+
+<head>
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <title>
+    
+      用OpenGL实现3D2048游戏 | DvJiang&#39;s Blog
+    
+  </title>
+  <meta name="author" content="DvJiang">
+  <meta name="keywords" content="blog" />
+  <meta name="description" content="" />
+	<!-- favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+
+  <!-- css -->
+  
+<link rel="stylesheet" href="/css/Annie.css">
+
+  
+  <!-- jquery -->
+	
+<script src="/plugin/jquery/jquery.min.js"></script>
+
+
+<script>
+    const CONFIG_BGIMAGE = {
+      mode: 'normal',
+      normalSrc: '/img/header-bg.jpg',
+      randomYouMax: 110,
+      randomYouSrc: 'https://sariay.github.io/Random-img/',
+	  randomOtherSrc: 'https://api.berryapi.net/?service=App.Bing.Images&day=-0',
+	  preloaderEnable: true
+    }
+	
+    const CONFIG_LEACLOUD_COUNT = {
+      enable: false,
+	  appId: 'AU8...',
+	  appKey: '4cU...',
+	  serverURLs: 'http' || ' '
+    }
+  </script>
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+	<body>
+		<!-- Preloader -->
+
+	<div id="preloader">
+		<div class="pre-container">
+			
+				<div class="cyclic">
+					<div><span></span></div>
+					<div><span></span></div>
+					<div><span></span></div>
+					<div><span></span></div>
+				</div>
+						
+		</div>
+	</div>
+
+
+<!-- header -->
+<header class="fixbackground bg-pan-br">
+	<div class="mask">
+		<!-- motto -->
+		<div class="h-body">	
+			
+				<div class="motto text-shadow-pop-left">
+					<p class="content" id="motto-content">获取中...</p>
+					<p>-<p>
+					<p class="author" id="motto-author">Just a minute...</p>
+				</div>
+			
+		</div>
+		
+		<!-- others: such as time... -->			
+		<div class="h-footer">
+			<a href="javascript:;" id="read-more" class="scroll-down">
+				<span class="icon-anchor1 animation-scroll-down"></span>
+			</a>
+		</div>
+	</div>
+</header>
+
+<div id="navigation-hide">
+	<!-- Progress bar -->
+	<div id="progress-bar"></div>
+
+	<!-- Progress percent -->
+	<div id="progress-percentage"><span>0.0%</span></div>
+
+	<div class="toc-switch"><span class="switch-button">目录</span></div>
+
+	<!-- Page title -->
+	<p>
+		
+			「用OpenGL实现3D2048游戏」
+		
+	</p>
+
+	
+	
+
+	<!-- Nav trigger for navigation-H-->
+	<a class="nav-trigger"><span></span></a>
+</div>
+
+<!-- Navigation in div(id="navigation-H") -->
+<nav class="nav-container" id="cd-nav">
+	<div class="nav-header">
+		<span class="logo"> 
+			<img src="/img/logo.png">
+		</span>
+		<a href="javascript:;" class="nav-close"></a>
+	</div>
+	
+	<div class="nav-body">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+	</div>
+	
+	<div class="nav-footer">
+		<ul id="global-social">
+	
+		<li>
+			<a href="https://github.com/DvJiang/" target="_blank">
+				<span class="icon-github"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<span class="icon-rss"></span>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+</nav>
+			
+		<!--main-->
+		<main>
+			<!--
+	时间：2018-11-17
+	描述：
+		插件名称：katelog.min.js
+		插件作者：KELEN
+		插件来源: https://github.com/KELEN/katelog
+-->
+
+	
+		<div class="layout-toc">
+			<div id="layout-toc">
+				<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
+			</div>
+		</div>
+
+		
+<script src="/plugin/toc/katelog.min.js"></script>
+
+
+		
+	 
+
+<div class="layout-post">
+	<div id="layout-post">
+		<div class="article-title">
+			
+	<a href="/2022/06/24/%E7%94%A8OpenGL%E5%AE%9E%E7%8E%B03D2048%E6%B8%B8%E6%88%8F/" itemprop="url">
+		用OpenGL实现3D2048游戏
+	</a>
+
+		</div>
+
+		<div class="article-meta">
+			<span>
+				<i class="icon-calendar1"></i>
+				
+				
+
+
+
+
+	更新于
+
+	<a href="/2022/06/24/%E7%94%A8OpenGL%E5%AE%9E%E7%8E%B03D2048%E6%B8%B8%E6%88%8F/" itemprop="url">
+		<time datetime="2022-06-23T16:00:00.000Z" itemprop="dateUpdated">
+	  		2022-06-30
+	  </time>
+	</a> 
+
+
+
+			</span>
+			<span>
+				
+	<i class="icon-price-tags"></i>
+	
+		<a href="/tags/%E5%AD%A6%E4%B9%A0/" class=" ">
+			学习
+		</a>
+	
+		<a href="/tags/OpenGl/" class=" ">
+			OpenGl
+		</a>
+	
+		<a href="/tags/Glut/" class=" ">
+			Glut
+		</a>
+	
+		
+			</span>
+			
+			
+
+
+
+		</div>
+
+		<div class="article-content" id="article-content">
+			<blockquote>
+<p>本游戏使用的是OpenGL的Glut作为图形展示部分，整体程序构架不难，主要是简单入门一门OpenGL。</p>
+</blockquote>
+<h2 id="程序概况"><a href="#程序概况" class="headerlink" title="程序概况"></a>程序概况</h2><p>程序由C++语言编写，由图形显示和游戏逻辑两部分构成，其中图形显示使用的是OpenGL的Glut，虽然这个库比较老了，但不需要捆绑主体和编写单独的着色器程序还是很让人快乐的。</p>
+<p>本文主要想简单介绍一下Glut的使用和框架，以及编写游戏的逻辑，也算是对工作的小小总结罢。</p>
+<p>主程序作为main函数负责图形显示，而游戏部分作为GameSDK库函数存放于另一个文件中，并专门编写了一些查询函数对自己的库中内容进行提取。</p>
+<p>在第二版游戏中，考虑到3D的2048使得玩家几乎不可能因为卡死而输掉游戏，而且2048几乎是必定达到的目标，将游戏的评分和目标改为了尽量在2048的方块生成时剩下尽量少的方块，除2048外剩下的数字越小，评分越高。</p>
+<p>考虑到3D的2048会对排版布局有很大考验，我添加了一系列辅助工具来使得在二维上显示的三维图案足够清晰，同时，整个游戏采用简约风格，去掉了可能令人看花的光影，使用简单的线条和染色方块构造游戏画面。</p>
+<h2 id="Glut使用"><a href="#Glut使用" class="headerlink" title="Glut使用"></a>Glut使用</h2><hr>
+<h3 id="Glut的安装"><a href="#Glut的安装" class="headerlink" title="Glut的安装"></a>Glut的安装</h3><blockquote>
+<p>我使用的是Dev C++作为编译器</p>
+</blockquote>
+<p>Glut我参考的是<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5de1d77d39bf">devc++下配置opengl和glut</a>的文章，下载相关文件后，按照提示装入相应文件夹，即可运行。</p>
+<hr>
+<h3 id="Glut基本框架"><a href="#Glut基本框架" class="headerlink" title="Glut基本框架"></a>Glut基本框架</h3><h4 id="主函数main"><a href="#主函数main" class="headerlink" title="主函数main"></a>主函数main</h4><p>Glut运行在主函数main下，但需要对主函数做出一定修改,添加<code>int argc, char **argv</code>：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GLUT_DISABLE_ATEXIT_HACK</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;GL/glut.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">glutInit</span>(&amp;argc, argv);</span><br><span class="line">    <span class="built_in">glutInitDisplayMode</span>(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);</span><br><span class="line">    <span class="built_in">glutInitWindowPosition</span>(<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line">    <span class="built_in">glutInitWindowSize</span>(<span class="number">640</span>*win_scale,<span class="number">360</span>*win_scale);</span><br><span class="line">    mainw = <span class="built_in">glutCreateWindow</span>(<span class="string">&quot;3D2048 Game&quot;</span>);</span><br><span class="line">    <span class="built_in">initScene</span>();</span><br><span class="line">    <span class="built_in">glutDisplayFunc</span>(renderScene);</span><br><span class="line">    <span class="built_in">glutIdleFunc</span>(renderScene);</span><br><span class="line">    <span class="built_in">glutReshapeFunc</span>(changeSize);</span><br><span class="line">  </span><br><span class="line">    <span class="built_in">glutMainLoop</span>();</span><br><span class="line">    <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>随后，<code>glutInit</code>初始化一个进程，而<code>glutInitDisplayMode</code>建立了指定的缓冲区， <code>glutInitWindowPosition</code>指定创建的窗口位置，<code>glutInitWindowSize</code>指定窗口大小，最后<code>glutCreateWindow</code>创建了一个名为<code>mainw</code>的标题为“3D2048 Game”的窗口。</p>
+<p><code>glutDisplayFunc</code>和<code>glutIdleFunc</code>分别指定在演示和空闲时应该执行的函数，<code>glutReshapeFunc</code>指定了一个函数来指导窗口缩放带来的图像问题，最后用<code>glutMainLoop</code>开始循环。</p>
+<p>注意，main函数是int型的，这意味着它有返回值0。</p>
+<h4 id="渲染函数renderScene"><a href="#渲染函数renderScene" class="headerlink" title="渲染函数renderScene"></a>渲染函数renderScene</h4><p>渲染函数就是<code>main</code>中<code>glutDisplayFun</code>c和<code>glutIdleFunc</code>指定的函数，名字是自己取的，叫做<code>render</code>只是比较符合OpenGL的惯例。</p>
+<p>代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">renderScene</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">float</span> size;</span><br><span class="line">    <span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);</span><br><span class="line">    <span class="comment">//doki-doki</span></span><br><span class="line">    <span class="keyword">if</span> (doki)&#123;</span><br><span class="line">        doki_scale_i = doki_scale_i + doki_speed;</span><br><span class="line">        <span class="keyword">if</span>(doki_scale_i &gt;= <span class="number">78</span> || doki_scale_i &lt;= <span class="number">0</span>)doki_speed = -doki_speed;</span><br><span class="line">        doki_scale = <span class="number">1.0</span> + doki_s*<span class="built_in">sin</span>(doki_scale_i/<span class="number">314.15</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="comment">//self-span</span></span><br><span class="line">    <span class="keyword">if</span> (self_span) &#123;</span><br><span class="line">        anglex += <span class="number">0.01f</span>;</span><br><span class="line">        <span class="built_in">cameraMove</span>(anglex,angley);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (help_flag || (game.ifgameover() != <span class="number">2</span>)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (help_flag) <span class="built_in">help</span>();</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">gameOver</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//画了 16 个 方块</span></span><br><span class="line">        sred = red;sgreen = green; sblue = blue;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">-2</span>; i &lt; <span class="number">2</span>; i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">-2</span>; j &lt; <span class="number">2</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(game.<span class="built_in">askBoard</span>(i + <span class="number">2</span>, j + <span class="number">2</span>) == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="built_in">glPushMatrix</span>();</span><br><span class="line">                <span class="built_in">glTranslatef</span>(<span class="number">0</span>,(i+<span class="number">0.5</span>)*<span class="number">1.5</span>,(j+<span class="number">0.5</span>) * <span class="number">1.5</span>);</span><br><span class="line">                <span class="keyword">if</span> (game.<span class="built_in">askMatch</span>(i + <span class="number">2</span>, j + <span class="number">2</span>) &amp;&amp; doki) </span><br><span class="line">                    <span class="built_in">glScalef</span>(doki_scale,doki_scale,doki_scale);</span><br><span class="line">                <span class="keyword">if</span> (colorStyle)&#123;</span><br><span class="line">                    size = <span class="built_in"><span class="keyword">float</span></span>(game.<span class="built_in">askBoard</span>(i + <span class="number">2</span>, j + <span class="number">2</span>));</span><br><span class="line">                    size = <span class="number">1.0</span> - (<span class="number">1.0</span>/<span class="number">12.0</span>) * <span class="built_in">log2</span>(size);</span><br><span class="line">                    sred = (red)?<span class="number">1.0</span>:size; sgreen = (green)?<span class="number">1.0</span>:size; sblue = (blue)?<span class="number">1.0</span>:size;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (sizeStyle)&#123;</span><br><span class="line">                    size = <span class="built_in"><span class="keyword">float</span></span>(game.<span class="built_in">askBoard</span>(i + <span class="number">2</span>, j + <span class="number">2</span>));</span><br><span class="line">                    size = <span class="number">1.0</span> - <span class="number">1.0</span>/<span class="number">12.0</span> * (<span class="built_in">log2</span>(size) - <span class="number">1</span>);</span><br><span class="line">                    <span class="built_in">glScalef</span>(size,size,size);</span><br><span class="line">                    &#125;</span><br><span class="line">                <span class="built_in">draw_cube</span>(game.<span class="built_in">askBoard</span>(i + <span class="number">2</span>, j + <span class="number">2</span>));</span><br><span class="line">                <span class="built_in">glPopMatrix</span>();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">strShow</span>(<span class="string">&quot;D&quot;</span>,<span class="number">0.0</span>,<span class="number">0.0</span>,<span class="number">4.0</span>);</span><br><span class="line">        <span class="built_in">strShow</span>(<span class="string">&quot;A&quot;</span>,<span class="number">0.0</span>,<span class="number">0.0</span>,<span class="number">-4.0</span>);</span><br><span class="line">        <span class="built_in">strShow</span>(<span class="string">&quot;W&quot;</span>,<span class="number">0.0</span>,<span class="number">3.0</span>,<span class="number">0.0</span>);</span><br><span class="line">        <span class="built_in">strShow</span>(<span class="string">&quot;S&quot;</span>,<span class="number">0.0</span>,<span class="number">-3.0</span>,<span class="number">0.0</span>);</span><br><span class="line">        <span class="built_in">strShow</span>(<span class="built_in">strAnd</span>(<span class="string">&quot;score:&quot;</span>,<span class="built_in">int2str</span>(game.<span class="built_in">score</span>())),<span class="number">0.0</span>,<span class="number">2.0</span>,<span class="number">4.0</span>);</span><br><span class="line">        <span class="keyword">if</span> (show_set)&#123;</span><br><span class="line">            std::string s;</span><br><span class="line">            <span class="keyword">if</span> (doki) s = <span class="string">&quot;True&quot;</span>; <span class="keyword">else</span> s = <span class="string">&quot;False&quot;</span>;</span><br><span class="line">            <span class="built_in">strShow</span>(<span class="built_in">strAnd</span>(<span class="string">&quot;Doki:&quot;</span>,s),<span class="number">0.0</span>,<span class="number">2.0</span>,<span class="number">5.0</span>);</span><br><span class="line">            <span class="keyword">if</span> (lineStyle) s = <span class="string">&quot;True&quot;</span>; <span class="keyword">else</span> s = <span class="string">&quot;False&quot;</span>;</span><br><span class="line">            <span class="built_in">strShow</span>(<span class="built_in">strAnd</span>(<span class="string">&quot;Cube:&quot;</span>,s),<span class="number">0.0</span>,<span class="number">1.0</span>,<span class="number">5.0</span>);</span><br><span class="line">            <span class="keyword">if</span> (colorStyle) s = <span class="string">&quot;True&quot;</span>; <span class="keyword">else</span> s = <span class="string">&quot;False&quot;</span>;</span><br><span class="line">            <span class="built_in">strShow</span>(<span class="built_in">strAnd</span>(<span class="string">&quot;Color:&quot;</span>,s),<span class="number">0.0</span>,<span class="number">0.0</span>,<span class="number">5.0</span>);</span><br><span class="line">            <span class="keyword">if</span> (sizeStyle) s = <span class="string">&quot;True&quot;</span>; <span class="keyword">else</span> s = <span class="string">&quot;False&quot;</span>;</span><br><span class="line">            <span class="built_in">strShow</span>(<span class="built_in">strAnd</span>(<span class="string">&quot;Size:&quot;</span>,s),<span class="number">0.0</span>,<span class="number">-1.0</span>,<span class="number">5.0</span>);</span><br><span class="line">            <span class="keyword">if</span> (num_flag) s = <span class="string">&quot;True&quot;</span>; <span class="keyword">else</span> s = <span class="string">&quot;False&quot;</span>;</span><br><span class="line">            <span class="built_in">strShow</span>(<span class="built_in">strAnd</span>(<span class="string">&quot;Num:&quot;</span>,s),<span class="number">0.0</span>,<span class="number">-2.0</span>,<span class="number">5.0</span>);</span><br><span class="line">            <span class="keyword">if</span> (self_span) s = <span class="string">&quot;True&quot;</span>; <span class="keyword">else</span> s = <span class="string">&quot;False&quot;</span>;</span><br><span class="line">            <span class="built_in">strShow</span>(<span class="built_in">strAnd</span>(<span class="string">&quot;Span:&quot;</span>,s),<span class="number">0.0</span>,<span class="number">-3.0</span>,<span class="number">5.0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">glutSwapBuffers</span>();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>前面的几个<code>ifelse</code>都只是给程序添加的一点小功能，重要的是先<code>glClear</code>清空缓存区，然后对于每一个小方块，在<code>glPushMatrix()</code>和<code>glPopMatrix()</code>之间（这样不会改变世界坐标），用<code>glTranslatef</code>和<code>glScalef</code>移动和放缩小方块，并调用<code>draw_cube</code>函数来绘制小方块。</p>
+<p>下面的<code>strShow</code>是自己写的函数，主要功能是显示文字在指定位置。而<code>strAnd</code>则负责连接两个字符串，<code>int2st</code>r负责将数字转换为字符串。</p>
+<p>最后，通过<code>glutSwapBuffers</code>交换缓存区和显示区，通过两个缓存的交替，实现图形的移动。</p>
+<p>对于<code>draw_cube()</code>，函数代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw_cube</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;  </span><br><span class="line">    <span class="comment">//8个顶点  </span></span><br><span class="line">    GLfloat x=<span class="number">1.0f</span>,y=<span class="number">1.0f</span>,z=<span class="number">1.0f</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> GLfloat vetexs[][<span class="number">3</span>] = &#123;  </span><br><span class="line">         <span class="number">0.0</span>,<span class="number">0.0</span>,<span class="number">0.0</span>,  </span><br><span class="line">         x,<span class="number">0.0</span>,<span class="number">0.0</span>,  </span><br><span class="line">         <span class="number">0.0</span>,y,<span class="number">0.0</span>,  </span><br><span class="line">         x,y,<span class="number">0.0</span>,  </span><br><span class="line">         <span class="number">0.0</span>,<span class="number">0.0</span>,z,  </span><br><span class="line">         x,<span class="number">0.0</span>,z,  </span><br><span class="line">         <span class="number">0.0</span>,y,z,  </span><br><span class="line">         x,y,z  </span><br><span class="line">    &#125;;  </span><br><span class="line">     <span class="built_in">glColor3f</span>(sred, sgreen, sblue);  </span><br><span class="line">     <span class="built_in">glFrontFace</span>(GL_CCW);  </span><br><span class="line">     <span class="built_in">glCullFace</span>(GL_BACK);  </span><br><span class="line">     <span class="built_in">glEnable</span>(GL_CULL_FACE);</span><br><span class="line">     <span class="keyword">if</span> (lineStyle)  </span><br><span class="line">        <span class="built_in">glPolygonMode</span>(GL_FRONT_AND_BACK, GL_LINE);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">glPolygonMode</span>(GL_FRONT_AND_BACK, GL_FILL);</span><br><span class="line">    <span class="keyword">if</span> (num != <span class="number">3</span> &amp;&amp; num_flag)</span><br><span class="line">        <span class="built_in">strShow</span>(<span class="built_in">int2str</span>(num),<span class="number">0.0</span>,<span class="number">0.0</span>,<span class="number">0.0</span>);</span><br><span class="line">    <span class="built_in">glTranslatef</span>(-x/<span class="number">2</span>,-y/<span class="number">2</span>,-z/<span class="number">2</span>);  <span class="comment">//平移至中心  </span></span><br><span class="line">    <span class="comment">//画立方体  </span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">6</span>;i++)&#123;  </span><br><span class="line">        <span class="built_in">glBegin</span>(GL_QUADS);  </span><br><span class="line">                <span class="built_in">glVertex3f</span>(vetexs[quads[i][<span class="number">0</span>]][<span class="number">0</span>],vetexs[quads[i][<span class="number">0</span>]][<span class="number">1</span>],vetexs[quads[i][<span class="number">0</span>]][<span class="number">2</span>]);  </span><br><span class="line">                <span class="built_in">glVertex3f</span>(vetexs[quads[i][<span class="number">1</span>]][<span class="number">0</span>],vetexs[quads[i][<span class="number">1</span>]][<span class="number">1</span>],vetexs[quads[i][<span class="number">1</span>]][<span class="number">2</span>]);  </span><br><span class="line">                <span class="built_in">glVertex3f</span>(vetexs[quads[i][<span class="number">2</span>]][<span class="number">0</span>],vetexs[quads[i][<span class="number">2</span>]][<span class="number">1</span>],vetexs[quads[i][<span class="number">2</span>]][<span class="number">2</span>]);  </span><br><span class="line">                <span class="built_in">glVertex3f</span>(vetexs[quads[i][<span class="number">3</span>]][<span class="number">0</span>],vetexs[quads[i][<span class="number">3</span>]][<span class="number">1</span>],vetexs[quads[i][<span class="number">3</span>]][<span class="number">2</span>]);  </span><br><span class="line">        <span class="built_in">glEnd</span>();  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>当然，这里使用的是一种比较繁琐的方式，实际上可以直接调用Glut函数库中的内容实现立方体的绘制，通过调整<code>glPolygonMode</code>的模式，可以控制立方体由线构成还是由着色的面构成。</p>
+<p>对于strShow()，其代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">strShow</span><span class="params">(std::string str,<span class="keyword">float</span> x,<span class="keyword">float</span> y,<span class="keyword">float</span> z)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> n = str.<span class="built_in">size</span>();</span><br><span class="line">  <span class="built_in">glRasterPos3f</span>(x, y, z);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    <span class="built_in">glutBitmapCharacter</span>(GLUT_BITMAP_TIMES_ROMAN_24, str[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中glRasterPos3f用于控制字体所在的位置，glutBitmapCharacter表示显示文字，但只按char格式显示，因此需要自行添加框架，而GLUT_BITMAP_TIMES_ROMAN_24是指定的字体和大小。</p>
+<p>这种方式指定的文字和贴图不同，会一直面向摄像头，其添加方式也比贴图要简单，但其字号和字体选择极为有限，不支持大号的显示。</p>
+<h4 id="窗口大小调整changeSize"><a href="#窗口大小调整changeSize" class="headerlink" title="窗口大小调整changeSize"></a>窗口大小调整changeSize</h4><p>和<code>renderScene</code>类似，这里的命名也不是强求的，这个函数主要用于保证图形显示不会随着窗口大小的改变而失真。</p>
+<p>其代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">changeSize</span><span class="params">(<span class="keyword">int</span> w, <span class="keyword">int</span> h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">// 防止被 0 除.</span></span><br><span class="line"><span class="keyword">if</span>(h == <span class="number">0</span>)  h = <span class="number">1</span>;</span><br><span class="line">  ratio = <span class="number">1.0f</span> * w / h;</span><br><span class="line"><span class="built_in">glMatrixMode</span>(GL_PROJECTION);</span><br><span class="line"><span class="built_in">glLoadIdentity</span>();</span><br><span class="line"><span class="comment">//设置视口为整个窗口大小</span></span><br><span class="line"><span class="built_in">glViewport</span>(<span class="number">0</span>, <span class="number">0</span>, w, h);</span><br><span class="line"><span class="comment">//设置可视空间</span></span><br><span class="line"><span class="built_in">gluPerspective</span>(<span class="number">45</span>,ratio,<span class="number">1</span>,<span class="number">1000</span>);</span><br><span class="line"><span class="built_in">glMatrixMode</span>(GL_MODELVIEW);</span><br><span class="line"><span class="built_in">glLoadIdentity</span>();</span><br><span class="line"><span class="built_in">gluLookAt</span>(-camera_lenth, <span class="number">0.0f</span>, <span class="number">0.0f</span>,</span><br><span class="line">    <span class="number">0.0f</span>,<span class="number">0.0f</span>,<span class="number">0.0f</span>,</span><br><span class="line">    <span class="number">0.0f</span>,<span class="number">1.0f</span>,<span class="number">0.0f</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这一块属于必有的过程，一般不需要修改，需要注意的是最后的<code>gluLookAt</code>函数是用于控制摄像头方向的。</p>
+<hr>
+<h3 id="Glut的目录制作"><a href="#Glut的目录制作" class="headerlink" title="Glut的目录制作"></a>Glut的目录制作</h3><p>Glut自带小目录制作函数，简单美观，对于一个小游戏的菜单来说，是一个不错的选择。</p>
+<p>在主函数main下，设定目录以及子目录</p>
+<p>代码部分如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> subMenu1,subMenu2,Menu;</span><br><span class="line">    subMenu1 = <span class="built_in">glutCreateMenu</span>(ColorSubMenu);</span><br><span class="line">    <span class="built_in">glutAddMenuEntry</span>(<span class="string">&quot;Red&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  <span class="built_in">glutAddMenuEntry</span>(<span class="string">&quot;Blue&quot;</span>, <span class="number">2</span>);</span><br><span class="line">  <span class="built_in">glutAddMenuEntry</span>(<span class="string">&quot;Green&quot;</span>, <span class="number">3</span>);</span><br><span class="line">  <span class="built_in">glutAddMenuEntry</span>(<span class="string">&quot;White&quot;</span>, <span class="number">4</span>);</span><br><span class="line">    <span class="built_in">glutAttachMenu</span>(GLUT_RIGHT_BUTTON);</span><br><span class="line"></span><br><span class="line">    subMenu2 = <span class="built_in">glutCreateMenu</span>(StyleSubMenu);</span><br><span class="line">    <span class="built_in">glutAddMenuEntry</span>(<span class="string">&quot;Doki-Doki&quot;</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">glutAddMenuEntry</span>(<span class="string">&quot;Cube Style&quot;</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">glutAddMenuEntry</span>(<span class="string">&quot;Self Span&quot;</span>, <span class="number">3</span>);</span><br><span class="line">    <span class="built_in">glutAddMenuEntry</span>(<span class="string">&quot;Color Style&quot;</span>, <span class="number">4</span>);</span><br><span class="line">    <span class="built_in">glutAddMenuEntry</span>(<span class="string">&quot;Size Style&quot;</span>, <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">glutAddMenuEntry</span>(<span class="string">&quot;Show Number&quot;</span>, <span class="number">6</span>);</span><br><span class="line">    <span class="built_in">glutAddMenuEntry</span>(<span class="string">&quot;Show Settings&quot;</span>, <span class="number">7</span>);</span><br><span class="line">    <span class="built_in">glutAttachMenu</span>(GLUT_RIGHT_BUTTON);</span><br><span class="line">  </span><br><span class="line">  Menu = <span class="built_in">glutCreateMenu</span>(MainMenu);</span><br><span class="line">  <span class="built_in">glutAddMenuEntry</span>(<span class="string">&quot;Restart Game&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  <span class="built_in">glutAddMenuEntry</span>(<span class="string">&quot;Help and Related&quot;</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">glutAddSubMenu</span>(<span class="string">&quot;Color&quot;</span>, subMenu1);</span><br><span class="line">    <span class="built_in">glutAddSubMenu</span>(<span class="string">&quot;Setting&quot;</span>, subMenu2);</span><br><span class="line">  <span class="built_in">glutAttachMenu</span>(GLUT_RIGHT_BUTTON);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>子目录被命名为<code>subMenu</code>，通过<code>glutCreateMenu</code>新建目录，对其命名并把它捆绑到一个自定义的函数上，利用<code>glutAddMenuEntry</code>添加目录选项，并排序（和绑定的函数中对应）。通过<code>glutAttachMenu(GLUT_RIGHT_BUTTON)</code>设定目录打开方式是单击右键（一般都是这种方式）。</p>
+<p>在主目录中，通过<code>glutAddSubMenu</code>添加子目录，并把子目录名字自己绑定。</p>
+<p>随后，我们需要编写相应的自定义函数来说明当点击了目录的条目后会发生什么。</p>
+<p>代码部分如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MainMenu</span><span class="params">(GLint MainOption)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in"><span class="keyword">switch</span></span> (MainOption)</span><br><span class="line">  &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">    <span class="built_in">restart</span>();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">    help_flag = (help_flag)?<span class="number">0</span>:<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  <span class="built_in">glutPostRedisplay</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ColorSubMenu</span><span class="params">(GLint colorOption)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in"><span class="keyword">switch</span></span> (colorOption)</span><br><span class="line">  &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">    red = <span class="number">1.0f</span>; green = <span class="number">0.0f</span>; blue = <span class="number">0.0f</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">    red = <span class="number">0.0f</span>; green = <span class="number">0.0f</span>; blue = <span class="number">1.0f</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">    red = <span class="number">0.0f</span>; green = <span class="number">1.0f</span>; blue = <span class="number">0.0f</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">    red = <span class="number">1.0f</span>; green = <span class="number">1.0f</span>; blue = <span class="number">1.0f</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  <span class="built_in">glutPostRedisplay</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">StyleSubMenu</span><span class="params">(GLint styleOption)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in"><span class="keyword">switch</span></span> (styleOption)</span><br><span class="line">  &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">    doki = (doki)?<span class="number">0</span>:<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        lineStyle = (lineStyle)?<span class="number">0</span>:<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        self_span = (self_span)?<span class="number">0</span>:<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">        colorStyle = (colorStyle)?<span class="number">0</span>:<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">        sizeStyle = (sizeStyle)?<span class="number">0</span>:<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">        num_flag = (num_flag)?<span class="number">0</span>:<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">7</span>:</span><br><span class="line">        show_set = (show_set)?<span class="number">0</span>:<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  <span class="built_in">glutPostRedisplay</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，函数中的框架基本固定，case和之前在main中声明的条目相对应，而这种方式制作的目录很适合对一些参数进行修改，根据这个原理，在游戏中我们实现了对主题色，样式和辅助功能的修改。</p>
+<hr>
+<h3 id="Glut对键盘的响应"><a href="#Glut对键盘的响应" class="headerlink" title="Glut对键盘的响应"></a>Glut对键盘的响应</h3><p>游戏通过键盘控制游戏进程，因此，与键盘的交互也必不可少。Glut的键盘操作要求在main函数注册监控，然后通过自定义的函数控制具体的改变。</p>
+<p>主函数中的代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glutSpecialFunc</span>(inputSpecialKey);</span><br><span class="line"><span class="built_in">glutKeyboardFunc</span>(inputNormalKey);</span><br></pre></td></tr></table></figure>
+
+<p>其中<code>inputSpecialKey</code>和<code>inputNormalKey</code>分别是对特殊字符（如<code>F1</code>，<code>小键盘</code>）和常用字符（如字母数字）的自定义函数，利用<code>glutSpecialFunc</code>和<code>glutKeyboardFunc</code>将它们和主函数绑定。</p>
+<p>而两个函数的具体内容如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inputSpecialKey</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="built_in"><span class="keyword">switch</span></span> (key) &#123;</span><br><span class="line">        <span class="keyword">case</span> GLUT_KEY_LEFT :</span><br><span class="line">            anglex -= <span class="number">0.01f</span>;</span><br><span class="line">            <span class="built_in">cameraMove</span>(anglex,angley);<span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> GLUT_KEY_RIGHT :</span><br><span class="line">            anglex += <span class="number">0.01f</span>;</span><br><span class="line">            <span class="built_in">cameraMove</span>(anglex,angley);<span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> GLUT_KEY_UP :</span><br><span class="line">            angley -= <span class="number">0.01f</span>;</span><br><span class="line">            <span class="built_in">cameraMove</span>(anglex,angley);<span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> GLUT_KEY_DOWN :</span><br><span class="line">            angley += <span class="number">0.01f</span>;</span><br><span class="line">            <span class="built_in">cameraMove</span>(anglex,angley);<span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inputNormalKey</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> key, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="built_in"><span class="keyword">switch</span></span> (key) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;a&#x27;</span> :</span><br><span class="line">            game.<span class="built_in">getmove</span>(<span class="string">&#x27;a&#x27;</span>);<span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;w&#x27;</span> :</span><br><span class="line">            game.<span class="built_in">getmove</span>(<span class="string">&#x27;s&#x27;</span>);<span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;s&#x27;</span> :</span><br><span class="line">            game.<span class="built_in">getmove</span>(<span class="string">&#x27;w&#x27;</span>);<span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;d&#x27;</span> :</span><br><span class="line">            game.<span class="built_in">getmove</span>(<span class="string">&#x27;d&#x27;</span>);<span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;r&#x27;</span> :</span><br><span class="line">            <span class="built_in">cameraReset</span>();<span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">27</span> :</span><br><span class="line">            <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>inputSpecialKey</code>中<code>GLUT_KEY_LEFT</code>，<code>GLUT_KEY_RIGHT</code>等为小键盘的输入，<code>inputNormalKey</code>通过char或者ASCII码指定字符，二者都有固定的格式，利用 switch 对内容进行判断是一种常见的选择。</p>
+<h2 id="游戏库编写"><a href="#游戏库编写" class="headerlink" title="游戏库编写"></a>游戏库编写</h2><p>游戏逻辑的编写被分成两个版本，一个是伪3D版本的2048，一个是真·3D2048，后者拥有4X4X4的大小，支持前后左右上下的移动，功能上基本覆盖前者，因此这里主要针对后者进行介绍。</p>
+<hr>
+<h3 id="函数介绍"><a href="#函数介绍" class="headerlink" title="函数介绍"></a>函数介绍</h3><p>游戏库中有内部函数：用于初始化棋盘并产生4个随机数的<code>setchessboard</code>，在测试时负责打印棋盘的<code>printchessboard</code>，用于重新开始和第一次开始的<code>initial</code>，对匹配信息棋盘的更新<code>updateMatch</code>，以及六个不同方向的函数：<code>up</code>，<code>down</code>，<code>left</code>，<code>right</code>，<code>back</code>，<code>front</code>。</p>
+<p>对于外部交互，有函数：查询分数（当前棋盘所有数之和）<code>score</code>，查询棋盘某一个位置的数字（C不允许输出整个数组）<code>askBoard</code>，查询匹配信息棋盘某一个位置的数字<code>askMatch</code>，对棋盘进行一步操作<code>getmove</code>，判断游戏是否结束<code>ifgameover</code>，返回上一步的棋盘（悔棋）<code>regret</code>。</p>
+<p>具体代码没什么特点，就是按部就班地玩数组就好了，具体的代码会放在我的GitHub里。</p>
+	
+		</div>
+		
+		<div id="current-post-cover" data-scr="/img/post-cover/37.jpg"></div>
+
+		<!-- relate post, comment...-->
+		
+	</div>
+</div>
+
+<!-- show math formula -->
+
+
+
+	 
+	
+<script src="/plugin/clipboard/clipboard.js"></script>
+
+	<script>
+		// Copy code !
+	    function preprocessing() {
+	        $("#article-content .highlight").each(function() {
+	            $(this).wrap('<div id="post-code"></div>');
+	        })
+
+	        $("#article-content #post-code").each(function() {
+	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
+	        })
+
+	        $("#article-content .copy-nav").each(function() {
+	            let languageClass = $(this).next().attr('class'),
+	                language = ((languageClass.length > 9) && (languageClass != null)) ? languageClass.substr(10) : "none"; //why 9? Need to check language?
+
+	            $(this).find('.code-language').text(language);
+	            $(this).append('<span class="copy-btn icon-paste"></span>');
+	        });
+	    }
+
+		function copy() {
+		    $('#article-content #post-code').each(function(i) {
+		        let codeCopyId = 'codeCopy-' + i;
+
+		        let codeNode = $(this).find('.code'),
+		            copyButton = $(this).find('.copy-btn');
+
+		        codeNode.attr('id', codeCopyId);
+		        copyButton.attr('data-clipboard-target-id', codeCopyId);
+		    })
+   
+			let clipboard = new ClipboardJS('.copy-btn', {
+					target: function(trigger) {
+						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+					}
+		      	});
+
+			//pure js
+			function showTooltip(elem, msg) {		   
+				elem.setAttribute('aria-label', msg);
+				elem.setAttribute('class', 'copy-btn icon-clipboard1');
+				setTimeout(function() {
+					elem.setAttribute('class', 'copy-btn icon-paste');
+				}, 2000);
+			}
+
+			clipboard.on('success', function(e) {
+			    e.clearSelection();
+			    console.info('Action:', e.action);		   
+			    console.info('Trigger:', e.trigger);
+			    showTooltip(e.trigger, 'Copied!');   
+			});
+			
+			clipboard.on('error', function(e) {
+			    console.error('Action:', e.action);
+			    console.error('Trigger:', e.trigger);
+			});
+		}
+		
+		(function copyCode(){
+			if ($('.layout-post').length) {
+			    preprocessing();
+			    copy();
+			} 
+		})();
+	</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+
+<script src="/plugin/fancybox/jquery.fancybox.js"></script>
+
+
+<script type="text/javascript">
+	(function gallerySet(){
+		let titleID = $('.article-title a'),
+			imageID = $('.article-content img'),
+			videoID = $('.article-content video');
+		
+		let postTitle = titleID.text() ? titleID.text() : "No post title!";
+		
+		imageID.each(function() {
+			let imgPath = $(this).attr('src'),
+				imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox="gallery" data-caption="《 ' + postTitle + ' 》' + imgTitle + '"href="' + imgPath + '"> </a>');
+		});
+		
+		videoID.each(function() {
+			let videoPath = $(this).attr('src');
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
+		});
+		
+		//TODO：支持html5 video
+
+		if($('#layout-post').length) {
+			$('[data-fancybox="gallery"]').fancybox({
+				loop: true,
+				buttons: [
+					"zoom",
+					"share",
+					"slideShow",
+					"fullScreen",
+					//"download",
+					"thumbs",
+					"close"
+				],
+				protect: true
+			});
+		}
+	})();
+</script>
+
+
+		</main>
+
+		<!--footer-->
+		<footer>
+	<div id="navigation-show">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+	</div>
+
+	<div class="copyright">
+		<p>
+			 
+				&copy;2022, content by DvJiang. All Rights Reserved.
+			
+			
+			
+		</p>
+		<p>
+			
+
+	<!-- busuanzi -->
+	<!-- busuanzi -->
+
+		
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		<span id="busuanzi_container_page_pv">
+	  		本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</span>
+
+	
+
+
+
+
+			<!--
+			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
+			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>
+			-->				
+		</p>
+	</div>		
+</footer>
+		
+	<!-- Local or hitokoto! -->
+
+	
+<script src="/plugin/motto/motto.js"></script>
+
+	
+	<script type="text/javascript">
+		(function motto(){
+			let mottoText = getMingYanContent().split('</br> - </br>'),
+			
+			mottoTextContent = mottoText[0]?mottoText[0]:'请刷新...',
+			
+			mottoTextFrom = mottoText[1]?mottoText[1]:'one/一个';
+			
+			mottoTextContent = mottoTextContent.trim().substring(0, 100);
+		
+			$("#motto-content").html( mottoTextContent);
+			$("#motto-author").html( mottoTextFrom  );
+		})();	
+	</script>	
+
+
+
+<!-- love effect -->
+
+	
+<script src="/plugin/love/love.js"></script>
+
+
+
+<!-- back to top -->
+
+	<div id="totop">
+	<span class="icon-circle-up"></span>
+</div>
+
+
+
+<!-- site analysis -->
+
+
+	<!-- site-analysis -->
+	
+	
+	
+	
+	
+ 
+
+<!-- leancloud -->
+
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+	
+
+  
+
+	<!--
+	时间：2018-10-3
+	描述：
+		插件名称：hexo-generator-search-zip
+		插件来源: https://github.com/SuperKieran/hexo-generator-search-zip
+		代码参考：https://github.com/SuperKieran/TKL/blob/master/layout/_partial/search.ejs(Include: js & css)	
+-->
+<div class="popup search-popup local-search-popup scrollbar" >
+	<div class="local-search-container">
+		<span class="popup-btn-close">
+      		ESC
+   		</span>
+		<div class="local-search-header">
+			<div class="input-prompt">				
+			</div>
+			<input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+		</div>
+		<div class="local-search-body">
+			<div id="local-search-output"></div>
+		</div>
+		<div class="local-search-footer">
+			<div class="topN-post">				
+				
+								
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script src="/plugin/search/ziploader.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script type="text/javascript">
+	var search_path = 'search.json',
+		zip_Path = '/search.zip',
+		version_Path = '/searchVersion.txt',
+		input_Trigger = 'auto',
+		top_N = '2';
+
+	themeLocalSearch({
+		search_path, 
+		zip_Path, 
+		version_Path, 
+		input_Trigger, 
+		top_N
+	});
+</script>
+
+
+
+<script src="/plugin/chinese/chinese.js"></script>
+<script src="/plugin/imagelazyloader/yall.min.js"></script>
+<script src="/plugin/imageloaded/imagesloaded.pkgd.min.js"></script>
+<script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
+<script src="/plugin/resizediv/resizediv.js"></script>
+<script src="/js/main.js"></script>
+
+	</body>	
+</html>

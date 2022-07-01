@@ -1,0 +1,820 @@
+<!--
+	作者：Sariay
+	时间：2018-08-26
+	描述：There may be a bug, but don't worry, Qiling(器灵) says that it can work normally! aha!
+-->
+<!DOCTYPE html>
+<html class="html-loading">
+		
+
+<head>
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <title>
+    
+      概率论总结 | DvJiang&#39;s Blog
+    
+  </title>
+  <meta name="author" content="DvJiang">
+  <meta name="keywords" content="blog" />
+  <meta name="description" content="" />
+	<!-- favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+
+  <!-- css -->
+  
+<link rel="stylesheet" href="/css/Annie.css">
+
+  
+  <!-- jquery -->
+	
+<script src="/plugin/jquery/jquery.min.js"></script>
+
+
+<script>
+    const CONFIG_BGIMAGE = {
+      mode: 'normal',
+      normalSrc: '/img/header-bg.jpg',
+      randomYouMax: 110,
+      randomYouSrc: 'https://sariay.github.io/Random-img/',
+	  randomOtherSrc: 'https://api.berryapi.net/?service=App.Bing.Images&day=-0',
+	  preloaderEnable: true
+    }
+	
+    const CONFIG_LEACLOUD_COUNT = {
+      enable: false,
+	  appId: 'AU8...',
+	  appKey: '4cU...',
+	  serverURLs: 'http' || ' '
+    }
+  </script>
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+	<body>
+		<!-- Preloader -->
+
+	<div id="preloader">
+		<div class="pre-container">
+			
+				<div class="cyclic">
+					<div><span></span></div>
+					<div><span></span></div>
+					<div><span></span></div>
+					<div><span></span></div>
+				</div>
+						
+		</div>
+	</div>
+
+
+<!-- header -->
+<header class="fixbackground bg-pan-br">
+	<div class="mask">
+		<!-- motto -->
+		<div class="h-body">	
+			
+				<div class="motto text-shadow-pop-left">
+					<p class="content" id="motto-content">获取中...</p>
+					<p>-<p>
+					<p class="author" id="motto-author">Just a minute...</p>
+				</div>
+			
+		</div>
+		
+		<!-- others: such as time... -->			
+		<div class="h-footer">
+			<a href="javascript:;" id="read-more" class="scroll-down">
+				<span class="icon-anchor1 animation-scroll-down"></span>
+			</a>
+		</div>
+	</div>
+</header>
+
+<div id="navigation-hide">
+	<!-- Progress bar -->
+	<div id="progress-bar"></div>
+
+	<!-- Progress percent -->
+	<div id="progress-percentage"><span>0.0%</span></div>
+
+	<div class="toc-switch"><span class="switch-button">目录</span></div>
+
+	<!-- Page title -->
+	<p>
+		
+			「概率论总结」
+		
+	</p>
+
+	
+	
+
+	<!-- Nav trigger for navigation-H-->
+	<a class="nav-trigger"><span></span></a>
+</div>
+
+<!-- Navigation in div(id="navigation-H") -->
+<nav class="nav-container" id="cd-nav">
+	<div class="nav-header">
+		<span class="logo"> 
+			<img src="/img/logo.png">
+		</span>
+		<a href="javascript:;" class="nav-close"></a>
+	</div>
+	
+	<div class="nav-body">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+	</div>
+	
+	<div class="nav-footer">
+		<ul id="global-social">
+	
+		<li>
+			<a href="https://github.com/DvJiang/" target="_blank">
+				<span class="icon-github"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<span class="icon-rss"></span>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+</nav>
+			
+		<!--main-->
+		<main>
+			<!--
+	时间：2018-11-17
+	描述：
+		插件名称：katelog.min.js
+		插件作者：KELEN
+		插件来源: https://github.com/KELEN/katelog
+-->
+
+	
+		<div class="layout-toc">
+			<div id="layout-toc">
+				<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
+			</div>
+		</div>
+
+		
+<script src="/plugin/toc/katelog.min.js"></script>
+
+
+		
+	 
+
+<div class="layout-post">
+	<div id="layout-post">
+		<div class="article-title">
+			
+	<a href="/2022/04/21/%E6%A6%82%E7%8E%87%E8%AE%BA%E6%80%BB%E7%BB%93/" itemprop="url">
+		概率论总结
+	</a>
+
+		</div>
+
+		<div class="article-meta">
+			<span>
+				<i class="icon-calendar1"></i>
+				
+				
+
+
+
+
+	更新于
+
+	<a href="/2022/04/21/%E6%A6%82%E7%8E%87%E8%AE%BA%E6%80%BB%E7%BB%93/" itemprop="url">
+		<time datetime="2022-04-20T16:00:00.000Z" itemprop="dateUpdated">
+	  		2022-07-01
+	  </time>
+	</a> 
+
+
+
+			</span>
+			<span>
+				
+	<i class="icon-price-tags"></i>
+	
+		<a href="/tags/%E5%AD%A6%E4%B9%A0/" class=" ">
+			学习
+		</a>
+	
+		<a href="/tags/%E6%95%B0%E5%AD%A6/" class=" ">
+			数学
+		</a>
+	
+		
+			</span>
+			
+			
+
+
+
+		</div>
+
+		<div class="article-content" id="article-content">
+			<blockquote>
+<p>将它作为概率论的回忆罢</p>
+</blockquote>
+<h2 id="事件与运算律"><a href="#事件与运算律" class="headerlink" title="事件与运算律"></a>事件与运算律</h2><ul>
+<li>运算律<ul>
+<li>分配律：A(BUC) = (AB)U(AC)    AU(BC) = (AUB)(AUC)</li>
+<li>对偶律：与和或可以互换，只要01也互换（逻辑电路的知识）<ul>
+<li>同样的，逻辑电路的德摩根定律在这里也成立</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="单变量随机数"><a href="#单变量随机数" class="headerlink" title="单变量随机数"></a>单变量随机数</h2><h3 id="基本函数"><a href="#基本函数" class="headerlink" title="基本函数"></a>基本函数</h3><ul>
+<li>概率：$P(X \le x)$</li>
+<li>概率分布函数：$F(x) = P(X \le x)$</li>
+<li>概率密度函数：$P_x(x) = F’(x)$</li>
+</ul>
+<blockquote>
+<p>概率分布通常用来求概率密度，概率密度圈起来的面积就是落到这个里面的概率。</p>
+<p>概率密度可以显示分布特征，但不够直观，所以用概率分布来建立联系更为常见。</p>
+</blockquote>
+<h3 id="常见概念"><a href="#常见概念" class="headerlink" title="常见概念"></a>常见概念</h3><ul>
+<li>期望 $E(x) = \int xP(x)dx$</li>
+<li>方差 $Var(x) = E((x - E(x))^2)$</li>
+<li>进阶：<ul>
+<li>$Var(x) = E(x^2) - E^2(x)$</li>
+<li>对于$h(x)$，如果函数是一一对应的，其取值的概率则只和$x$的取值有关，此时$P(h(x)) = P(x)$。</li>
+</ul>
+</li>
+<li>对$z = h(x)$<ul>
+<li>当$h(x)$是线性时，不妨认为是$h(x) = ax + b$<ul>
+<li>$E(z) = aE(x) + b$ ，即期望遵循线性关系</li>
+<li>$Var(z) = a^2Var(x)$ ，即方差关注系数</li>
+</ul>
+</li>
+<li>当$h(x)$不是线性，考虑通过概率密度分布函数解决问题<ul>
+<li>$P_z(z) = P_x(h^{-1}(x))|(h^{-1}(x))’|$ 要求$h(x)$单调递增，可以通过分布函数求得</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>单变量函数期望和方差的计算通常有两个方向，一个方向是从概率分布函数入手，然后根据定义计算得到（方差通常由进阶式计算），另一个方向是从已有函数的关系入手,通过方差和期望的性质得到答案。</p>
+</blockquote>
+<h3 id="一些定理"><a href="#一些定理" class="headerlink" title="一些定理"></a>一些定理</h3><ul>
+<li>切比雪夫定理：<ul>
+<li>对任意$\epsilon &gt; 0$，有$P(|x - E(x)| &gt; \epsilon) \le \frac{Var(x)}{\epsilon ^2}$</li>
+</ul>
+</li>
+<li>用均匀分布构造分布：<ul>
+<li>对$Exp(\lambda),F(x) = 1-e^{-\lambda x}$，构造$x = F^{-1}(U(0,1))$即可</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>切比雪夫定理在实际意义上规定了一个随机变量能够偏离期望的概率大小，这可以用来直接解答一部分问题。</p>
+<p>另外，在一些计算，尤其是证明中，切比雪夫可以用来构造不等式，实现放缩。</p>
+</blockquote>
+<h3 id="常见分布"><a href="#常见分布" class="headerlink" title="常见分布"></a>常见分布</h3><ul>
+<li>均匀分布U $P(x) = \frac{1}{b - a}$<ul>
+<li>$E(x) = \frac{b-a}{2}$  $Var(x) = \frac{1}{12}(b-a)^2$</li>
+</ul>
+</li>
+<li>指数分布EXP $P(x) = \lambda e^{-\lambda x}$<ul>
+<li>$E(x) = \frac{1}{\lambda}$  $Var(x) = \frac{1}{\lambda^2}$</li>
+</ul>
+</li>
+<li>正态分布N  $P(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x - \mu)}{2\sigma^2}}$<ul>
+<li>$E(x) = \mu$  $Var(x) = \sigma$</li>
+</ul>
+</li>
+<li>泊松分布P $P(x = k) = \frac{\lambda^k}{K!}e^{-\lambda}$<ul>
+<li>$E(x) = \lambda$  $Var(x) = \lambda$</li>
+</ul>
+</li>
+<li>二项分布B $P(x = k) = C_n^kp^k(1-p)^{n-k}$<ul>
+<li>$E(x) = np$  $E(x) = np(1-p)$</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>前三个为连续分布，函数为密度函数，后两个为离散分布，函数为概率函数。</p>
+<p>正态分布需要掌握转换成标准正态分布的方法：减去平均数再除以标准差。</p>
+<p>指数分布特点在于无论什么时候开始，它的分布都和刚开始一样。</p>
+</blockquote>
+<hr>
+<h2 id="双变量随机数"><a href="#双变量随机数" class="headerlink" title="双变量随机数"></a>双变量随机数</h2><h3 id="基本函数-1"><a href="#基本函数-1" class="headerlink" title="基本函数"></a>基本函数</h3><ul>
+<li>概率：$P(X \le x, Y \le y)$</li>
+<li>概率分布函数：$F(x , y) = P(X \le x, Y \le y)$</li>
+<li>概率密度函数：<ul>
+<li>单个：$P_x(x) = \frac{d}{dx}F(x,y)$，$P_y(y) = \frac{d}{dy}F(x,y)$</li>
+<li>多个：$P(x,y) = \frac{d^2}{dxdy}F(x,y)$</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>在二维乃至多维中，概率密度函数的“密度”二字的含义就逐渐体现出来了。</p>
+<p>在几何上，它表示落到一小块区域的概率。</p>
+<p>如果想要得到一个变量的密度分布，则需要把其它变量拍扁——积起来消除影响。</p>
+</blockquote>
+<h3 id="常见概念-1"><a href="#常见概念-1" class="headerlink" title="常见概念"></a>常见概念</h3><ul>
+<li>期望：将一维拓展至多维，多个几个积分号而已。<ul>
+<li>$E(x,y) = \int \int P(x,y)dxdy$</li>
+</ul>
+</li>
+<li>方差：对于单个的$P_x(x)$，知道密度函数情况下直接参考单变量情况。</li>
+<li>协方差：$Cov(x,y) = E(xy) - E(x)E(y)$ 用于评判xy相关度，xy独立时为0。</li>
+<li>相关系数：$Corr(x,y) = \frac{Cov(x,y)}{\sqrt{Var(x)}\sqrt{Var(y)}}$在-1到1间变动，绝对值越大越相关，本身只是作为协方差的归一化存在。</li>
+</ul>
+<blockquote>
+<p>注意，独立的xy协方差为0，但为0不代表它们独立。</p>
+</blockquote>
+<h3 id="双变量的函数"><a href="#双变量的函数" class="headerlink" title="双变量的函数"></a>双变量的函数</h3><ul>
+<li><p>不妨设$z = h(x,y)$</p>
+</li>
+<li><p>对密度概率函数，需要先求分布函数：$F_z(z) = P(h(x, y) \le z)$把它看成xy的概率表达式，相当于对xy新加了一个约束，然后用积分求得分布函数，再求导得到概率密度函数。</p>
+</li>
+<li><p>对于期望，和单变量时情况类似，可以用$\int \int h(x,y)dxdy$或通过概率密度函数积分获得。</p>
+</li>
+<li><p>对于方差：</p>
+<ul>
+<li>若是线性的，有：$Var(x\pm y) = Var(x) + Var(y) \pm Cov(x,y)$</li>
+</ul>
+<blockquote>
+<p>此式可以用来求$Cov$，但更多的情况是正着用求$Var(x \pm y)$</p>
+</blockquote>
+</li>
+<li><p>若不是线性的，只能通过概率密度函数获得。</p>
+</li>
+<li><p>对于协方差，线性部分和期望类似，在多维问题中尤为突出。</p>
+</li>
+<li><p>正态分布，二项分布，泊松分布都具有可加性：</p>
+<ul>
+<li>$N(\mu_1,\sigma_1^2) + N(\mu_2, \sigma_2^2) = N(\mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2)$</li>
+<li>$B(n,p) + B(m,p) = B(n+m, p)$</li>
+<li>$P(\lambda_1) + P(\lambda_2) = P(\lambda_1 + \lambda_2)$</li>
+</ul>
+</li>
+</ul>
+<h3 id="条件分布"><a href="#条件分布" class="headerlink" title="条件分布"></a>条件分布</h3><ul>
+<li>$P(X|Y = y)$即$Y = y$时x的分布：$P(X|Y = y) = \frac{P(x,y)}{P_y(y)}$</li>
+<li>和单变量的条件公式相同，有全概率公式和贝叶斯公式：<ul>
+<li>$P(x) = \int P(x,y)dy = \int P(x|y)P(y)dy$</li>
+<li>$P(x|y) = P(y|x) \frac{P(x)}{P(y)}$</li>
+</ul>
+</li>
+<li>期望：$E(x|y)$,y是变量，x被期望加和。</li>
+<li>重期望公式：$E(x) = E(E(x|y))$<ul>
+<li>通常用来求解不确定个数的随机变量问题</li>
+<li>$E(\Sigma^NX_i) = E(X_1)E(N)$  (要求$X_i$独立同分布)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="大数部分"><a href="#大数部分" class="headerlink" title="大数部分"></a>大数部分</h2><h3 id="收敛性部分"><a href="#收敛性部分" class="headerlink" title="收敛性部分"></a>收敛性部分</h3><ul>
+<li>按概率收敛：符号带P<ul>
+<li>定义为一个变量序列的概率逐渐接近一个定值（收敛）</li>
+<li>对任意的$\epsilon&gt; 0$，$limP(|X_n - X| &gt; \epsilon) = 0$</li>
+</ul>
+</li>
+<li>按分布收敛：符号带L<ul>
+<li>定义和上面类似，不过是看分布函数$F(x)$去逼近</li>
+<li>$limF_n(x) = F(x)$</li>
+<li>也被称为弱收敛</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>两种收敛不等价，在证明中常常需要放缩和切比雪夫不等式，还有基本不等式等知识。</p>
+</blockquote>
+<h3 id="大数定理"><a href="#大数定理" class="headerlink" title="大数定理"></a>大数定理</h3><ul>
+<li>概述：相当于告知了概率和期望的意义（稳定性）</li>
+<li>辛钦大数定理：观测足够多时，算数平均数大概率接近期望</li>
+<li>伯努利大数定理：观测足够多时，事件发生频率大概率接近概率</li>
+</ul>
+<h3 id="中心极限定理"><a href="#中心极限定理" class="headerlink" title="中心极限定理"></a>中心极限定理</h3><ul>
+<li>对于独立同分布，无论什么分布，其总的分布函数总是长得像正态分布，期望方差都对应。<ul>
+<li>收束到二项分布上，便成了：棣莫弗—拉普拉斯中心极限定理</li>
+</ul>
+</li>
+<li>独立不同分布，如想要像正态分布一样，需要满足下面的条件之一：<ul>
+<li>林德伯格条件：<ul>
+<li>$B_n = \sqrt{\Sigma\sigma^2}$</li>
+<li>对任意$\tau &gt; 0$，$lim\frac{1}{\tau^2B_n^2}\Sigma^n_{i=1}\int_{|x-\mu_i|&gt;\tau B_n}(x-\mu_i)^2pi(x)dx = 0$</li>
+</ul>
+</li>
+<li>李雅普诺夫条件：<ul>
+<li>$B_n = \sqrt{\Sigma\sigma^2}$</li>
+<li>存在$\delta &gt; 0$，使得$lim\frac{1}{B_n^{2+\delta}}\Sigma E(|X_i - \mu_i^{2+\delta}|) = 0$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>很明显，林德伯格条件以“任意”起头，李雅普诺夫条件以“存在”起头，前者一般用于否定，后者用于证明显得比较合理。</p>
+</blockquote>
+	
+		</div>
+		
+		<div id="current-post-cover" data-scr="/img/post-cover/29.jpg"></div>
+
+		<!-- relate post, comment...-->
+		
+	</div>
+</div>
+
+<!-- show math formula -->
+
+
+
+	 
+	
+<script src="/plugin/clipboard/clipboard.js"></script>
+
+	<script>
+		// Copy code !
+	    function preprocessing() {
+	        $("#article-content .highlight").each(function() {
+	            $(this).wrap('<div id="post-code"></div>');
+	        })
+
+	        $("#article-content #post-code").each(function() {
+	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
+	        })
+
+	        $("#article-content .copy-nav").each(function() {
+	            let languageClass = $(this).next().attr('class'),
+	                language = ((languageClass.length > 9) && (languageClass != null)) ? languageClass.substr(10) : "none"; //why 9? Need to check language?
+
+	            $(this).find('.code-language').text(language);
+	            $(this).append('<span class="copy-btn icon-paste"></span>');
+	        });
+	    }
+
+		function copy() {
+		    $('#article-content #post-code').each(function(i) {
+		        let codeCopyId = 'codeCopy-' + i;
+
+		        let codeNode = $(this).find('.code'),
+		            copyButton = $(this).find('.copy-btn');
+
+		        codeNode.attr('id', codeCopyId);
+		        copyButton.attr('data-clipboard-target-id', codeCopyId);
+		    })
+   
+			let clipboard = new ClipboardJS('.copy-btn', {
+					target: function(trigger) {
+						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+					}
+		      	});
+
+			//pure js
+			function showTooltip(elem, msg) {		   
+				elem.setAttribute('aria-label', msg);
+				elem.setAttribute('class', 'copy-btn icon-clipboard1');
+				setTimeout(function() {
+					elem.setAttribute('class', 'copy-btn icon-paste');
+				}, 2000);
+			}
+
+			clipboard.on('success', function(e) {
+			    e.clearSelection();
+			    console.info('Action:', e.action);		   
+			    console.info('Trigger:', e.trigger);
+			    showTooltip(e.trigger, 'Copied!');   
+			});
+			
+			clipboard.on('error', function(e) {
+			    console.error('Action:', e.action);
+			    console.error('Trigger:', e.trigger);
+			});
+		}
+		
+		(function copyCode(){
+			if ($('.layout-post').length) {
+			    preprocessing();
+			    copy();
+			} 
+		})();
+	</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+
+<script src="/plugin/fancybox/jquery.fancybox.js"></script>
+
+
+<script type="text/javascript">
+	(function gallerySet(){
+		let titleID = $('.article-title a'),
+			imageID = $('.article-content img'),
+			videoID = $('.article-content video');
+		
+		let postTitle = titleID.text() ? titleID.text() : "No post title!";
+		
+		imageID.each(function() {
+			let imgPath = $(this).attr('src'),
+				imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox="gallery" data-caption="《 ' + postTitle + ' 》' + imgTitle + '"href="' + imgPath + '"> </a>');
+		});
+		
+		videoID.each(function() {
+			let videoPath = $(this).attr('src');
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
+		});
+		
+		//TODO：支持html5 video
+
+		if($('#layout-post').length) {
+			$('[data-fancybox="gallery"]').fancybox({
+				loop: true,
+				buttons: [
+					"zoom",
+					"share",
+					"slideShow",
+					"fullScreen",
+					//"download",
+					"thumbs",
+					"close"
+				],
+				protect: true
+			});
+		}
+	})();
+</script>
+
+
+		</main>
+
+		<!--footer-->
+		<footer>
+	<div id="navigation-show">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+	</div>
+
+	<div class="copyright">
+		<p>
+			 
+				&copy;2022, content by DvJiang. All Rights Reserved.
+			
+			
+			
+		</p>
+		<p>
+			
+
+	<!-- busuanzi -->
+	<!-- busuanzi -->
+
+		
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		<span id="busuanzi_container_page_pv">
+	  		本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</span>
+
+	
+
+
+
+
+			<!--
+			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
+			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>
+			-->				
+		</p>
+	</div>		
+</footer>
+		
+	<!-- Local or hitokoto! -->
+
+	
+<script src="/plugin/motto/motto.js"></script>
+
+	
+	<script type="text/javascript">
+		(function motto(){
+			let mottoText = getMingYanContent().split('</br> - </br>'),
+			
+			mottoTextContent = mottoText[0]?mottoText[0]:'请刷新...',
+			
+			mottoTextFrom = mottoText[1]?mottoText[1]:'one/一个';
+			
+			mottoTextContent = mottoTextContent.trim().substring(0, 100);
+		
+			$("#motto-content").html( mottoTextContent);
+			$("#motto-author").html( mottoTextFrom  );
+		})();	
+	</script>	
+
+
+
+<!-- love effect -->
+
+	
+<script src="/plugin/love/love.js"></script>
+
+
+
+<!-- back to top -->
+
+	<div id="totop">
+	<span class="icon-circle-up"></span>
+</div>
+
+
+
+<!-- site analysis -->
+
+
+	<!-- site-analysis -->
+	
+	
+	
+	
+	
+ 
+
+<!-- leancloud -->
+
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+	
+
+  
+
+	<!--
+	时间：2018-10-3
+	描述：
+		插件名称：hexo-generator-search-zip
+		插件来源: https://github.com/SuperKieran/hexo-generator-search-zip
+		代码参考：https://github.com/SuperKieran/TKL/blob/master/layout/_partial/search.ejs(Include: js & css)	
+-->
+<div class="popup search-popup local-search-popup scrollbar" >
+	<div class="local-search-container">
+		<span class="popup-btn-close">
+      		ESC
+   		</span>
+		<div class="local-search-header">
+			<div class="input-prompt">				
+			</div>
+			<input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+		</div>
+		<div class="local-search-body">
+			<div id="local-search-output"></div>
+		</div>
+		<div class="local-search-footer">
+			<div class="topN-post">				
+				
+								
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script src="/plugin/search/ziploader.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script type="text/javascript">
+	var search_path = 'search.json',
+		zip_Path = '/search.zip',
+		version_Path = '/searchVersion.txt',
+		input_Trigger = 'auto',
+		top_N = '2';
+
+	themeLocalSearch({
+		search_path, 
+		zip_Path, 
+		version_Path, 
+		input_Trigger, 
+		top_N
+	});
+</script>
+
+
+
+<script src="/plugin/chinese/chinese.js"></script>
+<script src="/plugin/imagelazyloader/yall.min.js"></script>
+<script src="/plugin/imageloaded/imagesloaded.pkgd.min.js"></script>
+<script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
+<script src="/plugin/resizediv/resizediv.js"></script>
+<script src="/js/main.js"></script>
+
+	</body>	
+</html>

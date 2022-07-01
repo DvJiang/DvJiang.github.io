@@ -1,0 +1,795 @@
+<!--
+	作者：Sariay
+	时间：2018-08-26
+	描述：There may be a bug, but don't worry, Qiling(器灵) says that it can work normally! aha!
+-->
+<!DOCTYPE html>
+<html class="html-loading">
+		
+
+<head>
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <title>
+    
+      线性代数的本质 | DvJiang&#39;s Blog
+    
+  </title>
+  <meta name="author" content="DvJiang">
+  <meta name="keywords" content="blog" />
+  <meta name="description" content="" />
+	<!-- favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+
+  <!-- css -->
+  
+<link rel="stylesheet" href="/css/Annie.css">
+
+  
+  <!-- jquery -->
+	
+<script src="/plugin/jquery/jquery.min.js"></script>
+
+
+<script>
+    const CONFIG_BGIMAGE = {
+      mode: 'normal',
+      normalSrc: '/img/header-bg.jpg',
+      randomYouMax: 110,
+      randomYouSrc: 'https://sariay.github.io/Random-img/',
+	  randomOtherSrc: 'https://api.berryapi.net/?service=App.Bing.Images&day=-0',
+	  preloaderEnable: true
+    }
+	
+    const CONFIG_LEACLOUD_COUNT = {
+      enable: false,
+	  appId: 'AU8...',
+	  appKey: '4cU...',
+	  serverURLs: 'http' || ' '
+    }
+  </script>
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+	<body>
+		<!-- Preloader -->
+
+	<div id="preloader">
+		<div class="pre-container">
+			
+				<div class="cyclic">
+					<div><span></span></div>
+					<div><span></span></div>
+					<div><span></span></div>
+					<div><span></span></div>
+				</div>
+						
+		</div>
+	</div>
+
+
+<!-- header -->
+<header class="fixbackground bg-pan-br">
+	<div class="mask">
+		<!-- motto -->
+		<div class="h-body">	
+			
+				<div class="motto text-shadow-pop-left">
+					<p class="content" id="motto-content">获取中...</p>
+					<p>-<p>
+					<p class="author" id="motto-author">Just a minute...</p>
+				</div>
+			
+		</div>
+		
+		<!-- others: such as time... -->			
+		<div class="h-footer">
+			<a href="javascript:;" id="read-more" class="scroll-down">
+				<span class="icon-anchor1 animation-scroll-down"></span>
+			</a>
+		</div>
+	</div>
+</header>
+
+<div id="navigation-hide">
+	<!-- Progress bar -->
+	<div id="progress-bar"></div>
+
+	<!-- Progress percent -->
+	<div id="progress-percentage"><span>0.0%</span></div>
+
+	<div class="toc-switch"><span class="switch-button">目录</span></div>
+
+	<!-- Page title -->
+	<p>
+		
+			「线性代数的本质」
+		
+	</p>
+
+	
+	
+
+	<!-- Nav trigger for navigation-H-->
+	<a class="nav-trigger"><span></span></a>
+</div>
+
+<!-- Navigation in div(id="navigation-H") -->
+<nav class="nav-container" id="cd-nav">
+	<div class="nav-header">
+		<span class="logo"> 
+			<img src="/img/logo.png">
+		</span>
+		<a href="javascript:;" class="nav-close"></a>
+	</div>
+	
+	<div class="nav-body">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+	</div>
+	
+	<div class="nav-footer">
+		<ul id="global-social">
+	
+		<li>
+			<a href="https://github.com/DvJiang/" target="_blank">
+				<span class="icon-github"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<span class="icon-rss"></span>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+</nav>
+			
+		<!--main-->
+		<main>
+			<!--
+	时间：2018-11-17
+	描述：
+		插件名称：katelog.min.js
+		插件作者：KELEN
+		插件来源: https://github.com/KELEN/katelog
+-->
+
+	
+		<div class="layout-toc">
+			<div id="layout-toc">
+				<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
+			</div>
+		</div>
+
+		
+<script src="/plugin/toc/katelog.min.js"></script>
+
+
+		
+	 
+
+<div class="layout-post">
+	<div id="layout-post">
+		<div class="article-title">
+			
+	<a href="/2022/03/23/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/" itemprop="url">
+		线性代数的本质
+	</a>
+
+		</div>
+
+		<div class="article-meta">
+			<span>
+				<i class="icon-calendar1"></i>
+				
+				
+
+
+
+
+	更新于
+
+	<a href="/2022/03/23/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/" itemprop="url">
+		<time datetime="2022-03-22T16:00:00.000Z" itemprop="dateUpdated">
+	  		2022-07-01
+	  </time>
+	</a> 
+
+
+
+			</span>
+			<span>
+				
+	<i class="icon-price-tags"></i>
+	
+		<a href="/tags/%E5%AD%A6%E4%B9%A0/" class=" ">
+			学习
+		</a>
+	
+		<a href="/tags/%E6%95%B0%E5%AD%A6/" class=" ">
+			数学
+		</a>
+	
+		
+			</span>
+			
+			
+
+
+
+		</div>
+
+		<div class="article-content" id="article-content">
+			<blockquote>
+<p>本文视频来自：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ys411472E?spm_id_from=333.999.0.0">3Blue1Brown：线性代数的本质</a>,为学习笔记。</p>
+<p>线性代数的计算不难，但其几何意义很少有老师好好讲。</p>
+</blockquote>
+<hr>
+<h2 id="向量究竟是什么"><a href="#向量究竟是什么" class="headerlink" title="向量究竟是什么"></a>向量究竟是什么</h2><blockquote>
+<p>“引入一些数作为向量是鲁莽的行为。”</p>
+</blockquote>
+<h3 id="三种观点"><a href="#三种观点" class="headerlink" title="三种观点"></a>三种观点</h3><ul>
+<li>物理观点：空间中的箭头</li>
+<li>计算机观点：有序的数字组合</li>
+<li>数学观点：保证相加和数乘有意义就好了</li>
+</ul>
+<blockquote>
+<p>将几何的箭头定在原点，则计算机观点的数字组合则和坐标系上的点对应</p>
+</blockquote>
+<h3 id="向量的相加"><a href="#向量的相加" class="headerlink" title="向量的相加"></a>向量的相加</h3><p>向量可以被视为一种运动，像是一维数字加和的一种拓展。</p>
+<p>使用首尾相连的方式连接两个向量（数学上表示为各项分别相加）。</p>
+<h3 id="向量相乘"><a href="#向量相乘" class="headerlink" title="向量相乘"></a>向量相乘</h3><p>几何角度：缩放向量（数字的主要作用）</p>
+<p>数学上为和各项分别相乘。</p>
+<blockquote>
+<p>线性代数的意义一方面体现在可以在数字序列和几何上相互转化，从而为数据的可视化提供了一条渠道，另一方面，为物理和计算机图形提供了一种语言来描述空间。</p>
+</blockquote>
+<hr>
+<h2 id="线性组合，张成的空间与基"><a href="#线性组合，张成的空间与基" class="headerlink" title="线性组合，张成的空间与基"></a>线性组合，张成的空间与基</h2><h3 id="坐标系的基"><a href="#坐标系的基" class="headerlink" title="坐标系的基"></a>坐标系的基</h3><p>将一对向量的每一个坐标看成一个标量，实现对单位向量的拉伸。</p>
+<p>思想：缩放向量（基）并相加——线性组合</p>
+<h3 id="空间"><a href="#空间" class="headerlink" title="空间"></a>空间</h3><p>两向量全部线性组合构成的向量集合被称为“张成的空间”。（span）</p>
+<blockquote>
+<p>实际是在问，只使用向量的相加和数乘，你能获得的所有可能向量集合是什么</p>
+</blockquote>
+<p>为了简化看到的多个向量：在考虑一个向量的时候，把它看成一个箭头；在考虑多个向量的时候，就把他们看成点（从而连成线，平面）</p>
+<h3 id="线性相关"><a href="#线性相关" class="headerlink" title="线性相关"></a>线性相关</h3><p>为了描述多个向量不能很好的构成空间（存在共线/共面）的情况。</p>
+<p>线性相关：当去掉任意一个向量而不影响张成的空间时</p>
+<p>OR：一个向量可以表示为其他向量的线性组合</p>
+<p>反之：线性无关</p>
+<h3 id="基的严格定义"><a href="#基的严格定义" class="headerlink" title="基的严格定义"></a>基的严格定义</h3><p>向量空间的一组基是张成该空间的一个线性无关向量集</p>
+<hr>
+<h2 id="矩阵与线性变换"><a href="#矩阵与线性变换" class="headerlink" title="矩阵与线性变换"></a>矩阵与线性变换</h2><p>线性变换的概念以及它和矩阵的关系</p>
+<p>所谓变换：输入一些向量，得到另一些向量（就像函数）（但更像运动movement）</p>
+<p>所谓线性：直线仍是直线，且原点保持固定。（网格线平行且等距）</p>
+<blockquote>
+<p>原点变化的叫做仿射变换</p>
+</blockquote>
+<p>用数值描述线性变换：矩阵 -&gt; 用变换后的基坐标表示</p>
+<p>线性变换是操纵空间的一种方式：后面变换的基础。</p>
+<hr>
+<h2 id="矩阵乘法与线性变换复合"><a href="#矩阵乘法与线性变换复合" class="headerlink" title="矩阵乘法与线性变换复合"></a>矩阵乘法与线性变换复合</h2><p>如何定义描述独立变换的复合变换：通过相乘</p>
+<p>相乘的几何意义：两个变换相继作用，注意是从右到左读。</p>
+<blockquote>
+<p>由此可看出，矩阵相乘交换顺序对结果是有影响的，但交换律不会</p>
+</blockquote>
+<blockquote>
+<p>附注1：多维空间中的矩阵变换同理，构成n维矩阵</p>
+</blockquote>
+<hr>
+<h2 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h2><p>意义：描述一块区域在经过空间变换后变化的大小。（线性变换改变面积的比例）（翻转为负）</p>
+<blockquote>
+<p>用无数的小方块可以直观理解（微积分思想）</p>
+</blockquote>
+<p>当行列式值为0时：空间被矩阵变换到了更小的维度上（所以当前体积就为0了）</p>
+<blockquote>
+<p>通过这种理解，也可以解释为什么det(矩阵之积) = det(矩阵)之积了。</p>
+</blockquote>
+<hr>
+<h2 id="逆矩阵，列空间与零空间"><a href="#逆矩阵，列空间与零空间" class="headerlink" title="逆矩阵，列空间与零空间"></a>逆矩阵，列空间与零空间</h2><p>矩阵可求解特定方程组：线性方程组</p>
+<blockquote>
+<p>求解的几何含义：对于特定的一个变换（矩阵A），找到一个向量使得它的变换后为v</p>
+</blockquote>
+<p>当A的行列式不为零时，通过A的逆变换（A的逆）可以找到x，此时存在唯一解。（高维同理）</p>
+<p>当A行列式为零时，A将空间压缩到更低维度，此时没有逆变换（不能由一条直线解压为一个平面），解可能存在但无数（v正好在更低维）或不存在（v没和压缩结果重叠），解存在的难度变高了。</p>
+<p>所有矩阵变换可能的输出集合为矩阵的列空间，也就是矩阵的列张成的空间。</p>
+<p>秩（rank）：A变换矩阵剩下的维度，也就是列空间的维数。</p>
+<blockquote>
+<p>零向量一定在列空间中</p>
+</blockquote>
+<p>零空间（核）：变换后落在原点的向量集合，也就是AX = 0的解空间。</p>
+<blockquote>
+<p>附注2：非方阵：列表示基向量的个数（原空间的维数），行数表示变换后只用几个坐标来表示。</p>
+<p>竖着看矩阵的一列，是原空间对应基向量变换后的模样。</p>
+</blockquote>
+<hr>
+<h2 id="点积与对偶性"><a href="#点积与对偶性" class="headerlink" title="点积与对偶性"></a>点积与对偶性</h2><p>点积的几何意义：投影和另一个向量相乘，投影对自身放缩效果的继承使得点积可以交换顺序。</p>
+<p>点积计算规则探究：1X2矩阵和二维向量有着微妙的联系</p>
+<ul>
+<li>由此产生了投影矩阵：几何变换含义为“向量对一条过原点的数轴投影”</li>
+<li>从而可以解释点积计算的来历：将一个1X2矩阵看成一个新的向量</li>
+</ul>
+<blockquote>
+<p>对于任意一个多维-一维的线性变换，都可以找到唯一一个向量，使得进行这个变换和与这个向量点积结果相同。</p>
+</blockquote>
+<p>对偶性：两种数学事物之间自然又出乎意料的对应关系。</p>
+<p>一个多维到一维的变换与某个多维空间的向量是对偶关系。</p>
+<blockquote>
+<p>将向量看作线性变换的物质载体，一个特定变换的概念性记号会更容易理解向量</p>
+</blockquote>
+<hr>
+<h2 id="叉积的标准介绍"><a href="#叉积的标准介绍" class="headerlink" title="叉积的标准介绍"></a>叉积的标准介绍</h2><p>本部分介绍的是叉积的一般算法理论。</p>
+<p>叉积的几何意义：两个向量形成的面积，带正负，正负规则为右手定则。</p>
+<p>因此，叉积的大小就是对应的行列式的值（单位正方形扩大的倍数）</p>
+<p>垂直时叉积更大，数乘可移。</p>
+<hr>
+<h2 id="以线性变换的眼光看叉积"><a href="#以线性变换的眼光看叉积" class="headerlink" title="以线性变换的眼光看叉积"></a>以线性变换的眼光看叉积</h2><p>定义一个从三维空间到数轴的特定线性变换，其对偶向量为叉积结果。</p>
+<p>其函数具体实现为：输入一个向量，通过矩阵行列式得到一个数。</p>
+<p>性质上，这个函数是线性的，这很重要，因为这样我们就可以用矩阵乘法描述这个变换了：存在一个1X3的矩阵满足条件，这就是我们要求的那个叉积结果。</p>
+<blockquote>
+<p>对于一个平行六面体的体积（行列式），可以先得到一个面的面积（V与W），再乘以剩下那个向量垂直于这个面的投影（点积）</p>
+</blockquote>
+<hr>
+<h2 id="基变换"><a href="#基变换" class="headerlink" title="基变换"></a>基变换</h2><p>本质上可以看作是两个空间之间的变换（基向量的改变）</p>
+<p>可以认为，之前空间变换中的矩阵的那一套，并没有改变“视角”，也就是基向量，只是改变了空间里所有的向量的模样（拉伸旋转），从这种意义上，说它拉伸空间是不完全正确的。前后所使用的描述工具仍然是原先的基向量。</p>
+<p>对别人的一个变换的矩阵描述：A逆MA，A是为了转换到我们的坐标系，M是在我们的系中变换对应的矩阵，这本质上是一个视角的转移。</p>
+<blockquote>
+<p>A逆MA还是描述的同一个矩阵，只是从别人的视角下来看的</p>
+</blockquote>
+<hr>
+<h2 id="特征向量与特征值"><a href="#特征向量与特征值" class="headerlink" title="特征向量与特征值"></a>特征向量与特征值</h2><p>在矩阵变换中，有些向量仍然留在了他们自己张成的空间中，这时候变换对于它们就像是一个数乘。</p>
+<p>这些特殊向量被称为特征向量，其数乘的值被称为特征值。</p>
+<blockquote>
+<p>可以通过特征值为1，找到一个旋转的三维变换的对称轴</p>
+</blockquote>
+<p>理解特征向量和特征值可以摆脱选定的基向量，从而更加理解变换。</p>
+<p>并非每一个变换都有特征向量（特征式出现复数解一般对应于某种旋转），特征值也可能多于特征向量。</p>
+<p>当基向量恰好为特征向量，这个矩阵为对角矩阵（更容易计算）</p>
+<p>当特征向量足够多，以至于可以张成一个空间，可以选取这些向量重新作为基向量，从而使得出现对角矩阵（结合上一章的基变换），一组基向量构成的集合被称为“特征基”。</p>
+<hr>
+<h2 id="抽象向量空间"><a href="#抽象向量空间" class="headerlink" title="抽象向量空间"></a>抽象向量空间</h2><blockquote>
+<p>行列式和特征向量与所选坐标系无关</p>
+</blockquote>
+<p>可以发现，在相加和数乘的操作上，向量和函数十分接近。</p>
+<p>因此，关于向量的很多概念能被应用到函数上，如线性变换（例如求导，将一个函数变为另一个函数）</p>
+<blockquote>
+<p>线性变换条件（同时适用于函数和矩阵）：可加性，成比例</p>
+</blockquote>
+<h3 id="用矩阵描述求导："><a href="#用矩阵描述求导：" class="headerlink" title="用矩阵描述求导："></a>用矩阵描述求导：</h3><p>首先定义基向量：多项式中的1，x，x平方…，是无穷多的。</p>
+<p>此时可以写出导数矩阵，为次对角线上的1到正无穷，可以通过对基向量求导得。</p>
+<table>
+<thead>
+<tr>
+<th>线性代数概念</th>
+<th>函数对应的别名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>线性变换</td>
+<td>线性算子</td>
+</tr>
+<tr>
+<td>点积</td>
+<td>内积</td>
+</tr>
+<tr>
+<td>特征向量</td>
+<td>特征函数</td>
+</tr>
+</tbody></table>
+<h3 id="什么是向量"><a href="#什么是向量" class="headerlink" title="什么是向量"></a>什么是向量</h3><p>有很多类似于向量的不同事物，只要它们满足合理的数乘和相加概念（点，数组，函数…），线性代数中所有观点都应该适用。</p>
+<blockquote>
+<p>构成的集合为向量空间，需要满足一定条件（八条公理）</p>
+</blockquote>
+<p>这些公理为一个共识（清单），连接奇怪向量空间的使用者和数学家们。</p>
+<blockquote>
+<p>就像函数库一样调用</p>
+</blockquote>
+<p>因此，向量可以是任何东西——只要它满足一些公理。</p>
+<p>就像“3是什么”一样。</p>
+<blockquote>
+<p>普适的代价是抽象</p>
+</blockquote>
+<hr>
+<h2 id="克莱姆法则，几何解释"><a href="#克莱姆法则，几何解释" class="headerlink" title="克莱姆法则，几何解释"></a>克莱姆法则，几何解释</h2><p>克莱姆法则是解线性方程组的一种解法，具体过程不再赘述，结果很美好。</p>
+<blockquote>
+<p>正交变换：不改变点积（变换后基向量仍为单位向量且相互垂直）</p>
+</blockquote>
+<p>虽然不一定是正交变换，但可以用基向量与该向量围成的两个平行四边形面积来表示它的坐标，然后通过行列式的计算保持面积的可求。</p>
+	
+		</div>
+		
+		<div id="current-post-cover" data-scr="/img/post-cover/26.jpg"></div>
+
+		<!-- relate post, comment...-->
+		
+	</div>
+</div>
+
+<!-- show math formula -->
+
+
+
+	 
+	
+<script src="/plugin/clipboard/clipboard.js"></script>
+
+	<script>
+		// Copy code !
+	    function preprocessing() {
+	        $("#article-content .highlight").each(function() {
+	            $(this).wrap('<div id="post-code"></div>');
+	        })
+
+	        $("#article-content #post-code").each(function() {
+	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
+	        })
+
+	        $("#article-content .copy-nav").each(function() {
+	            let languageClass = $(this).next().attr('class'),
+	                language = ((languageClass.length > 9) && (languageClass != null)) ? languageClass.substr(10) : "none"; //why 9? Need to check language?
+
+	            $(this).find('.code-language').text(language);
+	            $(this).append('<span class="copy-btn icon-paste"></span>');
+	        });
+	    }
+
+		function copy() {
+		    $('#article-content #post-code').each(function(i) {
+		        let codeCopyId = 'codeCopy-' + i;
+
+		        let codeNode = $(this).find('.code'),
+		            copyButton = $(this).find('.copy-btn');
+
+		        codeNode.attr('id', codeCopyId);
+		        copyButton.attr('data-clipboard-target-id', codeCopyId);
+		    })
+   
+			let clipboard = new ClipboardJS('.copy-btn', {
+					target: function(trigger) {
+						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+					}
+		      	});
+
+			//pure js
+			function showTooltip(elem, msg) {		   
+				elem.setAttribute('aria-label', msg);
+				elem.setAttribute('class', 'copy-btn icon-clipboard1');
+				setTimeout(function() {
+					elem.setAttribute('class', 'copy-btn icon-paste');
+				}, 2000);
+			}
+
+			clipboard.on('success', function(e) {
+			    e.clearSelection();
+			    console.info('Action:', e.action);		   
+			    console.info('Trigger:', e.trigger);
+			    showTooltip(e.trigger, 'Copied!');   
+			});
+			
+			clipboard.on('error', function(e) {
+			    console.error('Action:', e.action);
+			    console.error('Trigger:', e.trigger);
+			});
+		}
+		
+		(function copyCode(){
+			if ($('.layout-post').length) {
+			    preprocessing();
+			    copy();
+			} 
+		})();
+	</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+
+<script src="/plugin/fancybox/jquery.fancybox.js"></script>
+
+
+<script type="text/javascript">
+	(function gallerySet(){
+		let titleID = $('.article-title a'),
+			imageID = $('.article-content img'),
+			videoID = $('.article-content video');
+		
+		let postTitle = titleID.text() ? titleID.text() : "No post title!";
+		
+		imageID.each(function() {
+			let imgPath = $(this).attr('src'),
+				imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox="gallery" data-caption="《 ' + postTitle + ' 》' + imgTitle + '"href="' + imgPath + '"> </a>');
+		});
+		
+		videoID.each(function() {
+			let videoPath = $(this).attr('src');
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
+		});
+		
+		//TODO：支持html5 video
+
+		if($('#layout-post').length) {
+			$('[data-fancybox="gallery"]').fancybox({
+				loop: true,
+				buttons: [
+					"zoom",
+					"share",
+					"slideShow",
+					"fullScreen",
+					//"download",
+					"thumbs",
+					"close"
+				],
+				protect: true
+			});
+		}
+	})();
+</script>
+
+
+		</main>
+
+		<!--footer-->
+		<footer>
+	<div id="navigation-show">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+	</div>
+
+	<div class="copyright">
+		<p>
+			 
+				&copy;2022, content by DvJiang. All Rights Reserved.
+			
+			
+			
+		</p>
+		<p>
+			
+
+	<!-- busuanzi -->
+	<!-- busuanzi -->
+
+		
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		<span id="busuanzi_container_page_pv">
+	  		本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</span>
+
+	
+
+
+
+
+			<!--
+			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
+			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>
+			-->				
+		</p>
+	</div>		
+</footer>
+		
+	<!-- Local or hitokoto! -->
+
+	
+<script src="/plugin/motto/motto.js"></script>
+
+	
+	<script type="text/javascript">
+		(function motto(){
+			let mottoText = getMingYanContent().split('</br> - </br>'),
+			
+			mottoTextContent = mottoText[0]?mottoText[0]:'请刷新...',
+			
+			mottoTextFrom = mottoText[1]?mottoText[1]:'one/一个';
+			
+			mottoTextContent = mottoTextContent.trim().substring(0, 100);
+		
+			$("#motto-content").html( mottoTextContent);
+			$("#motto-author").html( mottoTextFrom  );
+		})();	
+	</script>	
+
+
+
+<!-- love effect -->
+
+	
+<script src="/plugin/love/love.js"></script>
+
+
+
+<!-- back to top -->
+
+	<div id="totop">
+	<span class="icon-circle-up"></span>
+</div>
+
+
+
+<!-- site analysis -->
+
+
+	<!-- site-analysis -->
+	
+	
+	
+	
+	
+ 
+
+<!-- leancloud -->
+
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+	
+
+  
+
+	<!--
+	时间：2018-10-3
+	描述：
+		插件名称：hexo-generator-search-zip
+		插件来源: https://github.com/SuperKieran/hexo-generator-search-zip
+		代码参考：https://github.com/SuperKieran/TKL/blob/master/layout/_partial/search.ejs(Include: js & css)	
+-->
+<div class="popup search-popup local-search-popup scrollbar" >
+	<div class="local-search-container">
+		<span class="popup-btn-close">
+      		ESC
+   		</span>
+		<div class="local-search-header">
+			<div class="input-prompt">				
+			</div>
+			<input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+		</div>
+		<div class="local-search-body">
+			<div id="local-search-output"></div>
+		</div>
+		<div class="local-search-footer">
+			<div class="topN-post">				
+				
+								
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script src="/plugin/search/ziploader.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script type="text/javascript">
+	var search_path = 'search.json',
+		zip_Path = '/search.zip',
+		version_Path = '/searchVersion.txt',
+		input_Trigger = 'auto',
+		top_N = '2';
+
+	themeLocalSearch({
+		search_path, 
+		zip_Path, 
+		version_Path, 
+		input_Trigger, 
+		top_N
+	});
+</script>
+
+
+
+<script src="/plugin/chinese/chinese.js"></script>
+<script src="/plugin/imagelazyloader/yall.min.js"></script>
+<script src="/plugin/imageloaded/imagesloaded.pkgd.min.js"></script>
+<script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
+<script src="/plugin/resizediv/resizediv.js"></script>
+<script src="/js/main.js"></script>
+
+	</body>	
+</html>
