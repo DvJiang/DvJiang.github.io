@@ -39,11 +39,11 @@
     <category term="笔记" scheme="http://example.com/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="乱语" scheme="http://example.com/tags/%E4%B9%B1%E8%AF%AD/"/>
+    <category term="python" scheme="http://example.com/tags/python/"/>
     
     <category term="机器学习" scheme="http://example.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-    <category term="python" scheme="http://example.com/tags/python/"/>
+    <category term="乱语" scheme="http://example.com/tags/%E4%B9%B1%E8%AF%AD/"/>
     
   </entry>
   
@@ -297,9 +297,9 @@
     <category term="杂谈" scheme="http://example.com/categories/%E6%9D%82%E8%B0%88/"/>
     
     
-    <category term="乱语" scheme="http://example.com/tags/%E4%B9%B1%E8%AF%AD/"/>
-    
     <category term="文字" scheme="http://example.com/tags/%E6%96%87%E5%AD%97/"/>
+    
+    <category term="乱语" scheme="http://example.com/tags/%E4%B9%B1%E8%AF%AD/"/>
     
   </entry>
   
@@ -557,9 +557,9 @@
     
     <category term="学习" scheme="http://example.com/tags/%E5%AD%A6%E4%B9%A0/"/>
     
-    <category term="机器学习" scheme="http://example.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
     <category term="python" scheme="http://example.com/tags/python/"/>
+    
+    <category term="机器学习" scheme="http://example.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
