@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>Verilog与仿真基础 | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="概况Verilog为硬件编程语言，整体框架遵循非线性流程。每一个器件被包装成一个函数，并被相互引用，和python的函数库有些类似。 在仿真中，文件被分为模型文件和激励文件，模型文件是关于器件的代码，激励文件用于控制仿真测试和结果显示。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Verilog与仿真基础">
+<meta property="og:url" content="http://example.com/2022/05/09/Verilog%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="概况Verilog为硬件编程语言，整体框架遵循非线性流程。每一个器件被包装成一个函数，并被相互引用，和python的函数库有些类似。 在仿真中，文件被分为模型文件和激励文件，模型文件是关于器件的代码，激励文件用于控制仿真测试和结果显示。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.471Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="Verilog">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-Verilog基础" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      Verilog与仿真基础
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2022-05-08T16:00:00.000Z" itemprop="datePublished">五月 9, 2022</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%86%B5"><span class="toc-text">概况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%E4%B8%8E%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="toc-text">模型文件与基本语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%AF%AD%E5%8F%A5"><span class="toc-text">基础语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E5%8C%85%E8%A3%85%EF%BC%88%E7%9B%B8%E5%BD%93%E4%BA%8E%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89%EF%BC%89%EF%BC%9A"><span class="toc-text">模型包装（相当于函数定义）：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E5%8F%A5"><span class="toc-text">判断句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91%E6%A8%A1%E5%9D%97"><span class="toc-text">触发模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E6%AC%A1%E8%A7%A6%E5%8F%91"><span class="toc-text">单次触发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF"><span class="toc-text">循环</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BF%80%E5%8A%B1%E6%96%87%E4%BB%B6"><span class="toc-text">激励文件</span></a></li></ol>
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <h2 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h2><p>Verilog为硬件编程语言，整体框架遵循非线性流程。每一个器件被包装成一个函数，并被相互引用，和python的函数库有些类似。</p>
+<p>在仿真中，文件被分为模型文件和激励文件，模型文件是关于器件的代码，激励文件用于控制仿真测试和结果显示。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>工具：Verilog编写使用的是加装拓展的神器VScode，仿真用的是Vivado</p>
+</blockquote>
+<hr>
+<h2 id="模型文件与基本语法"><a href="#模型文件与基本语法" class="headerlink" title="模型文件与基本语法"></a>模型文件与基本语法</h2><h3 id="基础语句"><a href="#基础语句" class="headerlink" title="基础语句"></a>基础语句</h3><ul>
+<li>和C类似，有<code>;</code>结尾，对排版没有硬性要求。</li>
+<li>等号分为两种，<code>=</code>和<code>&lt;=</code>，前者为<strong>阻塞赋值</strong>，一般用在状态机，执行完后才会执行下一条；后者为<strong>非阻塞赋值</strong>，一般用在时序机，会和后面的代码一起执行。</li>
+</ul>
+<blockquote>
+<p>如后文所提到的，等号左边不能是wire类型，一般是reg类型。</p>
+</blockquote>
+<ul>
+<li>有基本的<code>+-*/</code>，也有基本的<code>&amp;|!</code> （只用一个就可以）</li>
+<li>C中的大括号{}由<code>begin</code>和<code>end</code>替换。</li>
+<li>存在二进制数组，用<code>[7:0] name</code>表示位数和名称。</li>
+<li>常量的表示：8’hff：表示8位的一个以十六进制（h可得）表示为ff的数字。</li>
+</ul>
+<blockquote>
+<p>h表示十六进制，b表示二进制，d表示十进制</p>
+</blockquote>
+<ul>
+<li><code>#10</code>代表时延，常用于制造信号和初始化</li>
+</ul>
+<h3 id="模型包装（相当于函数定义）："><a href="#模型包装（相当于函数定义）：" class="headerlink" title="模型包装（相当于函数定义）："></a>模型包装（相当于函数定义）：</h3><blockquote>
+<p>功能：定义模型名字，输入输出等</p>
+</blockquote>
+<p>有两种写法：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> bcd_decoder(s,o);</span><br><span class="line">    <span class="keyword">input</span> s;</span><br><span class="line">    <span class="keyword">output</span> o;</span><br><span class="line">  </span><br><span class="line">  XXX<span class="comment">//代码</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<p>以及：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> heater (</span><br><span class="line">    <span class="keyword">input</span> sw1,sw2,</span><br><span class="line">    <span class="keyword">output</span> led1,led2</span><br><span class="line">);</span><br><span class="line">  </span><br><span class="line">    XXX<span class="comment">//代码</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>注意：一般来说，程序会默认定义的input和output都是wire类型，但赋值的时候只能给reg类型赋值，所以在代码的第一行总是再次定义output的类型为reg：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reg</span> led1,led2;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="判断句"><a href="#判断句" class="headerlink" title="判断句"></a>判断句</h3><blockquote>
+<p>功能：基本判断，确定条件</p>
+</blockquote>
+<p>代码为：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (条件)<span class="keyword">begin</span></span><br><span class="line">        内容</span><br><span class="line">    <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>同时，支持<code>if else</code>，<code>else</code>语句。</p>
+<h3 id="触发模块"><a href="#触发模块" class="headerlink" title="触发模块"></a>触发模块</h3><blockquote>
+<p>功能：作为核心模块，会一直监控，当条件满足时触发</p>
+</blockquote>
+<p>代码为：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always</span> @(条件) <span class="keyword">begin</span></span><br><span class="line">   XXX<span class="comment">//代码</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>当条件中直接填入变量时，当变量发生变动，代码就会被执行。</p>
+<p>若条件为：<code>posedge clk</code>则会在clk上跳沿时触发代码。</p>
+<h3 id="单次触发"><a href="#单次触发" class="headerlink" title="单次触发"></a>单次触发</h3><blockquote>
+<p>功能：只被执行一次的代码</p>
+</blockquote>
+<p>代码为：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">initial</span>  <span class="keyword">begin</span></span><br><span class="line">    XXX<span class="comment">//代码</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>一般用于激励文件和初始化。</p>
+<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><p>和C极其类似，代码为：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt; <span class="number">16</span>; i=i+<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>注意，这里的<code>i</code>需要提前声明：<code>    integer i;</code></p>
+<hr>
+<h2 id="激励文件"><a href="#激励文件" class="headerlink" title="激励文件"></a>激励文件</h2><blockquote>
+<p>激励文件只是特殊的模型文件，大部分代码逻辑和上板块类似</p>
+</blockquote>
+<p>首先同样需要定义一个模型和相关参数：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> test( );</span><br><span class="line">    <span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>] sw;</span><br><span class="line">    <span class="keyword">wire</span> [<span class="number">6</span>:<span class="number">0</span>] ld;</span><br><span class="line">    <span class="keyword">integer</span> i;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<p>这里同样需要定义输入输出（对于模型文件而言），但由于在仿真的时候，输出由模型文件定义，输入由仿真文件定义，所以输出可以是wire型的，但输入是reg型的。</p>
+<p>从另一个层面上说，仿真文件相当于模拟了模型文件的环境，它自己是没有输入输出的。</p>
+<p>然后设定连接端口：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ABC (<span class="variable">.s0</span>(sw[<span class="number">0</span>]),<span class="variable">.s1</span>(sw[<span class="number">1</span>]),<span class="variable">.s2</span>(sw[<span class="number">2</span>]),<span class="variable">.s3</span>(sw[<span class="number">3</span>]),<span class="variable">.LD</span>(ld));</span><br></pre></td></tr></table></figure>
+
+<p>ABC为模型文件的模型名字，后面的括号中，以逗号分隔，每一个板块为<code>.模型文件变量（仿真文件变量）</code>，整体代码相当于调用了模型ABC并赋值。</p>
+<p>之后跟一个单次触发的板块，用于对输入赋值即可，根据模型和测试要求，仿真的赋值各有不同，在这里不再赘述。</p>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/Verilog/" rel="tag">Verilog</a>, <a class="article-tag-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2022/05/10/%E3%80%8A%E6%9D%8E%E5%85%89%E8%80%80%E8%A7%82%E5%A4%A9%E4%B8%8B%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          《李光耀观天下》读书笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/04/21/%E6%A6%82%E7%8E%87%E8%AE%BA%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          概率论总结
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

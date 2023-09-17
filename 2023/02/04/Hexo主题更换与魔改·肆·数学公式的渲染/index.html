@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>Hexo主题更换与魔改·肆·数学公式的渲染 | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="Hexo主题系列之四：关于如何在主题里渲染LaTex数学公式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo主题更换与魔改·肆·数学公式的渲染">
+<meta property="og:url" content="http://example.com/2023/02/04/Hexo%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E4%B8%8E%E9%AD%94%E6%94%B9%C2%B7%E8%82%86%C2%B7%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E6%B8%B2%E6%9F%93/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="Hexo主题系列之四：关于如何在主题里渲染LaTex数学公式。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.468Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="HTML">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-Hexo主题更换与魔改·肆·数学公式的渲染" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      Hexo主题更换与魔改·肆·数学公式的渲染
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2023-02-03T16:00:00.000Z" itemprop="datePublished">二月 4, 2023</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <p><code>Hexo</code>主题系列之四：关于如何在主题里渲染<code>LaTex</code>数学公式。</p>
+<span id="more"></span>
+
+<p>如果拿着这个问题去问度娘，答案多半会告诉你去下某个插件，比如<code>hexo-math</code>，或者<code>hexo-renderer-mathjax</code>，然后在被用烂了的<code>Next</code>之类的主题配置里开启一下<code>true</code>就好。这样的回答对真正需要自己配置数学渲染功能的人毫无意义——只改改<code>config</code>文件当然对自己的写的主题没用。</p>
+<p>所以，在经历了各种坑后，我终于发现，其实根本不需要下载什么插件，人家<a target="_blank" rel="noopener" href="https://docs.mathjax.org/en/v2.7-latest/start.html#using-a-content-delivery-network-cdn">Mathjax官网</a>上已经把教程写得差不多了，只用复制粘贴就好，再加上一小段代码即可。</p>
+<blockquote>
+<p>什么？你说<code>Mathjax</code>官网打不开？奇怪，可能是只有具有魔法的人才能打开吧。</p>
+</blockquote>
+<p>官网的例子：</p>
+<blockquote>
+<p>Here is a complete sample page containing TeX mathematics (also available in the <a target="_blank" rel="noopener" href="https://github.com/mathjax/MathJax/blob/master/test/sample-tex.html">test&#x2F;sample-tex.html</a> file):</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>MathJax TeX Test Page<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/x-mathjax-config&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">  MathJax.Hub.Config(&#123;<span class="attr">tex2jax</span>: &#123;<span class="attr">inlineMath</span>: [[<span class="string">&#x27;$&#x27;</span>,<span class="string">&#x27;$&#x27;</span>], [<span class="string">&#x27;\\(&#x27;</span>,<span class="string">&#x27;\\)&#x27;</span>]]&#125;&#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">async</span></span></span><br><span class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">&quot;https://example.com/mathjax/MathJax.js?config=TeX-AMS_CHTML&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are</span><br><span class="line">$$x = &#123;-b \pm \sqrt&#123;b^2-4ac&#125; \over 2a&#125;.$$</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<p>于是我们可以写出我们的代码，在<code>footer.ejs</code>中加入：（不一定非得<code>footer.ejs</code>，确保页面加载得到就行，只是我方便管理）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;%if (page.mathjax) &#123;%&gt;</span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/x-mathjax-config&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">      MathJax.Hub.Config(&#123;</span></span><br><span class="line"><span class="javascript">          <span class="attr">tex2jax</span>: &#123;</span></span><br><span class="line"><span class="javascript">              <span class="attr">inlineMath</span>: [ [<span class="string">&quot;$&quot;</span>,<span class="string">&quot;$&quot;</span>], [<span class="string">&quot;\\(&quot;</span>,<span class="string">&quot;\\)&quot;</span>] ],</span></span><br><span class="line"><span class="javascript">              <span class="attr">skipTags</span>: [<span class="string">&#x27;script&#x27;</span>, <span class="string">&#x27;noscript&#x27;</span>, <span class="string">&#x27;style&#x27;</span>, <span class="string">&#x27;textarea&#x27;</span>, <span class="string">&#x27;pre&#x27;</span>, <span class="string">&#x27;code&#x27;</span>],</span></span><br><span class="line"><span class="javascript">              <span class="attr">processEscapes</span>: <span class="literal">true</span></span></span><br><span class="line"><span class="javascript">          &#125;</span></span><br><span class="line"><span class="javascript">      &#125;);</span></span><br><span class="line"><span class="javascript">      MathJax.Hub.Queue(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">var</span> all = MathJax.Hub.getAllJax();</span></span><br><span class="line"><span class="javascript">          <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; all.length; ++i)</span></span><br><span class="line"><span class="javascript">              all[i].SourceElement().parentNode.className += <span class="string">&#x27; has-jax&#x27;</span>;</span></span><br><span class="line"><span class="javascript">      &#125;);</span></span><br><span class="line"><span class="javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  &lt;%&#125;%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>其中的<code>page.mathjax</code>是指的在文章的<code>markdown</code>开头中加入<code>mathjax: true</code>，整个数学渲染才会启动，这样就可以有效防止开什么界面都加载数学渲染，从而导致打开网页速度很慢的问题。（毕竟<code>cdn</code>是外网，国内打开真的慢）</p>
+<p>其实还有在本地装载<code>Mathjax</code>的方法，应该可以有效防止渲染很久…不过搞起来太麻烦了，路径什么的还得自己手动调，版本每更一次就得改很多，太麻烦。</p>
+<p>所以最后我选了一个算是折中的办法——当有数学渲染的时候，在文章开头提示「数学渲染需要一些时间，请耐心等待」：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;%if (page.mathjax) &#123;%&gt;</span><br><span class="line">          <span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">code</span>&gt;</span>MathJax Will Takes Few Minutes to Load<span class="tag">&lt;/<span class="name">code</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>最后提一下，很多人用<code>Hexo-renderer-mathjax</code>的时候会发现，它基本会渲染失败，打开网页「检查」会发现，它内置的那个<code>cdn</code>地址已经停用了，所以这时候就需要手动打开<code>node_modules</code>下的<code>Hexo-renderer-mathjax</code>文件夹，把其中那个<code>HTML</code>文件中的网址替换为现在的<code>https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML</code>，也就是上面代码里那个。</p>
+<p>别问我为啥这么清楚…</p>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/HTML/" rel="tag">HTML</a>, <a class="article-tag-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2023/02/06/2023-02-06-PS%E9%AD%94%E6%B3%95%E7%AC%94%E8%AE%B0%C2%B7%E4%BA%BA%E5%83%8F%E5%88%9D%E7%BA%A7/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          PS魔法笔记·人像初级
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/02/03/Hexo%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E4%B8%8E%E9%AD%94%E6%94%B9%C2%B7%E5%8F%81%C2%B7%E7%9B%AE%E5%BD%95%E6%8C%89%E9%92%AE%E5%88%B6%E4%BD%9C/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Hexo主题更换与魔改·叁·目录按钮的制作
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

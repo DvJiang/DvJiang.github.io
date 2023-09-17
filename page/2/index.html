@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="Welcome to the world of DvJiang">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DvJiang&#39;s Blog">
+<meta property="og:url" content="http://example.com/page/2/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="Welcome to the world of DvJiang">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      
+  
+    <article id="post-离散傅立叶变换DFT" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      <a href="/2023/02/28/%E7%A6%BB%E6%95%A3%E5%82%85%E7%AB%8B%E5%8F%B6%E5%8F%98%E6%8D%A2DFT/">离散傅立叶变换DFT</a>
+      
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2023-02-27T16:00:00.000Z" itemprop="datePublished">二月 28, 2023</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <p>傅立叶变换属于是那种难学难记，而且每隔上一段时间还要用一下的神奇玩意。为了下次被它背刺的时候没那么痛苦，谨作文一篇以供以后复习。</p>
+      
+    </div>
+    
+      <div class="article-more-link">
+        <a href="/2023/02/28/%E7%A6%BB%E6%95%A3%E5%82%85%E7%AB%8B%E5%8F%B6%E5%8F%98%E6%8D%A2DFT/#more">read more</a>
+      </div>
+    
+    
+    
+  </div>
+</article>
+
+
+
+  
+    <article id="post-Swift语言基础" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      <a href="/2023/02/27/Swift%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/">Swift语言基础</a>
+      
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2023-02-26T16:00:00.000Z" itemprop="datePublished">二月 27, 2023</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <p>swift是ios开发的标准语言之一，大致看了下，和C蛮像的。感觉自己能做一个app蛮有意思的，苹果也有比较完整的官方文档，这篇文章便是阅读官方文档后留下来的笔记。</p>
+<p>只打算看完最基础前面部分，至于后面的内容，还是在实践中学习吧。</p>
+      
+    </div>
+    
+      <div class="article-more-link">
+        <a href="/2023/02/27/Swift%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/#more">read more</a>
+      </div>
+    
+    
+    
+  </div>
+</article>
+
+
+
+  
+    <article id="post-随笔·执" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      <a href="/2023/02/25/%E9%9A%8F%E7%AC%94%C2%B7%E6%89%A7/">随笔·执</a>
+      
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2023-02-24T16:00:00.000Z" itemprop="datePublished">二月 25, 2023</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <p>最近看了一个关于魔鬼与执念的故事，感觉还蛮有意思的。或许我们可以从执念的角度来探讨一下何谓幸福，以及这样的想法有什么问题。</p>
+      
+    </div>
+    
+      <div class="article-more-link">
+        <a href="/2023/02/25/%E9%9A%8F%E7%AC%94%C2%B7%E6%89%A7/#more">read more</a>
+      </div>
+    
+    
+    
+  </div>
+</article>
+
+
+
+  
+    <article id="post-提取B站音频的一些尝试" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      <a href="/2023/02/20/%E6%8F%90%E5%8F%96B%E7%AB%99%E9%9F%B3%E9%A2%91%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%9D%E8%AF%95/">提取B站音频的一些尝试</a>
+      
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2023-02-19T16:00:00.000Z" itemprop="datePublished">二月 20, 2023</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <p>在尝试构建自己的音乐库的时候，我不幸地发现现行的主流流媒体音乐库几乎都有一些音乐我找不到。于是在选择了Apple Music作为音乐库之后，我迫切地希望能够导入一些本地音乐。</p>
+<p>鉴于B站有着很全的音乐资料，只是下载需要一些手段，我又对音乐品质没有太高的要求，研究从B站获取音频资料便成了优先选择。</p>
+<ul>
+<li>相关配置：Win11，Python，VScode</li>
+</ul>
+<p>相关代码会发布到我的GitHub上（大概？）</p>
+      
+    </div>
+    
+      <div class="article-more-link">
+        <a href="/2023/02/20/%E6%8F%90%E5%8F%96B%E7%AB%99%E9%9F%B3%E9%A2%91%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%9D%E8%AF%95/#more">read more</a>
+      </div>
+    
+    
+    
+  </div>
+</article>
+
+
+
+  
+    <article id="post-2023-02-06-PS魔法笔记·人像初级" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      <a href="/2023/02/06/2023-02-06-PS%E9%AD%94%E6%B3%95%E7%AC%94%E8%AE%B0%C2%B7%E4%BA%BA%E5%83%8F%E5%88%9D%E7%BA%A7/">PS魔法笔记·人像初级</a>
+      
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2023-02-05T16:00:00.000Z" itemprop="datePublished">二月 6, 2023</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <p>这篇文章用于记录我学习了1个小时PS的成果。</p>
+<p>不得不说，PS被称为四大神术之一是有道理的。只需要稍微学一下，就可以让人改头换面，P得妈都认不出来。</p>
+      
+    </div>
+    
+      <div class="article-more-link">
+        <a href="/2023/02/06/2023-02-06-PS%E9%AD%94%E6%B3%95%E7%AC%94%E8%AE%B0%C2%B7%E4%BA%BA%E5%83%8F%E5%88%9D%E7%BA%A7/#more">read more</a>
+      </div>
+    
+    
+    
+  </div>
+</article>
+
+
+
+  
+    <article id="post-Hexo主题更换与魔改·肆·数学公式的渲染" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      <a href="/2023/02/04/Hexo%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E4%B8%8E%E9%AD%94%E6%94%B9%C2%B7%E8%82%86%C2%B7%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E6%B8%B2%E6%9F%93/">Hexo主题更换与魔改·肆·数学公式的渲染</a>
+      
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2023-02-03T16:00:00.000Z" itemprop="datePublished">二月 4, 2023</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <p><code>Hexo</code>主题系列之四：关于如何在主题里渲染<code>LaTex</code>数学公式。</p>
+      
+    </div>
+    
+      <div class="article-more-link">
+        <a href="/2023/02/04/Hexo%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E4%B8%8E%E9%AD%94%E6%94%B9%C2%B7%E8%82%86%C2%B7%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E6%B8%B2%E6%9F%93/#more">read more</a>
+      </div>
+    
+    
+    
+  </div>
+</article>
+
+
+
+  
+    <article id="post-Hexo主题更换与魔改·叁·目录按钮制作" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      <a href="/2023/02/03/Hexo%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E4%B8%8E%E9%AD%94%E6%94%B9%C2%B7%E5%8F%81%C2%B7%E7%9B%AE%E5%BD%95%E6%8C%89%E9%92%AE%E5%88%B6%E4%BD%9C/">Hexo主题更换与魔改·叁·目录按钮的制作</a>
+      
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2023-02-02T16:00:00.000Z" itemprop="datePublished">二月 3, 2023</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <p><code>Hexo</code>主题系列之三：关于如何在主题里做一个目录按钮。</p>
+      
+    </div>
+    
+      <div class="article-more-link">
+        <a href="/2023/02/03/Hexo%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E4%B8%8E%E9%AD%94%E6%94%B9%C2%B7%E5%8F%81%C2%B7%E7%9B%AE%E5%BD%95%E6%8C%89%E9%92%AE%E5%88%B6%E4%BD%9C/#more">read more</a>
+      </div>
+    
+    
+    
+  </div>
+</article>
+
+
+
+  
+    <article id="post-Hexo主题更换与魔改·贰·站内搜索页面" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      <a href="/2023/02/01/Hexo%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E4%B8%8E%E9%AD%94%E6%94%B9%C2%B7%E8%B4%B0%C2%B7%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2%E9%A1%B5%E9%9D%A2/">Hexo主题更换与魔改·贰·站内搜索页面</a>
+      
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2023-01-31T16:00:00.000Z" itemprop="datePublished">二月 1, 2023</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <p><code>Hexo</code>主题系列之二：关于如何在主题里修建搜索页面。</p>
+      
+    </div>
+    
+      <div class="article-more-link">
+        <a href="/2023/02/01/Hexo%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E4%B8%8E%E9%AD%94%E6%94%B9%C2%B7%E8%B4%B0%C2%B7%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2%E9%A1%B5%E9%9D%A2/#more">read more</a>
+      </div>
+    
+    
+    
+  </div>
+</article>
+
+
+
+  
+    <article id="post-Hexo主题更换与魔改·壹·标签分类页" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      <a href="/2023/01/30/Hexo%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E4%B8%8E%E9%AD%94%E6%94%B9%C2%B7%E5%A3%B9%C2%B7%E6%A0%87%E7%AD%BE%E5%88%86%E7%B1%BB%E9%A1%B5/">Hexo主题更换与魔改·壹·标签分类页</a>
+      
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2023-01-29T16:00:00.000Z" itemprop="datePublished">一月 30, 2023</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <p><code>Hexo</code>主题系列之一：关于如何从零在主题里修建一个标签和分类页面。</p>
+      
+    </div>
+    
+      <div class="article-more-link">
+        <a href="/2023/01/30/Hexo%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E4%B8%8E%E9%AD%94%E6%94%B9%C2%B7%E5%A3%B9%C2%B7%E6%A0%87%E7%AD%BE%E5%88%86%E7%B1%BB%E9%A1%B5/#more">read more</a>
+      </div>
+    
+    
+    
+  </div>
+</article>
+
+
+
+  
+    <article id="post-Hexo主题更换与魔改·零·布局记录" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      <a href="/2023/01/28/Hexo%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E4%B8%8E%E9%AD%94%E6%94%B9%C2%B7%E9%9B%B6%C2%B7%E5%B8%83%E5%B1%80%E8%AE%B0%E5%BD%95/">Hexo主题更换与魔改·零·布局记录</a>
+      
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2023-01-27T16:00:00.000Z" itemprop="datePublished">一月 28, 2023</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <p>由于原先的Annie主题在时间的磨损下出现了滚轮移动和手机端滑动诡异失灵的情况，再加之它的系统过于复杂，不适合我进行理解和维护，访客们加载网页的速度也受到拖累。遂更换了一个轻量级的新主题Ascent，并自己加装了一系列必要功能，算是一次难得的网页前端实践。</p>
+      
+    </div>
+    
+      <div class="article-more-link">
+        <a href="/2023/01/28/Hexo%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E4%B8%8E%E9%AD%94%E6%94%B9%C2%B7%E9%9B%B6%C2%B7%E5%B8%83%E5%B1%80%E8%AE%B0%E5%BD%95/#more">read more</a>
+      </div>
+    
+    
+    
+  </div>
+</article>
+
+
+
+  
+
+
+
+  <nav id="page-nav" class="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">« Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/">Next »</a>
+  </nav>
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

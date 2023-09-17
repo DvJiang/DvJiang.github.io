@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>Hexo主题更换与魔改·叁·目录按钮的制作 | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="Hexo主题系列之三：关于如何在主题里做一个目录按钮。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo主题更换与魔改·叁·目录按钮的制作">
+<meta property="og:url" content="http://example.com/2023/02/03/Hexo%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E4%B8%8E%E9%AD%94%E6%94%B9%C2%B7%E5%8F%81%C2%B7%E7%9B%AE%E5%BD%95%E6%8C%89%E9%92%AE%E5%88%B6%E4%BD%9C/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="Hexo主题系列之三：关于如何在主题里做一个目录按钮。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.467Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="HTML">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-Hexo主题更换与魔改·叁·目录按钮制作" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      Hexo主题更换与魔改·叁·目录按钮的制作
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2023-02-02T16:00:00.000Z" itemprop="datePublished">二月 3, 2023</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E9%80%BB%E8%BE%91%E7%9A%84%E5%86%99%E5%85%A5"><span class="toc-text">目录逻辑的写入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E6%8C%89%E9%92%AE%E7%9A%84%E6%8F%92%E5%85%A5"><span class="toc-text">目录按钮的插入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E9%A1%B5%E9%9D%A2%E7%9A%84%E7%BE%8E%E5%8C%96"><span class="toc-text">目录页面的美化</span></a></li></ol>
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <p><code>Hexo</code>主题系列之三：关于如何在主题里做一个目录按钮。</p>
+<span id="more"></span>
+
+<p>由于感觉在电脑端这个网页的两边有点空，所以我觉得增加一个目录是个不错的主意，这样也方便读者查看文章结构。但在制作的过程中又考虑到目录一直开着有碍观瞻，显得不够简洁，而且手机端和电脑端的适配做起来又很麻烦——毕竟手机端又没两边的空地方，因此后面又增加了一个目录的按钮，用于改变目录的显示情况。</p>
+<p>这个工作大致可以分为三个部分：目录逻辑的写入，目录按钮的插入，目录页面的美化。</p>
+<hr>
+<h5 id="目录逻辑的写入"><a href="#目录逻辑的写入" class="headerlink" title="目录逻辑的写入"></a>目录逻辑的写入</h5><p>目录本身是有<code>Hexo</code>官方的辅助函数的，所以我们并不需要做太多工作。</p>
+<p>首先将目录函数包装为一个<code>toc.ejs</code>，放在<code>post</code>文件夹下，再加上<code>class</code>和<code>id</code>方便后续的更改：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;toc&quot;</span> <span class="attr">class</span>=<span class="string">&quot;toc-article&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;toc-title&quot;</span>&gt;</span>目录<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  &lt;%- toc(post.content, &#123;list_number: false&#125;) %&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后显然我们需要在文章界面插入目录的代码，也就是在<code>article.ejs</code>中：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;%if(!index &amp;&amp; theme.toc)&#123;%&gt;</span><br><span class="line">      &lt;%- partial(&#x27;post/toc&#x27;,&#123;post: post&#125;) %&gt;</span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;settings-container-toc&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;toc-mode&quot;</span>&gt;</span>TOC<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&lt;%&#125;%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>当然，为了后续的维护，我增加了<code>theme.toc</code>变量，只有在主题配置里的<code>toc</code>为<code>true</code>的时候，目录系统才会打开。</p>
+<hr>
+<h5 id="目录按钮的插入"><a href="#目录按钮的插入" class="headerlink" title="目录按钮的插入"></a>目录按钮的插入</h5><p>上面的代码中同时也插入了一个标着TOC的方块，这被我用来当作目录开启和隐藏的按钮。</p>
+<p>和寻常逻辑不同的是，我不通过这个按钮来直接控制HTML上是否加载目录——而是通过它来修改目录的<code>CSS</code>属性<code>display</code>，通过切换属性为<code>&#39;none&#39;</code>或者<code>&#39; &#39;</code>，目录可以被渲染为空气或者实体。当然，一点小小的<code>javascript</code>代码是必要的，大致如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">        tm = <span class="built_in">document</span>.getElementById(<span class="string">&quot;toc-mode&quot;</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> hide = <span class="built_in">localStorage</span>.getItem(<span class="string">&quot;hide&quot;</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> rr=<span class="built_in">document</span>.documentElement.style,ff=rr.setProperty.bind(rr);</span></span><br><span class="line"><span class="javascript">        hide = <span class="number">2</span>;</span></span><br><span class="line"><span class="javascript">        ff(<span class="string">&#x27;--toc-show-end&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span></span><br><span class="line"><span class="javascript">        tm.onclick=<span class="function">()=&gt;</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">if</span>(hide == <span class="number">1</span>)&#123;</span></span><br><span class="line"><span class="javascript">              ff(<span class="string">&#x27;--toc-show-end&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span></span><br><span class="line"><span class="javascript">              tm.innerHTML=<span class="string">&quot;TOC&quot;</span>;</span></span><br><span class="line"><span class="javascript">              hide = <span class="number">2</span>;</span></span><br><span class="line"><span class="javascript">              <span class="built_in">localStorage</span>.setItem(<span class="string">&quot;hide&quot;</span>,<span class="number">2</span>);</span></span><br><span class="line"><span class="javascript">            &#125;<span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="javascript">              ff(<span class="string">&#x27;--toc-show-end&#x27;</span>,<span class="string">&#x27;&#x27;</span>);</span></span><br><span class="line"><span class="javascript">              hide = <span class="number">1</span>;</span></span><br><span class="line"><span class="javascript">              tm.innerHTML=<span class="string">&quot;Toc&quot;</span>;</span></span><br><span class="line"><span class="javascript">              <span class="built_in">localStorage</span>.setItem(<span class="string">&quot;hide&quot;</span>,<span class="number">1</span>);</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>而其中的<code>class</code>属性与<code>CSS</code>关联，<code>id</code>与代码和<code>CSS</code>都相关联，后者最好不要乱改。</p>
+<hr>
+<h5 id="目录页面的美化"><a href="#目录页面的美化" class="headerlink" title="目录页面的美化"></a>目录页面的美化</h5><p>首先幸运的是，原主题本身就在右下角有「字体」和「亮暗」模式的选择，所以对目录的按钮不需要从头设计<code>CSS</code>代码，只需要复制粘贴，再作少许更改即可：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#settings-container-toc</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">var</span>(--tertiary-color);</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#toc-mode</span>&#123;</span><br><span class="line">  <span class="attribute">cursor</span>: pointer;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0.5em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而目录的其他部分就需要自己写<code>CSS</code>代码了，这一块基本没啥好说的，只有一个小点需要注意：</p>
+<blockquote>
+<p>对重复出现的部分设置动画时，若在名字后面加上空格和<code>a</code>，则代表这个动画对各个重复的部分分别生效，这对<code>hover</code>的设计很有帮助。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/HTML/" rel="tag">HTML</a>, <a class="article-tag-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2023/02/04/Hexo%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E4%B8%8E%E9%AD%94%E6%94%B9%C2%B7%E8%82%86%C2%B7%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E6%B8%B2%E6%9F%93/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hexo主题更换与魔改·肆·数学公式的渲染
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/02/01/Hexo%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E4%B8%8E%E9%AD%94%E6%94%B9%C2%B7%E8%B4%B0%C2%B7%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2%E9%A1%B5%E9%9D%A2/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Hexo主题更换与魔改·贰·站内搜索页面
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

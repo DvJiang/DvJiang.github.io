@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>以AC算法教会程序玩CartPole | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="相关文件将会包含在我的GitHub仓库中  CartPole与AC算法简介CartPoleCartPole是强化学习领域的经典题型了，题目就是一个小车和一个倒立摆，也就是一个可以左右移动的方块上有一跟可以自由倾斜的棍子，开始的时候环境给予棍子一个小的角度，然后让程序控制小车左右移动使得棍子尽量不掉下来。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="以AC算法教会程序玩CartPole">
+<meta property="og:url" content="http://example.com/2022/06/16/%E4%BB%A5AC%E7%AE%97%E6%B3%95%E6%95%99%E4%BC%9A%E7%A8%8B%E5%BA%8F%E7%8E%A9CartPole/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="相关文件将会包含在我的GitHub仓库中  CartPole与AC算法简介CartPoleCartPole是强化学习领域的经典题型了，题目就是一个小车和一个倒立摆，也就是一个可以左右移动的方块上有一跟可以自由倾斜的棍子，开始的时候环境给予棍子一个小的角度，然后让程序控制小车左右移动使得棍子尽量不掉下来。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.479Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-以AC算法教会程序玩CartPole" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      以AC算法教会程序玩CartPole
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2022-06-15T16:00:00.000Z" itemprop="datePublished">六月 16, 2022</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CartPole%E4%B8%8EAC%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B"><span class="toc-text">CartPole与AC算法简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CartPole"><span class="toc-text">CartPole</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AC%E7%AE%97%E6%B3%95"><span class="toc-text">AC算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%A6%82%E8%BF%B0"><span class="toc-text">代码概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AC%E9%83%A8%E5%88%86"><span class="toc-text">AC部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E7%94%BBgif%E5%A4%84%E7%90%86"><span class="toc-text">动画gif处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E7%A8%8B%E5%BA%8F%E5%A4%84%E7%90%86"><span class="toc-text">主程序处理</span></a></li></ol></li></ol>
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <blockquote>
+<p>相关文件将会包含在我的GitHub仓库中</p>
+</blockquote>
+<h2 id="CartPole与AC算法简介"><a href="#CartPole与AC算法简介" class="headerlink" title="CartPole与AC算法简介"></a>CartPole与AC算法简介</h2><h3 id="CartPole"><a href="#CartPole" class="headerlink" title="CartPole"></a>CartPole</h3><p>CartPole是强化学习领域的经典题型了，题目就是一个小车和一个倒立摆，也就是一个可以左右移动的方块上有一跟可以自由倾斜的棍子，开始的时候环境给予棍子一个小的角度，然后让程序控制小车左右移动使得棍子尽量不掉下来。</p>
+<span id="more"></span>
+
+<p>游戏的评分就是坚持的时间长短，环境会在倾斜15度或者超出小车移动范围的时候结束游戏。一般认为坚持超过200帧则游戏成功。</p>
+<h3 id="AC算法"><a href="#AC算法" class="headerlink" title="AC算法"></a>AC算法</h3><p>代码思想是强化学习中的<code>ActorCritic</code>算法，即“演员 - 评委”体系。</p>
+<p>首先需要介绍的是程序对游戏环境的识别。对于一个未知的状态体系（一般认为是马尔可夫状态），程序可能不能马上得到它走到这一步的价值如何（因为环境反馈的激励有可能不与当前状态直接关联），因此重点将在于如何评估到达一个状态后的价值，以及针对这样的状态-价值变换，我们如何进行抉择。我们一般将这样的两个问题分别称作评委和演员。</p>
+<p>一般来说，使用两个网络分别扮演演员和评委，演员输入当前状态，输出概率参数，而评委输入当前状态，选择后状态以及获得的激励，输出估计的价值。</p>
+<p>在训练的时候，根据价值网络（评委）的输出，我们可以训练动作网络（演员）的权重，然后通过估计价值和激励价值之差（TD-error）我们可以训练价值网络。</p>
+<h2 id="代码概述"><a href="#代码概述" class="headerlink" title="代码概述"></a>代码概述</h2><p>代码使用的是<code>VScode</code>的<code>python</code>环境，使用<code>OpenAI-gym</code>的<code>CartPole-v0</code>作为测试环境，<code>matplotlib</code>的<code>pyplot</code>和<code>animation</code>作为可视化以及<code>gif</code>动图的输出（注意，<code>gif</code>输出采用的<code>writer</code>是<code>ffmpeg</code>，这需要另行配置，程序会提示当前可用的<code>writer</code>），<code>AC</code>代码没有找到现成库，<code>Actor</code>和<code>Critic</code>均使用的<code>tensorflow</code>下的<code>keras</code>构建神经网络，而且都是3层网络（包括输出层和输入层）。</p>
+<p>在运行代码时，可以通过调整注释掉的代码改变代码的输出，得到想要的内容。另外，为避免奇怪的冲突，默认<code>gif</code>保存的位置为绝对位置D盘。注意，由于<code>plt.show()</code>的位置在输出<code>gif</code>的函数之前，关掉图像后才能获得gif动图（这是为了避免gif和图像被输出到一起）。</p>
+<p>程序在<code>AC</code>的C（<code>Critic</code>）中将<code>Advantage</code>，即<code>TD-error</code>作为评判标准。</p>
+<p>同时，由于<code>Advantage</code>中含有本来<code>model</code>自己的输出，使得<code>AC</code>结果不容易收敛，<code>Critic</code>代码采取了双神经网络的形式，一个网络负责进行训练，而另一个神经网络负责输出（作为副本），并以一定周期（程序内为5帧）与前一个神经网络进行同步（更新参数），由此加快收敛。</p>
+<p>##代码细节</p>
+<h3 id="AC部分"><a href="#AC部分" class="headerlink" title="AC部分"></a>AC部分</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关于Actor的部分</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Actor</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,learning_rate</span>):</span></span><br><span class="line">        self.lr = learning_rate</span><br><span class="line">        self.model = self.model_init()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 模型建立及设定</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">model_init</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 输入层，ob的特征有4个</span></span><br><span class="line">        input_layer = tf.keras.layers.Input(shape=(<span class="number">4</span>,))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 中间层，取20个神经元，激活函数用的relu</span></span><br><span class="line">        layer = keras.layers.Dense(</span><br><span class="line">            units=<span class="number">20</span>,</span><br><span class="line">            activation=keras.activations.relu,</span><br><span class="line">            kernel_initializer=tf.random_normal_initializer(<span class="number">0.</span>, <span class="number">.1</span>),</span><br><span class="line">            bias_initializer=tf.constant_initializer(<span class="number">0.1</span>),</span><br><span class="line">        )(input_layer)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 输出层，输出只有两个动作的概率（左和右），激活函数为softmax</span></span><br><span class="line">        output_layer = keras.layers.Dense(</span><br><span class="line">            units=<span class="number">2</span>,</span><br><span class="line">            activation=keras.activations.softmax,</span><br><span class="line">            kernel_initializer=tf.random_normal_initializer(<span class="number">0.</span>, <span class="number">.1</span>),</span><br><span class="line">            bias_initializer=tf.constant_initializer(<span class="number">0.1</span>),</span><br><span class="line">        )(layer)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 设置学习率</span></span><br><span class="line">        self.optimizer = keras.optimizers.Adam(learning_rate=self.lr)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 建立模型 损失函数选择交叉熵</span></span><br><span class="line">        model = keras.models.Model(inputs=input_layer, outputs=output_layer)</span><br><span class="line">        model.<span class="built_in">compile</span>(loss=<span class="string">&#x27;sparse_categorical_crossentropy&#x27;</span>, optimizer=self.optimizer)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> model</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 动作选择</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">choose_action</span>(<span class="params">self,state</span>):</span><span class="comment"># 有p的概率选择0</span></span><br><span class="line">        p = self.model(state)[<span class="number">0</span>].numpy()</span><br><span class="line">        rand_one = np.random.rand()</span><br><span class="line">        <span class="keyword">if</span> (rand_one &gt; p[<span class="number">0</span>]):</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 模型训练</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span>(<span class="params">self, state, action, weight</span>):</span></span><br><span class="line">        self.model.fit(state, np.array([action]), verbose=<span class="number">0</span>, sample_weight=weight)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关于critic的部分</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Critic</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,learning_rate,gama,iter_t</span>):</span></span><br><span class="line">        self.<span class="built_in">iter</span> = <span class="number">0</span> <span class="comment">#计算副本更新周期</span></span><br><span class="line">        self.iter_t = iter_t <span class="comment"># 副本更新周期</span></span><br><span class="line">        self.lr = learning_rate</span><br><span class="line">        self.gama = gama</span><br><span class="line">        self.model = self.model_init()</span><br><span class="line">        self.model_ = self.model <span class="comment"># 创建副本 周期更新</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 模型建立及设定</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">model_init</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 输入层，ob的特征有4个</span></span><br><span class="line">        input_layer = tf.keras.layers.Input(shape=(<span class="number">4</span>,))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 中间层，取20个神经元，激活函数用的relu</span></span><br><span class="line">        layer = keras.layers.Dense(</span><br><span class="line">            units=<span class="number">20</span>,</span><br><span class="line">            activation=keras.activations.relu,</span><br><span class="line">            kernel_initializer=tf.random_normal_initializer(<span class="number">0.</span>, <span class="number">.1</span>),</span><br><span class="line">            bias_initializer=tf.constant_initializer(<span class="number">0.1</span>),</span><br><span class="line">        )(input_layer)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 输出层</span></span><br><span class="line">        output_layer = keras.layers.Dense(</span><br><span class="line">            units=<span class="number">1</span>,</span><br><span class="line">            kernel_initializer=tf.random_normal_initializer(<span class="number">0.</span>, <span class="number">.1</span>),</span><br><span class="line">            bias_initializer=tf.constant_initializer(<span class="number">0.1</span>),</span><br><span class="line">        )(layer)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 设置学习率</span></span><br><span class="line">        self.optimizer = keras.optimizers.Adam(learning_rate=self.lr)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 建立模型</span></span><br><span class="line">        model = keras.models.Model(inputs=input_layer, outputs=output_layer)</span><br><span class="line">        model.<span class="built_in">compile</span>(loss=<span class="string">&#x27;mse&#x27;</span>, optimizer=self.optimizer)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> model</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span>(<span class="params">self, state, reward, state_</span>):</span></span><br><span class="line">        self.<span class="built_in">iter</span> += <span class="number">1</span></span><br><span class="line">        value = reward + self.model_(state_) * self.gama <span class="comment"># 使用副本，使得数据收敛更容易</span></span><br><span class="line">        td_error = value - self.model(state)</span><br><span class="line"></span><br><span class="line">        self.model.fit(state, value, verbose=<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span>(self.<span class="built_in">iter</span> &gt;= self.iter_t):</span><br><span class="line">            self.<span class="built_in">iter</span> = <span class="number">0</span></span><br><span class="line">            self.model_ = self.model</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> td_error</span><br></pre></td></tr></table></figure>
+
+<p>有基本的注释，实现了几个简单的功能。</p>
+<p>其中A的训练取了个巧，在激励为正的情况下，可以视为训练数据的权重变化带入，就不用打开神经网络里面了。</p>
+<h3 id="动画gif处理"><a href="#动画gif处理" class="headerlink" title="动画gif处理"></a>动画gif处理</h3><p>照网上写了个函数，然后在需要的帧添加进列表，最后组装即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">display_frames_as_gif</span>(<span class="params">frames,name</span>):</span></span><br><span class="line">    patch = plt.imshow(frames[<span class="number">0</span>])</span><br><span class="line">    plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">animate</span>(<span class="params">i</span>):</span></span><br><span class="line">        patch.set_data(frames[i])</span><br><span class="line"></span><br><span class="line">    anim = animation.FuncAnimation(plt.gcf(), animate, frames = <span class="built_in">len</span>(frames), interval=<span class="number">1</span>)</span><br><span class="line">    anim.save(<span class="string">&#x27;D:\\&#x27;</span>+name+<span class="string">&#x27;.gif&#x27;</span>, writer=<span class="string">&#x27;ffmpeg&#x27;</span>, fps=<span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+
+<p>添加帧：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frames.append(env.render(mode = <span class="string">&#x27;rgb_array&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>然后最后组装：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">display_frames_as_gif(frames,<span class="string">&#x27;result&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="主程序处理"><a href="#主程序处理" class="headerlink" title="主程序处理"></a>主程序处理</h3><p>主函数负责调用之前的库：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gym</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow <span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> animation </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    env = gym.make(<span class="string">&#x27;CartPole-v0&#x27;</span>)</span><br><span class="line">    frames1 = []</span><br><span class="line">    frames2 = []</span><br><span class="line">    time = []</span><br><span class="line">    actor = Actor(<span class="number">1e-3</span>)</span><br><span class="line">    critic = Critic(<span class="number">1e-2</span>,<span class="number">0.95</span>,<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;-------------------  start trying&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(animation.writers.<span class="built_in">list</span>())</span><br><span class="line">    <span class="keyword">for</span> epi <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">200</span>):</span><br><span class="line">        rewards = []</span><br><span class="line">        observation = env.reset(seed = <span class="number">1</span>)</span><br><span class="line">        observation = observation[np.newaxis, :]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000</span>):</span><br><span class="line">            <span class="comment">#env.render()# 是否渲染</span></span><br><span class="line">            <span class="comment"># if (epi &gt;= 0 and epi &lt;= 9):frames1.append(env.render(mode = &#x27;rgb_array&#x27;))</span></span><br><span class="line">            <span class="keyword">if</span> (epi &gt;= <span class="number">189</span> <span class="keyword">and</span> epi &lt;= <span class="number">199</span>):frames2.append(env.render(mode = <span class="string">&#x27;rgb_array&#x27;</span>))</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 选择</span></span><br><span class="line">            action = actor.choose_action(observation)</span><br><span class="line">            observation_, reward, done, info = env.step(action)<span class="comment"># action 0左1右 </span></span><br><span class="line">            observation_ = observation_[np.newaxis, :]</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 训练</span></span><br><span class="line">            <span class="keyword">if</span> (done <span class="keyword">and</span> t &lt; <span class="number">199</span>): reward = -<span class="number">20</span></span><br><span class="line">            <span class="keyword">if</span> (done <span class="keyword">and</span> t &gt;= <span class="number">199</span>): reward = <span class="number">20</span></span><br><span class="line">            rewards.append(reward)</span><br><span class="line">            td_error = critic.fit(observation, reward, observation_)</span><br><span class="line">            actor.fit(observation, action, td_error)</span><br><span class="line">            observation = observation_</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> done:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;Episode &#123;&#125;: &#123;&#125; timesteps&quot;</span>.<span class="built_in">format</span>(epi,t+<span class="number">1</span>))</span><br><span class="line">                time.append(t)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    env.close()</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/Python/" rel="tag">Python</a>, <a class="article-tag-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2022/06/20/%E7%94%A8Verilog%E5%AE%9E%E7%8E%B0%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%E7%A1%AC%E4%BB%B6/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          用Verilog实现指纹识别硬件
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/13/%E3%80%8A%E5%AE%9A%E4%BD%8D%E3%80%8B%E8%AF%BB%E5%90%8E%E6%84%9F/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          《定位》读后感
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>Git与GitHub简介 | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="前言Git与GitHubGit是一款代码管理软件，一般使用它的命令行模式。GitHub是著名的全球最大同性交友网站，也是代码管理仓库。它提供了海量的存储空间，二者合用可以很好的实现多人合作项目，对像我一样的多个设备切换记录和书写的Blogger也很实用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git与GitHub简介">
+<meta property="og:url" content="http://example.com/2022/02/24/Git%E4%B8%8EGithub%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="前言Git与GitHubGit是一款代码管理软件，一般使用它的命令行模式。GitHub是著名的全球最大同性交友网站，也是代码管理仓库。它提供了海量的存储空间，二者合用可以很好的实现多人合作项目，对像我一样的多个设备切换记录和书写的Blogger也很实用。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.466Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-Git与Github基本语法" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      Git与GitHub简介
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2022-02-23T16:00:00.000Z" itemprop="datePublished">二月 24, 2022</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Git%E4%B8%8EGitHub"><span class="toc-text">Git与GitHub</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GiT%E4%B8%8EGitHub%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-text">GiT与GitHub基本信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Git%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6"><span class="toc-text">Git基本框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GitHub%E5%9F%BA%E6%9C%AC%E8%BF%9E%E6%8E%A5"><span class="toc-text">GitHub基本连接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="toc-text">基本语法</span></a></li></ol>
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="Git与GitHub"><a href="#Git与GitHub" class="headerlink" title="Git与GitHub"></a>Git与GitHub</h3><p><code>Git</code>是一款代码管理软件，一般使用它的命令行模式。<code>GitHub</code>是著名的<del>全球最大同性交友网站</del>，也是代码管理仓库。它提供了海量的存储空间，二者合用可以很好的实现多人合作项目，对像我一样的多个设备切换记录和书写的<code>Blogger</code>也很实用。</p>
+<span id="more"></span>
+
+<h2 id="GiT与GitHub基本信息"><a href="#GiT与GitHub基本信息" class="headerlink" title="GiT与GitHub基本信息"></a>GiT与GitHub基本信息</h2><h3 id="Git基本框架"><a href="#Git基本框架" class="headerlink" title="Git基本框架"></a>Git基本框架</h3><p><code>Git</code>的管理由三块组成，分别是工作区，暂存区，和版本库。</p>
+<p>改动的部分通过<code>add</code>由工作区传至暂存区，然后由<code>commit</code>传至版本库，最后通过<code>push</code>发送至远程仓库（即<code>GitHub</code>）</p>
+<h3 id="GitHub基本连接"><a href="#GitHub基本连接" class="headerlink" title="GitHub基本连接"></a>GitHub基本连接</h3><p><code>GitHub</code>需要与电脑进行<code>ssh</code>连接，将电脑的<code>ssh</code>输入相应的<code>GitHub</code>账号中，通过相应的命令语句确认。</p>
+<p><code>GitHub</code>与<code>Git</code>的连接：对于弹出的登录框，<code>username</code>输入<code>GitHub</code>用户名，但密码输入由<code>GitHub</code>网页产生的特殊令牌。</p>
+<p>相关连接不再赘述。</p>
+<h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><p>首先对文件夹<code>git bush</code>，建立仓库，输入：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git init</span></span><br></pre></td></tr></table></figure>
+
+<p>随后验证<code>ssh</code>是否匹配：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh -T git@github.com</span></span><br></pre></td></tr></table></figure>
+
+<p>第一次输入时，有询问，输入<code>yes</code>即可</p>
+<p>出现以下信息表示连接成功：(<code>DvJiang</code>即为<code>GitHub</code>用户名)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi DvJiang! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>
+
+<p>在<code>GitHub</code>上建立新仓库，取其<code>Http</code>为<code>XXX</code>，先对远程仓库起别名(别名取为<code>repo</code>)：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git remote add repo XXX</span></span><br></pre></td></tr></table></figure>
+
+<p>通过<code>remote</code>指令可以查看别名：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git remote -v</span></span><br></pre></td></tr></table></figure>
+
+<p>随后对该仓库建立分支，取名为<code>main</code>分支：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git branch main</span></span><br></pre></td></tr></table></figure>
+
+<p>随后先将这个空白分支的内容拉取到本地（防止推送出现问题）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git pull repo main</span></span><br></pre></td></tr></table></figure>
+
+<p>对仓库内容修改完后，将仓库内容推送入远程仓库：(若全部更新，用<code>-A</code>)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git add -A</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git commit -m <span class="string">&quot;add the explain&quot;</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git push repo main</span></span><br></pre></td></tr></table></figure>
+
+<p>如果推送失败，显示网络无法连接到服务器，尝试用<code>ssh</code>先行连接，再推送。</p>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/Git/" rel="tag">Git</a>, <a class="article-tag-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2022/02/26/Sklearn%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%9D%E6%8E%A2%E4%B8%8EKNN%E7%AE%97%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Sklearn机器学习初探与KNN算法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/02/23/%E5%8C%BA%E5%9D%97%E9%93%BE%E4%B8%8E%E8%BE%B9%E7%BC%98%E8%AE%A1%E7%AE%97%E6%A6%82%E5%BF%B5/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          区块链与边缘计算概念
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

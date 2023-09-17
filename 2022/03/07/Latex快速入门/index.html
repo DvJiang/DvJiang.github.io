@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>Latex快速入门 | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="前言Latex作为一款著名的论文撰写工具，以其编程化的风格广受各大科研杂志和出版社的追崇。但是，作为大学生，我们面对这款软件却略显尴尬，一方面越来越卷的课程作业要求着舍弃手写和word这些不够高大上的途径以及生产力工具，一方面Latex却有着不低的学习门槛，而且从头开始造轮子对于一份本来就只有几千字的作业或者实验报告来说，性价比又过于低了，完全是大炮打蚊子。 因此，本文旨在以简要的方式介绍Late">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Latex快速入门">
+<meta property="og:url" content="http://example.com/2022/03/07/Latex%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="前言Latex作为一款著名的论文撰写工具，以其编程化的风格广受各大科研杂志和出版社的追崇。但是，作为大学生，我们面对这款软件却略显尴尬，一方面越来越卷的课程作业要求着舍弃手写和word这些不够高大上的途径以及生产力工具，一方面Latex却有着不低的学习门槛，而且从头开始造轮子对于一份本来就只有几千字的作业或者实验报告来说，性价比又过于低了，完全是大炮打蚊子。 因此，本文旨在以简要的方式介绍Late">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.468Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="Latex">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-Latex快速入门" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      Latex快速入门
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2022-03-06T16:00:00.000Z" itemprop="datePublished">三月 7, 2022</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Latex%E7%BB%93%E6%9E%84%E7%AE%80%E8%BF%B0"><span class="toc-text">Latex结构简述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Latex%E8%AF%AD%E6%B3%95%E7%AE%80%E8%BF%B0"><span class="toc-text">Latex语法简述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E9%87%8F"><span class="toc-text">基本量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%9E%9A%E4%B8%BE"><span class="toc-text">常用命令枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-text">数学公式基本使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83%E5%B8%B8%E8%A7%81%E9%85%8D%E7%BD%AE"><span class="toc-text">中文环境常见配置</span></a></li></ol>
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Latex作为一款著名的论文撰写工具，以其编程化的风格广受各大科研杂志和出版社的追崇。但是，作为大学生，我们面对这款软件却略显尴尬，一方面越来越卷的课程作业要求着舍弃手写和word这些不够高大上的途径以及生产力工具，一方面Latex却有着不低的学习门槛，而且从头开始造轮子对于一份本来就只有几千字的作业或者实验报告来说，性价比又过于低了，完全是大炮打蚊子。</p>
+<p>因此，本文旨在以简要的方式介绍Latex的使用，使得在论文格式问题上耗时尽量的短，把精力放在文章主体上。</p>
+<span id="more"></span>
+
+<p>对于一个不需要研究Latex具体函数的人来说，一种比较好的学习方法，或者说一种快捷的论文生产方法应该是用模板。掌握基本语句后，遇到不会的部分再去查询就好，对Latex整体只需要稍加了解就好，一般模板作者都会在README或者PDF文档中指出。</p>
+<hr>
+<h2 id="Latex结构简述"><a href="#Latex结构简述" class="headerlink" title="Latex结构简述"></a>Latex结构简述</h2><p>Latex主要分为论文主题和前面的各种声明，包括函数（包），论文基本信息等，当然更多细节一般不需要掌握。</p>
+<p>在声明中首先修改相关主题信息，有的信息会被单独保存在config（配置）文件中，通过编译文件打开PDF查看自己改干净没有。</p>
+<p>当然，首页图片（如校徽等也要进行相应修改）</p>
+<hr>
+<h2 id="Latex语法简述"><a href="#Latex语法简述" class="headerlink" title="Latex语法简述"></a>Latex语法简述</h2><h3 id="基本量"><a href="#基本量" class="headerlink" title="基本量"></a>基本量</h3><p>论文主题被定义在由<code>\begin&#123;document&#125;</code> ，<code>\end&#123;document&#125;</code>包围的框架中。</p>
+<p>一般来说，关于Latex的命令都由<code>\</code>开头，就像HTML的标签一样，有单独的也有成对的。一般成对的都是<code>\begin&#123;XXX&#125;</code> ，<code>\end&#123;XXX&#125;</code>。</p>
+<p>除了命令之外，还有数学符号，Latex的数学公式很强大，在markdown也可以用，一般用<code>$$</code>和<code>$$$$</code>隔开。</p>
+<p>对于论文本体，注意换行需要命令，否则是不会自动换行的。</p>
+<h3 id="常用命令枚举"><a href="#常用命令枚举" class="headerlink" title="常用命令枚举"></a>常用命令枚举</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">换行：\newline</span><br><span class="line">无序排序：</span><br><span class="line">      \begin&#123;itemize&#125;</span><br><span class="line">          \item </span><br><span class="line">      \end&#123;itemize&#125;</span><br><span class="line">有序排序：</span><br><span class="line">      \begin&#123;enumrate&#125;</span><br><span class="line">          \item </span><br><span class="line">      \end&#123;enumrate&#125;</span><br><span class="line">脚注：\footcite&#123;XXX&#125;</span><br><span class="line">标签（对图片，列表命名）：\label&#123;XX&#125;,\ref&#123;XX&#125;</span><br><span class="line">标题：\section&#123;&#125;,\subsection&#123;&#125;,\subsubsection&#123;&#125; 以此类推</span><br><span class="line">居中：\centering</span><br><span class="line">字体：&#123;\kaishu &#125;</span><br><span class="line">图片和列表建议看模板用的啥</span><br></pre></td></tr></table></figure>
+
+<h3 id="数学公式基本使用"><a href="#数学公式基本使用" class="headerlink" title="数学公式基本使用"></a>数学公式基本使用</h3><p><code>$$</code>句内公式，<code>$$$$</code>行间公式，但都没有编号。</p>
+<p>与文字一样，特殊命令也用<code>\</code></p>
+<p>希腊字母等，以$\Omega$为例：<code>\Omega</code></p>
+<p>等式不等式等：以小于号为例：<code>\le</code></p>
+<p>分式：<code>\frac&#123;&#125;&#123;&#125;</code></p>
+<p>下标：<code>_&#123;&#125;</code></p>
+<p>很多东西都可以直接显示，如sin等。</p>
+<p>需要用的时候去查就好了。</p>
+<hr>
+<h2 id="中文环境常见配置"><a href="#中文环境常见配置" class="headerlink" title="中文环境常见配置"></a>中文环境常见配置</h2><p>一般使用Texlive，个人建议编辑的时候用带latex扩展的Vscode，看起来美观一些。</p>
+<p><strong>编译器一般选择ctex和Xetex。</strong></p>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/Latex/" rel="tag">Latex</a>, <a class="article-tag-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2022/03/08/%E5%8F%B2%E8%AE%B0%EF%BC%9A%E7%A7%A6%E5%A7%8B%E7%9A%87%E6%9C%AC%E7%BA%AA(1)/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          史记：秦始皇本纪（1）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/03/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E4%B8%8E%E8%8C%83%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          机器学习算法数学建模与范式
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

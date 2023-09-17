@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>网络理论入门 | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="这是《网络实用技术》一课的笔记和总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络理论入门">
+<meta property="og:url" content="http://example.com/2022/04/10/%E7%BD%91%E7%BB%9C%E7%90%86%E8%AE%BA%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="这是《网络实用技术》一课的笔记和总结">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.489Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="网络">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-网络理论入门" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      网络理论入门
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2022-04-09T16:00:00.000Z" itemprop="datePublished">四月 10, 2022</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0"><span class="toc-text">计算机网络概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E5%8F%91%E5%B1%95"><span class="toc-text">计算机网络的发展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84%E4%B8%8E%E6%8B%93%E6%89%91%E7%BB%93%E6%9E%84"><span class="toc-text">计算机网络的逻辑结构与拓扑结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E4%B8%8E%E5%8D%8F%E8%AE%AE"><span class="toc-text">计算机网络体系结构与协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%88%86%E7%B1%BB"><span class="toc-text">计算机网络分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%9F%BA%E7%A1%80"><span class="toc-text">网络通信基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B"><span class="toc-text">数据通信模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E6%96%B9%E5%BC%8F"><span class="toc-text">数据传输方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E6%8A%80%E6%9C%AF"><span class="toc-text">多路复用技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BA%A4%E6%8D%A2%E6%8A%80%E6%9C%AF"><span class="toc-text">数据交换技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E4%BB%8B%E8%B4%A8"><span class="toc-text">传输介质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E7%BD%91%E7%AE%80%E4%BB%8B"><span class="toc-text">通信网简介</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%80%E5%9F%9F%E7%BD%91"><span class="toc-text">局域网</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%80%E5%9F%9F%E7%BD%91%E6%A6%82%E8%BF%B0"><span class="toc-text">局域网概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A5%E5%A4%AA%E7%BD%91"><span class="toc-text">以太网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%88VLAN%EF%BC%89"><span class="toc-text">虚拟局域网（VLAN）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E4%BA%92%E8%81%94"><span class="toc-text">网络互联</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BA%92%E8%81%94%E6%A6%82%E8%BF%B0"><span class="toc-text">计算机网络互联概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E8%AE%BE%E5%A4%87"><span class="toc-text">网络连接设备</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Internet%E5%9F%BA%E7%A1%80"><span class="toc-text">Internet基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Internet%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">Internet基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E5%9D%80%E6%9C%BA%E5%88%B6"><span class="toc-text">编址机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Internet%E7%9A%84%E6%8E%A5%E5%85%A5"><span class="toc-text">Internet的接入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Internet%E5%BA%94%E7%94%A8"><span class="toc-text">Internet应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#WWW%E2%80%94%E2%80%94%E4%B8%87%E7%BB%B4%E7%BD%91"><span class="toc-text">WWW——万维网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E6%A6%82%E8%BF%B0"><span class="toc-text">电子邮件概述</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%8E%E7%BB%B4%E6%8A%A4"><span class="toc-text">网络安全与维护</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8"><span class="toc-text">网络安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD"><span class="toc-text">网络故障诊断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%BB%B4%E6%8A%A4"><span class="toc-text">网络维护</span></a></li></ol></li></ol>
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <blockquote>
+<p>这是《网络实用技术》一课的笔记和总结</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="计算机网络概述"><a href="#计算机网络概述" class="headerlink" title="计算机网络概述"></a>计算机网络概述</h2><h3 id="计算机网络的发展"><a href="#计算机网络的发展" class="headerlink" title="计算机网络的发展"></a>计算机网络的发展</h3><ul>
+<li>第一阶段：60年代，雏形，分布的计算机系统</li>
+<li>第二阶段：70年代，计算机互连网络，尚未形成统一标准</li>
+<li>第三阶段：70年代中期，形成计算机网络体系结构和标准化网络</li>
+<li>第四阶段：90年代，以Internet为核心的高速计算机网络</li>
+</ul>
+<h3 id="计算机网络的逻辑结构与拓扑结构"><a href="#计算机网络的逻辑结构与拓扑结构" class="headerlink" title="计算机网络的逻辑结构与拓扑结构"></a>计算机网络的逻辑结构与拓扑结构</h3><ul>
+<li>逻辑结构：通信子网与资源子网</li>
+<li>拓扑结构：一个网络的通信链路和结点的图形<ul>
+<li>总线型结构：所有结点接到一条总线上</li>
+<li>环型结构：所有节点连接为一个闭合的环</li>
+<li>星型结构：有一个中心节点，其余节点与之相连</li>
+<li>树型结构：一个根节点向下延伸形成</li>
+<li>网状结构：各节点连成不规则形状，每个节点至少与其它两个节点相连</li>
+</ul>
+</li>
+</ul>
+<h3 id="计算机网络体系结构与协议"><a href="#计算机网络体系结构与协议" class="headerlink" title="计算机网络体系结构与协议"></a>计算机网络体系结构与协议</h3><ul>
+<li>基本概念<ul>
+<li>协议：控制数据交换规则的集合</li>
+<li>分层：每一层功能独立，协议按此被分为层间协议</li>
+<li>网络体系结构：计算机网络各层和层间协议的集合</li>
+</ul>
+</li>
+<li>各年代参考模型：<ul>
+<li>70年代：各自设计，没有规范</li>
+<li>80年代：OSI标准：物理连接就可以通信</li>
+<li>90年代：TCP&#x2F;IP模型</li>
+</ul>
+</li>
+<li>OSI模型简介<ul>
+<li>各计算机有相同的层次结构，各层次分工不同</li>
+<li>共有7层：应用层，表示层，会话层，传输层，网络层，数据链路层，物理层</li>
+<li>对等层协议之间交换的信息单元统称为协议数据单元（PDU）</li>
+<li>数据封装：帧头-网络头-段头-数据-帧尾</li>
+</ul>
+</li>
+<li>TCP&#x2F;IP模型简介<ul>
+<li>分为：应用层，传输层，Internet层，网络接口层</li>
+<li>网络接口层：只指出通信主机必须采用某种协议连接到网络上，并能传输网络数据分组。</li>
+<li>网际层：<ul>
+<li>IP（Internet Protocol）明确源端和目的端</li>
+<li>ICMP：提供控制和传递信息的功能</li>
+<li>ARP：解析IP为MAC地址</li>
+<li>RARP：解析MAC地址为IP地址</li>
+</ul>
+</li>
+<li>传输层：<ul>
+<li>面向连接的：TCP：可靠的传输协议</li>
+<li>无连接的：UDP：不可靠（不会确认发送的内容）的传输协议</li>
+</ul>
+</li>
+<li>应用层：各种协议（文件，邮件，www等）</li>
+<li>OSI与TCP&#x2F;IP参考体系对应：传输层相对，网络层与网际层相对</li>
+</ul>
+</li>
+</ul>
+<h3 id="计算机网络分类"><a href="#计算机网络分类" class="headerlink" title="计算机网络分类"></a>计算机网络分类</h3><ul>
+<li>按地理位置分类<ul>
+<li>体域网，个体网，局域网，城域网，广域网</li>
+</ul>
+</li>
+<li>按网络拓扑类型分类</li>
+<li>按网络协议分类<ul>
+<li>以太网，令牌环网等</li>
+</ul>
+</li>
+<li>按网络操作系统分类</li>
+<li>按传输介质分类<ul>
+<li>双绞线，光纤，同轴电缆，无线，卫星数据通信网等</li>
+</ul>
+</li>
+<li>按传播技术分类<ul>
+<li>广播式，点到点式网络</li>
+</ul>
+</li>
+<li>按网络配置分类</li>
+</ul>
+<hr>
+<h2 id="网络通信基础"><a href="#网络通信基础" class="headerlink" title="网络通信基础"></a>网络通信基础</h2><h3 id="数据通信模型"><a href="#数据通信模型" class="headerlink" title="数据通信模型"></a>数据通信模型</h3><ul>
+<li>基本模型：信源 - 变换器 - 信道（有噪声） - 反变换器 - 信宿</li>
+<li>模拟与数字通信系统<ul>
+<li>数字优点：抗干扰，易加密</li>
+<li>数字缺点：难实现，对线路要求高</li>
+<li>数模转换有误差</li>
+<li>数模转换方法：调制（频率），PCM脉冲调制（采样，量化，编码：将幅度作为二进制表示）</li>
+</ul>
+</li>
+<li>通信信道<ul>
+<li>物理信道：物理上相连的</li>
+<li>逻辑信道：两个节点间的通信链路</li>
+<li>带宽：<ul>
+<li>信道传输能力的度量</li>
+<li>模拟信号带宽：用能传输的频率极值表示</li>
+<li>数字信号带宽：每秒能传输的最大比特数</li>
+</ul>
+</li>
+<li>传输速率：每秒传递的二进制比特位数，其最大值与带宽成正比</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据传输方式"><a href="#数据传输方式" class="headerlink" title="数据传输方式"></a>数据传输方式</h3><ul>
+<li>数据传输方向<ul>
+<li>单工（收音机）&#x2F;半双工（对讲机）&#x2F;全双工（电话）</li>
+</ul>
+</li>
+<li>数据传输方式<ul>
+<li>并行&#x2F;串行&#x2F;串并行转换</li>
+</ul>
+</li>
+<li>数据传输同步方式<ul>
+<li>同步：调整时间基准</li>
+<li>同步传输：发送端和接收端时钟一致</li>
+<li>异步传输：一个字符代码本身的开始结束标记带有时间基准，效率较低</li>
+</ul>
+</li>
+</ul>
+<h3 id="多路复用技术"><a href="#多路复用技术" class="headerlink" title="多路复用技术"></a>多路复用技术</h3><ul>
+<li>定义：一条物理信道承载多条通信信道</li>
+<li>实质：将多路信号编码在一起</li>
+</ul>
+<h3 id="数据交换技术"><a href="#数据交换技术" class="headerlink" title="数据交换技术"></a>数据交换技术</h3><ul>
+<li>数据交换技术分类<ul>
+<li>线路交换<ul>
+<li>线路建立 - 数据传输 - 数据释放</li>
+<li>可靠，但对信道资源有浪费，没有信息存储功能和容错率（电话）</li>
+</ul>
+</li>
+<li>报文交换<ul>
+<li>规定源地址等信息，一次性发送一个数据块</li>
+<li>中间节点会进行校验，需要排队，延时波动大，出错后全部重发（电报）</li>
+</ul>
+</li>
+<li>分组交换<ul>
+<li>长度等标准确定的报文交换</li>
+<li>分组号 - 源地址 - 目的地址 - 数据 - 校验</li>
+<li>出错后不必全部重发，可能乱序，重复与丢失</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="传输介质"><a href="#传输介质" class="headerlink" title="传输介质"></a>传输介质</h3><ul>
+<li>有线传输介质：金属，光纤<ul>
+<li>双绞线：适用于局域网，屏蔽双绞线有一层厚壳</li>
+<li>同轴电缆：用于节目传输，长途电话，局域网<ul>
+<li>基带同轴电缆用于数字传输，宽带同轴电缆用于模拟传输</li>
+</ul>
+</li>
+<li>光纤：用于长距离高速率传输</li>
+</ul>
+</li>
+<li>无线传输介质：无线电，电磁波，卫星<ul>
+<li>无线电：传输距离，抗干扰差，价格低，易窃听</li>
+<li>红外线：方向性强，受光环境影响</li>
+<li>微波：速率低，不可绕射，受大气影响大</li>
+<li>卫星：延时长，费用高，距离长</li>
+</ul>
+</li>
+</ul>
+<h3 id="通信网简介"><a href="#通信网简介" class="headerlink" title="通信网简介"></a>通信网简介</h3><ul>
+<li>已有的公共通信设施<ul>
+<li>公共电话：光纤到户</li>
+<li>移动电话：4G，5G</li>
+<li>有限电视网络</li>
+<li>卫星</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="局域网"><a href="#局域网" class="headerlink" title="局域网"></a>局域网</h2><h3 id="局域网概述"><a href="#局域网概述" class="headerlink" title="局域网概述"></a>局域网概述</h3><ul>
+<li>定义<ul>
+<li>狭义局域网：一个广播体系下的网络</li>
+<li>广义局域网：一个网络所有者的网络</li>
+</ul>
+</li>
+<li>特点：地理近，延时低，传输速率高，出错率低，多种传输介质<ul>
+<li>以树型拓扑结构居多</li>
+</ul>
+</li>
+<li>组成：路由器 - 网络交换机 - PC</li>
+<li>常用设备：<ul>
+<li>网线：双绞线按标准不同具有线序，按标准线序，信号串扰小<ul>
+<li>直通线：两头标准相同</li>
+<li>交叉线：两头标准不同</li>
+<li>现在基本都可以自动识别标准，用直连线</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>局域网参考模型：IEEE802模型<ul>
+<li>高层和网络层（NOS实现）  - 数据链路层（LLC和MAC） - 物理层</li>
+</ul>
+</li>
+<li>局域网特性主要技术：传输介质，拓扑结构，介质访问控制方法</li>
+<li>局域网类型<ul>
+<li>共享介质局域网的介质访问控制方法<ul>
+<li>随机访问控制（以太网核心技术）</li>
+<li>轮流访问控制（令牌传递）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="以太网"><a href="#以太网" class="headerlink" title="以太网"></a>以太网</h3><ul>
+<li>以太网标准<ul>
+<li>传统以太网</li>
+<li>快速以太网</li>
+<li>千兆以太网</li>
+</ul>
+</li>
+<li>共享介质以太网核心技术（CSMA）：载波侦听多路访问<ul>
+<li>发前监听，空闲时发送，遇到冲突回避</li>
+</ul>
+</li>
+<li>令牌环网<ul>
+<li>介质访问控制方法：令牌传递</li>
+</ul>
+</li>
+<li>交换式以太网<ul>
+<li>以网络交换机为主干，不需要共享介质，星型拓扑</li>
+</ul>
+</li>
+</ul>
+<h3 id="虚拟局域网（VLAN）"><a href="#虚拟局域网（VLAN）" class="headerlink" title="虚拟局域网（VLAN）"></a>虚拟局域网（VLAN）</h3><ul>
+<li>定义：逻辑上的广播域，需要借助路由器</li>
+<li>特点：便于管理，更加安全，抑制数据泛滥，与物理位置无关</li>
+</ul>
+<hr>
+<h2 id="网络互联"><a href="#网络互联" class="headerlink" title="网络互联"></a>网络互联</h2><h3 id="计算机网络互联概述"><a href="#计算机网络互联概述" class="headerlink" title="计算机网络互联概述"></a>计算机网络互联概述</h3><ul>
+<li>定义：将各种网络和设备连接在一起，并用用网络连接设备协调网络差异。</li>
+<li>网络互联基本原理：<ul>
+<li>层次：网络层（路由器），数据链路层（网桥，交换机）</li>
+</ul>
+</li>
+<li>网络互联类型<ul>
+<li>LAN - LAN：本地互联<ul>
+<li>范围有限，层次为物理层和数据链路层</li>
+</ul>
+</li>
+<li>WAN - X：远程互联<ul>
+<li>范围大，层次为网络或更高层</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="网络连接设备"><a href="#网络连接设备" class="headerlink" title="网络连接设备"></a>网络连接设备</h3><ul>
+<li>网卡<ul>
+<li>网卡地址：MAC地址</li>
+<li>每台计算机至少有一块网卡</li>
+<li>用于数据解码访问收发等</li>
+</ul>
+</li>
+<li>中继器<ul>
+<li>物理层</li>
+<li>用于连接网段，放大物理信号</li>
+<li>分为：以太网中继器，令牌环网中继器</li>
+</ul>
+</li>
+<li>集线器<ul>
+<li>物理层</li>
+<li>多端口的中继器，不能分离冲突部分</li>
+</ul>
+</li>
+<li>网桥<ul>
+<li>数据链路层</li>
+<li>用于构建LAN - LAN间的逻辑网络</li>
+</ul>
+</li>
+<li>交换机<ul>
+<li>数据链路层</li>
+<li>和网桥功能类似，但不可以分离广播域</li>
+<li>比网桥端口多，延迟小，速率高，功能强大</li>
+<li>交换机工作原理：维护一个MAC地址表以建立端口间连接</li>
+</ul>
+</li>
+<li>路由器<ul>
+<li>网络层</li>
+<li>连接不同逻辑网络为一个子网</li>
+<li>可以分隔广播域和不同网络的连接</li>
+<li>路由器比交换机层次高，用IP地址，控制更强，但速度较慢，下接子网</li>
+<li>每个连接在路由器的网络都会给路由器分配一个IP地址</li>
+</ul>
+</li>
+<li>三层交换机<ul>
+<li>相当于路由器，速度更快，成本更低</li>
+<li>但只能局域网中子网间的连接</li>
+</ul>
+</li>
+<li>网关<ul>
+<li>连接不同体系的计算机网络和协议转换</li>
+<li>位于传输层，应用层</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Internet基础"><a href="#Internet基础" class="headerlink" title="Internet基础"></a>Internet基础</h2><h3 id="Internet基本概念"><a href="#Internet基本概念" class="headerlink" title="Internet基本概念"></a>Internet基本概念</h3><ul>
+<li>定义：在TCP&#x2F;IP基础上建立的国际互联网</li>
+<li>组成：局域网&#x2F;服务器，传输系统，TCP&#x2F;IP协议</li>
+<li>工作模式：<ul>
+<li>C&#x2F;S模式：应用程序分别运行在客户机和服务器</li>
+<li>B&#x2F;S模式：运行浏览器（http），在浏览器上获取服务</li>
+<li>P2P模式：计算机间直接交换信息，与C&#x2F;S模式差别主要在应用层</li>
+</ul>
+</li>
+</ul>
+<h3 id="编址机制"><a href="#编址机制" class="headerlink" title="编址机制"></a>编址机制</h3><ul>
+<li>域名（人使用） - （DNS） - IP v4地址（广域网使用） - （ARP） - MAC地址（局域网使用）</li>
+<li>4大重要参数：IP地址，子网掩码，默认网关，DNS服务器地址<ul>
+<li>IP地址：在全网范围唯一，一个主机至少一台<ul>
+<li>IPv4：32位二进制数合为4个十进制数表示，分为网络号和主机号</li>
+<li>ABC类地址：网络号占位分别为7，14，21位（前1，2，3段）</li>
+<li>主机号全为0用于标识网络本身，全为1将进行广播</li>
+</ul>
+</li>
+<li>子网掩码<ul>
+<li>将一个大网络划分为几个子网</li>
+<li>网络部分用1表示，主机号用0表示</li>
+<li>不划分子网时用默认子网掩码</li>
+<li>IP与子网掩码相与，可得网络地址</li>
+</ul>
+</li>
+<li>无类别域间路由选择CIDR<ul>
+<li>路由聚合（构成超网）：将小前缀合并为一个大前缀</li>
+<li>记法：{&lt;网络前缀&gt;,&lt;主机号&gt;} 或 IP地址&#x2F;网络前缀比特位数</li>
+<li>一般网络前缀有13-27位</li>
+<li>路由优先匹配前缀长的条目</li>
+</ul>
+</li>
+<li>域名系统DNS<ul>
+<li>域名：IP地址的字符表示</li>
+<li>DNS组成：域名空间（一棵树），DNS服务器，解析程序</li>
+<li>统一资源定位器URL：&lt;协议&gt;:&#x2F;&#x2F;&lt;主机[端口号]&gt;&lt;路径&gt; &lt;文件名&gt;&lt;查询串&gt;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Internet的接入"><a href="#Internet的接入" class="headerlink" title="Internet的接入"></a>Internet的接入</h3><ul>
+<li>常用接入：电话网，电视网，光纤，无线，局域网接入</li>
+</ul>
+<hr>
+<h2 id="Internet应用"><a href="#Internet应用" class="headerlink" title="Internet应用"></a>Internet应用</h2><h3 id="WWW——万维网"><a href="#WWW——万维网" class="headerlink" title="WWW——万维网"></a>WWW——万维网</h3><ul>
+<li>定义：不是传统网络，而是在超文本上形成的信息网</li>
+<li>有关概念：<ul>
+<li>Web页面：由HTML等语言编写的文档</li>
+<li>浏览器程序：通过http协议解析HTML给用户</li>
+</ul>
+</li>
+<li>架设网站服务器的实现方法：IIS架设，Apache架设</li>
+<li>Web通信：请求DNS - HTTP生成报文 - TCP分段 - IP传送 - TCP重组 - HTTP处理 - 服务器响应</li>
+</ul>
+<h3 id="电子邮件概述"><a href="#电子邮件概述" class="headerlink" title="电子邮件概述"></a>电子邮件概述</h3><ul>
+<li>工作原理<ul>
+<li>流程：发送端 - （SMTP） - 发送方服务器 - （SMTP） - 接收方服务器 - （SMTP） - 接收端</li>
+<li>像是在Internet上实现了传统邮局的功能</li>
+</ul>
+</li>
+<li>SMTP协议：传输协议，负责传输邮件</li>
+<li>POP3协议：邮件储存和访问协议，从邮件服务器接收协议到本地并删除远端邮件副本</li>
+<li>IMAP协议：和POP3功能类似，但复杂得多，可以实现客户端和服务器的同步修改。</li>
+</ul>
+<hr>
+<h2 id="网络安全与维护"><a href="#网络安全与维护" class="headerlink" title="网络安全与维护"></a>网络安全与维护</h2><h3 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h3><ul>
+<li>网络不安全因素：网络本身开放性，协议漏洞，软件漏洞，物理安全…</li>
+<li>主机安全：操作系统，病毒防范，防火墙</li>
+<li>网络安全：<ul>
+<li>加密技术，数字签名和数字证书，安全协议</li>
+<li>防火墙：不实时，速度与功能成反比</li>
+<li>IDS（入侵检测技术）：检测违反安全策略的行为，在防火墙后面</li>
+</ul>
+</li>
+<li>系统漏洞：软硬件，协议等存在的错误或缺陷<ul>
+<li>常见漏洞及防范：<ul>
+<li>缺省安装：打补丁，关掉不必要的端口和服务</li>
+<li>口令和账号：避免弱口令</li>
+<li>权限设置错误：正确授权</li>
+<li>防火墙过滤出现问题：建立过滤规则</li>
+<li>备份，日志文件不健全</li>
+<li>缓冲区溢出</li>
+<li>容易被攻击的CGI（网关接口）程序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>计算机网络通信威胁：<ul>
+<li>被动攻击：截获（数据加密技术）</li>
+<li>主动攻击：中断，篡改，伪造（数据加密+鉴别技术）</li>
+</ul>
+</li>
+<li>加密技术<ul>
+<li>对称密码体制：加密和解密密匙是相同的密码体制</li>
+<li>非对称密码体制：公钥公开，私钥保密，用户不必交换密钥，安全性高但速度慢<ul>
+<li>常用于加密小数据（如对称密匙）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数字签名与数字认证<ul>
+<li>数字签名<ul>
+<li>需要保证能够核实，不可抵赖和伪造</li>
+<li>一般采用公开密匙算法</li>
+</ul>
+</li>
+<li>数字认证<ul>
+<li>相当于身份证，会被公开</li>
+<li>接收方通过验证数字证书确认发送方身份</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>安全协议与VPN<ul>
+<li>安全协议：采用的密码技术的具体协议<ul>
+<li>应用层：SSH，PGP</li>
+</ul>
+</li>
+<li>VPN：利用安全协议在公网上传递私有信息的逻辑网络<ul>
+<li>https：请求连接（得到公钥） - 用公钥加密密钥 - 发送（通过密钥通信）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>防火墙<ul>
+<li>在多个网络间实现访问控制的组件集合</li>
+<li>局限：不能防范内部攻击和新的网络问题</li>
+<li>体系结构：<ul>
+<li>筛选路由器：包过滤路由器，可由主机或专门的路由器实现</li>
+<li>双穴堡垒主机系统：用一台双网卡的堡垒主机在物理和逻辑上将两个网络断开</li>
+<li>筛选主机系统：前两者之和</li>
+<li>筛选子网系统（DMZ）：在内网和外网之间建立一个隔离的子网，与其分别隔开</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="网络故障诊断"><a href="#网络故障诊断" class="headerlink" title="网络故障诊断"></a>网络故障诊断</h3><ul>
+<li>步骤：确认权限 - 重现故障 - 检查网络物理连接 - 检查网络软件连接 - 检查最近的网络变更</li>
+<li>常用指令：ping&#x2F;ipconfig&#x2F;netstat&#x2F;arp&#x2F;tracert&#x2F;route&#x2F;nslookup</li>
+</ul>
+<h3 id="网络维护"><a href="#网络维护" class="headerlink" title="网络维护"></a>网络维护</h3><ul>
+<li>硬件备份技术<ul>
+<li>路由器：HSRP，VRRP协议</li>
+<li>服务器：集群</li>
+</ul>
+</li>
+<li>软件备份技术<ul>
+<li>备份类型<ul>
+<li>完全备份（所有数据备份）</li>
+<li>增量备份（只备份变化过的数据）</li>
+<li>差异备份（只备份上次完全备份后变化的数据）</li>
+</ul>
+</li>
+<li>磁盘阵列（RAID）：把多个独立硬盘组合成一个硬盘组的技术<ul>
+<li>分类：软阵列（在操作系统之上），硬阵列（在操作系统之下，优于软阵列）</li>
+<li>级别：0到7，除0外有冗余功能，RAID（1到5）允许坏1块盘，RAID 6允许坏两块，RAID 0速度最快</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>, <a class="article-tag-none-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2022/04/21/%E6%A6%82%E7%8E%87%E8%AE%BA%E6%80%BB%E7%BB%93/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          概率论总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/03/25/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%AE%BA/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          深度学习概论
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

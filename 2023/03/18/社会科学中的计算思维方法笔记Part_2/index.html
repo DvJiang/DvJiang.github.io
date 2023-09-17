@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>社会科学中的计算思维方法笔记Part_2 | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="本文为课程《社会科学中的计算思维方法》的课程笔记，这门课在Mooc上似乎也有，不过是SPOC的来着。本来打算等期末的时候再一股脑地整理成一篇Blog，不过我发现内容是实在有些多，只好份部分放出，本篇是这门课的三四章内容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="社会科学中的计算思维方法笔记Part_2">
+<meta property="og:url" content="http://example.com/2023/03/18/%E7%A4%BE%E4%BC%9A%E7%A7%91%E5%AD%A6%E4%B8%AD%E7%9A%84%E8%AE%A1%E7%AE%97%E6%80%9D%E7%BB%B4%E6%96%B9%E6%B3%95%E7%AC%94%E8%AE%B0Part_2/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="本文为课程《社会科学中的计算思维方法》的课程笔记，这门课在Mooc上似乎也有，不过是SPOC的来着。本来打算等期末的时候再一股脑地整理成一篇Blog，不过我发现内容是实在有些多，只好份部分放出，本篇是这门课的三四章内容。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.488Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="社会科学">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-社会科学中的计算思维方法笔记Part_2" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      社会科学中的计算思维方法笔记Part_2
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2023-03-17T16:00:00.000Z" itemprop="datePublished">三月 18, 2023</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%B0%8F%E4%B8%96%E7%95%8C"><span class="toc-text">第三章 小世界</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-%E5%B0%8F%E4%B8%96%E7%95%8C%E5%AE%9E%E9%AA%8C%E5%8F%8A%E5%85%B6%E6%83%8A%E5%A5%87"><span class="toc-text">3.1 小世界实验及其惊奇</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-%E5%B0%8F%E4%B8%96%E7%95%8C%E7%9A%84%E6%99%AE%E9%81%8D%E7%8E%B0%E8%B1%A1"><span class="toc-text">3.2 小世界的普遍现象</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-3-%E5%B0%8F%E4%B8%96%E7%95%8C%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9E%8B"><span class="toc-text">3.3 小世界基本模型</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#3-4-%E5%B0%8F%E4%B8%96%E7%95%8C%E7%B2%BE%E7%BB%86%E6%A8%A1%E5%9E%8B"><span class="toc-text">3.4 小世界精细模型</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-5-%E5%B0%8F%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%AA%8C%E8%AF%81"><span class="toc-text">3.5 小世界模型的大数据验证</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#3-6-%E6%A0%B8%E5%BF%83-%E5%A4%96%E5%9B%B4%E7%BB%93%E6%9E%84%EF%BC%9A%E4%B8%80%E7%A7%8D%E7%A4%BE%E4%BC%9A%E7%BD%91%E7%BB%9C%E8%A7%82"><span class="toc-text">3.6 核心-外围结构：一种社会网络观</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E4%B8%87%E7%BB%B4%E7%BD%91%E7%BB%93%E6%9E%84%EF%BC%8C%E9%93%BE%E6%8E%A5%E5%88%86%E6%9E%90%E4%B8%8E%E7%BD%91%E7%BB%9C%E6%90%9C%E7%B4%A2"><span class="toc-text">第四章 万维网结构，链接分析与网络搜索</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-1-%E6%9C%89%E5%90%91%E5%9B%BE"><span class="toc-text">4.1 有向图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2-%E5%B0%86%E4%BA%92%E8%81%94%E7%BD%91%E4%BF%A1%E6%81%AF%E7%9C%8B%E6%88%90%E4%B8%80%E4%B8%AA%E6%9C%89%E5%90%91%E5%9B%BE"><span class="toc-text">4.2 将互联网信息看成一个有向图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-3-%E4%B8%AD%E6%9E%A2%E4%B8%8E%E6%9D%83%E5%A8%81"><span class="toc-text">4.3 中枢与权威</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-4-%E7%BD%91%E9%A1%B5%E6%8E%92%E5%90%8D"><span class="toc-text">4.4 网页排名</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-5-%E5%90%8C%E6%AF%94%E7%BC%A9%E5%87%8F%E4%B8%8E%E7%AD%89%E9%87%8F%E8%A1%A5%E5%81%BF"><span class="toc-text">4.5 同比缩减与等量补偿</span></a></li></ol></li></ol></li></ol>
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <p>本文为课程《社会科学中的计算思维方法》的课程笔记，这门课在Mooc上似乎也有，不过是SPOC的来着。本来打算等期末的时候再一股脑地整理成一篇Blog，不过我发现内容是实在有些多，只好份部分放出，本篇是这门课的<strong>三四章</strong>内容。</p>
+<span id="more"></span>
+
+<h3 id="第三章-小世界"><a href="#第三章-小世界" class="headerlink" title="第三章 小世界"></a>第三章 小世界</h3><h5 id="3-1-小世界实验及其惊奇"><a href="#3-1-小世界实验及其惊奇" class="headerlink" title="3.1 小世界实验及其惊奇"></a>3.1 小世界实验及其惊奇</h5><p>操作化：将一个通俗的概念变成一个可以量化的东西</p>
+<p>设计实验：选择一个随机起点，看要经过几个人到一个确定目的地。</p>
+<p>→ 六度分隔</p>
+<p>小世界现象：</p>
+<ul>
+<li>世界是小的：六度分隔</li>
+<li>「自动寻找」短路径</li>
+</ul>
+<h5 id="3-2-小世界的普遍现象"><a href="#3-2-小世界的普遍现象" class="headerlink" title="3.2 小世界的普遍现象"></a>3.2 小世界的普遍现象</h5><p>网页之间的「社交」：短路径为18.59次连接</p>
+<p>书信，加上种族因素，电子邮件等都有小世界现象存在</p>
+<h5 id="3-3-小世界基本模型"><a href="#3-3-小世界基本模型" class="headerlink" title="3.3 小世界基本模型"></a>3.3 小世界基本模型</h5><p>根据哪些基本原理，可以说明小世界现象的必然性？</p>
+<p>两种基本力量：同质性 and 弱联系</p>
+<p>watts-Strogatz模型：</p>
+<ul>
+<li>网格距离 + 网络距离</li>
+<li>连接近邻（确定性） + 连接远程（随机性）</li>
+<li>可以证明这样的网络中，任意两点存在短路径的概率很高。</li>
+<li>但不能很好地体现短视的自动搜索。（要求二）</li>
+</ul>
+<h6 id="3-4-小世界精细模型"><a href="#3-4-小世界精细模型" class="headerlink" title="3.4 小世界精细模型"></a>3.4 小世界精细模型</h6><p>WS模型局限：短视搜索下，常常导致较长路径。</p>
+<p>短视搜索（分散搜索）特点：</p>
+<ul>
+<li>每个节点有特征，特征 ≠ 距离</li>
+<li>每个节点知道目标节点特征，自己和邻近节点特征</li>
+<li>节点将搜索传给距离目标节点距离较近的邻居节点</li>
+</ul>
+<p>短视搜索 ≠ 最短路径</p>
+<p>网络模型要求：短路径的「存在性」 + 短路径的「可实现性」</p>
+<p>watts-Strogatz-Kleinberg模型：让两个节点之间存在随即边的概率与他们网格距离d的函数$\frac{1}{d^q}$成正比。</p>
+<p>q越小，随机边越远。q&#x3D;0时，退化为ws模型。</p>
+<p>q&#x3D;2时，分散搜索效果最好。</p>
+<h5 id="3-5-小世界模型的大数据验证"><a href="#3-5-小世界模型的大数据验证" class="headerlink" title="3.5 小世界模型的大数据验证"></a>3.5 小世界模型的大数据验证</h5><p>网络模型的优化性质：两个人成为朋友的概率与其空间距离的平方成反比</p>
+<p>对社会网络的建立而言，地理距离范围内对人数比距离本身更具有实质性意义。</p>
+<p>→ 排名与距离有对应关系：排名 ～ 距离的平方</p>
+<p>「实验 - 理论 - 完善 - 实验」对研究范式</p>
+<h6 id="3-6-核心-外围结构：一种社会网络观"><a href="#3-6-核心-外围结构：一种社会网络观" class="headerlink" title="3.6 核心-外围结构：一种社会网络观"></a>3.6 核心-外围结构：一种社会网络观</h6><p>核心-外围结构：社会较高的人，通常位于社会关系的核心位置。</p>
+<p>寻找地位较低的人，会更加困难。</p>
+<p>网络结果会因为节点上的人的社会属性不同而不同。</p>
+<p>社会属性是影响网络结构及其连通性的重要因素。</p>
+<hr>
+<h3 id="第四章-万维网结构，链接分析与网络搜索"><a href="#第四章-万维网结构，链接分析与网络搜索" class="headerlink" title="第四章 万维网结构，链接分析与网络搜索"></a>第四章 万维网结构，链接分析与网络搜索</h3><h5 id="4-1-有向图"><a href="#4-1-有向图" class="headerlink" title="4.1 有向图"></a>4.1 有向图</h5><p>具有方向性的关系（引用，粉丝，人之间的认识等）</p>
+<p>出度，入度，有向路径：有X到Y，不一定有Y到X，就算有，中间节点也可能完全不同</p>
+<p>有向图到强连通性：任意两节点之间在两个方向上都联通。</p>
+<p>强连通分量：强连通条件+它自己是最大的</p>
+<p>一个有向图中，不可能有一个节点属于两个不同的强连通分量。</p>
+<p>如果一个有向图没有有向圈，则一定有节点出度为0。</p>
+<h5 id="4-2-将互联网信息看成一个有向图"><a href="#4-2-将互联网信息看成一个有向图" class="headerlink" title="4.2 将互联网信息看成一个有向图"></a>4.2 将互联网信息看成一个有向图</h5><p>互联网信息结构概貌：「领结状」</p>
+<p>获得「领带」的SCC，IN，OUT：生成反向图 - 前向搜索FS - 后向搜索BS - SCC为二者的交集，IN为BS-SCC，OUT为FS-SCC。</p>
+<p>广度优先搜索是具体得到领结的手段</p>
+<h5 id="4-3-中枢与权威"><a href="#4-3-中枢与权威" class="headerlink" title="4.3 中枢与权威"></a>4.3 中枢与权威</h5><p>传统信息检索技术：基于词语的相关性</p>
+<p>搜索引擎：有效利用链接关系蕴含的信息</p>
+<p>反复改进原理：用推荐的评分反过来评估推荐者的分量，并反复迭代。</p>
+<p>网页的「中枢性」（指向多）与「权威性」（被指向多）。</p>
+<p>HITS算法：计算网页权威值（auth）和中枢值（hub）</p>
+<ul>
+<li>先都赋为1</li>
+<li>用中枢值更新权威值</li>
+<li>用权威值更新中枢值</li>
+<li>重复以上两步若干次。</li>
+<li>每一轮结束后进行归一化，其结果会趋于一个极限。</li>
+</ul>
+<h5 id="4-4-网页排名"><a href="#4-4-网页排名" class="headerlink" title="4.4 网页排名"></a>4.4 网页排名</h5><p>PageRank：节点重要性的一种测度</p>
+<ul>
+<li>每个节点将自己的值均分给出向邻居，自己拿入向邻居给的值</li>
+<li>多次迭代，值会收敛</li>
+<li>这个值可以用来量化重要性</li>
+</ul>
+<h5 id="4-5-同比缩减与等量补偿"><a href="#4-5-同比缩减与等量补偿" class="headerlink" title="4.5 同比缩减与等量补偿"></a>4.5 同比缩减与等量补偿</h5><p>当「只进不出」时，PageRank算法会趋向于集中（过于理想化）。</p>
+<ul>
+<li>同比缩减：每次迭代后，整体乘一个小于1的比例因子s</li>
+<li>统一补偿：每一节点的PageRank值上都加上（1-s）&#x2F;n。</li>
+</ul>
+<p>随机游走模型结果与其相似。</p>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>, <a class="article-tag-none-link" href="/tags/%E7%A4%BE%E4%BC%9A%E7%A7%91%E5%AD%A6/" rel="tag">社会科学</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2023/04/11/%E7%A4%BE%E4%BC%9A%E7%A7%91%E5%AD%A6%E4%B8%AD%E7%9A%84%E8%AE%A1%E7%AE%97%E6%80%9D%E7%BB%B4%E6%96%B9%E6%B3%95%E7%AC%94%E8%AE%B0Part_3/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          社会科学中的计算思维方法笔记Part_3
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/03/13/PCL%E5%9C%A8VS%E4%B8%8A%E7%9A%84%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          PCL在VS上的环境配置
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>Matplot点状图绘图初探 | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="完成鸢尾花数据集后，突然发现还要求一个直观的Matplot展示，不得已，尝试捡起丢掉已久的matplot和numpy。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Matplot点状图绘图初探">
+<meta property="og:url" content="http://example.com/2022/02/28/Matplot%E7%82%B9%E7%8A%B6%E5%9B%BE%E7%BB%98%E5%9B%BE%E5%88%9D%E6%8E%A2/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="完成鸢尾花数据集后，突然发现还要求一个直观的Matplot展示，不得已，尝试捡起丢掉已久的matplot和numpy。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/mk-2022-03-01-10-23-58.png">
+<meta property="article:published_time" content="2022-02-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.469Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/mk-2022-03-01-10-23-58.png"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-Matplot点状图绘图初探" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      Matplot点状图绘图初探
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2022-02-27T16:00:00.000Z" itemprop="datePublished">二月 28, 2022</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%9B%AE%E6%A0%87%E4%B8%8E%E6%9E%B6%E6%9E%84%E6%80%9D%E8%B7%AF"><span class="toc-text">代码目标与架构思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87"><span class="toc-text">目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%89%E5%8F%8A%E5%87%BD%E6%95%B0%E5%8F%8A%E5%8F%82%E6%95%B0%E7%AE%80%E4%BB%8B"><span class="toc-text">涉及函数及参数简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#axis%E5%8F%82%E6%95%B0"><span class="toc-text">axis参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#meshgrid"><span class="toc-text">meshgrid</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linspace"><span class="toc-text">linspace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flat"><span class="toc-text">flat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stack"><span class="toc-text">stack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ListedColormap"><span class="toc-text">ListedColormap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xlim%EF%BC%88ylim%EF%BC%89"><span class="toc-text">xlim（ylim）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pcolormesh"><span class="toc-text">pcolormesh</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reshape"><span class="toc-text">reshape</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scatter"><span class="toc-text">scatter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%90%E6%A0%87%E8%BD%B4%E7%9A%84%E6%A0%87%E7%AD%BE%E5%87%BD%E6%95%B0"><span class="toc-text">坐标轴的标签函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text">代码</span></a></li></ol>
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <p>完成<a target="_blank" rel="noopener" href="https://dvjiang.github.io/2022/02/26/Sklearn%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%9D%E6%8E%A2%E4%B8%8EKNN%E7%AE%97%E6%B3%95/">鸢尾花数据集</a>后，突然发现还要求一个直观的Matplot展示，不得已，尝试捡起丢掉已久的matplot和numpy。</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="代码目标与架构思路"><a href="#代码目标与架构思路" class="headerlink" title="代码目标与架构思路"></a>代码目标与架构思路</h2><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>将模型训练的结果直观化，形成一张彩色的图谱，图谱上有训练点和背景分区，当点的颜色和背景颜色不一致时，认为模型判断失误，否则模型预测成功。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>利用numpy生成一张500 * 500的数据矩阵作为背景，将其中的点全部通过模型预测（ <em>需要重新训练只接受两个点的模型，因为一张二维图只有两个参数</em> ），并将显示结果通过不同颜色加以区分，形成色块，以此形成带颜色的背景。</p>
+<p>再将真实值（ <em>训练数据</em> ）绘制成点标于其上即可。</p>
+<hr>
+<h2 id="涉及函数及参数简介"><a href="#涉及函数及参数简介" class="headerlink" title="涉及函数及参数简介"></a>涉及函数及参数简介</h2><h3 id="axis参数"><a href="#axis参数" class="headerlink" title="axis参数"></a>axis参数</h3><p>用于指定对矩阵的堆砌和拆分遵循行还是列，有0和1两种指标。</p>
+<h3 id="meshgrid"><a href="#meshgrid" class="headerlink" title="meshgrid"></a>meshgrid</h3><p>用于形成网格，分别输入需要形成网格的横纵坐标集合，输出网格的两个坐标的矩阵形式。</p>
+<p>上属：numpy</p>
+<h3 id="linspace"><a href="#linspace" class="headerlink" title="linspace"></a>linspace</h3><p>用于形成等差数组，输入依次为这个要形成的数组的最小值，最大值，数组元素个数，输出为数组。</p>
+<p>上属：numpy</p>
+<h3 id="flat"><a href="#flat" class="headerlink" title="flat"></a>flat</h3><p>用于将一个矩阵“扁平化”成一个数组，扁平化顺序一定。</p>
+<p>上属：相应矩阵</p>
+<h3 id="stack"><a href="#stack" class="headerlink" title="stack"></a>stack</h3><p>用于将两个大小相同的矩阵&#x2F;或数组堆叠起来（axis参数为1时相当于取两个矩阵&#x2F;数组位置相同的元素组合为一个坐标作为它新矩阵的元素）。输入为两个待处理矩阵和axis参数，输出为堆叠的矩阵。</p>
+<p>上属：numpy</p>
+<h3 id="ListedColormap"><a href="#ListedColormap" class="headerlink" title="ListedColormap"></a>ListedColormap</h3><p>用于形成后面上色的规则 cm（ <em>Colormap</em> ），格式为输入[‘XX’,’XX’,’XX’]，式中的XX表示颜色缩写或者具体编号，一般用RGB格式，其顺序就是上色顺序，因此数量和要上色的元素数量有关。输出为cm。</p>
+<p>上属：matplotlib.colors</p>
+<h3 id="xlim（ylim）"><a href="#xlim（ylim）" class="headerlink" title="xlim（ylim）"></a>xlim（ylim）</h3><p>设定显示的坐标轴范围，输入为（min，max），无输出。</p>
+<p>上属：matplotlib.pyplot</p>
+<h3 id="pcolormesh"><a href="#pcolormesh" class="headerlink" title="pcolormesh"></a>pcolormesh</h3><p>用于绘制分类背景，使得背景出现颜色。输入依次为需要构造的横纵坐标x1，x2，判定颜色的依据label，判定颜色的规则cmap &#x3D; cm，无输出。</p>
+<p>上属：matplotlib.pyplot</p>
+<h3 id="reshape"><a href="#reshape" class="headerlink" title="reshape"></a>reshape</h3><p>用于调整相应矩阵大小，输入为需要调整成的结果，同样是一个矩阵，由于是直接的下属函数，无输出。</p>
+<p>上属：相应矩阵</p>
+<h3 id="scatter"><a href="#scatter" class="headerlink" title="scatter"></a>scatter</h3><p>用于绘制一连串有颜色的点作为标记点。输入依次为一串点的横纵坐标x1，x2，判定点的颜色的依据 c &#x3D; label，判定点颜色的规则 cmap &#x3D; cm，点的形状 maker， 点边缘颜色 edgecolors，无输出。</p>
+<p>上属：matplotlib.pyplot</p>
+<h3 id="坐标轴的标签函数"><a href="#坐标轴的标签函数" class="headerlink" title="坐标轴的标签函数"></a>坐标轴的标签函数</h3><p>xlabel&#x2F;ylabel：设定xy轴名称。输入相应字符串，无输出。</p>
+<p>title：设定图像名称。输入相应字符串，无输出。</p>
+<p>上属皆为：matplotlib.pyplot</p>
+<hr>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>贴上代码，里面已经有注释了，思路简单，故不再赘述。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#绘图部分：</span></span><br><span class="line">    <span class="comment">#切割数据，只要前两个特征</span></span><br><span class="line">    x_train = x_train[:,<span class="number">0</span>:<span class="number">2</span>]</span><br><span class="line">    <span class="comment">#重新训练模型</span></span><br><span class="line">    my_model_2 = neighbors.KNeighborsClassifier(<span class="number">5</span>)</span><br><span class="line">    my_model_2.fit(x_train,lab_train)</span><br><span class="line">    <span class="comment">#绘图点数量：</span></span><br><span class="line">    m,n = <span class="number">500</span>, <span class="number">500</span></span><br><span class="line">    <span class="comment">#print(x_train)</span></span><br><span class="line">    x1_min,x2_min = x_train.<span class="built_in">min</span>(axis = <span class="number">0</span>)</span><br><span class="line">    x1_max,x2_max = x_train.<span class="built_in">max</span>(axis = <span class="number">0</span>)</span><br><span class="line">    <span class="comment">#绘制网格</span></span><br><span class="line">    x1, x2 = np.meshgrid(np.linspace(x1_min, x1_max, m), np.linspace(x2_min, x2_max, n))</span><br><span class="line">    <span class="comment">#将数据点堆叠起来形成数据集合</span></span><br><span class="line">    x_plot = np.stack((x1.flat,x2.flat),axis = <span class="number">1</span>)</span><br><span class="line">    <span class="comment">#print(x_plot)</span></span><br><span class="line">    <span class="comment">#利用模型预测</span></span><br><span class="line">    lab_predict = my_model_2.predict(x_plot)</span><br><span class="line">    <span class="comment">#设定颜色</span></span><br><span class="line">    cm_color= ListedColormap([<span class="string">&#x27;r&#x27;</span>,<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;b&#x27;</span>])</span><br><span class="line">    <span class="comment">#设定范围</span></span><br><span class="line">    plt.xlim(x1_min,x1_max)</span><br><span class="line">    plt.ylim(x2_min,x2_max)</span><br><span class="line">    <span class="comment">#绘制分类背景</span></span><br><span class="line">    plt.pcolormesh(x1, x2, lab_predict.reshape(x1.shape), cmap=cm_color)</span><br><span class="line">    <span class="comment">#绘制点</span></span><br><span class="line">    plt.scatter(x_train[:,<span class="number">0</span>],x_train[:,<span class="number">1</span>],c=lab_train, cmap = cm_color, marker= <span class="string">&#x27;o&#x27;</span>,edgecolors=<span class="string">&#x27;k&#x27;</span>)</span><br><span class="line">    <span class="comment">#坐标信息</span></span><br><span class="line">    plt.xlabel(<span class="string">&quot;Sepal.Length&quot;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&quot;Sepal.Width&quot;</span>)</span><br><span class="line">    plt.title(<span class="string">&quot;KNN for Iris&quot;</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>加上完整的前后文后效果如下：</p>
+<p><img src="/images/mk-2022-03-01-10-23-58.png" alt="KNN for Iris"></p>
+<p>可以看到，效果还是很不错的，颜色不相同的地方就是模型判断失误的地方。</p>
+<p>最后贴上完整代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> neighbors</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> metrics</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> matplotlib.colors <span class="keyword">import</span> ListedColormap</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 用于处理及观察数据集结构</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_data</span>():</span></span><br><span class="line">    data = load_iris()</span><br><span class="line"></span><br><span class="line">    <span class="comment">#数据结构</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;数据结构：&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;关键字:&quot;</span>,data.keys())</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;target:&quot;</span>,data.target)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;frame:&quot;</span> ,data.frame)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;target_names:&quot;</span> ,data.target_names)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;DESCR:&quot;</span> ,data.DESCR)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;feature_names:&quot;</span> ,data.feature_names)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;filename:&quot;</span> ,data.filename)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;data_module:&quot;</span> ,data.data_module)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#数据拆分，按7：3划分</span></span><br><span class="line">    x_tain,x_test,lab_train,lab_test = train_test_split(data.data,data.target,test_size = <span class="number">0.3</span>)</span><br><span class="line">    <span class="keyword">return</span> x_tain,x_test,lab_train,lab_test</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#主函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    x_train,x_test,lab_train,lab_test = load_data()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;------------ training and testing&quot;</span>)</span><br><span class="line">    <span class="comment">#建立KNN模型</span></span><br><span class="line">    my_model = neighbors.KNeighborsClassifier(<span class="number">5</span>)</span><br><span class="line">    <span class="comment">#训练模型</span></span><br><span class="line">    my_model.fit(x_train,lab_train)</span><br><span class="line">    <span class="comment">#对结果进行预测</span></span><br><span class="line">    lab_pre = my_model.predict(x_test)</span><br><span class="line">    <span class="comment">#将预测结果和实际结果相比较打分</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;score:&quot;</span>,metrics.accuracy_score(lab_test,lab_pre))</span><br><span class="line">    <span class="comment">#尝试另一种函数：</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;score:&quot;</span>,my_model.score(x_test,lab_test))</span><br><span class="line"></span><br><span class="line">    <span class="comment">#绘图部分：</span></span><br><span class="line">    <span class="comment">#切割数据，只要前两个特征</span></span><br><span class="line">    x_train = x_train[:,<span class="number">0</span>:<span class="number">2</span>]</span><br><span class="line">    <span class="comment">#重新训练模型</span></span><br><span class="line">    my_model_2 = neighbors.KNeighborsClassifier(<span class="number">5</span>)</span><br><span class="line">    my_model_2.fit(x_train,lab_train)</span><br><span class="line">    <span class="comment">#绘图点数量：</span></span><br><span class="line">    m,n = <span class="number">500</span>, <span class="number">500</span></span><br><span class="line">    <span class="comment">#print(x_train)</span></span><br><span class="line">    x1_min,x2_min = x_train.<span class="built_in">min</span>(axis = <span class="number">0</span>)</span><br><span class="line">    x1_max,x2_max = x_train.<span class="built_in">max</span>(axis = <span class="number">0</span>)</span><br><span class="line">    <span class="comment">#绘制网格</span></span><br><span class="line">    x1, x2 = np.meshgrid(np.linspace(x1_min, x1_max, m), np.linspace(x2_min, x2_max, n))</span><br><span class="line">    <span class="comment">#将数据点堆叠起来形成数据集合</span></span><br><span class="line">    x_plot = np.stack((x1.flat,x2.flat),axis = <span class="number">1</span>)</span><br><span class="line">    <span class="comment">#print(x_plot)</span></span><br><span class="line">    <span class="comment">#利用模型预测</span></span><br><span class="line">    lab_predict = my_model_2.predict(x_plot)</span><br><span class="line">    <span class="comment">#设定颜色</span></span><br><span class="line">    cm_color= ListedColormap([<span class="string">&#x27;r&#x27;</span>,<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;b&#x27;</span>])</span><br><span class="line">    <span class="comment">#设定范围</span></span><br><span class="line">    plt.xlim(x1_min,x1_max)</span><br><span class="line">    plt.ylim(x2_min,x2_max)</span><br><span class="line">    <span class="comment">#绘制分类背景</span></span><br><span class="line">    plt.pcolormesh(x1, x2, lab_predict.reshape(x1.shape), cmap=cm_color)</span><br><span class="line">    <span class="comment">#绘制点</span></span><br><span class="line">    plt.scatter(x_train[:,<span class="number">0</span>],x_train[:,<span class="number">1</span>],c=lab_train, cmap = cm_color, marker= <span class="string">&#x27;o&#x27;</span>,edgecolors=<span class="string">&#x27;k&#x27;</span>)</span><br><span class="line">    <span class="comment">#坐标信息</span></span><br><span class="line">    plt.xlabel(<span class="string">&quot;Sepal.Length&quot;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&quot;Sepal.Width&quot;</span>)</span><br><span class="line">    plt.title(<span class="string">&quot;KNN for Iris&quot;</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<p>锵锵锵~完成</p>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/Python/" rel="tag">Python</a>, <a class="article-tag-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2022/03/01/Github%E8%BF%9E%E6%8E%A5%E8%B6%85%E6%97%B6%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Github连接超时处理方式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/02/28/OpenGL%E4%B8%8EPVR%E7%BB%93%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          OpenGL与PVR结构
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

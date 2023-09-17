@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>一块板子的诞生 | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="抛开一块板子的实际细节的设定不谈，本文只打算记录一下一块板子是如何诞生的，即如何制作一块像模像样的板子。 本文以Cadence，即OrCAD作为软件基础，AD之流只能自寻它路罢。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一块板子的诞生">
+<meta property="og:url" content="http://example.com/2022/06/30/%E4%B8%80%E5%9D%97%E6%9D%BF%E5%AD%90%E7%9A%84%E8%AF%9E%E7%94%9F/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="抛开一块板子的实际细节的设定不谈，本文只打算记录一下一块板子是如何诞生的，即如何制作一块像模像样的板子。 本文以Cadence，即OrCAD作为软件基础，AD之流只能自寻它路罢。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.478Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="PCB">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-一块板子的诞生" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      一块板子的诞生
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2022-06-29T16:00:00.000Z" itemprop="datePublished">六月 30, 2022</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E4%BD%93%E6%AD%A5%E9%AA%A4"><span class="toc-text">大体步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Footprint%E7%9A%84%E7%BB%98%E5%88%B6"><span class="toc-text">Footprint的绘制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E8%A1%A8%E7%9A%84%E5%AF%BC%E5%87%BA"><span class="toc-text">网表的导出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PCB%E7%9A%84%E7%BB%98%E5%88%B6"><span class="toc-text">PCB的绘制</span></a></li></ol>
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <blockquote>
+<p>抛开一块板子的实际细节的设定不谈，本文只打算记录一下一块板子是如何诞生的，即如何制作一块像模像样的板子。</p>
+<p>本文以<code>Cadence</code>，即<code>OrCAD</code>作为软件基础，<code>AD</code>之流只能自寻它路罢。</p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="大体步骤"><a href="#大体步骤" class="headerlink" title="大体步骤"></a>大体步骤</h3><p>首先，我们需要一个合格的电路图，他能够通过仿真，而且上面的器件都确定好型号和连接。这样的文件被保存为类型<code>.obj</code>和<code>.dsn</code> 。</p>
+<p>其次，在构建板子的3D模型时，很明显我们是需要知道各种要安装的零件的引脚大小的，也就是焊盘的样子，一般被称为：<code>footprint</code>。而这种存放焊盘和引脚的文件，便是<code>.dra</code>文件，<code>.psm</code>文件和<code>.pad</code>文件，我们可以通过<code>PCB Editor</code>软件绘制它们。</p>
+<p>绘制好后，通过电路图导出网表文件，然后通过<code>PCB Editor</code>绘制板子，然后放置器件，布线铺铜，最后导出<code>.Gerber</code>文件和钻孔文件<code>.drl</code> ，这就是要交给厂家生产的文件。</p>
+<h3 id="Footprint的绘制"><a href="#Footprint的绘制" class="headerlink" title="Footprint的绘制"></a>Footprint的绘制</h3><p>首先在网上查找有没有相关的<code>.dra</code>文件，如果有就不必自己画了。</p>
+<p>然后打开<code>PCB Editor</code>，新建一个<code>Package symbol</code>类型的文件，然后点开菜单的<code>Setup</code>中的<code>Grids</code>选择显示网格。接着，找到<code>Layout</code>下<code>Pins</code>的放置，然后根据网格和图纸摆放焊盘，然后<code>Add</code> - <code>Line</code>，摆放<code>Assembly Top</code>，绕着焊脚摆放一定宽度的<code>Silkscreen Top</code>，以及最外围的<code>Place_Bound_Top</code>，最后，使用<code>Layout</code>下<code>Labels</code>，在<code>Assembly Top</code>和<code>Silkscreen Top</code>层分别设置标签REF即可。</p>
+<blockquote>
+<p>注意，模型要贴近图纸原点，不然后面放元件的时候就会出现放不下的尴尬情况。</p>
+</blockquote>
+<p>当然，根据需要，具体设计也可以改变的。</p>
+<h3 id="网表的导出"><a href="#网表的导出" class="headerlink" title="网表的导出"></a>网表的导出</h3><p>在<code>Capture CIS</code>中打开电路的设置文件，找到所有器件的<code>PCB footprint</code>一项，按照要求对应着填入<code>.dra</code>文件名字。</p>
+<p>然后选择<code>Tool</code> - <code> Create Netlist</code>，若导出成功，程序会在当前文件夹建立一个新的<code>allegro</code>文件夹，里面就放着各种奇奇怪怪的网格文件。</p>
+<h3 id="PCB的绘制"><a href="#PCB的绘制" class="headerlink" title="PCB的绘制"></a>PCB的绘制</h3><p>首先是板子本体，打开<code>PCB Editor</code>，选择<code>Board</code>类型，同样通过<code>Grid</code>调整网格属性，然后<code>Add</code> - <code>line</code>选择<code>Board Geometry</code>，勾画出板子的外框，并在<code>Manufacture</code> - <code>Drafting</code> - <code>Fillet</code>设置圆角。</p>
+<p>之后<code>Import</code> - <code>Netlist</code>，导入网表文件，并通过<code>Place</code>挨个摆放器件，最后<code>Route</code> - <code>Connect</code>进行连线。</p>
+<blockquote>
+<p>据说是有自动布线的，不过我没试过</p>
+</blockquote>
+<p>连线后进行铺铜，选择<code>Shape</code> - <code>Polygon</code>，系统自动绕开连线和设备进行铺铜。</p>
+<p>铺完铜后，加上丝印（相当于各种标记），就可以封装和导出了。</p>
+<p>导出的时候，选择<code>Export</code>下的<code>NC Drill</code>和<code>Gerber</code>即可分别导出钻孔文件和板子文件。</p>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/PCB/" rel="tag">PCB</a>, <a class="article-tag-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2022/07/01/%E5%88%A9%E7%94%A8%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E8%BF%9B%E8%A1%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84%E7%9A%84%E5%B0%9D%E8%AF%95/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          利用强化学习进行量化投资的尝试
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/26/%E4%BD%BF%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E7%8E%B0%E5%A4%9A%E9%9F%B3%E9%A2%91%E8%AF%86%E5%88%AB%E7%9A%84%E4%B8%80%E7%A7%8D%E8%AE%BE%E6%83%B3/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          使用机器学习实现多音频识别的一种设想
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>Hexo主题更换与魔改·壹·标签分类页 | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="Hexo主题系列之一：关于如何从零在主题里修建一个标签和分类页面。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo主题更换与魔改·壹·标签分类页">
+<meta property="og:url" content="http://example.com/2023/01/30/Hexo%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E4%B8%8E%E9%AD%94%E6%94%B9%C2%B7%E5%A3%B9%C2%B7%E6%A0%87%E7%AD%BE%E5%88%86%E7%B1%BB%E9%A1%B5/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="Hexo主题系列之一：关于如何从零在主题里修建一个标签和分类页面。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-01-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.467Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="HTML">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-Hexo主题更换与魔改·壹·标签分类页" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      Hexo主题更换与魔改·壹·标签分类页
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2023-01-29T16:00:00.000Z" itemprop="datePublished">一月 30, 2023</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <p><code>Hexo</code>主题系列之一：关于如何从零在主题里修建一个标签和分类页面。</p>
+<span id="more"></span>
+
+<p>首先根据前文所述，在<code>source</code>里新建一个<code>tags</code>的文件夹，并在里面放一个名为<code>index</code>的<code>markdown</code>文件。</p>
+<p>这个<code>index</code>的<code>Layout</code>指向为它被渲染的<code>ejs</code>文件，由于在博客里我把分类和标签放在了同一个页面「T&amp;C」，所以我只用新增一个文件夹，并将其指向名为<code>tags.ejs</code>的文件。</p>
+<p>同时不要忘记了，在主题的<code>menu</code>中新增相关的页面导航，并将地址定义为<code>/tags</code>，这个地址对应的就是<code>source</code>下面的名字。</p>
+<p>至于<code>tags</code>和<code>categories</code>如何根据特定标签和分类属性生成相关文档归档，我们可以通过辅助函数<code>list_categories</code>和<code>list_tags</code>生成所有的<code>tags</code>和<code>categories</code>的列表，而这些列出的值都是可以点击的，可以指向归档<code>archive</code>页面。</p>
+<p>具体的T&amp;C的<code>ejs</code>文件如下所示：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">&lt;% if (((site.tags &amp;&amp; site.tags.length) || (site.categories &amp;&amp; site.categories.length)))&#123; %&gt;</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;TandCALL&quot;</span>&gt;</span></span><br><span class="line">    &lt;% if (site.categories &amp;&amp; site.categories.length)&#123; %&gt;</span><br><span class="line">      <span class="tag">&lt;<span class="name">b</span>&gt;</span>分类:<span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line">      &lt;%- list_categories(site.categories, &#123;</span><br><span class="line">        show_count: true,</span><br><span class="line">        class: &#x27;TandC&#x27;,</span><br><span class="line">        style: &#x27;none&#x27;</span><br><span class="line">      &#125;) %&gt;</span><br><span class="line">    &lt;% &#125; %&gt;</span><br><span class="line">    &lt;% if ((site.tags &amp;&amp; site.tags.length) &amp;&amp; (site.categories &amp;&amp; site.categories.length))&#123; %&gt;</span><br><span class="line">      <span class="tag">&lt;<span class="name">br</span>/&gt;</span><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">    &lt;% &#125; %&gt;</span><br><span class="line">    &lt;% if (site.tags &amp;&amp; site.tags.length)&#123; %&gt;</span><br><span class="line">      <span class="tag">&lt;<span class="name">b</span>&gt;</span>标签:<span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line">      &lt;%- list_tags(site.tags, &#123;</span><br><span class="line">        show_count: true,</span><br><span class="line">        class: &#x27;TandC&#x27;,</span><br><span class="line">        style: &#x27;none&#x27;</span><br><span class="line">      &#125;) %&gt;</span><br><span class="line">    &lt;% &#125; %&gt;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line">  &lt;% if (index &amp;&amp; theme.intensedebate.enable &amp;&amp; theme.intensedebate.acct)&#123; %&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span>=<span class="string">&quot;article-footer&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&lt;%- url_for(post.path) %&gt;#idc-container&quot;</span>&gt;</span>Comments<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;% if (page.total &gt; 1)&#123; %&gt;</span><br><span class="line">  <span class="tag">&lt;<span class="name">nav</span> <span class="attr">id</span>=<span class="string">&quot;page-nav&quot;</span> <span class="attr">class</span>=<span class="string">&quot;page-nav&quot;</span>&gt;</span></span><br><span class="line">    &lt;% var prev_text = &quot;« &quot; + __(&#x27;prev&#x27;);var next_text = __(&#x27;next&#x27;) + &quot; »&quot;%&gt;</span><br><span class="line">    &lt;%- paginator(&#123;</span><br><span class="line">      prev_text: prev_text,</span><br><span class="line">      next_text: next_text</span><br><span class="line">    &#125;) %&gt;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">&lt;% &#125; %&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/HTML/" rel="tag">HTML</a>, <a class="article-tag-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2023/02/01/Hexo%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E4%B8%8E%E9%AD%94%E6%94%B9%C2%B7%E8%B4%B0%C2%B7%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2%E9%A1%B5%E9%9D%A2/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hexo主题更换与魔改·贰·站内搜索页面
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/01/28/Hexo%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E4%B8%8E%E9%AD%94%E6%94%B9%C2%B7%E9%9B%B6%C2%B7%E5%B8%83%E5%B1%80%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Hexo主题更换与魔改·零·布局记录
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

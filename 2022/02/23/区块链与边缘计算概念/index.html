@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>区块链与边缘计算概念 | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="最近的一次pre的总结，关于区块链和边缘计算的基础概念。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="区块链与边缘计算概念">
+<meta property="og:url" content="http://example.com/2022/02/23/%E5%8C%BA%E5%9D%97%E9%93%BE%E4%B8%8E%E8%BE%B9%E7%BC%98%E8%AE%A1%E7%AE%97%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="最近的一次pre的总结，关于区块链和边缘计算的基础概念。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-22T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.480Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="概念">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-区块链与边缘计算概念" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      区块链与边缘计算概念
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2022-02-22T16:00:00.000Z" itemprop="datePublished">二月 23, 2022</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%8C%BA%E5%9D%97%E9%93%BE"><span class="toc-text">什么是区块链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%88%9D%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-text">最初的例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%93%E6%9D%91%E5%BA%84%E5%A4%A7%E4%B8%80%E7%82%B9%E7%9A%84%E6%97%B6%E5%80%99"><span class="toc-text">当村庄大一点的时候</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%90%E6%88%BF%E5%85%88%E7%94%9F%E7%9A%84%E6%94%B6%E5%85%A5"><span class="toc-text">帐房先生的收入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E5%BA%94%E4%BA%8E%E7%8E%B0%E5%AE%9E"><span class="toc-text">对应于现实</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%96%E7%9F%BF%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">挖矿的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AC%E6%9C%89%E9%93%BE%E4%B8%8E%E7%A7%81%E6%9C%89%E9%93%BE"><span class="toc-text">公有链与私有链</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%B9%E7%BC%98%E8%AE%A1%E7%AE%97"><span class="toc-text">边缘计算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E4%BA%91%E8%AE%A1%E7%AE%97%E8%AF%B4%E8%B5%B7"><span class="toc-text">从云计算说起</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%B9%E7%BC%98%E8%AE%A1%E7%AE%97-1"><span class="toc-text">边缘计算</span></a></li></ol></li></ol>
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <p>最近的一次pre的总结，关于区块链和边缘计算的基础概念。</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="什么是区块链"><a href="#什么是区块链" class="headerlink" title="什么是区块链"></a>什么是区块链</h2><h3 id="最初的例子"><a href="#最初的例子" class="headerlink" title="最初的例子"></a>最初的例子</h3><p>我们可以想象这样一个封闭村庄，在村子里没有真实货币的流通，取而代之的是大家都有一个记账本，用于记录各自拥有的财富。</p>
+<p>也就是说，其他人认为一个人有多少钱，这个人就有多少钱。</p>
+<p>交易时，交易的两人只要向其他人声明财富的变化，其他人就会在自己的账本上记录两人新的财富。</p>
+<blockquote>
+<p>比如，张三和李四原来各有5元，然后张三付给李四2元，于是他们向全村广播：“张三现在3元，李四现在7元”，于是村民们纷纷掏出小本本记下新的财富分配情况，之后所有人便认为张三有3元，李四有7元，此即交易完成。</p>
+<p>之后即使张三想要付出5元，也不会被认可，因为大家已经知道他没钱了。</p>
+</blockquote>
+<h3 id="当村庄大一点的时候"><a href="#当村庄大一点的时候" class="headerlink" title="当村庄大一点的时候"></a>当村庄大一点的时候</h3><p>这时候人们发现让每个人都参与记账是很麻烦的，不如让一个人来记账吧，于是账房先生就诞生了。</p>
+<p>村民们用一定方式选出了一个账房先生，让他在早上的时候记下每个人当前的钱数，然后记录每笔交易的情况，在这天结束的时候公示出记录的大家的账单结果。</p>
+<blockquote>
+<p>对于家太远的村民，他也可以不看帐房先生的公示结果，而是去看邻居家的抄送，这便形成了网络结构。</p>
+</blockquote>
+<p>如果没有人有异议（也就是说公示的账单正确），那么这天的结果就被确认了。</p>
+<h3 id="帐房先生的收入"><a href="#帐房先生的收入" class="headerlink" title="帐房先生的收入"></a>帐房先生的收入</h3><p>作为账房先生，他的收入主要来自于大家交易时给他付的佣金。这个规则被大家认可，但很快村民们发现账房先生的收入实在太高了。</p>
+<p>动动笔就可以获得高额收入，这工作谁不想做？</p>
+<p>于是，大家决定轮流来当账房先生，而账房先生职位的选举一般由当前最会记账的人负责。</p>
+<h3 id="对应于现实"><a href="#对应于现实" class="headerlink" title="对应于现实"></a>对应于现实</h3><p>网络中，无数交易在世界各地发起，每一个节点便相当于一个村民。利用这样的记账方式，账单难以被篡改，每个节点都得到了保护。</p>
+<p>其中，每一任帐房先生记录的账单集合会被打包，这就是<strong>区块</strong>的概念。</p>
+<p>许多区块被放在一起，为了确保过往区块的顺序（ <em>识别真正的区块</em> ）每个区块首尾都有通过随机数和账单加密的编号，只有编号前后对应上，这个区块才会被认可。</p>
+<h3 id="挖矿的概念"><a href="#挖矿的概念" class="headerlink" title="挖矿的概念"></a>挖矿的概念</h3><p>正如前文所说，在真实世界里，当上帐房先生可以获得高额的利润，因此很多人通过竞争帐房先生的方式来获得利润，也就是所谓“挖矿”。</p>
+<blockquote>
+<p>挖矿通常需要强大性能的计算机，正是因为竞争记账权力的方式一般是比较计算出下一个区块的速度，这需要很强的算力支持。</p>
+</blockquote>
+<h3 id="公有链与私有链"><a href="#公有链与私有链" class="headerlink" title="公有链与私有链"></a>公有链与私有链</h3><p>公有链是所有人都可以参与的区块链，著名的比特币便是其中代表。只要有一台设备，便可以拥有交易和竞争记账的权力。</p>
+<p>私有链是每个节点接入时需要一定资格的，就像一个村子的交易需要是村民才能参与一样，只有被允许的节点才能参与。</p>
+<hr>
+<h2 id="边缘计算"><a href="#边缘计算" class="headerlink" title="边缘计算"></a>边缘计算</h2><h3 id="从云计算说起"><a href="#从云计算说起" class="headerlink" title="从云计算说起"></a>从云计算说起</h3><p>云计算是终端（手机等设备）将需要处理的数据发送到远程的云端，通过远程的服务器计算后将结果返回终端显示。</p>
+<p>这种计算方式要求云端的服务器有很好的性能，而且对服务器有很高的负荷，很多不需要服务器处理的部分也被发送上来了。</p>
+<blockquote>
+<p>用军队举例子，云计算就是一个军队的小兵的站岗报告也要全部交给司令部处理，等司令部批准处理后才能执行，这显然是不够有效率的。</p>
+</blockquote>
+<h3 id="边缘计算-1"><a href="#边缘计算-1" class="headerlink" title="边缘计算"></a>边缘计算</h3><p>同样用军队举例，明显小兵的日常报告最好交给班长来处理，这样可以最大程度地减轻中央服务器的负担，提高运行速度。</p>
+<p>所以，边缘计算就是让一部分计算任务交给边缘服务器来解决，以加快整体运算速度和用户体验。</p>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>, <a class="article-tag-none-link" href="/tags/%E6%A6%82%E5%BF%B5/" rel="tag">概念</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2022/02/24/Git%E4%B8%8EGithub%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Git与GitHub简介
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/02/12/%E9%AB%98%E4%B8%AD%E5%9B%9E%E5%BF%86%C2%B7%E5%BF%83%E6%80%81/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          高中回忆·心态
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

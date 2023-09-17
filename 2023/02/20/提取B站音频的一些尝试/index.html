@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>提取B站音频的一些尝试 | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="在尝试构建自己的音乐库的时候，我不幸地发现现行的主流流媒体音乐库几乎都有一些音乐我找不到。于是在选择了Apple Music作为音乐库之后，我迫切地希望能够导入一些本地音乐。 鉴于B站有着很全的音乐资料，只是下载需要一些手段，我又对音乐品质没有太高的要求，研究从B站获取音频资料便成了优先选择。  相关配置：Win11，Python，VScode  相关代码会发布到我的GitHub上（大概？）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="提取B站音频的一些尝试">
+<meta property="og:url" content="http://example.com/2023/02/20/%E6%8F%90%E5%8F%96B%E7%AB%99%E9%9F%B3%E9%A2%91%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%9D%E8%AF%95/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="在尝试构建自己的音乐库的时候，我不幸地发现现行的主流流媒体音乐库几乎都有一些音乐我找不到。于是在选择了Apple Music作为音乐库之后，我迫切地希望能够导入一些本地音乐。 鉴于B站有着很全的音乐资料，只是下载需要一些手段，我又对音乐品质没有太高的要求，研究从B站获取音频资料便成了优先选择。  相关配置：Win11，Python，VScode  相关代码会发布到我的GitHub上（大概？）">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.484Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-提取B站音频的一些尝试" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      提取B站音频的一些尝试
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2023-02-19T16:00:00.000Z" itemprop="datePublished">二月 20, 2023</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E5%8F%96B%E7%AB%99%E7%9A%84%E9%9F%B3%E9%A2%91%E5%92%8C%E8%A7%86%E9%A2%91"><span class="toc-text">提取B站的音频和视频</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E5%8F%96B%E7%AB%99%E5%B0%81%E9%9D%A2%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80%E5%B9%B6%E8%BF%9B%E8%A1%8C%E4%BF%9D%E5%AD%98"><span class="toc-text">提取B站封面图片地址并进行保存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E9%9F%B3%E9%A2%91%E4%BF%A1%E6%81%AF"><span class="toc-text">设置音频信息</span></a></li></ol>
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <p>在尝试构建自己的音乐库的时候，我不幸地发现现行的主流流媒体音乐库几乎都有一些音乐我找不到。于是在选择了Apple Music作为音乐库之后，我迫切地希望能够导入一些本地音乐。</p>
+<p>鉴于B站有着很全的音乐资料，只是下载需要一些手段，我又对音乐品质没有太高的要求，研究从B站获取音频资料便成了优先选择。</p>
+<ul>
+<li>相关配置：Win11，Python，VScode</li>
+</ul>
+<p>相关代码会发布到我的GitHub上（大概？）</p>
+<span id="more"></span>
+
+<hr>
+<h3 id="提取B站的音频和视频"><a href="#提取B站的音频和视频" class="headerlink" title="提取B站的音频和视频"></a>提取B站的音频和视频</h3><p>利用request的get获取B站该视频的信息，url为这个视频的网址，截取到BV好就行了。然后把它们保存下来留待下一步处理。</p>
+<p>注意，request似乎不是pip自带的库，记得利用pip进行下载：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install request</span><br></pre></td></tr></table></figure>
+
+<p>这一部分我是随便找了一个网上的代码，由于B站上面标题和名字的关联有些微妙——有些是对的，有时候标题不是歌名，所以在细节方面进行了一些改动。</p>
+<p>另外，为了能够加入到iTunes，我得将音频格式改为M4A（很奇怪，MP3总是无法导入）。</p>
+<p>这方面的代码如下：（顺便写入了所有的头文件）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pprint</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> mutagen.mp4 <span class="keyword">import</span> MP4, MP4Cover, MP4Tags</span><br><span class="line"></span><br><span class="line">session = requests.session()</span><br><span class="line">headers = &#123;<span class="string">&#x27;user-agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.37&#x27;</span>,</span><br><span class="line">           <span class="string">&quot;Referer&quot;</span>: <span class="string">&quot;https://www.bilibili.com&quot;</span>,</span><br><span class="line">         &#125;</span><br><span class="line">resp = session.get(url,headers=headers)</span><br><span class="line"><span class="comment">#print(resp.text)</span></span><br><span class="line"><span class="keyword">if</span> (title == <span class="string">&quot;&quot;</span>):</span><br><span class="line">  title = re.findall(<span class="string">r&#x27;&lt;title data-vue-meta=&quot;true&quot;&gt;(.*?)_哔哩哔哩_bilibili&#x27;</span>,resp.text)[<span class="number">0</span>]   </span><br><span class="line">play_info = re.findall(<span class="string">r&#x27;&lt;script&gt;window.__playinfo__=(.*?)&lt;/script&gt;&#x27;</span>,resp.text)[<span class="number">0</span>]</span><br><span class="line">title = title.replace(<span class="string">&quot;《&quot;</span>,<span class="string">&quot;&quot;</span>)</span><br><span class="line">title = title.replace(<span class="string">&quot;》&quot;</span>,<span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Title:&quot;</span>+title)</span><br><span class="line"><span class="comment">#print(play_info,type(play_info))</span></span><br><span class="line">json_data = json.loads(play_info) </span><br><span class="line"><span class="comment">#pprint.pprint(json_data)   #格式化输出，便于观看</span></span><br><span class="line"><span class="comment">#print(type(json_data))</span></span><br><span class="line">audio_url = json_data[<span class="string">&#x27;data&#x27;</span>][<span class="string">&#x27;dash&#x27;</span>][<span class="string">&#x27;audio&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;backupUrl&#x27;</span>][<span class="number">0</span>]  <span class="comment">#音频地址  [0]清晰度最高</span></span><br><span class="line"><span class="comment">#video_url = json_data[&#x27;data&#x27;][&#x27;dash&#x27;][&#x27;video&#x27;][0][&#x27;backupUrl&#x27;][0]   #视频地址</span></span><br><span class="line"></span><br><span class="line">audio_content = session.get(audio_url,headers=headers).content  <span class="comment">#音频二进制内容</span></span><br><span class="line"><span class="comment">#video_content = session.get(video_url,headers=headers).content  #视频二进制内容</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">r&#x27;D:\\music\\&#x27;</span>+title+<span class="string">&#x27;.m4a&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(audio_content)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="提取B站封面图片地址并进行保存"><a href="#提取B站封面图片地址并进行保存" class="headerlink" title="提取B站封面图片地址并进行保存"></a>提取B站封面图片地址并进行保存</h3><p>由于不想试错去慢慢研究相关库的信息携带的模式，我采用了一种委婉的方式来获取B站封面并添加到歌曲里。</p>
+<ul>
+<li>大致过程：首先获取B站封面的url地址，然后根据这个地址下载图片，然后将本地图片添加到歌曲信息里，就制成封面了。</li>
+</ul>
+<p>而本部分就论述如何获取图片地址及保存上。</p>
+<p>首先，我们通过查看网站源码可以发现（好吧其实是百度之后再用源码确认的），其实B站的封面地址在 <code>pic:</code> 之后，而且需要换一下编码方式才能使用。</p>
+<p>注意，有的文章上会提到另一种封面地址获取方式，这种方式虽然不需要转换编码，但获取的图片基本都是小图，而且很模糊。</p>
+<p>这个代码还处于比较简陋的状态，只是检测有<code>”pic”:”</code>和<code>.jpg”</code>，即最前面前面和后面的描述来定位信息，有时候其实会多截取一大坨信息，导致解析失败，建议把网址打印出来看看防止搞错。</p>
+<p>获取B站封面网址的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getcover</span>():</span></span><br><span class="line">    <span class="comment">#avnum=input(&quot;please input the av number of your video:&quot;)</span></span><br><span class="line">    <span class="comment">#url=&quot;https://www.bilibili.com/video/av&quot;+avnum</span></span><br><span class="line">    headers=&#123;</span><br><span class="line">        <span class="string">&#x27;Host&#x27;</span>:<span class="string">&#x27;www.bilibili.com&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Chrome/73.0.3683.103&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    text=requests.get(url,headers=headers).text<span class="comment">#解决反爬虫问题</span></span><br><span class="line">    a = text.find(<span class="string">&#x27;&quot;pic&quot;:&quot;&#x27;</span>)</span><br><span class="line">    b = text.find(<span class="string">&#x27;.jpg&quot;&#x27;</span>)</span><br><span class="line">    need_image = text[a+<span class="number">7</span>:b+<span class="number">4</span>].encode(<span class="string">&quot;utf-8&quot;</span>).decode(<span class="string">&quot;unicode_escape&quot;</span>)</span><br><span class="line">    cover = <span class="built_in">str</span>(need_image)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Cover:&quot;</span>+cover)</span><br></pre></td></tr></table></figure>
+
+<p>随后，轻松获取一个根据网址下载图片的“轮子”——这种到处都是的东西就没兴趣自己造了，最好能匹配上现添加的库就行。</p>
+<p>我选取的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">photo = requests.get(cover)</span><br><span class="line"> <span class="keyword">if</span> photo.status_code == <span class="number">200</span>:</span><br><span class="line">   <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;D:\\music\\&#x27;</span> + title + <span class="string">&quot;.jpg&quot;</span>, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">       f.write(photo.content)</span><br></pre></td></tr></table></figure>
+
+<p>把所有的路径设置为D盘下的绝对地址（我的相对地址老是出错），跑一次发现获取成功。</p>
+<hr>
+<h3 id="设置音频信息"><a href="#设置音频信息" class="headerlink" title="设置音频信息"></a>设置音频信息</h3><p>我们现在可以尝试把音频和作者，封面结合在一起了。毕竟有时候我们习惯获取同一个歌手的好多歌曲，在代码里尝试加入作者信息，总比一个个手动加入信息要快。同时，我们也希望直接能够搞定封面，毕竟把本地图片加入音频是一个机械动作，让Python来完成当然是更好的。</p>
+<p>我惊喜地发现，我不必使用FFmpeg来解析音频，只需要使用M就好。这真是一个好消息，毕竟FFmpeg的安装实在是太麻烦了，为了这盘小醋包这盘饺子大可不必。</p>
+<p>同时需要注意的是，我们需要使用的是M.mp4，而非m4a，这一点让人很迷惑。</p>
+<p>另外，文件标签分别为：”covr”（封面）, “\xm9nam”（标题）, “\xm9ART”（歌手，多个歌手用英文分号隔开）, “\xm9alb”（专辑），注意，是covr而非cover，ART是大写，\xm9意义不明···</p>
+<p>Anyway，大概就是这样，具体的代码直接进行一个参考就行，没有什么奇怪的地方。</p>
+<p>最后记得用<code>os.remove()</code>删掉本地的封面图片就行。</p>
+<p>相关代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#add video info</span></span><br><span class="line">video = MP4(<span class="string">&#x27;D:\\music\\&#x27;</span>+title+<span class="string">&#x27;.m4a&#x27;</span>)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;D:\\music\\&#x27;</span> + title + <span class="string">&quot;.jpg&quot;</span>, <span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    video[<span class="string">&quot;covr&quot;</span>] = [</span><br><span class="line">        MP4Cover(f.read(), imageformat=MP4Cover.FORMAT_JPEG)</span><br><span class="line">    ]</span><br><span class="line">video[<span class="string">&quot;\xa9nam&quot;</span>] = title</span><br><span class="line">video[<span class="string">&quot;\xa9ART&quot;</span>] = artist</span><br><span class="line">video[<span class="string">&quot;\xa9alb&quot;</span>] = album</span><br><span class="line">video.save()</span><br><span class="line"></span><br><span class="line">os.remove(<span class="string">&#x27;D:\\music\\&#x27;</span> + title + <span class="string">&quot;.jpg&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>至于如何上传到iCloud云音乐库，做到像其他流媒体一样在其他设备上边下边听···这个问题还在折磨我，苹果好像不允许不能匹配到他自家的音乐上传到云。</p>
+<p>不过话说回来，似乎就算上传到云，也得下下来才能听——那我还不如本地同步到手机呢，悲。</p>
+<p>总之，至少能本地愉快听歌了对吧。</p>
+<p>附完整代码：（会输出到D盘的music文件夹中）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pprint</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> mutagen.mp4 <span class="keyword">import</span> MP4, MP4Cover, MP4Tags</span><br><span class="line"></span><br><span class="line">artist = <span class="string">&quot;三轮学&quot;</span></span><br><span class="line">album = <span class="string">&quot;&quot;</span></span><br><span class="line">title = <span class="string">&quot;Old Memory&quot;</span></span><br><span class="line">url = <span class="string">&#x27;https://www.bilibili.com/video/BV1cq4y1Y7Qn&#x27;</span>  </span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;------------- Linking -------------&quot;</span>)</span><br><span class="line">session = requests.session()</span><br><span class="line">headers = &#123;<span class="string">&#x27;user-agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.37&#x27;</span>,</span><br><span class="line">           <span class="string">&quot;Referer&quot;</span>: <span class="string">&quot;https://www.bilibili.com&quot;</span>,</span><br><span class="line">         &#125;</span><br><span class="line">resp = session.get(url,headers=headers)</span><br><span class="line"><span class="comment">#print(resp.text)</span></span><br><span class="line"><span class="keyword">if</span> (title == <span class="string">&quot;&quot;</span>):</span><br><span class="line">  title = re.findall(<span class="string">r&#x27;&lt;title data-vue-meta=&quot;true&quot;&gt;(.*?)_哔哩哔哩_bilibili&#x27;</span>,resp.text)[<span class="number">0</span>]   </span><br><span class="line">play_info = re.findall(<span class="string">r&#x27;&lt;script&gt;window.__playinfo__=(.*?)&lt;/script&gt;&#x27;</span>,resp.text)[<span class="number">0</span>]</span><br><span class="line">title = title.replace(<span class="string">&quot;《&quot;</span>,<span class="string">&quot;&quot;</span>)</span><br><span class="line">title = title.replace(<span class="string">&quot;》&quot;</span>,<span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Title:&quot;</span>+title)</span><br><span class="line"><span class="comment">#print(play_info,type(play_info))</span></span><br><span class="line">json_data = json.loads(play_info) </span><br><span class="line"><span class="comment">#pprint.pprint(json_data)   #格式化输出，便于观看</span></span><br><span class="line"><span class="comment">#print(type(json_data))</span></span><br><span class="line">audio_url = json_data[<span class="string">&#x27;data&#x27;</span>][<span class="string">&#x27;dash&#x27;</span>][<span class="string">&#x27;audio&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;backupUrl&#x27;</span>][<span class="number">0</span>]  <span class="comment">#音频地址  [0]清晰度最高</span></span><br><span class="line"><span class="comment">#video_url = json_data[&#x27;data&#x27;][&#x27;dash&#x27;][&#x27;video&#x27;][0][&#x27;backupUrl&#x27;][0]   #视频地址</span></span><br><span class="line"></span><br><span class="line">audio_content = session.get(audio_url,headers=headers).content  <span class="comment">#音频二进制内容</span></span><br><span class="line"><span class="comment">#video_content = session.get(video_url,headers=headers).content  #视频二进制内容</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">r&#x27;D:\\music\\&#x27;</span>+title+<span class="string">&#x27;.m4a&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(audio_content)</span><br><span class="line"></span><br><span class="line"><span class="comment">#get cover from Bilibili</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getcover</span>():</span></span><br><span class="line">    <span class="comment">#avnum=input(&quot;please input the av number of your video:&quot;)</span></span><br><span class="line">    <span class="comment">#url=&quot;https://www.bilibili.com/video/av&quot;+avnum</span></span><br><span class="line">    headers=&#123;</span><br><span class="line">        <span class="string">&#x27;Host&#x27;</span>:<span class="string">&#x27;www.bilibili.com&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Chrome/73.0.3683.103&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    text=requests.get(url,headers=headers).text<span class="comment">#解决反爬虫问题</span></span><br><span class="line">    a = text.find(<span class="string">&#x27;&quot;pic&quot;:&quot;&#x27;</span>)</span><br><span class="line">    b = text.find(<span class="string">&#x27;.jpg&quot;&#x27;</span>)</span><br><span class="line">    need_image = text[a+<span class="number">7</span>:b+<span class="number">4</span>].encode(<span class="string">&quot;utf-8&quot;</span>).decode(<span class="string">&quot;unicode_escape&quot;</span>)</span><br><span class="line">    cover = <span class="built_in">str</span>(need_image)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Cover:&quot;</span>+cover)</span><br><span class="line">    photo = requests.get(cover)</span><br><span class="line">    <span class="keyword">if</span> photo.status_code == <span class="number">200</span>:</span><br><span class="line">      <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;D:\\music\\&#x27;</span> + title + <span class="string">&quot;.jpg&quot;</span>, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">          f.write(photo.content)</span><br><span class="line">getcover()</span><br><span class="line"></span><br><span class="line"><span class="comment">#add video info</span></span><br><span class="line">video = MP4(<span class="string">&#x27;D:\\music\\&#x27;</span>+title+<span class="string">&#x27;.m4a&#x27;</span>)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;D:\\music\\&#x27;</span> + title + <span class="string">&quot;.jpg&quot;</span>, <span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    video[<span class="string">&quot;covr&quot;</span>] = [</span><br><span class="line">        MP4Cover(f.read(), imageformat=MP4Cover.FORMAT_JPEG)</span><br><span class="line">    ]</span><br><span class="line">video[<span class="string">&quot;\xa9nam&quot;</span>] = title</span><br><span class="line">video[<span class="string">&quot;\xa9ART&quot;</span>] = artist</span><br><span class="line">video[<span class="string">&quot;\xa9alb&quot;</span>] = album</span><br><span class="line">video.save()</span><br><span class="line"></span><br><span class="line">os.remove(<span class="string">&#x27;D:\\music\\&#x27;</span> + title + <span class="string">&quot;.jpg&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;------------- Done -------------&quot;</span>)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/Python/" rel="tag">Python</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2023/02/25/%E9%9A%8F%E7%AC%94%C2%B7%E6%89%A7/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          随笔·执
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/02/06/2023-02-06-PS%E9%AD%94%E6%B3%95%E7%AC%94%E8%AE%B0%C2%B7%E4%BA%BA%E5%83%8F%E5%88%9D%E7%BA%A7/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          PS魔法笔记·人像初级
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

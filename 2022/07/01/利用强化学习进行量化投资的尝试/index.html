@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>利用强化学习进行量化投资的尝试 | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="选题及概述 代码将会上传到我的GitHub  写在前面选题概述本文希望通过机器学习算法，设立相应的环境，选取真实的数据，使得程序能够预判风险进行投资，使得投资能够最大化。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用强化学习进行量化投资的尝试">
+<meta property="og:url" content="http://example.com/2022/07/01/%E5%88%A9%E7%94%A8%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E8%BF%9B%E8%A1%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84%E7%9A%84%E5%B0%9D%E8%AF%95/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="选题及概述 代码将会上传到我的GitHub  写在前面选题概述本文希望通过机器学习算法，设立相应的环境，选取真实的数据，使得程序能够预判风险进行投资，使得投资能够最大化。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.480Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="乱语">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-利用强化学习进行量化投资的尝试" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      利用强化学习进行量化投资的尝试
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2022-06-30T16:00:00.000Z" itemprop="datePublished">七月 1, 2022</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%89%E9%A2%98%E5%8F%8A%E6%A6%82%E8%BF%B0"><span class="toc-text">选题及概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-text">写在前面</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E9%A2%98%E6%A6%82%E8%BF%B0"><span class="toc-text">选题概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E6%96%B0%E9%83%A8%E5%88%86"><span class="toc-text">创新部分</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E6%80%9D%E6%83%B3"><span class="toc-text">程序思想</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%83%A8%E5%88%86%EF%BC%88%E7%A8%8B%E5%BA%8F%E4%B8%BB%E4%BD%93%EF%BC%89"><span class="toc-text">机器学习部分（程序主体）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E7%BC%96%E5%86%99"><span class="toc-text">环境编写</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%82%A1%E7%A5%A8%E8%8E%B7%E5%8F%96"><span class="toc-text">股票获取</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA%E4%B8%8E%E5%B1%95%E6%9C%9B"><span class="toc-text">结论与展望</span></a></li></ol>
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <h2 id="选题及概述"><a href="#选题及概述" class="headerlink" title="选题及概述"></a>选题及概述</h2><blockquote>
+<p>代码将会上传到我的GitHub</p>
+</blockquote>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><h4 id="选题概述"><a href="#选题概述" class="headerlink" title="选题概述"></a>选题概述</h4><p>本文希望通过机器学习算法，设立相应的环境，选取真实的数据，使得程序能够预判风险进行投资，使得投资能够最大化。</p>
+<span id="more"></span>
+
+<p>本文的经济学部分参考了论文：ML-TEA 一套基于机器学习和技术分析的量化投资算法 李斌，主要通过其经济学方面的数据，筛选出了主要的4种状态变量以及经济指标。</p>
+<h4 id="创新部分"><a href="#创新部分" class="headerlink" title="创新部分"></a>创新部分</h4><p>根据股票投资制度，本文创建了简易的投资模型以及相应的环境，设计并实现了相应的算法库。</p>
+<p>在传统的经济量化领域，或者说股票投资和机器学习的交叉领域，程序常常被用来实现对股票趋势的预测，而得知股票趋势概率后，投资的具体行为却是由人自己控制的，这便意味着量化过程并非全部由程序实现，在面对概率等因素下，人所固有的情感不仅会影响对股票趋势的判断，也会影响在判断完趋势和概率后，对股票持有情况的选择。<strong>因此，本文不同于其它希望预测股票趋势，然后简单地涨买跌卖的论文，而是着重于将整个过程作为一种“游戏”全部交给程序执行，</strong>可能在最开始，程序将不能学会如何购买股票，但经过长时间大量的训练后，它的表现可能优于人类。</p>
+<p>比如说，假如程序预测一支股票涨的概率是0.6，跌的概率是0.4，那么最后对股票的决策仍然是由人来完成的。人需要结合程序预测的准确度，历史信息，还有涨跌预测的幅度来判断信息，并尽力让自己最后赚钱。那何不让机器来完成这项工作呢——即让机器作为行动方，独立完成股票的预测和买卖，并最终通过训练，让自己有着赚钱的能力。</p>
+<h2 id="程序思想"><a href="#程序思想" class="headerlink" title="程序思想"></a>程序思想</h2><h4 id="机器学习部分（程序主体）"><a href="#机器学习部分（程序主体）" class="headerlink" title="机器学习部分（程序主体）"></a>机器学习部分（程序主体）</h4><p>程序采用<code>ActorCritic</code>的思路，将整个股票交易视为一场游戏，程序在“买入”，“不动”，和“卖出”三种动作中选择，并得到系统给予的<code>reward</code>，根据<code>reward</code>，训练C网络（评价网络），然后用<code>TD-error</code>训练A网络（动作网络）。</p>
+<p>选择<code>AC</code>的原因在于，该程序在预测股票趋势的基础上增加了选择的过程，但这样的选择不一定马上能改变当前的<code>reward</code>，因此使用动作-评委网络，可以改善程序歪打正着的情况，以及平衡概率和选择的矛盾（冒险与否）。</p>
+<p>相关程序被集成为<code>ACSDK.py</code>下的<code>Actor</code>类和<code>Critic</code>类，并由主程序<code>main.py</code>调用。</p>
+<p>相关代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Actor</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, sess, n_features, n_actions, lr=<span class="number">0.001</span></span>):</span></span><br><span class="line">        self.sess = sess</span><br><span class="line"></span><br><span class="line">        self.s = tf.compat.v1.placeholder(tf.float32, [<span class="number">1</span>, n_features], <span class="string">&quot;state&quot;</span>)</span><br><span class="line">        self.a = tf.compat.v1.placeholder(tf.int32, <span class="literal">None</span>, <span class="string">&quot;act&quot;</span>)</span><br><span class="line">        self.td_error = tf.compat.v1.placeholder(tf.float32, <span class="literal">None</span>, <span class="string">&quot;td_error&quot;</span>)  <span class="comment"># TD_error</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">with</span> tf.compat.v1.variable_scope(<span class="string">&#x27;Actor&#x27;</span>):</span><br><span class="line">            l1 = tf.compat.v1.layers.dense(</span><br><span class="line">                inputs=self.s,</span><br><span class="line">                units=<span class="number">20</span>,  <span class="comment"># number of hidden units</span></span><br><span class="line">                activation=tf.nn.relu,</span><br><span class="line">                kernel_initializer=tf.random_normal_initializer(<span class="number">0.</span>, <span class="number">.1</span>),  <span class="comment"># weights</span></span><br><span class="line">                bias_initializer=tf.constant_initializer(<span class="number">0.1</span>),  <span class="comment"># biases</span></span><br><span class="line">                name=<span class="string">&#x27;l1&#x27;</span></span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">            self.acts_prob = tf.compat.v1.layers.dense(</span><br><span class="line">                inputs=l1,</span><br><span class="line">                units=n_actions,  <span class="comment"># output units</span></span><br><span class="line">                activation=tf.nn.softmax,  <span class="comment"># get action probabilities</span></span><br><span class="line">                kernel_initializer=tf.random_normal_initializer(<span class="number">0.</span>, <span class="number">.1</span>),  <span class="comment"># weights</span></span><br><span class="line">                bias_initializer=tf.constant_initializer(<span class="number">0.1</span>),  <span class="comment"># biases</span></span><br><span class="line">                name=<span class="string">&#x27;acts_prob&#x27;</span></span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">        <span class="keyword">with</span> tf.compat.v1.variable_scope(<span class="string">&#x27;exp_v&#x27;</span>):</span><br><span class="line">            log_prob = tf.compat.v1.log(self.acts_prob[<span class="number">0</span>, self.a])</span><br><span class="line">            self.exp_v = tf.reduce_mean(log_prob * self.td_error)  <span class="comment"># advantage (TD_error) guided loss</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">with</span> tf.compat.v1.variable_scope(<span class="string">&#x27;train&#x27;</span>):</span><br><span class="line">            self.train_op = tf.compat.v1.train.AdamOptimizer(lr).minimize(-self.exp_v)  <span class="comment"># minimize(-exp_v) = maximize(exp_v)</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">learn</span>(<span class="params">self, s, a, td</span>):</span></span><br><span class="line">        s = s[np.newaxis, :]</span><br><span class="line">        feed_dict = &#123;self.s: s, self.a: a, self.td_error: td&#125;</span><br><span class="line">        _, exp_v = self.sess.run([self.train_op, self.exp_v], feed_dict)</span><br><span class="line">        <span class="keyword">return</span> exp_v</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">choose_action</span>(<span class="params">self, s</span>):</span></span><br><span class="line">        s = s[np.newaxis, :]</span><br><span class="line">        probs = self.sess.run(self.acts_prob, &#123;self.s: s&#125;) </span><br><span class="line">        <span class="keyword">return</span> np.random.choice(np.arange(probs.shape[<span class="number">1</span>]), p=probs.ravel())  <span class="comment"># return a int</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Critic</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, sess, n_features, lr=<span class="number">0.01</span></span>):</span></span><br><span class="line">        self.sess = sess</span><br><span class="line"></span><br><span class="line">        self.s = tf.compat.v1.placeholder(tf.float32, [<span class="number">1</span>, n_features], <span class="string">&quot;state&quot;</span>)</span><br><span class="line">        self.v_ = tf.compat.v1.placeholder(tf.float32, [<span class="number">1</span>, <span class="number">1</span>], <span class="string">&quot;v_next&quot;</span>)</span><br><span class="line">        self.r = tf.compat.v1.placeholder(tf.float32, <span class="literal">None</span>, <span class="string">&#x27;r&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">with</span> tf.compat.v1.variable_scope(<span class="string">&#x27;Critic&#x27;</span>):</span><br><span class="line">            l1 = tf.compat.v1.layers.dense(</span><br><span class="line">                inputs=self.s,</span><br><span class="line">                units=<span class="number">20</span>,  </span><br><span class="line">                activation=tf.nn.relu,  </span><br><span class="line">                kernel_initializer=tf.random_normal_initializer(<span class="number">0.</span>, <span class="number">.1</span>),  <span class="comment"># weights</span></span><br><span class="line">                bias_initializer=tf.constant_initializer(<span class="number">0.1</span>),  <span class="comment"># biases</span></span><br><span class="line">                name=<span class="string">&#x27;l1&#x27;</span></span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">            self.v = tf.compat.v1.layers.dense(</span><br><span class="line">                inputs=l1,</span><br><span class="line">                units=<span class="number">1</span>,  <span class="comment"># output units</span></span><br><span class="line">                activation=<span class="literal">None</span>,</span><br><span class="line">                kernel_initializer=tf.random_normal_initializer(<span class="number">0.</span>, <span class="number">.1</span>),  <span class="comment"># weights</span></span><br><span class="line">                bias_initializer=tf.constant_initializer(<span class="number">0.1</span>),  <span class="comment"># biases</span></span><br><span class="line">                name=<span class="string">&#x27;V&#x27;</span></span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">        <span class="keyword">with</span> tf.compat.v1.variable_scope(<span class="string">&#x27;squared_TD_error&#x27;</span>):</span><br><span class="line">            self.td_error = self.r + GAMMA * self.v_ - self.v</span><br><span class="line">            self.loss = tf.compat.v1.square(self.td_error)  <span class="comment"># TD_error = (r+gamma*V_next) - V_eval</span></span><br><span class="line">        <span class="keyword">with</span> tf.compat.v1.variable_scope(<span class="string">&#x27;train&#x27;</span>):</span><br><span class="line">            self.train_op = tf.compat.v1.train.AdamOptimizer(lr).minimize(self.loss)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">learn</span>(<span class="params">self, s, r, s_</span>):</span></span><br><span class="line">        s, s_ = s[np.newaxis, :], s_[np.newaxis, :]</span><br><span class="line"></span><br><span class="line">        v_ = self.sess.run(self.v, &#123;self.s: s_&#125;)</span><br><span class="line">        td_error, _ = self.sess.run([self.td_error, self.train_op],</span><br><span class="line">                                    &#123;self.s: s, self.v_: v_, self.r: r&#125;)</span><br><span class="line">        <span class="keyword">return</span> td_error,v_</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>以及主函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> turtle <span class="keyword">import</span> color</span><br><span class="line"><span class="keyword">from</span> ACSDK <span class="keyword">import</span> Actor,Critic </span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Environment</span><br><span class="line"><span class="keyword">import</span> getShock</span><br><span class="line"></span><br><span class="line">GAMMA = <span class="number">0.1</span>  <span class="comment"># 衰变值</span></span><br><span class="line">LR_A = <span class="number">0.0001</span>  <span class="comment"># Actor学习率</span></span><br><span class="line">LR_C = <span class="number">0.5</span>  <span class="comment"># Critic学习率</span></span><br><span class="line"></span><br><span class="line">N_F = <span class="number">4</span>  <span class="comment"># 状态空间</span></span><br><span class="line">N_A = <span class="number">3</span>  <span class="comment"># 动作空间</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    <span class="comment"># 数据设定</span></span><br><span class="line">    stock_code = <span class="string">&#x27;000037&#x27;</span></span><br><span class="line">    trade_cost = <span class="number">15</span>/<span class="number">10000</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#getShock.get(stock_code)</span></span><br><span class="line"></span><br><span class="line">    sess = tf.compat.v1.Session()</span><br><span class="line">    actor = Actor(sess, n_features=N_F, n_actions=N_A, lr=LR_A)  <span class="comment"># 初始化Actor</span></span><br><span class="line">    critic = Critic(sess, n_features=N_F, lr=LR_C)  <span class="comment"># 初始化Critic</span></span><br><span class="line">    sess.run(tf.compat.v1.global_variables_initializer())  <span class="comment"># 初始化参数</span></span><br><span class="line"></span><br><span class="line">    env = Environment.Env(stock_code, trade_cost)</span><br><span class="line">    obv, reward, done = env.init_module()</span><br><span class="line">    rewards = []</span><br><span class="line">    td_errors = []</span><br><span class="line">    vs = []</span><br><span class="line">    <span class="built_in">print</span>(obv)</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">True</span>):</span><br><span class="line">        action = actor.choose_action(obv)</span><br><span class="line">        obv_, reward, done = env.step(action)</span><br><span class="line">        rewards.append(reward)</span><br><span class="line">        td_error,v_1 = critic.learn(obv, reward, obv_)</span><br><span class="line">        td_errors.append(td_error[<span class="number">0</span>])</span><br><span class="line">        vs.append(v_1[<span class="number">0</span>])</span><br><span class="line">        actor.learn(obv, action, td_error)</span><br><span class="line">        obv = obv_</span><br><span class="line">        <span class="comment">#print(reward)</span></span><br><span class="line">        <span class="keyword">if</span> (done):<span class="keyword">break</span></span><br><span class="line">    </span><br><span class="line">    x = np.linspace(<span class="number">0</span>,env.readLines()-<span class="number">1</span>,env.readLines())</span><br><span class="line">    plt.plot(x,np.array(rewards),color = <span class="string">&#x27;blue&#x27;</span>)</span><br><span class="line">    plt.plot(x,np.array(vs),color = <span class="string">&#x27;black&#x27;</span>)</span><br><span class="line">    plt.plot(x,<span class="number">100</span> * np.array(env.readData())[<span class="number">1</span>:],color = <span class="string">&#x27;red&#x27;</span>)</span><br><span class="line">    plt.plot(x,<span class="number">100</span> * np.array(env.readStocks())[<span class="number">0</span>:],color = <span class="string">&#x27;yellow&#x27;</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="环境编写"><a href="#环境编写" class="headerlink" title="环境编写"></a>环境编写</h4><p>为该人工智能配置一个具有真实股票环境的反应系统，主要负责接收动作，读取当前股价，根据规则返回对应的 <code>reward</code> ，一次迭代时间为一天。</p>
+<p>关于激励<code>reward</code>的设计，采用赚取的总金额作为激励，同时为避免程序采取消极措施，<code>reward</code>在刚开始加上了负偏置。即从负值开始，每天可以选择“买进”一单位股票，“卖出”一单位股票或者不动，然后以当天的收盘价扣除现金或获得现金，并以第二天的开盘价格算出现金加上股票的总价作为激励，即：$$ reward &#x3D; stock * price + cash$$</p>
+<p>在状态的设计上，本实验参考了论文：ML-TEA 一套基于机器学习和技术分析的量化投资算法 李斌，其中提出了17种观测指标，但这些指标均由4个状态量得出，即：“开盘价格”，“收盘价格”，“最高价”和“最低价”。为了保持程序的简介易收敛，考虑到它们的关系可以通过神经网络进行拟合，所以可以只采用这四个指标构成状态。</p>
+<p>同时，为了模拟真实的股票交易市场，每次对股票的转换（买进或者卖出），都会收取万分之十五的手续费用，即转移部分价值减少万分之十五。此值与真实的股票交易情况类似但略大，可以起到避免系统无限制买卖的作用。</p>
+<p>每次迭代，环境都会接收一次程序的动作，然后获取并输出当前的状态变量和计算出的<code>reward</code>，然后进入下一次迭代。</p>
+<p>相关程序被集成为<code>Environment.py</code>下的<code>Env</code>类，通过调用自定义的函数实现读取。</p>
+<p>相关代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 环境搭建</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Env</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,stock_code, tc</span>):</span></span><br><span class="line">        self.code = stock_code</span><br><span class="line">        self.data = pd.read_csv(<span class="string">&#x27;D:\\&#x27;</span>+ stock_code + <span class="string">&#x27;.csv&#x27;</span>,encoding=<span class="string">&quot;gb2312&quot;</span>)</span><br><span class="line">        <span class="comment">#self.data = pd.read_csv(&#x27;D:\\&#x27;+ stock_code + &#x27;.csv&#x27;,encoding=&quot;utf-8&quot;)</span></span><br><span class="line">        <span class="comment"># print(self.data)</span></span><br><span class="line">        self.lines = <span class="number">0</span></span><br><span class="line">        self.tc = tc</span><br><span class="line">        self.maxPrice = <span class="number">0</span></span><br><span class="line">        self.money = <span class="number">0</span></span><br><span class="line">        self.stocks = []</span><br><span class="line">        self.stock = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 重新开始</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">init_module</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">if</span> (self.lines != <span class="number">0</span>):</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(self.lines - <span class="number">1</span>):</span><br><span class="line">                obv = self.observation(i)</span><br><span class="line">                obv = obv[np.newaxis, :]</span><br><span class="line">        obv = self.observation(self.lines)</span><br><span class="line">        rew = <span class="number">0</span></span><br><span class="line">        done = <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> obv, rew ,done</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 计算读取各种经济数据</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">observation</span>(<span class="params">self,lines</span>):</span></span><br><span class="line">        o = self.data[<span class="string">&#x27;开盘&#x27;</span>].values[lines]</span><br><span class="line">        c = self.data[<span class="string">&#x27;收盘&#x27;</span>].values[lines]</span><br><span class="line">        l = self.data[<span class="string">&#x27;最低&#x27;</span>].values[lines]</span><br><span class="line">        h = self.data[<span class="string">&#x27;最高&#x27;</span>].values[lines]</span><br><span class="line">        self.maxPrice = <span class="built_in">max</span>(c,self.maxPrice)</span><br><span class="line">        <span class="keyword">return</span> np.array((o, c, l, h))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 为限定模型，设置每次只能买或卖，且一次只能买卖一股,0买入,1卖出,2不动</span></span><br><span class="line">    <span class="comment"># 决定买入时，将会以当天的收盘价买入，reward以第二天开盘价计算</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">step</span>(<span class="params">self, action</span>):</span></span><br><span class="line">        <span class="keyword">if</span> (action == <span class="number">0</span>):</span><br><span class="line">            self.stock += <span class="number">1</span></span><br><span class="line">            self.money -= self.data[<span class="string">&#x27;收盘&#x27;</span>].values[self.lines]*(<span class="number">1</span>+self.tc)</span><br><span class="line">        <span class="keyword">elif</span> (action == <span class="number">1</span>):</span><br><span class="line">            self.stock -= <span class="number">1</span></span><br><span class="line">            self.money += self.data[<span class="string">&#x27;收盘&#x27;</span>].values[self.lines]*(<span class="number">1</span>-self.tc)</span><br><span class="line">        self.lines += <span class="number">1</span></span><br><span class="line">        self.stocks.append(self.stock)</span><br><span class="line">        rew = self.stock * self.data[<span class="string">&#x27;开盘&#x27;</span>].values[self.lines] + self.money</span><br><span class="line">        <span class="comment">#rew = rew - self.maxPrice * self.lines</span></span><br><span class="line">        obv = self.observation(self.lines)</span><br><span class="line">        <span class="keyword">if</span> (self.lines &gt;= <span class="built_in">len</span>(self.data[<span class="string">&#x27;开盘&#x27;</span>].values) - <span class="number">1</span>): done = <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>: done = <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> obv, rew ,done</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">readLines</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.lines</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">readStocks</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.stocks</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">readData</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.data[<span class="string">&#x27;开盘&#x27;</span>].values</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="股票获取"><a href="#股票获取" class="headerlink" title="股票获取"></a>股票获取</h4><p>股票信息采用<code>akshare</code>开放端口获取，其具体步骤被集合为文件<code>getShock</code>下的<code>get</code>函数，运行该过程将在D盘创建相应股票代号历史信息的<code>.csv</code>文件，主程序中也需要通过运行此类读取股票数据。</p>
+<p>在正常的股票函数之外，还有一个特殊的股票生成文件<code>specialShock.py</code>，用于生成特殊的股票函数，方便调试和测验，如生成代号为<code>0</code>的直线上涨的函数，每次运行时同样在D盘生成目标文件。</p>
+<p>需要注意的是，由于格式问题，读取时特殊股票和正常股票所需要的文本格式分别是<code>utf-8</code>和<code>gb2312</code>，这需要在<code>Environment.py</code>下的<code>Env</code>类的<code>init</code>函数下修改。</p>
+<p>相关代码如下：</p>
+<p>正常股票：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用于拉取股票历史数据</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> akshare <span class="keyword">as</span> ak</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get</span>(<span class="params">stock_code</span>):</span></span><br><span class="line">    <span class="comment"># 参数调整</span></span><br><span class="line">    start_date = <span class="string">&#x27;20190101&#x27;</span></span><br><span class="line">    end_date = <span class="string">&#x27;20210101&#x27;</span></span><br><span class="line">    period = <span class="string">&#x27;daily&#x27;</span></span><br><span class="line">    adj = <span class="string">&#x27;hfq&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取数据</span></span><br><span class="line"></span><br><span class="line">    data = ak.stock_zh_a_hist(symbol=stock_code,period = period, start_date=start_date, end_date=end_date, adjust = adj)</span><br><span class="line"></span><br><span class="line">    data.to_csv(<span class="string">&#x27;D:\\&#x27;</span>+ stock_code + <span class="string">&#x27;.csv&#x27;</span>,index = <span class="literal">False</span>, mode = <span class="string">&#x27;w&#x27;</span>, encoding = <span class="string">&#x27;gbk&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;-------- Get Data Done -------&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>特殊股票：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 特殊数据集验证</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make</span>():</span></span><br><span class="line">    <span class="comment"># 参数调整</span></span><br><span class="line">    stock_code = <span class="string">&#x27;0&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取数据</span></span><br><span class="line"></span><br><span class="line">    data = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">        data.append([i,i+<span class="number">1</span>,i,i+<span class="number">1</span>])</span><br><span class="line">    data = np.array(data)</span><br><span class="line">    name = [<span class="string">&#x27;开盘&#x27;</span>,<span class="string">&#x27;收盘&#x27;</span>,<span class="string">&#x27;最低&#x27;</span>,<span class="string">&#x27;最高&#x27;</span>]</span><br><span class="line">    files = pd.DataFrame(data,columns = name)</span><br><span class="line">    files.to_csv(<span class="string">&#x27;D:\\&#x27;</span>+ stock_code + <span class="string">&#x27;.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;-------- make Data Done -------&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    make()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="结论与展望"><a href="#结论与展望" class="headerlink" title="结论与展望"></a>结论与展望</h2><p>可以看到，赋予程序买卖的权力，而非只让它们预测股票的思路有一定的实际价值和应用前景，但它还需要更为精确的数据和改进，鉴于时间关系，本文只能对已经存在的问题和解决办法进行展望而无法实操。</p>
+<p>该系统的问题首先在于C网络和实际<code>reward</code>的收敛性并不好，而当前系统的不稳定几乎全是因为C网络收敛失败造成的。本质原因在于股票的难以预测上，即：C网络本质上是在预测股票并评定价值，所以，在C网络种加入RNN乃至LSTM结构是必要的，增强它对连续数据的预测能力才能增强C网络预测<code>reward</code>的能力。</p>
+<p>其次，在环境的设定上，每次只能买卖一股是一种理想而保守的情况，因此，将动作的选取从3选1调整为一个正态分布的随机抽取是合理的，而A输出的值决定着这个正态分布的参数，而通过正态分布抽取到的值将被作为买进或卖出的股票份额是更加符合实际的选择。</p>
+<p>最后，在价值的评判上，单纯的以赚取的数目作为<code>reward</code>可能不是一个最好的选择，因为在一支一直上升的股票中，即使系统只买入了一点，其<code>reward</code>也会一直上升，也就是说，当系统选择保守但没有风险的策略时，也会一直受到鼓励，但过于保守将无钱可赚：系统可能选择“躺平”。因此，我们可以借鉴之前偏置的思路，使用一个参数来调整<code>reward</code>的阈值，使得没有赚到某个数目或者赚到能赚到的最高数目的一定比例时，激励为负。</p>
+<p>使用“游戏”的方式研究股票的操作是一种罕见的视角，因为它不满足于传统的对股票的预测，而是加入对概率的考量，采用更为科学的视角观察股票。正如打牌时，仅仅知道各种情况的概率远远不够，能够根据这些条件做出判断更为重要。随着数据的积累和模型的优化，笔者认为利用机器学习完成股票预测将不是问题。</p>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/Python/" rel="tag">Python</a>, <a class="article-tag-none-link" href="/tags/%E4%B9%B1%E8%AF%AD/" rel="tag">乱语</a>, <a class="article-tag-none-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2022/07/25/%E8%AE%BA%E5%8D%95%E8%AF%8D%E8%AE%B0%E5%BF%86/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          论单词记忆
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/30/%E4%B8%80%E5%9D%97%E6%9D%BF%E5%AD%90%E7%9A%84%E8%AF%9E%E7%94%9F/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          一块板子的诞生
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>社会科学中的计算思维方法笔记Part_3 | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="本文为课程《社会科学中的计算思维方法》的课程笔记，这门课在Mooc上似乎也有，不过是SPOC的来着。本来打算等期末的时候再一股脑地整理成一篇Blog，不过我发现内容是实在有些多，只好份部分放出，本篇是这门课的五六章内容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="社会科学中的计算思维方法笔记Part_3">
+<meta property="og:url" content="http://example.com/2023/04/11/%E7%A4%BE%E4%BC%9A%E7%A7%91%E5%AD%A6%E4%B8%AD%E7%9A%84%E8%AE%A1%E7%AE%97%E6%80%9D%E7%BB%B4%E6%96%B9%E6%B3%95%E7%AC%94%E8%AE%B0Part_3/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="本文为课程《社会科学中的计算思维方法》的课程笔记，这门课在Mooc上似乎也有，不过是SPOC的来着。本来打算等期末的时候再一股脑地整理成一篇Blog，不过我发现内容是实在有些多，只好份部分放出，本篇是这门课的五六章内容。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.488Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="社会科学">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-社会科学中的计算思维方法笔记Part_3" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      社会科学中的计算思维方法笔记Part_3
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2023-04-10T16:00:00.000Z" itemprop="datePublished">四月 11, 2023</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%8D%9A%E5%BC%88%E8%AE%BA%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">第五章 博弈论基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#5-1-%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%BC%88"><span class="toc-text">5.1 何为博弈</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-2-%E4%BD%95%E4%B8%BA%E5%8D%9A%E5%BC%88%E7%9A%84%E8%A7%A3"><span class="toc-text">5.2 何为博弈的解</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-3-%E5%8D%9A%E5%BC%88%E7%9A%84%E6%B1%82%E8%A7%A3"><span class="toc-text">5.3 博弈的求解</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-4-%E7%BA%B3%E4%BB%80%E5%9D%87%E8%A1%A1%E4%B8%8E%E6%B7%B7%E5%90%88%E7%AD%96%E7%95%A5"><span class="toc-text">5.4 纳什均衡与混合策略</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-5-%E5%8D%9A%E5%BC%88%E7%9A%84%E8%A7%A3%E4%B8%8E%E7%A4%BE%E4%BC%9A%E7%A6%8F%E5%88%A9"><span class="toc-text">5.5 博弈的解与社会福利</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%8D%9A%E5%BC%88%EF%BC%8C%E6%8B%8D%E5%8D%96%EF%BC%8C%E5%8C%B9%E9%85%8D%E5%B8%82%E5%9C%BA"><span class="toc-text">第六章 网络流量博弈，拍卖，匹配市场</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#6-1-%E4%BA%A4%E9%80%9A%E7%BD%91%E7%BB%9C%E4%B8%8A%E7%9A%84%E4%B8%80%E7%A7%8D%E5%8D%9A%E5%BC%88%E6%A8%A1%E5%9E%8B"><span class="toc-text">6.1 交通网络上的一种博弈模型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-2-%E5%B8%83%E9%9B%B7%E6%96%AF%E6%82%96%E8%AE%BA%E7%8E%B0%E8%B1%A1%E7%9A%84%E4%B8%80%E8%88%AC%E6%80%A7"><span class="toc-text">6.2 布雷斯悖论现象的一般性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-3-%E6%8B%8D%E5%8D%96%E7%9A%84%E6%84%8F%E4%B9%89%E5%8F%8A%E5%85%B6%E5%BD%A2%E5%BC%8F"><span class="toc-text">6.3 拍卖的意义及其形式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-4-%E6%8B%8D%E5%8D%96%E4%B8%AD%E7%9A%84%E5%8D%9A%E5%BC%88%E4%B8%8E%E5%8D%A0%E4%BC%98%E7%AD%96%E7%95%A5"><span class="toc-text">6.4 拍卖中的博弈与占优策略</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-5-%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98"><span class="toc-text">6.5 匹配问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-6-%E5%8C%B9%E9%85%8D%E5%B8%82%E5%9C%BA%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3"><span class="toc-text">6.6 匹配市场问题的解</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-7-%E5%B8%82%E5%9C%BA%E6%97%A0%E5%BD%A2%E4%B9%8B%E6%89%8B%E7%89%B9%E6%80%A7%E7%9A%84%E4%B8%80%E7%A7%8D%E8%AF%A0%E9%87%8A"><span class="toc-text">6.7 市场无形之手特性的一种诠释</span></a></li></ol></li></ol></li></ol>
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <p>本文为课程《社会科学中的计算思维方法》的课程笔记，这门课在Mooc上似乎也有，不过是SPOC的来着。本来打算等期末的时候再一股脑地整理成一篇Blog，不过我发现内容是实在有些多，只好份部分放出，本篇是这门课的<strong>五六章</strong>内容。</p>
+<span id="more"></span>
+
+<hr>
+<h3 id="第五章-博弈论基本概念"><a href="#第五章-博弈论基本概念" class="headerlink" title="第五章 博弈论基本概念"></a>第五章 博弈论基本概念</h3><h5 id="5-1-何为博弈"><a href="#5-1-何为博弈" class="headerlink" title="5.1 何为博弈"></a>5.1 何为博弈</h5><p>博弈三要素：参与人，策略集，回报</p>
+<p>收益矩阵：描述博弈</p>
+<p>推理假定：回报为唯一关心；都是理性人；信息公开</p>
+<h5 id="5-2-何为博弈的解"><a href="#5-2-何为博弈的解" class="headerlink" title="5.2 何为博弈的解"></a>5.2 何为博弈的解</h5><p>稳定策略组合：其中任何人不会有改变策略而获得更好回报的情况</p>
+<h5 id="5-3-博弈的求解"><a href="#5-3-博弈的求解" class="headerlink" title="5.3 博弈的求解"></a>5.3 博弈的求解</h5><p>严格占优策略：无论另一个人选啥，这个策略都是最好的</p>
+<p>策略的最佳应对策略（严格占优一定会选）</p>
+<h5 id="5-4-纳什均衡与混合策略"><a href="#5-4-纳什均衡与混合策略" class="headerlink" title="5.4 纳什均衡与混合策略"></a>5.4 纳什均衡与混合策略</h5><p>纳什均衡：互为最佳应对的策略组，一个博弈可有多个，不能给出唯一预测，也不一定存在</p>
+<p>纯策略与混合策略：研究概率和期望</p>
+<p>无差异原理：就是偏导为0，混合策略一定有纳什均衡</p>
+<h5 id="5-5-博弈的解与社会福利"><a href="#5-5-博弈的解与社会福利" class="headerlink" title="5.5 博弈的解与社会福利"></a>5.5 博弈的解与社会福利</h5><p>社会福利：一个策略组对应的回报总和</p>
+<p>纳什均衡不一定社会最优</p>
+<hr>
+<h3 id="第六章-网络流量博弈，拍卖，匹配市场"><a href="#第六章-网络流量博弈，拍卖，匹配市场" class="headerlink" title="第六章 网络流量博弈，拍卖，匹配市场"></a>第六章 网络流量博弈，拍卖，匹配市场</h3><h5 id="6-1-交通网络上的一种博弈模型"><a href="#6-1-交通网络上的一种博弈模型" class="headerlink" title="6.1 交通网络上的一种博弈模型"></a>6.1 交通网络上的一种博弈模型</h5><p>布雷斯悖论：多修路，但反而更堵了</p>
+<h5 id="6-2-布雷斯悖论现象的一般性"><a href="#6-2-布雷斯悖论现象的一般性" class="headerlink" title="6.2 布雷斯悖论现象的一般性"></a>6.2 布雷斯悖论现象的一般性</h5><p>「好心办坏事」，增加社会福利的行动，反而增加了社会成本。</p>
+<h5 id="6-3-拍卖的意义及其形式"><a href="#6-3-拍卖的意义及其形式" class="headerlink" title="6.3 拍卖的意义及其形式"></a>6.3 拍卖的意义及其形式</h5><p>参与者；策略（出价）；收益（对物品的估值）</p>
+<p>英式拍卖：由低到高，拍卖古董</p>
+<p>荷兰式拍卖：由高到低，拍卖农产品</p>
+<h5 id="6-4-拍卖中的博弈与占优策略"><a href="#6-4-拍卖中的博弈与占优策略" class="headerlink" title="6.4 拍卖中的博弈与占优策略"></a>6.4 拍卖中的博弈与占优策略</h5><p>报价密封拍卖的两种基本形式：</p>
+<ul>
+<li>FPA（首价密封拍卖）（适合招标）</li>
+<li>SPA（次价密封拍卖）（注意是最高价者付次高价）（适合广告位）<ul>
+<li>按估值报价是占优策略</li>
+<li>估值 &#x3D; 我绝不接受高于这个数目的价格</li>
+</ul>
+</li>
+</ul>
+<h5 id="6-5-匹配问题"><a href="#6-5-匹配问题" class="headerlink" title="6.5 匹配问题"></a>6.5 匹配问题</h5><p>简单匹配问题：二部图表示</p>
+<p>不能满足 &#x3D; 存在「受限组」</p>
+<p>社会最优：受益人总和最大</p>
+<h5 id="6-6-匹配市场问题的解"><a href="#6-6-匹配市场问题的解" class="headerlink" title="6.6 匹配市场问题的解"></a>6.6 匹配市场问题的解</h5><p>通过卖家逐渐涨价的方式确定供需关系</p>
+<h5 id="6-7-市场无形之手特性的一种诠释"><a href="#6-7-市场无形之手特性的一种诠释" class="headerlink" title="6.7 市场无形之手特性的一种诠释"></a>6.7 市场无形之手特性的一种诠释</h5><p>清仓价格：每个需方都能无冲突地获得最大收益</p>
+<p>清仓价格时社会福利也最大</p>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>, <a class="article-tag-none-link" href="/tags/%E7%A4%BE%E4%BC%9A%E7%A7%91%E5%AD%A6/" rel="tag">社会科学</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2023/04/11/%E6%B8%85%E6%98%8E%E6%9D%82%E8%B0%88/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          清明杂谈
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/03/18/%E7%A4%BE%E4%BC%9A%E7%A7%91%E5%AD%A6%E4%B8%AD%E7%9A%84%E8%AE%A1%E7%AE%97%E6%80%9D%E7%BB%B4%E6%96%B9%E6%B3%95%E7%AC%94%E8%AE%B0Part_2/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          社会科学中的计算思维方法笔记Part_2
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

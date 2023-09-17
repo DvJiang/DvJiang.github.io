@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>OpenGL与PVR结构 | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="前言OpenGL是著名（大概？）的图形处理工具，准确来说是图形库规范的一种。这部分（ 关于OpenGL的内容  ）大都是我上《移动图形概论》的一些总结，可能会有些零碎…不过还是能看。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenGL与PVR结构">
+<meta property="og:url" content="http://example.com/2022/02/28/OpenGL%E4%B8%8EPVR%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="前言OpenGL是著名（大概？）的图形处理工具，准确来说是图形库规范的一种。这部分（ 关于OpenGL的内容  ）大都是我上《移动图形概论》的一些总结，可能会有些零碎…不过还是能看。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.469Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="OpenGL">
+<meta property="article:tag" content="PVR">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-OpenGL与PVR结构" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      OpenGL与PVR结构
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2022-02-27T16:00:00.000Z" itemprop="datePublished">二月 28, 2022</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%A1%86%E6%9E%B6"><span class="toc-text">文件框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%88%86%E7%B1%BB"><span class="toc-text">文件分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="toc-text">文件内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Makefile"><span class="toc-text">Makefile</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cpp"><span class="toc-text">.cpp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#h"><span class="toc-text">.h</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fsh%E5%92%8C-vsh"><span class="toc-text">.fsh和.vsh</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8%E6%96%B9%E5%BC%8F"><span class="toc-text">驱动方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-text">结语</span></a></li></ol>
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <hr>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>OpenGL是著名（大概？）的图形处理工具，准确来说是图形库规范的一种。这部分（ <em>关于OpenGL的内容</em>  ）大都是我上《移动图形概论》的一些总结，可能会有些零碎…不过还是能看。</p>
+<span id="more"></span>
+
+<p>OpenGL本身存在已经有一些年头了，作为偏底层的语言，其实以后也可能用不上它。但是它所代表的图形渲染思路却是共通的，因此学习OpenGL仍算是必要的。</p>
+<p>需要说明的是，由于OpenGl只是一种图形库规范，统一了函数接口，具体代码的实现会随着显卡厂家和库编写者的不同而发生变化，我所使用的是学校要求的OpenGL+PVR，语言为C&#x2F;C++，在Linux上调试和运行。</p>
+<hr>
+<h2 id="文件框架"><a href="#文件框架" class="headerlink" title="文件框架"></a>文件框架</h2><h3 id="文件分类"><a href="#文件分类" class="headerlink" title="文件分类"></a>文件分类</h3><p>一个OpenGL可运行的夹下的文件被分为几类文件：<code>Makefile</code>，<code>.cpp</code>，<code>.h</code> ，<code>.fsh</code>和<code>.vsh</code>。在编译（<code>make</code>）后会多出<code>.o</code>和<code>log.txt</code>文件，很明显<code>.o</code>文件是编译后的文件，<code>log.txt</code>是运行日志，都不用管他们。</p>
+<p><code>.h</code>顾名思义是<code>.cpp</code>的头文件，<code>Makefile</code>用于<code>cmake</code>编译最后的文件，<code>.fsh</code>和<code>.vsh</code>为图形渲染文件。</p>
+<hr>
+<h3 id="文件内容"><a href="#文件内容" class="headerlink" title="文件内容"></a>文件内容</h3><h4 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h4><p>只需要关注其中关于PVR库的路径是否正确即可，不正确的库路径将无法被编译。</p>
+<h4 id="cpp"><a href="#cpp" class="headerlink" title=".cpp"></a>.cpp</h4><p><code>.cpp</code>是C&#x2F;C++文件格式，一般包括了主文件和附加文件。</p>
+<p>主文件内一般分为三块，自定义类对PVR库的继承，文件的初始化（一般以<code>init</code>标注）和主函数（<code>renderFrame</code>）。</p>
+<p>对库的继承会得到PVR相关的函数库，文件初始化一般包括图形渲染文件的合并，对渲染变量地址的提取等，主函数则会调用附加<code>.cpp</code>文件的<code>render</code>模块，实现循环。</p>
+<p>附加文件实现具体某物件的渲染，包括几何图形顶点的确定，连线方式等。</p>
+<h4 id="h"><a href="#h" class="headerlink" title=".h"></a>.h</h4><p><code>.h</code>是<code>.cpp</code>附加文件的头文件，一般用于初始化自定义的类等，使代码简洁。</p>
+<h4 id="fsh和-vsh"><a href="#fsh和-vsh" class="headerlink" title=".fsh和.vsh"></a>.fsh和.vsh</h4><p><code>.fsh</code>和<code>.vsh</code>是图形渲染文件，一般被命名为VerShader.vsh和FragShader.fsh，即顶点着色器和片段着色器。通过更改其中代码可以改变着色方式以及渲染效果，但新添加的变量也同样需要到外部主文件和附加文件处提取。</p>
+<hr>
+<h2 id="驱动方式"><a href="#驱动方式" class="headerlink" title="驱动方式"></a>驱动方式</h2><p>首先利用<code>cd</code>命令将命令行转至当前文件夹下，再利用<code>make</code>创建可执行文件。</p>
+<p>最后执行该文件即可。</p>
+<blockquote>
+<p>在<code>make</code>其他电脑编写的源代码时，检查Makefile文件中PVR库的地址是否匹配是个不错的习惯。</p>
+</blockquote>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>摸索OpenGL代码，猜测它们的含义是很辛苦的…所以我打算把它们记录下来，以后再遇到类似的情况，至少知道如何处理。</p>
+<blockquote>
+<p>使用VScode，然后<code>control</code>+<code>F</code>是个不错的主意，它可以快速帮你理清各文件之间参数和函数的关系。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/OpenGL/" rel="tag">OpenGL</a>, <a class="article-tag-none-link" href="/tags/PVR/" rel="tag">PVR</a>, <a class="article-tag-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2022/02/28/Matplot%E7%82%B9%E7%8A%B6%E5%9B%BE%E7%BB%98%E5%9B%BE%E5%88%9D%E6%8E%A2/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Matplot点状图绘图初探
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/02/27/%E6%84%BF%E6%B8%85%E9%A3%8E%E5%90%B9%E6%8B%82%E5%A6%82%E5%B8%B8/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          愿清风吹拂如常
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

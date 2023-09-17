@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>线性代数的本质 | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="本文视频来自：3Blue1Brown：线性代数的本质,为学习笔记。 线性代数的计算不难，但其几何意义很少有老师好好讲。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性代数的本质">
+<meta property="og:url" content="http://example.com/2022/03/23/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="本文视频来自：3Blue1Brown：线性代数的本质,为学习笔记。 线性代数的计算不难，但其几何意义很少有老师好好讲。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-22T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.488Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="数学">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-线性代数的本质" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      线性代数的本质
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2022-03-22T16:00:00.000Z" itemprop="datePublished">三月 23, 2022</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E7%A9%B6%E7%AB%9F%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">向量究竟是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E8%A7%82%E7%82%B9"><span class="toc-text">三种观点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E7%9A%84%E7%9B%B8%E5%8A%A0"><span class="toc-text">向量的相加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E7%9B%B8%E4%B9%98"><span class="toc-text">向量相乘</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E7%BB%84%E5%90%88%EF%BC%8C%E5%BC%A0%E6%88%90%E7%9A%84%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%9F%BA"><span class="toc-text">线性组合，张成的空间与基</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%90%E6%A0%87%E7%B3%BB%E7%9A%84%E5%9F%BA"><span class="toc-text">坐标系的基</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E9%97%B4"><span class="toc-text">空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3"><span class="toc-text">线性相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%9A%84%E4%B8%A5%E6%A0%BC%E5%AE%9A%E4%B9%89"><span class="toc-text">基的严格定义</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E4%B8%8E%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2"><span class="toc-text">矩阵与线性变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E4%B8%8E%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%E5%A4%8D%E5%90%88"><span class="toc-text">矩阵乘法与线性变换复合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E5%88%97%E5%BC%8F"><span class="toc-text">行列式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%86%E7%9F%A9%E9%98%B5%EF%BC%8C%E5%88%97%E7%A9%BA%E9%97%B4%E4%B8%8E%E9%9B%B6%E7%A9%BA%E9%97%B4"><span class="toc-text">逆矩阵，列空间与零空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%82%B9%E7%A7%AF%E4%B8%8E%E5%AF%B9%E5%81%B6%E6%80%A7"><span class="toc-text">点积与对偶性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%89%E7%A7%AF%E7%9A%84%E6%A0%87%E5%87%86%E4%BB%8B%E7%BB%8D"><span class="toc-text">叉积的标准介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A5%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%E7%9A%84%E7%9C%BC%E5%85%89%E7%9C%8B%E5%8F%89%E7%A7%AF"><span class="toc-text">以线性变换的眼光看叉积</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E5%8F%98%E6%8D%A2"><span class="toc-text">基变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F%E4%B8%8E%E7%89%B9%E5%BE%81%E5%80%BC"><span class="toc-text">特征向量与特征值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4"><span class="toc-text">抽象向量空间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E7%9F%A9%E9%98%B5%E6%8F%8F%E8%BF%B0%E6%B1%82%E5%AF%BC%EF%BC%9A"><span class="toc-text">用矩阵描述求导：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%90%91%E9%87%8F"><span class="toc-text">什么是向量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%8B%E8%8E%B1%E5%A7%86%E6%B3%95%E5%88%99%EF%BC%8C%E5%87%A0%E4%BD%95%E8%A7%A3%E9%87%8A"><span class="toc-text">克莱姆法则，几何解释</span></a></li></ol>
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <blockquote>
+<p>本文视频来自：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ys411472E?spm_id_from=333.999.0.0">3Blue1Brown：线性代数的本质</a>,为学习笔记。</p>
+<p>线性代数的计算不难，但其几何意义很少有老师好好讲。</p>
+</blockquote>
+<span id="more"></span>
+
+<hr>
+<h2 id="向量究竟是什么"><a href="#向量究竟是什么" class="headerlink" title="向量究竟是什么"></a>向量究竟是什么</h2><blockquote>
+<p>“引入一些数作为向量是鲁莽的行为。”</p>
+</blockquote>
+<h3 id="三种观点"><a href="#三种观点" class="headerlink" title="三种观点"></a>三种观点</h3><ul>
+<li>物理观点：空间中的箭头</li>
+<li>计算机观点：有序的数字组合</li>
+<li>数学观点：保证相加和数乘有意义就好了</li>
+</ul>
+<blockquote>
+<p>将几何的箭头定在原点，则计算机观点的数字组合则和坐标系上的点对应</p>
+</blockquote>
+<h3 id="向量的相加"><a href="#向量的相加" class="headerlink" title="向量的相加"></a>向量的相加</h3><p>向量可以被视为一种运动，像是一维数字加和的一种拓展。</p>
+<p>使用首尾相连的方式连接两个向量（数学上表示为各项分别相加）。</p>
+<h3 id="向量相乘"><a href="#向量相乘" class="headerlink" title="向量相乘"></a>向量相乘</h3><p>几何角度：缩放向量（数字的主要作用）</p>
+<p>数学上为和各项分别相乘。</p>
+<blockquote>
+<p>线性代数的意义一方面体现在可以在数字序列和几何上相互转化，从而为数据的可视化提供了一条渠道，另一方面，为物理和计算机图形提供了一种语言来描述空间。</p>
+</blockquote>
+<hr>
+<h2 id="线性组合，张成的空间与基"><a href="#线性组合，张成的空间与基" class="headerlink" title="线性组合，张成的空间与基"></a>线性组合，张成的空间与基</h2><h3 id="坐标系的基"><a href="#坐标系的基" class="headerlink" title="坐标系的基"></a>坐标系的基</h3><p>将一对向量的每一个坐标看成一个标量，实现对单位向量的拉伸。</p>
+<p>思想：缩放向量（基）并相加——线性组合</p>
+<h3 id="空间"><a href="#空间" class="headerlink" title="空间"></a>空间</h3><p>两向量全部线性组合构成的向量集合被称为“张成的空间”。（span）</p>
+<blockquote>
+<p>实际是在问，只使用向量的相加和数乘，你能获得的所有可能向量集合是什么</p>
+</blockquote>
+<p>为了简化看到的多个向量：在考虑一个向量的时候，把它看成一个箭头；在考虑多个向量的时候，就把他们看成点（从而连成线，平面）</p>
+<h3 id="线性相关"><a href="#线性相关" class="headerlink" title="线性相关"></a>线性相关</h3><p>为了描述多个向量不能很好的构成空间（存在共线&#x2F;共面）的情况。</p>
+<p>线性相关：当去掉任意一个向量而不影响张成的空间时</p>
+<p>OR：一个向量可以表示为其他向量的线性组合</p>
+<p>反之：线性无关</p>
+<h3 id="基的严格定义"><a href="#基的严格定义" class="headerlink" title="基的严格定义"></a>基的严格定义</h3><p>向量空间的一组基是张成该空间的一个线性无关向量集</p>
+<hr>
+<h2 id="矩阵与线性变换"><a href="#矩阵与线性变换" class="headerlink" title="矩阵与线性变换"></a>矩阵与线性变换</h2><p>线性变换的概念以及它和矩阵的关系</p>
+<p>所谓变换：输入一些向量，得到另一些向量（就像函数）（但更像运动movement）</p>
+<p>所谓线性：直线仍是直线，且原点保持固定。（网格线平行且等距）</p>
+<blockquote>
+<p>原点变化的叫做仿射变换</p>
+</blockquote>
+<p>用数值描述线性变换：矩阵 -&gt; 用变换后的基坐标表示</p>
+<p>线性变换是操纵空间的一种方式：后面变换的基础。</p>
+<hr>
+<h2 id="矩阵乘法与线性变换复合"><a href="#矩阵乘法与线性变换复合" class="headerlink" title="矩阵乘法与线性变换复合"></a>矩阵乘法与线性变换复合</h2><p>如何定义描述独立变换的复合变换：通过相乘</p>
+<p>相乘的几何意义：两个变换相继作用，注意是从右到左读。</p>
+<blockquote>
+<p>由此可看出，矩阵相乘交换顺序对结果是有影响的，但交换律不会</p>
+</blockquote>
+<blockquote>
+<p>附注1：多维空间中的矩阵变换同理，构成n维矩阵</p>
+</blockquote>
+<hr>
+<h2 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h2><p>意义：描述一块区域在经过空间变换后变化的大小。（线性变换改变面积的比例）（翻转为负）</p>
+<blockquote>
+<p>用无数的小方块可以直观理解（微积分思想）</p>
+</blockquote>
+<p>当行列式值为0时：空间被矩阵变换到了更小的维度上（所以当前体积就为0了）</p>
+<blockquote>
+<p>通过这种理解，也可以解释为什么det(矩阵之积) &#x3D; det(矩阵)之积了。</p>
+</blockquote>
+<hr>
+<h2 id="逆矩阵，列空间与零空间"><a href="#逆矩阵，列空间与零空间" class="headerlink" title="逆矩阵，列空间与零空间"></a>逆矩阵，列空间与零空间</h2><p>矩阵可求解特定方程组：线性方程组</p>
+<blockquote>
+<p>求解的几何含义：对于特定的一个变换（矩阵A），找到一个向量使得它的变换后为v</p>
+</blockquote>
+<p>当A的行列式不为零时，通过A的逆变换（A的逆）可以找到x，此时存在唯一解。（高维同理）</p>
+<p>当A行列式为零时，A将空间压缩到更低维度，此时没有逆变换（不能由一条直线解压为一个平面），解可能存在但无数（v正好在更低维）或不存在（v没和压缩结果重叠），解存在的难度变高了。</p>
+<p>所有矩阵变换可能的输出集合为矩阵的列空间，也就是矩阵的列张成的空间。</p>
+<p>秩（rank）：A变换矩阵剩下的维度，也就是列空间的维数。</p>
+<blockquote>
+<p>零向量一定在列空间中</p>
+</blockquote>
+<p>零空间（核）：变换后落在原点的向量集合，也就是AX &#x3D; 0的解空间。</p>
+<blockquote>
+<p>附注2：非方阵：列表示基向量的个数（原空间的维数），行数表示变换后只用几个坐标来表示。</p>
+<p>竖着看矩阵的一列，是原空间对应基向量变换后的模样。</p>
+</blockquote>
+<hr>
+<h2 id="点积与对偶性"><a href="#点积与对偶性" class="headerlink" title="点积与对偶性"></a>点积与对偶性</h2><p>点积的几何意义：投影和另一个向量相乘，投影对自身放缩效果的继承使得点积可以交换顺序。</p>
+<p>点积计算规则探究：1X2矩阵和二维向量有着微妙的联系</p>
+<ul>
+<li>由此产生了投影矩阵：几何变换含义为“向量对一条过原点的数轴投影”</li>
+<li>从而可以解释点积计算的来历：将一个1X2矩阵看成一个新的向量</li>
+</ul>
+<blockquote>
+<p>对于任意一个多维-一维的线性变换，都可以找到唯一一个向量，使得进行这个变换和与这个向量点积结果相同。</p>
+</blockquote>
+<p>对偶性：两种数学事物之间自然又出乎意料的对应关系。</p>
+<p>一个多维到一维的变换与某个多维空间的向量是对偶关系。</p>
+<blockquote>
+<p>将向量看作线性变换的物质载体，一个特定变换的概念性记号会更容易理解向量</p>
+</blockquote>
+<hr>
+<h2 id="叉积的标准介绍"><a href="#叉积的标准介绍" class="headerlink" title="叉积的标准介绍"></a>叉积的标准介绍</h2><p>本部分介绍的是叉积的一般算法理论。</p>
+<p>叉积的几何意义：两个向量形成的面积，带正负，正负规则为右手定则。</p>
+<p>因此，叉积的大小就是对应的行列式的值（单位正方形扩大的倍数）</p>
+<p>垂直时叉积更大，数乘可移。</p>
+<hr>
+<h2 id="以线性变换的眼光看叉积"><a href="#以线性变换的眼光看叉积" class="headerlink" title="以线性变换的眼光看叉积"></a>以线性变换的眼光看叉积</h2><p>定义一个从三维空间到数轴的特定线性变换，其对偶向量为叉积结果。</p>
+<p>其函数具体实现为：输入一个向量，通过矩阵行列式得到一个数。</p>
+<p>性质上，这个函数是线性的，这很重要，因为这样我们就可以用矩阵乘法描述这个变换了：存在一个1X3的矩阵满足条件，这就是我们要求的那个叉积结果。</p>
+<blockquote>
+<p>对于一个平行六面体的体积（行列式），可以先得到一个面的面积（V与W），再乘以剩下那个向量垂直于这个面的投影（点积）</p>
+</blockquote>
+<hr>
+<h2 id="基变换"><a href="#基变换" class="headerlink" title="基变换"></a>基变换</h2><p>本质上可以看作是两个空间之间的变换（基向量的改变）</p>
+<p>可以认为，之前空间变换中的矩阵的那一套，并没有改变“视角”，也就是基向量，只是改变了空间里所有的向量的模样（拉伸旋转），从这种意义上，说它拉伸空间是不完全正确的。前后所使用的描述工具仍然是原先的基向量。</p>
+<p>对别人的一个变换的矩阵描述：A逆MA，A是为了转换到我们的坐标系，M是在我们的系中变换对应的矩阵，这本质上是一个视角的转移。</p>
+<blockquote>
+<p>A逆MA还是描述的同一个矩阵，只是从别人的视角下来看的</p>
+</blockquote>
+<hr>
+<h2 id="特征向量与特征值"><a href="#特征向量与特征值" class="headerlink" title="特征向量与特征值"></a>特征向量与特征值</h2><p>在矩阵变换中，有些向量仍然留在了他们自己张成的空间中，这时候变换对于它们就像是一个数乘。</p>
+<p>这些特殊向量被称为特征向量，其数乘的值被称为特征值。</p>
+<blockquote>
+<p>可以通过特征值为1，找到一个旋转的三维变换的对称轴</p>
+</blockquote>
+<p>理解特征向量和特征值可以摆脱选定的基向量，从而更加理解变换。</p>
+<p>并非每一个变换都有特征向量（特征式出现复数解一般对应于某种旋转），特征值也可能多于特征向量。</p>
+<p>当基向量恰好为特征向量，这个矩阵为对角矩阵（更容易计算）</p>
+<p>当特征向量足够多，以至于可以张成一个空间，可以选取这些向量重新作为基向量，从而使得出现对角矩阵（结合上一章的基变换），一组基向量构成的集合被称为“特征基”。</p>
+<hr>
+<h2 id="抽象向量空间"><a href="#抽象向量空间" class="headerlink" title="抽象向量空间"></a>抽象向量空间</h2><blockquote>
+<p>行列式和特征向量与所选坐标系无关</p>
+</blockquote>
+<p>可以发现，在相加和数乘的操作上，向量和函数十分接近。</p>
+<p>因此，关于向量的很多概念能被应用到函数上，如线性变换（例如求导，将一个函数变为另一个函数）</p>
+<blockquote>
+<p>线性变换条件（同时适用于函数和矩阵）：可加性，成比例</p>
+</blockquote>
+<h3 id="用矩阵描述求导："><a href="#用矩阵描述求导：" class="headerlink" title="用矩阵描述求导："></a>用矩阵描述求导：</h3><p>首先定义基向量：多项式中的1，x，x平方…，是无穷多的。</p>
+<p>此时可以写出导数矩阵，为次对角线上的1到正无穷，可以通过对基向量求导得。</p>
+<table>
+<thead>
+<tr>
+<th>线性代数概念</th>
+<th>函数对应的别名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>线性变换</td>
+<td>线性算子</td>
+</tr>
+<tr>
+<td>点积</td>
+<td>内积</td>
+</tr>
+<tr>
+<td>特征向量</td>
+<td>特征函数</td>
+</tr>
+</tbody></table>
+<h3 id="什么是向量"><a href="#什么是向量" class="headerlink" title="什么是向量"></a>什么是向量</h3><p>有很多类似于向量的不同事物，只要它们满足合理的数乘和相加概念（点，数组，函数…），线性代数中所有观点都应该适用。</p>
+<blockquote>
+<p>构成的集合为向量空间，需要满足一定条件（八条公理）</p>
+</blockquote>
+<p>这些公理为一个共识（清单），连接奇怪向量空间的使用者和数学家们。</p>
+<blockquote>
+<p>就像函数库一样调用</p>
+</blockquote>
+<p>因此，向量可以是任何东西——只要它满足一些公理。</p>
+<p>就像“3是什么”一样。</p>
+<blockquote>
+<p>普适的代价是抽象</p>
+</blockquote>
+<hr>
+<h2 id="克莱姆法则，几何解释"><a href="#克莱姆法则，几何解释" class="headerlink" title="克莱姆法则，几何解释"></a>克莱姆法则，几何解释</h2><p>克莱姆法则是解线性方程组的一种解法，具体过程不再赘述，结果很美好。</p>
+<blockquote>
+<p>正交变换：不改变点积（变换后基向量仍为单位向量且相互垂直）</p>
+</blockquote>
+<p>虽然不一定是正交变换，但可以用基向量与该向量围成的两个平行四边形面积来表示它的坐标，然后通过行列式的计算保持面积的可求。</p>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>, <a class="article-tag-none-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2022/03/24/%E3%80%8A%E5%AE%9A%E4%BD%8D%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          《定位》读书笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/03/19/SGD%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95%E6%8E%A2%E7%A9%B6/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          SGD相关算法探究
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

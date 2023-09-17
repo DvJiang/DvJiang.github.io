@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>信道：六大域初论 | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="序作为通信原理课程关于六大域的一些小总结，也是帮助自己对这些概念做一个梳理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信道：六大域初论">
+<meta property="og:url" content="http://example.com/2022/10/17/%E4%BF%A1%E9%81%93%EF%BC%9A%E5%85%AD%E5%A4%A7%E5%9F%9F%E5%88%9D%E8%AE%BA/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="序作为通信原理课程关于六大域的一些小总结，也是帮助自己对这些概念做一个梳理。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.479Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-信道：六大域初论" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      信道：六大域初论
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2022-10-16T16:00:00.000Z" itemprop="datePublished">十月 17, 2022</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%8F"><span class="toc-text">序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E9%81%93%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%BB%BA%E7%AB%8B"><span class="toc-text">信道模型的建立</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E5%A4%A7%E5%9F%9F"><span class="toc-text">六大域</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%89%A9%E6%95%A3%E6%80%A7%E4%B8%8E%E9%80%89%E6%8B%A9%E6%80%A7"><span class="toc-text">扩散性与选择性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%B6%E5%9F%9F-%E5%A4%9A%E6%99%AE%E5%8B%92%E5%9F%9F"><span class="toc-text">时域 - 多普勒域</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%91%E5%9F%9F-%E6%97%B6%E5%BB%B6%E5%9F%9F"><span class="toc-text">频域 - 时延域</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A9%BA%E5%9F%9F-%E8%A7%92%E5%9F%9F"><span class="toc-text">空域 - 角域</span></a></li></ol></li></ol></li></ol>
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <h3 id="序"><a href="#序" class="headerlink" title="序"></a>序</h3><p>作为通信原理课程关于六大域的一些小总结，也是帮助自己对这些概念做一个梳理。</p>
+<span id="more"></span>
+
+<h3 id="信道模型的建立"><a href="#信道模型的建立" class="headerlink" title="信道模型的建立"></a>信道模型的建立</h3><p>简单粗暴地说，无线信号的通讯环境无非就是一个电磁空间，利用电磁波相关理论可以完备地描述它的特性。但是，作为一门应用学科，研究信道的目的只是为了更好地通信。所以，根据信息流传的规律，将这种电磁空间建模为了一种通道般的存在，即信道。</p>
+<p>一般认为，信道的影响分为4部分，前三部分为乘性影响，分别为：<code>path loss</code>（能量的衰减）, <code>shadowing</code>（大型物体的遮挡） 和 <code>multipath</code> （多径），而且其影响依次减小。最后一个部分为加性噪声，比如高斯白噪声。</p>
+<p>在本文中，主要讨论信道在多径衰减上的相关特性。</p>
+<h3 id="六大域"><a href="#六大域" class="headerlink" title="六大域"></a>六大域</h3><p>信道在多径上的特性可以分为3对二元域进行描述。所谓二元域，如同信号与系统中时域和频域一般，属于对同一种特性从不同角度进行观察的结果，描述的归根结底其实是一码事。因此，对于这3对二元域，可以有2的三次方——8种系统方程进行描述。</p>
+<p>六大域为：时域 - 多普勒域，频域 - 时延域，空域 - 角域。</p>
+<h5 id="扩散性与选择性"><a href="#扩散性与选择性" class="headerlink" title="扩散性与选择性"></a>扩散性与选择性</h5><p>这两对性质是对六大域的描述，其中选择性描述时域，频域和空域，而扩散性描述多普勒域，时延域和角域。也就是说，对于一对域来说，一个对应扩散性，另一个就对应选择性。</p>
+<p>简单来说，扩散性指的是通过后信号变宽的特性。而选择性指的是在一定范围内（一般是极值点附近），该特性对信号影响不大的范围。</p>
+<h5 id="时域-多普勒域"><a href="#时域-多普勒域" class="headerlink" title="时域 - 多普勒域"></a>时域 - 多普勒域</h5><p>这两个域描述的是对于同一个信号，收发端的“移动”对信号的影响。其中时域具有选择性，指的是若收发端移动得相对不快，那么接收到的信号的时延基本没有改变，此时“移动”这一个特性对信号的影响就比较小。（此时信道称为“慢衰落信道”（<code>Slow fading channel</code>））</p>
+<p>从多普勒的角度来说，收发端速度越快，频率的漂移也越远，换句话说，接收到的信号频率也就越宽。反之，信号频率就比较窄。而这种对信号的变宽就被称为扩散性，对应的信道被称为“快衰落信道”(<code>Fast fading channel</code>)。</p>
+<h5 id="频域-时延域"><a href="#频域-时延域" class="headerlink" title="频域 - 时延域"></a>频域 - 时延域</h5><p>该二元域描述了“多径”对信号的影响。时延域的扩散指的是，同一个信号，在经过不同路径到达接收端后，因为多条路径的长度不同，使得时延各不一样，在时延上呈现变宽的性质。这时候，我们可以发现信道的时延性质对收发端的信号频率提出了要求，即当发出信号的时间间隔小于这种被变宽的时延时，上一帧信号和这一帧将会出现重叠，此时的信道被定义为“宽带信号”(<code>Wideband channel</code>)。</p>
+<p>相反的，从频域上来看，一个自身频率对应的信道频率比较平稳的信号，将不会出现重叠的问题。这种平稳的要求，就是需要频域上的极大值附近的区域，这是频域的选择性的体现。此时的信道也被称为“窄带信号”(<code>Narrowband channel</code>)。</p>
+<h5 id="空域-角域"><a href="#空域-角域" class="headerlink" title="空域 - 角域"></a>空域 - 角域</h5><p>这对域描述的是信源阵列对信号的影响，所谓空域的“空”字，便是指的信源的相对空间位置排布。空域的选择性体现为，随着两个信源距离的增加，信号大小出现忽高忽低的情况，而在极大值附近，信号变化趋于稳定，此时认为两个信源位置的些微变换对信号影响很小。此时称信道为“空间相干信道”(<code>Spatial correlated channel</code>)。</p>
+<p>所谓角域的“角”，指的是不同信源与同一个反射物的连线，与同一参考线的夹角。随着空间上信源的位置变远，角域上角也越来越大。这种角度的变化，被称作角域的扩展性。当信源位置很远，使得角域上很大时，被称为“空间非相干信道”(<code>Spetial uncorrelated channel</code>)。</p>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2022/10/18/%E3%80%8A%20The%20Dusk%20of%20the%20Miracle%20%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%8B%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          《 The Dusk of the Miracle》读书笔记（下）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/10/16/%E3%80%8A%E7%BD%AE%E8%BA%AB%E4%BA%8B%E5%86%85%E3%80%8B%EF%BC%9A%E6%88%BF%E4%BB%B7%E7%9A%84%E4%B8%8A%E8%A1%8C/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          《置身事内》：房价的上行
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

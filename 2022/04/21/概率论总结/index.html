@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>概率论总结 | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="将它作为概率论的回忆罢">
+<meta property="og:type" content="article">
+<meta property="og:title" content="概率论总结">
+<meta property="og:url" content="http://example.com/2022/04/21/%E6%A6%82%E7%8E%87%E8%AE%BA%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="将它作为概率论的回忆罢">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.485Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="数学">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-概率论总结" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      概率论总结
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2022-04-20T16:00:00.000Z" itemprop="datePublished">四月 21, 2022</time>
+
+          
+          <br><br><p><code>MathJax Will Take Few Minutes to Load</code></p>
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E4%B8%8E%E8%BF%90%E7%AE%97%E5%BE%8B"><span class="toc-text">事件与运算律</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E5%8F%98%E9%87%8F%E9%9A%8F%E6%9C%BA%E6%95%B0"><span class="toc-text">单变量随机数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%87%BD%E6%95%B0"><span class="toc-text">基本函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%A6%82%E5%BF%B5"><span class="toc-text">常见概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%AE%9A%E7%90%86"><span class="toc-text">一些定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83"><span class="toc-text">常见分布</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E5%8F%98%E9%87%8F%E9%9A%8F%E6%9C%BA%E6%95%B0"><span class="toc-text">双变量随机数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%87%BD%E6%95%B0-1"><span class="toc-text">基本函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%A6%82%E5%BF%B5-1"><span class="toc-text">常见概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E5%8F%98%E9%87%8F%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-text">双变量的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B8%83"><span class="toc-text">条件分布</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7%E6%95%B0%E9%83%A8%E5%88%86"><span class="toc-text">大数部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E6%80%A7%E9%83%A8%E5%88%86"><span class="toc-text">收敛性部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E6%95%B0%E5%AE%9A%E7%90%86"><span class="toc-text">大数定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E5%BF%83%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86"><span class="toc-text">中心极限定理</span></a></li></ol></li></ol>
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <blockquote>
+<p>将它作为概率论的回忆罢</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="事件与运算律"><a href="#事件与运算律" class="headerlink" title="事件与运算律"></a>事件与运算律</h2><ul>
+<li>运算律<ul>
+<li>分配律：A(BUC) &#x3D; (AB)U(AC)    AU(BC) &#x3D; (AUB)(AUC)</li>
+<li>对偶律：与和或可以互换，只要01也互换（逻辑电路的知识）<ul>
+<li>同样的，逻辑电路的德摩根定律在这里也成立</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="单变量随机数"><a href="#单变量随机数" class="headerlink" title="单变量随机数"></a>单变量随机数</h2><h3 id="基本函数"><a href="#基本函数" class="headerlink" title="基本函数"></a>基本函数</h3><ul>
+<li>概率：$P(X \le x)$</li>
+<li>概率分布函数：$F(x) &#x3D; P(X \le x)$</li>
+<li>概率密度函数：$P_x(x) &#x3D; F’(x)$</li>
+</ul>
+<blockquote>
+<p>概率分布通常用来求概率密度，概率密度圈起来的面积就是落到这个里面的概率。</p>
+<p>概率密度可以显示分布特征，但不够直观，所以用概率分布来建立联系更为常见。</p>
+</blockquote>
+<h3 id="常见概念"><a href="#常见概念" class="headerlink" title="常见概念"></a>常见概念</h3><ul>
+<li>期望 $E(x) &#x3D; \int xP(x)dx$</li>
+<li>方差 $Var(x) &#x3D; E((x - E(x))^2)$</li>
+<li>进阶：<ul>
+<li>$Var(x) &#x3D; E(x^2) - E^2(x)$</li>
+<li>对于$h(x)$，如果函数是一一对应的，其取值的概率则只和$x$的取值有关，此时$P(h(x)) &#x3D; P(x)$。</li>
+</ul>
+</li>
+<li>对$z &#x3D; h(x)$<ul>
+<li>当$h(x)$是线性时，不妨认为是$h(x) &#x3D; ax + b$<ul>
+<li>$E(z) &#x3D; aE(x) + b$ ，即期望遵循线性关系</li>
+<li>$Var(z) &#x3D; a^2Var(x)$ ，即方差关注系数</li>
+</ul>
+</li>
+<li>当$h(x)$不是线性，考虑通过概率密度分布函数解决问题<ul>
+<li>$P_z(z) &#x3D; P_x(h^{-1}(x))|(h^{-1}(x))’|$ 要求$h(x)$单调递增，可以通过分布函数求得</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>单变量函数期望和方差的计算通常有两个方向，一个方向是从概率分布函数入手，然后根据定义计算得到（方差通常由进阶式计算），另一个方向是从已有函数的关系入手,通过方差和期望的性质得到答案。</p>
+</blockquote>
+<h3 id="一些定理"><a href="#一些定理" class="headerlink" title="一些定理"></a>一些定理</h3><ul>
+<li>切比雪夫定理：<ul>
+<li>对任意$\epsilon &gt; 0$，有$P(|x - E(x)| &gt; \epsilon) \le \frac{Var(x)}{\epsilon ^2}$</li>
+</ul>
+</li>
+<li>用均匀分布构造分布：<ul>
+<li>对$Exp(\lambda),F(x) &#x3D; 1-e^{-\lambda x}$，构造$x &#x3D; F^{-1}(U(0,1))$即可</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>切比雪夫定理在实际意义上规定了一个随机变量能够偏离期望的概率大小，这可以用来直接解答一部分问题。</p>
+<p>另外，在一些计算，尤其是证明中，切比雪夫可以用来构造不等式，实现放缩。</p>
+</blockquote>
+<h3 id="常见分布"><a href="#常见分布" class="headerlink" title="常见分布"></a>常见分布</h3><ul>
+<li>均匀分布U $P(x) &#x3D; \frac{1}{b - a}$<ul>
+<li>$E(x) &#x3D; \frac{b-a}{2}$  $Var(x) &#x3D; \frac{1}{12}(b-a)^2$</li>
+</ul>
+</li>
+<li>指数分布EXP $P(x) &#x3D; \lambda e^{-\lambda x}$<ul>
+<li>$E(x) &#x3D; \frac{1}{\lambda}$  $Var(x) &#x3D; \frac{1}{\lambda^2}$</li>
+</ul>
+</li>
+<li>正态分布N  $P(x) &#x3D; \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x - \mu)}{2\sigma^2}}$<ul>
+<li>$E(x) &#x3D; \mu$  $Var(x) &#x3D; \sigma$</li>
+</ul>
+</li>
+<li>泊松分布P $P(x &#x3D; k) &#x3D; \frac{\lambda^k}{K!}e^{-\lambda}$<ul>
+<li>$E(x) &#x3D; \lambda$  $Var(x) &#x3D; \lambda$</li>
+</ul>
+</li>
+<li>二项分布B $P(x &#x3D; k) &#x3D; C_n^kp^k(1-p)^{n-k}$<ul>
+<li>$E(x) &#x3D; np$  $E(x) &#x3D; np(1-p)$</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>前三个为连续分布，函数为密度函数，后两个为离散分布，函数为概率函数。</p>
+<p>正态分布需要掌握转换成标准正态分布的方法：减去平均数再除以标准差。</p>
+<p>指数分布特点在于无论什么时候开始，它的分布都和刚开始一样。</p>
+</blockquote>
+<hr>
+<h2 id="双变量随机数"><a href="#双变量随机数" class="headerlink" title="双变量随机数"></a>双变量随机数</h2><h3 id="基本函数-1"><a href="#基本函数-1" class="headerlink" title="基本函数"></a>基本函数</h3><ul>
+<li>概率：$P(X \le x, Y \le y)$</li>
+<li>概率分布函数：$F(x , y) &#x3D; P(X \le x, Y \le y)$</li>
+<li>概率密度函数：<ul>
+<li>单个：$P_x(x) &#x3D; \frac{d}{dx}F(x,y)$，$P_y(y) &#x3D; \frac{d}{dy}F(x,y)$</li>
+<li>多个：$P(x,y) &#x3D; \frac{d^2}{dxdy}F(x,y)$</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>在二维乃至多维中，概率密度函数的“密度”二字的含义就逐渐体现出来了。</p>
+<p>在几何上，它表示落到一小块区域的概率。</p>
+<p>如果想要得到一个变量的密度分布，则需要把其它变量拍扁——积起来消除影响。</p>
+</blockquote>
+<h3 id="常见概念-1"><a href="#常见概念-1" class="headerlink" title="常见概念"></a>常见概念</h3><ul>
+<li>期望：将一维拓展至多维，多个几个积分号而已。<ul>
+<li>$E(x,y) &#x3D; \int \int P(x,y)dxdy$</li>
+</ul>
+</li>
+<li>方差：对于单个的$P_x(x)$，知道密度函数情况下直接参考单变量情况。</li>
+<li>协方差：$Cov(x,y) &#x3D; E(xy) - E(x)E(y)$ 用于评判xy相关度，xy独立时为0。</li>
+<li>相关系数：$Corr(x,y) &#x3D; \frac{Cov(x,y)}{\sqrt{Var(x)}\sqrt{Var(y)}}$在-1到1间变动，绝对值越大越相关，本身只是作为协方差的归一化存在。</li>
+</ul>
+<blockquote>
+<p>注意，独立的xy协方差为0，但为0不代表它们独立。</p>
+</blockquote>
+<h3 id="双变量的函数"><a href="#双变量的函数" class="headerlink" title="双变量的函数"></a>双变量的函数</h3><ul>
+<li><p>不妨设$z &#x3D; h(x,y)$</p>
+</li>
+<li><p>对密度概率函数，需要先求分布函数：$F_z(z) &#x3D; P(h(x, y) \le z)$把它看成xy的概率表达式，相当于对xy新加了一个约束，然后用积分求得分布函数，再求导得到概率密度函数。</p>
+</li>
+<li><p>对于期望，和单变量时情况类似，可以用$\int \int h(x,y)dxdy$或通过概率密度函数积分获得。</p>
+</li>
+<li><p>对于方差：</p>
+<ul>
+<li>若是线性的，有：$Var(x\pm y) &#x3D; Var(x) + Var(y) \pm Cov(x,y)$</li>
+</ul>
+<blockquote>
+<p>此式可以用来求$Cov$，但更多的情况是正着用求$Var(x \pm y)$</p>
+</blockquote>
+</li>
+<li><p>若不是线性的，只能通过概率密度函数获得。</p>
+</li>
+<li><p>对于协方差，线性部分和期望类似，在多维问题中尤为突出。</p>
+</li>
+<li><p>正态分布，二项分布，泊松分布都具有可加性：</p>
+<ul>
+<li>$N(\mu_1,\sigma_1^2) + N(\mu_2, \sigma_2^2) &#x3D; N(\mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2)$</li>
+<li>$B(n,p) + B(m,p) &#x3D; B(n+m, p)$</li>
+<li>$P(\lambda_1) + P(\lambda_2) &#x3D; P(\lambda_1 + \lambda_2)$</li>
+</ul>
+</li>
+</ul>
+<h3 id="条件分布"><a href="#条件分布" class="headerlink" title="条件分布"></a>条件分布</h3><ul>
+<li>$P(X|Y &#x3D; y)$即$Y &#x3D; y$时x的分布：$P(X|Y &#x3D; y) &#x3D; \frac{P(x,y)}{P_y(y)}$</li>
+<li>和单变量的条件公式相同，有全概率公式和贝叶斯公式：<ul>
+<li>$P(x) &#x3D; \int P(x,y)dy &#x3D; \int P(x|y)P(y)dy$</li>
+<li>$P(x|y) &#x3D; P(y|x) \frac{P(x)}{P(y)}$</li>
+</ul>
+</li>
+<li>期望：$E(x|y)$,y是变量，x被期望加和。</li>
+<li>重期望公式：$E(x) &#x3D; E(E(x|y))$<ul>
+<li>通常用来求解不确定个数的随机变量问题</li>
+<li>$E(\Sigma^NX_i) &#x3D; E(X_1)E(N)$  (要求$X_i$独立同分布)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="大数部分"><a href="#大数部分" class="headerlink" title="大数部分"></a>大数部分</h2><h3 id="收敛性部分"><a href="#收敛性部分" class="headerlink" title="收敛性部分"></a>收敛性部分</h3><ul>
+<li>按概率收敛：符号带P<ul>
+<li>定义为一个变量序列的概率逐渐接近一个定值（收敛）</li>
+<li>对任意的$\epsilon&gt; 0$，$limP(|X_n - X| &gt; \epsilon) &#x3D; 0$</li>
+</ul>
+</li>
+<li>按分布收敛：符号带L<ul>
+<li>定义和上面类似，不过是看分布函数$F(x)$去逼近</li>
+<li>$limF_n(x) &#x3D; F(x)$</li>
+<li>也被称为弱收敛</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>两种收敛不等价，在证明中常常需要放缩和切比雪夫不等式，还有基本不等式等知识。</p>
+</blockquote>
+<h3 id="大数定理"><a href="#大数定理" class="headerlink" title="大数定理"></a>大数定理</h3><ul>
+<li>概述：相当于告知了概率和期望的意义（稳定性）</li>
+<li>辛钦大数定理：观测足够多时，算数平均数大概率接近期望</li>
+<li>伯努利大数定理：观测足够多时，事件发生频率大概率接近概率</li>
+</ul>
+<h3 id="中心极限定理"><a href="#中心极限定理" class="headerlink" title="中心极限定理"></a>中心极限定理</h3><ul>
+<li>对于独立同分布，无论什么分布，其总的分布函数总是长得像正态分布，期望方差都对应。<ul>
+<li>收束到二项分布上，便成了：棣莫弗—拉普拉斯中心极限定理</li>
+</ul>
+</li>
+<li>独立不同分布，如想要像正态分布一样，需要满足下面的条件之一：<ul>
+<li>林德伯格条件：<ul>
+<li>$B_n &#x3D; \sqrt{\Sigma\sigma^2}$</li>
+<li>对任意$\tau &gt; 0$，$lim\frac{1}{\tau^2B_n^2}\Sigma^n_{i&#x3D;1}\int_{|x-\mu_i|&gt;\tau B_n}(x-\mu_i)^2pi(x)dx &#x3D; 0$</li>
+</ul>
+</li>
+<li>李雅普诺夫条件：<ul>
+<li>$B_n &#x3D; \sqrt{\Sigma\sigma^2}$</li>
+<li>存在$\delta &gt; 0$，使得$lim\frac{1}{B_n^{2+\delta}}\Sigma E(|X_i - \mu_i^{2+\delta}|) &#x3D; 0$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>很明显，林德伯格条件以“任意”起头，李雅普诺夫条件以“存在”起头，前者一般用于否定，后者用于证明显得比较合理。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>, <a class="article-tag-none-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2022/05/09/Verilog%E5%9F%BA%E7%A1%80/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Verilog与仿真基础
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/04/10/%E7%BD%91%E7%BB%9C%E7%90%86%E8%AE%BA%E5%85%A5%E9%97%A8/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          网络理论入门
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+  <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+              processEscapes: true
+          }
+      });
+      MathJax.Hub.Queue(function() {
+          var all = MathJax.Hub.getAllJax();
+          for (var i = 0; i < all.length; ++i)
+              all[i].SourceElement().parentNode.className += ' has-jax';
+      });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
+
+
+
+
+</body>
+</html>

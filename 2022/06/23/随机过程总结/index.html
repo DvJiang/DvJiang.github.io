@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>随机过程总结 | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="基本概念随机过程 多了个实参$t$（通常是时间）的随机变量，被认为是一族函数 基本研究方法：条件分布">
+<meta property="og:type" content="article">
+<meta property="og:title" content="随机过程总结">
+<meta property="og:url" content="http://example.com/2022/06/23/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="基本概念随机过程 多了个实参$t$（通常是时间）的随机变量，被认为是一族函数 基本研究方法：条件分布">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-22T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.490Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="数学">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-随机过程总结" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      随机过程总结
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2022-06-22T16:00:00.000Z" itemprop="datePublished">六月 23, 2022</time>
+
+          
+          <br><br><p><code>MathJax Will Take Few Minutes to Load</code></p>
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B"><span class="toc-text">随机过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81"><span class="toc-text">随机变量的数字特征</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%9F%E6%9C%9B%E4%B8%8E%E6%96%B9%E5%B7%AE%E6%80%A7%E8%B4%A8"><span class="toc-text">期望与方差性质</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9D%87%E5%80%BC%E5%90%91%E9%87%8F%E4%B8%8E%E5%8D%8F%E6%96%B9%E5%B7%AE%E7%9F%A9%E9%98%B5"><span class="toc-text">均值向量与协方差矩阵</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87"><span class="toc-text">条件概率</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E6%95%B0%E5%AD%A6%E5%AE%9A%E4%B9%89"><span class="toc-text">随机过程数学定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E7%9A%84%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0"><span class="toc-text">随机过程的分布函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81"><span class="toc-text">随机过程的数字特征</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8D%95%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B"><span class="toc-text">单随机过程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%8C%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B"><span class="toc-text">双随机过程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%8D%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B"><span class="toc-text">复随机过程</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%8A%E6%9D%BE%E8%BF%87%E7%A8%8B"><span class="toc-text">泊松过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%8A%E6%9D%BE%E8%BF%87%E7%A8%8B%E5%AE%9A%E4%B9%89"><span class="toc-text">泊松过程定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%8A%E6%9D%BE%E8%BF%87%E7%A8%8B%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81"><span class="toc-text">泊松过程数字特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%B0%E8%BE%BE%E6%97%B6%E9%97%B4%E4%B8%8E%E6%97%B6%E9%97%B4%E9%97%B4%E9%9A%94%E5%88%86%E5%B8%83"><span class="toc-text">到达时间与时间间隔分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E7%BB%9F%E8%AE%A1%E9%87%8F"><span class="toc-text">顺序统计量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%8A%E6%9D%BE%E8%BF%87%E7%A8%8B%E7%9A%84%E5%8F%A0%E5%8A%A0"><span class="toc-text">泊松过程的叠加</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%A0%E5%8A%A0%E6%80%A7%E8%B4%A8"><span class="toc-text">叠加性质</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%8A%E6%9D%BE%E8%BF%87%E7%A8%8B%E7%9A%84%E6%8A%BD%E6%A0%B7"><span class="toc-text">泊松过程的抽样</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%90%88%E6%B3%8A%E6%9D%BE%E8%BF%87%E7%A8%8B"><span class="toc-text">复合泊松过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E8%BF%87%E7%A8%8B"><span class="toc-text">马尔可夫过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-1"><span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E9%99%90%E7%BB%B4%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E9%93%BE"><span class="toc-text">有限维马尔科夫链</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E5%88%86%E7%B1%BB"><span class="toc-text">状态分类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E7%A7%BB%E6%A6%82%E7%8E%87%E7%9A%84%E6%9E%81%E9%99%90"><span class="toc-text">转移概率的极限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%AB%E7%AE%97%E6%B3%95"><span class="toc-text">模拟退火算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E8%BF%87%E7%A8%8B%E7%9A%84%E8%BD%AC%E7%A7%BB%E6%A6%82%E7%8E%87"><span class="toc-text">马尔可夫过程的转移概率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E5%B9%B3%E7%A8%B3%E5%88%86%E5%B8%83"><span class="toc-text">马尔可夫平稳分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E7%81%AD%E8%BF%87%E7%A8%8B"><span class="toc-text">生灭过程</span></a></li></ol></li></ol>
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="随机过程"><a href="#随机过程" class="headerlink" title="随机过程"></a>随机过程</h3><ul>
+<li>多了个实参$t$（通常是时间）的随机变量，被认为是一族函数</li>
+<li>基本研究方法：条件分布</li>
+</ul>
+<span id="more"></span>
+
+<blockquote>
+<p>随机变量部分参考概率论，此处不再赘述。</p>
+</blockquote>
+<h3 id="随机变量的数字特征"><a href="#随机变量的数字特征" class="headerlink" title="随机变量的数字特征"></a>随机变量的数字特征</h3><ul>
+<li>期望：$xdF(x)$之和</li>
+<li>方差：$DX &#x3D; Var(x) &#x3D; E(X - EX)^2 &#x3D; E(X^2) - E^2(X)$</li>
+<li>协方差：$Cov(X,Y) &#x3D; E((X - E(X))(Y - E(Y))) &#x3D; E(XY) - E(X)E(Y)$</li>
+<li>相关系数：$\rho &#x3D; \frac{Cov(X,Y)}{\sqrt{DX} \sqrt{DY}}$</li>
+</ul>
+<h5 id="期望与方差性质"><a href="#期望与方差性质" class="headerlink" title="期望与方差性质"></a>期望与方差性质</h5><ul>
+<li>$E[aX + bY] &#x3D; aE[X] + bE[Y]$</li>
+<li>XY独立时，$E[XY] &#x3D; E[X] * E[Y]$，此时协方差为0</li>
+<li>$D[aX + bY] &#x3D; a^2D[X] + b^2D[Y]$</li>
+<li>Schwarz不等式:$[Cov(X,Y)]^2 \le DX * DY$（其实就是$\rho \le 1$）</li>
+<li>$D[X,Y,Z] &#x3D; D[X] + D[Y] + D[Z] + 2Cov(X,Y) + 2Cov(X,Z) + 2Cov(Z,Y)$</li>
+</ul>
+<h5 id="均值向量与协方差矩阵"><a href="#均值向量与协方差矩阵" class="headerlink" title="均值向量与协方差矩阵"></a>均值向量与协方差矩阵</h5><ul>
+<li>均值向量：$E[X] &#x3D; (E[X_1],E[X_2],…)$</li>
+<li>协方差矩阵：$B_{ij} &#x3D; Cov(X_i,X_j)$</li>
+</ul>
+<h5 id="条件概率"><a href="#条件概率" class="headerlink" title="条件概率"></a>条件概率</h5><ul>
+<li>概率密度分布：$f(x|y) &#x3D; \frac{f(u,y)}{f(y)}$</li>
+<li>条件分布函数：对$f(x|y)$从负无穷积分到$x$</li>
+<li>条件期望：$E(X|y) &#x3D; \int xdF_{X|Y}(x|y)$</li>
+<li>加入条件期望：$E(X_i) &#x3D; E(E(X_i|X_{j,j\neq i}))$</li>
+<li>加入条件方差：$D(X_i) &#x3D; E(D(X_i|N)) + D(E(X_i|N))$</li>
+<li>性质：$g(x)$不含$X_i$时，$E[X_ig(x)|X_{j,j\neq i}] &#x3D; g(x)E(X_i|X_{j,j\neq i})$（相当于挪出了常数项）</li>
+</ul>
+<h3 id="随机过程数学定义"><a href="#随机过程数学定义" class="headerlink" title="随机过程数学定义"></a>随机过程数学定义</h3><ul>
+<li>概率空间$\Omega$，参数常为时间$t$，其空间常为$T$</li>
+<li>样本函数：$\omega$不变，关于$t$的函数</li>
+<li>可列集：$t$取值可数，否则为不可列集</li>
+</ul>
+<h3 id="随机过程的分布函数"><a href="#随机过程的分布函数" class="headerlink" title="随机过程的分布函数"></a>随机过程的分布函数</h3><ul>
+<li>$F(t_1,t_2;x_1,x_2) &#x3D; P(X(t_1) \le x_1,X(t_2) \le x_2)$</li>
+<li>有限维分布函数族：任意有限个随机变量的分布</li>
+</ul>
+<blockquote>
+<p>对于已知Y分布，求X &#x3D; g（Y）分布来说，相当于把分布换成了g的反函数带入，便是X的分布了。</p>
+</blockquote>
+<h3 id="随机过程的数字特征"><a href="#随机过程的数字特征" class="headerlink" title="随机过程的数字特征"></a>随机过程的数字特征</h3><h5 id="单随机过程"><a href="#单随机过程" class="headerlink" title="单随机过程"></a>单随机过程</h5><ul>
+<li>单个随机过程的均值（期望），方差，协方差（不同时间）均与随机变量类似</li>
+<li>相关函数：$R_x(s,t) &#x3D; E(X(s)X(t))$</li>
+<li>均方值函数：$\phi_x(t) &#x3D; E(X^2(t)) &#x3D; R_x(t,t)$</li>
+</ul>
+<blockquote>
+<p>一般先求相关函数再求协方差</p>
+</blockquote>
+<h5 id="双随机过程"><a href="#双随机过程" class="headerlink" title="双随机过程"></a>双随机过程</h5><ul>
+<li>独立：边缘分布相乘等于联合分布</li>
+<li>互相关函数：$R_{XY}(s,t) &#x3D; E(X(s)Y(t))$</li>
+<li>互协方差函数：$C_{XY}(s,t) &#x3D; R_{XY}(s,t) - m_X(s)m_Y(t)$</li>
+<li>互协方差函数 &#x3D; 0时二者不相关</li>
+</ul>
+<blockquote>
+<p>相关是指线性相关，所以独立一定不相关，但不相关不一定独立。</p>
+</blockquote>
+<h5 id="复随机过程"><a href="#复随机过程" class="headerlink" title="复随机过程"></a>复随机过程</h5><ul>
+<li>定义：对于同一概率空间的实随机过程$X(t),Y(t)$，复随机过程为$Z(t) &#x3D; X(t) + jY(t)$</li>
+</ul>
+<h2 id="泊松过程"><a href="#泊松过程" class="headerlink" title="泊松过程"></a>泊松过程</h2><h3 id="泊松过程定义"><a href="#泊松过程定义" class="headerlink" title="泊松过程定义"></a>泊松过程定义</h3><ul>
+<li>计数过程：随机过程$N(t)$表示0到$t$时间里发生时间总数。</li>
+<li>独立增量过程：$N(s) - N(t)$相互独立，若$N(t+s) - N(s)$与$s$无关，则称其平稳或者齐次。</li>
+<li>泊松过程要求：独立平稳增量过程，初始为0，极小时间内发生一次时间概率与时间成正比</li>
+<li>增量服从：$P(N(t) - N(s) &#x3D; k) &#x3D; \frac{[\lambda(t-s)]^k}{k!}e^{-\lambda(t-s)}$</li>
+<li>泊松分布：$P(N(t) &#x3D; k) &#x3D; \frac{(\lambda t)^k}{k!}e^{-\lambda t}$</li>
+</ul>
+<h3 id="泊松过程数字特征"><a href="#泊松过程数字特征" class="headerlink" title="泊松过程数字特征"></a>泊松过程数字特征</h3><ul>
+<li>$m(t) &#x3D; \lambda t$</li>
+<li>$D(t) &#x3D; \lambda t$</li>
+<li>$Cov(s,t) &#x3D; \lambda min(s,t)$</li>
+<li>$R(s,t) &#x3D; \lambda ^2st + \lambda min(s,t)$</li>
+</ul>
+<blockquote>
+<p>泊松过程在使用时和开始的那种分布函数不一样，注意所在空间——K还是T，不要混淆。</p>
+</blockquote>
+<h3 id="到达时间与时间间隔分布"><a href="#到达时间与时间间隔分布" class="headerlink" title="到达时间与时间间隔分布"></a>到达时间与时间间隔分布</h3><ul>
+<li>第$n$个事件到达时间:$T_n$，时间间隔：$\tau <em>n &#x3D; T_n - T</em>{n - 1}$</li>
+<li>时间间隔分布概率密度：$f_\tau (t) &#x3D; \lambda e^{-\lambda t}$</li>
+<li>时间间隔期望$E[\tau] &#x3D; \frac{1}{\lambda}$，有点像频率和周期的关系，单位时间平均有$\lambda$个事件，所以周期为倒数。</li>
+<li>到达时间的概率密度函数：$f_{T_n}(t) &#x3D; \lambda e^{-\lambda t}\frac{(\lambda t)^{n-1}}{(n-1)!}$</li>
+<li>到达时间期望$E[T] &#x3D; \frac{n}{\lambda}$，相当于$n$个独立的时间间隔的期望之和，方差为$D[T] &#x3D; \frac{n}{\lambda^2}$</li>
+<li>若已知$t$时间内到达$n$次，则其到达时间的顺序分布概率密度函数为：$f(u_1,u_2,…) &#x3D; \frac{n!}{t^n}$</li>
+</ul>
+<blockquote>
+<p>相当于均匀独立的$n$个$T$的分布</p>
+</blockquote>
+<blockquote>
+<p>计算注意：期望和方差的反向利用：$E(N(t)) &#x3D; \sum k*P(N(t) &#x3D; k)$</p>
+<p>还要注意当前在哪个空间下，$t,k$谁是常数可以提出。</p>
+</blockquote>
+<h3 id="顺序统计量"><a href="#顺序统计量" class="headerlink" title="顺序统计量"></a>顺序统计量</h3><ul>
+<li>$x_{(1)}$为最小的观测量</li>
+<li>$x_{(n)}$为1到n里最大的观测量</li>
+<li>$(x_{(1)},x_{(2)}…)$被称为顺序统计量，它们不独立也不同分布</li>
+</ul>
+<h3 id="泊松过程的叠加"><a href="#泊松过程的叠加" class="headerlink" title="泊松过程的叠加"></a>泊松过程的叠加</h3><ul>
+<li>泊松可以相加，其$\lambda$ 也等于相加之和，但相减后不是泊松过程。</li>
+<li>对二维问题：画图积分（eg：比大小就看中间的$t_x &#x3D; t_y$）</li>
+</ul>
+<blockquote>
+<p>比快慢的结果形式为：$P(T_k^1 &lt; T_1^2) &#x3D;( \frac{\lambda_1}{\lambda_2 + \lambda_1})^k$，简记为：快的在上面。</p>
+</blockquote>
+<h5 id="叠加性质"><a href="#叠加性质" class="headerlink" title="叠加性质"></a>叠加性质</h5><ul>
+<li>若每次发生的为相互独立的A或B，则其分布相当于每次发生事件时是A的概率$p &#x3D; \frac{\lambda_a}{\lambda_a + \lambda_b}$</li>
+</ul>
+<h3 id="泊松过程的抽样"><a href="#泊松过程的抽样" class="headerlink" title="泊松过程的抽样"></a>泊松过程的抽样</h3><ul>
+<li>若在$T$发生的一个事件以$P_i(T)$的概率被分类到$i$中，其均值可以表达为：$E[N_i(T)] &#x3D; \lambda \int_{0}^{t} P_i(s)ds$</li>
+</ul>
+<h3 id="复合泊松过程"><a href="#复合泊松过程" class="headerlink" title="复合泊松过程"></a>复合泊松过程</h3><ul>
+<li>定义：$X(t) &#x3D; \sum_{n &#x3D; 1}^{N(t)} Y_n$ ，其中$Y_n$是独立同分布的随机变量，$N(t)$为泊松分布。</li>
+</ul>
+<blockquote>
+<p>$Y_n \equiv 1$时，退化为泊松过程。</p>
+<p>$Y_n$为泊松分布时，若总数一定，合为泊松分布的叠加。</p>
+</blockquote>
+<ul>
+<li>期望：$E[X(t)] &#x3D; \lambda t E[Y_n]$</li>
+<li>方差：$D[X(t)] &#x3D; \lambda tE[Y_n^2]$</li>
+</ul>
+<h2 id="马尔可夫过程"><a href="#马尔可夫过程" class="headerlink" title="马尔可夫过程"></a>马尔可夫过程</h2><h3 id="基本概念-1"><a href="#基本概念-1" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
+<li><p>马尔可夫性：只和现在有关，不看过去，不影响未来。</p>
+</li>
+<li><p>马尔可夫过程：要求$n-1$之前的取值都不影响现在的取值：</p>
+<blockquote>
+<p>$P(X(t_n) \le x_n|X(t_1) &#x3D; x_1,X(t_2) &#x3D; x_2, …X(t_{n-1}) &#x3D; x_{n-1}) &#x3D; P(X(t_n) \le x_n |X(t_{n-1}) &#x3D; x_{n-1}) $</p>
+</blockquote>
+</li>
+<li><p>马尔科夫链：参数集和状态空间都是离散的马尔可夫过程</p>
+</li>
+<li><p>一步转移概率：$P(X_n &#x3D; i|X_{n - 1} &#x3D; j) &#x3D; p_{ij}(n)$注意是由$i$到$j$ 。</p>
+</li>
+<li><p>K步转移概率：$P(X_{n+k} &#x3D; j|X_n &#x3D; i) &#x3D; p_{ij}^{(k)}(n)$</p>
+</li>
+<li><p>Chapman-Kolmogorov方程：对矩阵，$P^{(k+1)}(n) &#x3D; P(n)P(n+1)P(n+2)…P(n+k)$，一步跳转，等于按着$n$到$n+k$挨个跳转。</p>
+</li>
+<li><p>齐次马尔可夫链：$n$没用了，$p_{ij}(n) &#x3D; p_{ij}(n+1)$</p>
+</li>
+</ul>
+<h3 id="有限维马尔科夫链"><a href="#有限维马尔科夫链" class="headerlink" title="有限维马尔科夫链"></a>有限维马尔科夫链</h3><ul>
+<li>分布向量：注意是横着的，$1<em>n$的向量才能去乘$n</em>n$的矩阵</li>
+</ul>
+<h5 id="状态分类"><a href="#状态分类" class="headerlink" title="状态分类"></a>状态分类</h5><ul>
+<li>可达\不可达：能否从A到B</li>
+<li>相通：AB可相互到达</li>
+<li>闭集：能进不让出</li>
+<li>不可约：除了最大的自己没有闭集了</li>
+<li>首达时间：$T_{ij}$为$i$首次到$j$用的时间。</li>
+<li>首达概率：$f_{ij}^{(n)}$为从$i$经过$n$步首次到达$j$的概率</li>
+<li>迟早概率：$f_{ij} &#x3D; \sum f_{ij}^{(n)} &#x3D; P(T_{ij} &lt; \infty)$，从$i$迟早到达$j$的概率</li>
+<li>常返态：迟早概率为1，充要条件：$\sum_{n &#x3D; 0}^\infty p_{ii}^{(n)} &#x3D; \infty$</li>
+</ul>
+<blockquote>
+<p>非常返态相当于访问次数有限。</p>
+<p>有限状态的马尔科夫链，一定有常返态。</p>
+</blockquote>
+<ul>
+<li>常返态$i$的平均返回时间：$\mu_i &#x3D; \sum_{1\le n &lt; \infty} nf_{ii}^{(n)}$</li>
+<li>正常\零常返态：$\mu_i &lt; \infty$为正常，$\mu_i &#x3D; 0$为零常返态</li>
+</ul>
+<blockquote>
+<p>状态个数有限的马尔科夫链一定有正常返态。</p>
+<p>不可约的话，所有的都是正常返态。</p>
+</blockquote>
+<blockquote>
+<p>相通的时候，常返态和正常返态相关性质共享。（类性质）</p>
+</blockquote>
+<ul>
+<li>周期：指周期性有可能返回，即$p_{ii}^{(n)} &gt; 0$除1外$n$的最小公约数。若没有，则没有周期。可以通过分子类的方式解决。</li>
+<li>遍历态：非周期的正常返态。</li>
+</ul>
+<h3 id="转移概率的极限"><a href="#转移概率的极限" class="headerlink" title="转移概率的极限"></a>转移概率的极限</h3><ul>
+<li>定义：$\lim P^n &#x3D; \pi$，$\pi$各行相同，要求有一个$P^{(n)}$的元素全不为零。</li>
+<li>求法：$\pi P &#x3D; \pi$，$\sum \pi &#x3D; 1$</li>
+<li>也可以看出，极限分布与初始分布无关</li>
+<li>不可约，正常返的马尔可夫链一定存在唯一平稳分布，反过来也是（充要）。</li>
+<li>平稳分布后，状态$j$的平均返回时间$\mu_j &#x3D; \frac{1}{\pi_j} &#x3D; \frac{1}{\lim p_{ii}^{(n)}}$</li>
+</ul>
+<h3 id="模拟退火算法"><a href="#模拟退火算法" class="headerlink" title="模拟退火算法"></a>模拟退火算法</h3><ul>
+<li>要求：能量高时向能量低转移，能量低的有一定概率向能量高转移</li>
+</ul>
+<h3 id="马尔可夫过程的转移概率"><a href="#马尔可夫过程的转移概率" class="headerlink" title="马尔可夫过程的转移概率"></a>马尔可夫过程的转移概率</h3><ul>
+<li>因为没有单位时间，无法求解概率矩阵</li>
+<li>连续性条件：$\lim_{t \to 0}P_{ij}(t) &#x3D; \delta_{ij}$， 即$\lim_{t \to 0}P(t) &#x3D;I$</li>
+<li>转移率矩阵：$Q &#x3D; \frac{d}{dt}P(t)|_{t &#x3D; 0}$，每个元素分别对时间$t$求导，然后取$t &#x3D; 0$</li>
+</ul>
+<blockquote>
+<p>Q上每一行和为0，一般通过$Q$算$P$</p>
+</blockquote>
+<ul>
+<li>Kolmogorov 方程：实现由$Q$到$P$：前进：$\frac{d}{dt}P(t) &#x3D; P(t)Q$，后退：$\frac{d}{dt}P(t) &#x3D; QP(t)$</li>
+</ul>
+<blockquote>
+<p>前进后退含义：根据所求内容选择，一般前进</p>
+<p>一般来说都是给的指数分布\泊松过程，这时候的转移概率就是$\lambda$</p>
+<p>求得别人的转移概率后，对自己的转移概率通过和为0解决。</p>
+</blockquote>
+<h3 id="马尔可夫平稳分布"><a href="#马尔可夫平稳分布" class="headerlink" title="马尔可夫平稳分布"></a>马尔可夫平稳分布</h3><ul>
+<li>要求：$\pi &#x3D; \pi P$ 或$\pi Q &#x3D; 0$</li>
+<li>注意$\pi$一般是横着的，有隐含条件和为1</li>
+</ul>
+<h3 id="生灭过程"><a href="#生灭过程" class="headerlink" title="生灭过程"></a>生灭过程</h3><ul>
+<li>特点：只能向临近转移，$q$为$\lambda_n(t)$，不能同时转移多个状态。</li>
+<li>齐次生灭过程：$\lambda_n(t) &#x3D; \lambda_n$</li>
+<li>线性：$\lambda_n &#x3D; \lambda * n$</li>
+<li>纯生：只向多的转移</li>
+<li>数字特征（$m$为初始值）：均值：$E[X(t)] &#x3D; me^{(\lambda - \mu)t}$</li>
+<li>极限情况：只有在增加参数$\lambda$大于减少参数$\mu$时，赢的概率为$1-(\frac{\mu}{\lambda})^m$</li>
+</ul>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>, <a class="article-tag-none-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2022/06/24/%E7%94%A8OpenGL%E5%AE%9E%E7%8E%B03D2048%E6%B8%B8%E6%88%8F/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          用OpenGL实现3D2048游戏
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/20/%E7%94%A8Verilog%E5%AE%9E%E7%8E%B0%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%E7%A1%AC%E4%BB%B6/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          用Verilog实现指纹识别硬件
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+  <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+              processEscapes: true
+          }
+      });
+      MathJax.Hub.Queue(function() {
+          var all = MathJax.Hub.getAllJax();
+          for (var i = 0; i < all.length; ++i)
+              all[i].SourceElement().parentNode.className += ' has-jax';
+      });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
+
+
+
+
+</body>
+</html>

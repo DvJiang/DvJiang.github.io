@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>离散傅立叶变换DFT | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="傅立叶变换属于是那种难学难记，而且每隔上一段时间还要用一下的神奇玩意。为了下次被它背刺的时候没那么痛苦，谨作文一篇以供以后复习。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="离散傅立叶变换DFT">
+<meta property="og:url" content="http://example.com/2023/02/28/%E7%A6%BB%E6%95%A3%E5%82%85%E7%AB%8B%E5%8F%B6%E5%8F%98%E6%8D%A2DFT/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="傅立叶变换属于是那种难学难记，而且每隔上一段时间还要用一下的神奇玩意。为了下次被它背刺的时候没那么痛苦，谨作文一篇以供以后复习。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.488Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="数学">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-离散傅立叶变换DFT" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      离散傅立叶变换DFT
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2023-02-27T16:00:00.000Z" itemprop="datePublished">二月 28, 2023</time>
+
+          
+          <br><br><p><code>MathJax Will Take Few Minutes to Load</code></p>
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF"><span class="toc-text">基础信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%82%85%E7%AB%8B%E5%8F%B6%E5%8F%98%E6%8D%A2%E4%B8%80%E5%AE%B6"><span class="toc-text">傅立叶变换一家</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%82%85%E7%AB%8B%E5%8F%B6%E7%BA%A7%E6%95%B0DFS"><span class="toc-text">离散傅立叶级数DFS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DFS%E6%95%B0%E5%AD%A6%E6%80%A7%E8%B4%A8"><span class="toc-text">DFS数学性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DFS%E5%91%A8%E6%9C%9F%E5%8D%B7%E7%A7%AF%E5%92%8C"><span class="toc-text">DFS周期卷积和</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DFS%E4%B8%8EDFT"><span class="toc-text">DFS与DFT</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8DFT%E5%88%86%E6%9E%90%E4%B8%80%E6%AE%B5%E6%97%B6%E5%9F%9F%E8%BF%9E%E7%BB%AD%E9%9D%9E%E5%91%A8%E6%9C%9F%E4%BF%A1%E5%8F%B7"><span class="toc-text">用DFT分析一段时域连续非周期信号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8DFS-x2F-DFT%E5%88%86%E6%9E%90%E5%85%B6%E4%BB%96%E4%BF%A1%E5%8F%B7"><span class="toc-text">用DFS&#x2F;DFT分析其他信号</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%A8DFS%E9%80%BC%E8%BF%91FS"><span class="toc-text">用DFS逼近FS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%A8DFT%E9%80%BC%E8%BF%91DTFT"><span class="toc-text">用DFT逼近DTFT</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E4%BF%A1%E5%8F%B7%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">分析信号的问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DFT%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-text">DFT的性质</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7"><span class="toc-text">线性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E7%A7%BB%E4%BD%8D"><span class="toc-text">序列移位</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B1%E8%BD%AD%E5%AF%B9%E7%A7%B0%E6%80%A7"><span class="toc-text">共轭对称性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9C%86%E5%91%A8%E5%8D%B7%E7%A7%AF%E5%92%8C"><span class="toc-text">圆周卷积和</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%A8%E5%9C%86%E5%91%A8%E5%8D%B7%E7%A7%AF%E5%92%8C%E8%AE%A1%E7%AE%97%E7%BA%BF%E6%80%A7%E5%8D%B7%E7%A7%AF"><span class="toc-text">用圆周卷积和计算线性卷积</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8D%B7%E7%A7%AF%E8%AE%A1%E7%AE%97%E7%9A%84%E5%8F%98%E6%8D%A2%E5%9F%9F%E8%A7%A3%E6%B3%95"><span class="toc-text">卷积计算的变换域解法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9C%86%E5%91%A8%E7%9B%B8%E5%85%B3"><span class="toc-text">圆周相关</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B8%95%E5%A1%9E%E7%93%A6%E5%AE%9A%E7%90%86"><span class="toc-text">帕塞瓦定理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%91%E5%9F%9F%E6%8A%BD%E6%A0%B7%E5%AE%9A%E7%90%86"><span class="toc-text">频域抽样定理</span></a></li></ol>
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <p>傅立叶变换属于是那种难学难记，而且每隔上一段时间还要用一下的神奇玩意。为了下次被它背刺的时候没那么痛苦，谨作文一篇以供以后复习。</p>
+<span id="more"></span>
+
+<h3 id="基础信息"><a href="#基础信息" class="headerlink" title="基础信息"></a>基础信息</h3><ul>
+<li>离散傅立叶变换（Discrete Fourier Transform）用于有限长序列，有快速算法FFT（Fast Fourier Transform）。</li>
+<li>基础表达式：N（区间长度），n（时间），k（频率）<ul>
+<li>$X(k) &#x3D; DFT[x(n)] &#x3D; \Sigma^{N-1}_{n &#x3D; 0}x(n)W^{nk}_{N},0\le k \le N-1$</li>
+<li>$x(n) &#x3D; IDFT[X(k)] &#x3D;\frac{1}{N} \Sigma^{N-1}_{k &#x3D; 0}X(k)W^{-nk}_{N},0\le n \le N-1$</li>
+<li>而$W_N &#x3D; e^{-j\frac{2\pi}{N}}$</li>
+<li>为频率时要&#x2F;N且有负号</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="傅立叶变换一家"><a href="#傅立叶变换一家" class="headerlink" title="傅立叶变换一家"></a>傅立叶变换一家</h3><table>
+<thead>
+<tr>
+<th align="left">时域</th>
+<th align="center">变换名称</th>
+<th align="right">频域</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">连续非周期</td>
+<td align="center">FT</td>
+<td align="right">连续非周期</td>
+</tr>
+<tr>
+<td align="left">连续周期</td>
+<td align="center">FS</td>
+<td align="right">离散非周期</td>
+</tr>
+<tr>
+<td align="left">离散非周期</td>
+<td align="center">DTFT</td>
+<td align="right">连续周期</td>
+</tr>
+<tr>
+<td align="left">离散周期</td>
+<td align="center">DFS</td>
+<td align="right">离散周期</td>
+</tr>
+</tbody></table>
+<p>「S」指级数，「T」为变换</p>
+<hr>
+<h3 id="离散傅立叶级数DFS"><a href="#离散傅立叶级数DFS" class="headerlink" title="离散傅立叶级数DFS"></a>离散傅立叶级数DFS</h3><p>有限长序列$x(n)$的Z变换为：$X(z) &#x3D; \Sigma^{N-1}_{n &#x3D; 0}x(n)z^{-n}$</p>
+<p>若令$z &#x3D; W^{nk}_{N}$，则该式就变成了DFS，所以可以说，DFS可以看做$x(n)$的Z变换在单位圆上按等间隔角$\frac{2\pi}{N}$抽样得到。</p>
+<hr>
+<h3 id="DFS数学性质"><a href="#DFS数学性质" class="headerlink" title="DFS数学性质"></a>DFS数学性质</h3><p>线性性质：$DFS[ax_1(n) + bx_2(n)] &#x3D; aX_1(k) + bX_2(k)$</p>
+<p>位移性质：</p>
+<ul>
+<li>$DFS[x(n + m)] &#x3D; W^{-mk}_NX(k)$<ul>
+<li>DFT位移要改符号</li>
+</ul>
+</li>
+<li>$DFS[W^{ln}_Nx(n)] &#x3D; X(l + k)$</li>
+</ul>
+<p>对偶性质：$DFS[X(n)] &#x3D; Nx(-k)$</p>
+<p>共轭对称性质：</p>
+<ul>
+<li>$X(k)$只有实部 &#x3D; $x(n)$实部偶对称，虚部奇对称</li>
+<li>$X(k)$只有虚部 &#x3D; $x(n)$虚部偶对称，实部奇对称</li>
+</ul>
+<hr>
+<h3 id="DFS周期卷积和"><a href="#DFS周期卷积和" class="headerlink" title="DFS周期卷积和"></a>DFS周期卷积和</h3><p>DFS相乘 &lt;&#x3D;&gt; 原函数作周期卷积和然后再DFS</p>
+<p>周期卷积和方法：对一个周期内（两者周期相同）先做卷积，再作周期延拓。</p>
+<h5 id="DFS与DFT"><a href="#DFS与DFT" class="headerlink" title="DFS与DFT"></a>DFS与DFT</h5><p>DFT为有限长序列，DFS来自周期离散序列，而DFS在$0 \le n \le N$之间的部分就是DFT。</p>
+<hr>
+<h3 id="用DFT分析一段时域连续非周期信号"><a href="#用DFT分析一段时域连续非周期信号" class="headerlink" title="用DFT分析一段时域连续非周期信号"></a>用DFT分析一段时域连续非周期信号</h3><p>即用DFT来模拟FT变换</p>
+<p>分为三步：a）时域离散化。b）时域截断。c）频域离散化</p>
+<p>a的离散化让频域变成周期的（原信号需要是限带的防止混叠），b的时域截断用于防止当频域抽样时时域发生混叠，最后做c中的频域离散化，对频域进行抽样。</p>
+<p>设$T,F_0$分别为时域和频域的抽样间隔，$T_0,f_s$分别为时域和频域的长度，$N$为抽样点数</p>
+<p>则有：$T_0 &#x3D; N \cdot T &#x3D; \frac{N}{f_s}$，$f_s &#x3D; N \cdot F_0$，$T \cdot f_s &#x3D; T_0 \cdot F_0 &#x3D; 1$</p>
+<p>代入有：$X(jk\Omega) &#x3D; T \cdot DFT[x(n)]$，$x(n) &#x3D; \frac{1}{T}IDFT[X(k)]$</p>
+<hr>
+<h3 id="用DFS-x2F-DFT分析其他信号"><a href="#用DFS-x2F-DFT分析其他信号" class="headerlink" title="用DFS&#x2F;DFT分析其他信号"></a>用DFS&#x2F;DFT分析其他信号</h3><h5 id="用DFS逼近FS"><a href="#用DFS逼近FS" class="headerlink" title="用DFS逼近FS"></a>用DFS逼近FS</h5><p>步骤：a）时域离散化。b）频域截断</p>
+<p>最后得到：$X(k) &#x3D; \frac{1}{N}DFT[x(n)]$，$x(n) &#x3D; N \cdot IDFT[X(k)]$</p>
+<h5 id="用DFT逼近DTFT"><a href="#用DFT逼近DTFT" class="headerlink" title="用DFT逼近DTFT"></a>用DFT逼近DTFT</h5><p>步骤：a）频域离散化。b）时域截断</p>
+<p>最后得到：$X(n) &#x3D; IDFT[X(k)]$，$X(e^{j\frac{2\pi k}{N}}) &#x3D; DFT[x(n)]$</p>
+<h5 id="分析信号的问题"><a href="#分析信号的问题" class="headerlink" title="分析信号的问题"></a>分析信号的问题</h5><ul>
+<li>混叠现象：因为抽样导致在另一个域中出现重叠（若抽样的频率太小就会混叠，标准：$f_s &gt; 2f_h$）<ul>
+<li>N一定时，信号最高频率与频率分辨率是相互矛盾的</li>
+<li>快速估计最高频率：$f_h &#x3D; \frac{1}{2(b-a)}$，其中ab为时域变化最快的相邻波峰波谷</li>
+</ul>
+</li>
+<li>栅栏效应：频域离散化后会漏掉一些分量，故可以在时域后面补零。<ul>
+<li>提高了计算分辨率，但物理频率分辨力没有。</li>
+</ul>
+</li>
+<li>截断处理：相当于在另一个域卷积一个sinc函数，会有频谱泄漏（频谱更宽了）和谱间干扰（产生波纹）</li>
+</ul>
+<hr>
+<h3 id="DFT的性质"><a href="#DFT的性质" class="headerlink" title="DFT的性质"></a>DFT的性质</h3><h5 id="线性"><a href="#线性" class="headerlink" title="线性"></a>线性</h5><p>注意抽样点数为大的那个</p>
+<h5 id="序列移位"><a href="#序列移位" class="headerlink" title="序列移位"></a>序列移位</h5><p>若$X(k) &#x3D; DFT[x(n)]$，则$IDFT[X((k+l))_nR_n(k)] &#x3D; W^{nl}_nx(n)$</p>
+<h5 id="共轭对称性"><a href="#共轭对称性" class="headerlink" title="共轭对称性"></a>共轭对称性</h5><p>有限长的$x(n)$的周期延拓称为$\widetilde x(n)$，在复数域上，称$x(n)$正的和负的部分分别为$\widetilde x_ep，\widetilde x_op$，而$\widetilde x(n)$正的和负的部分分别为$\widetilde x_e，\widetilde x_o$</p>
+<p>则有：$DFT{Re[x(n)]} &#x3D; X_ep(k) &#x3D; \frac{1}{2}[X((k))_N + X\bar {(N - k)}]R_N(k)$，$DFT{iIm[x(n)]} &#x3D; X_op(k) &#x3D; \frac{1}{2}[X((k))_N - X\bar {(N - k)}]R_N(k)$</p>
+<p>可以用这个公式来减少DFT的次数。</p>
+<h5 id="圆周卷积和"><a href="#圆周卷积和" class="headerlink" title="圆周卷积和"></a>圆周卷积和</h5><p>当$Y(k) &#x3D; X_1(k) \cdot X_2(k)$时，则有$y(n) &#x3D; IDFT[Y(k)] &#x3D; [\Sigma ^{N-1}_{m &#x3D; 0}x_1(m)x_2(n-m)_N]R_N(n)$。</p>
+<p>相似的，有：当$y(k) &#x3D; x_1(k) \cdot x_2(k)$时，则有$Y(n) &#x3D; DFT[Y(k)] &#x3D; \frac{1}{N}[\Sigma ^{N-1}_{m &#x3D; 0}X_1(m)X_2(n-m)_N]R_N(n)$。</p>
+<p>卷积圆周和和周期圆周和几乎一样，但和普通线性卷积不一样。</p>
+<h5 id="用圆周卷积和计算线性卷积"><a href="#用圆周卷积和计算线性卷积" class="headerlink" title="用圆周卷积和计算线性卷积"></a>用圆周卷积和计算线性卷积</h5><p>设$N_1,N_2$分别为$x_1(n),x_2(n)$的序列长度，则有：$N \ge N_1 + N_2 -1$时二者相等（将两个序列都补齐为$N$），否则会产生交叠现象，此时不能用圆周卷积和代替。</p>
+<p>长序列卷积短序列时，可采用分段卷积方法：</p>
+<ul>
+<li>重叠相加法：将长的序列分段，分别和短的卷积，最后再相加。</li>
+<li>重叠保留法：舍弃掉超出的一部分卷积，把这部分替换为上一次的输入值，有点迷。</li>
+</ul>
+<h5 id="卷积计算的变换域解法"><a href="#卷积计算的变换域解法" class="headerlink" title="卷积计算的变换域解法"></a>卷积计算的变换域解法</h5><p>通过在频域相乘避免直接在时域相卷积的方法。</p>
+<h5 id="圆周相关"><a href="#圆周相关" class="headerlink" title="圆周相关"></a>圆周相关</h5><p>$R_xy &#x3D; X(k)\bar Y(k)$，所以实数下$r_xy$为$xy$的圆周卷积和。</p>
+<h5 id="帕塞瓦定理"><a href="#帕塞瓦定理" class="headerlink" title="帕塞瓦定理"></a>帕塞瓦定理</h5><p>$\Sigma^{N-1}_{n&#x3D;0}x(n) \dot{y}(n) &#x3D; \frac{1}{N}\Sigma ^{N-1}_{k&#x3D;0}X(k)\dot{Y}(k)$</p>
+<hr>
+<h3 id="频域抽样定理"><a href="#频域抽样定理" class="headerlink" title="频域抽样定理"></a>频域抽样定理</h3><p>定理：频域抽样点数$N \ge $原序列长度$M$时，可由频谱抽样恢复原序列。</p>
+<p>插值函数：$X(z) &#x3D; \Sigma ^{N-1}_{k&#x3D;0}X(k) \cdot \Phi_k(z)$，而$\Phi_k(z) &#x3D; \frac{1}{N} \cdot \frac{1-z^{-N}}{1-W^{-k}_N\cdot z^{-1}}$为插值函数。</p>
+<p>插值函数零点：$z &#x3D; W_N^{r},r &#x3D; 0,1,…,N-1$，极点：$z &#x3D; W_N^k$一个极点，说明在$r &#x3D; k$处不为零，其余零点都为零。</p>
+<p>内插恢复公式：$X(e^{jw}) &#x3D; \Sigma^{N-1}_{k &#x3D; 0}X(k) \cdot \Phi(\omega - \frac{2\pi k}{N})$</p>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>, <a class="article-tag-none-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2023/03/02/%E7%A4%BE%E4%BC%9A%E7%A7%91%E5%AD%A6%E4%B8%AD%E7%9A%84%E8%AE%A1%E7%AE%97%E6%80%9D%E7%BB%B4%E6%96%B9%E6%B3%95%E7%AC%94%E8%AE%B0Part_1/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          社会科学中的计算思维方法笔记Part_1
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/02/27/Swift%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Swift语言基础
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+  <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+              processEscapes: true
+          }
+      });
+      MathJax.Hub.Queue(function() {
+          var all = MathJax.Hub.getAllJax();
+          for (var i = 0; i < all.length; ++i)
+              all[i].SourceElement().parentNode.className += ' has-jax';
+      });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>社会科学中的计算思维方法笔记Part_1 | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="本文为课程《社会科学中的计算思维方法》的课程笔记，这门课在Mooc上似乎也有，不过是SPOC的来着。本来打算等期末的时候再一股脑地整理成一篇Blog，不过我发现内容是实在有些多，只好份部分放出，本篇是这门课的前两章内容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="社会科学中的计算思维方法笔记Part_1">
+<meta property="og:url" content="http://example.com/2023/03/02/%E7%A4%BE%E4%BC%9A%E7%A7%91%E5%AD%A6%E4%B8%AD%E7%9A%84%E8%AE%A1%E7%AE%97%E6%80%9D%E7%BB%B4%E6%96%B9%E6%B3%95%E7%AC%94%E8%AE%B0Part_1/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="本文为课程《社会科学中的计算思维方法》的课程笔记，这门课在Mooc上似乎也有，不过是SPOC的来着。本来打算等期末的时候再一股脑地整理成一篇Blog，不过我发现内容是实在有些多，只好份部分放出，本篇是这门课的前两章内容。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.487Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="社会科学">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-社会科学中的计算思维方法笔记Part_1" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      社会科学中的计算思维方法笔记Part_1
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2023-03-01T16:00:00.000Z" itemprop="datePublished">三月 2, 2023</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%9B%BE%E8%AE%BA"><span class="toc-text">第一章 网络与图论</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1-%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8%E7%9A%84%E7%BD%91%E7%BB%9C"><span class="toc-text">1.1 无处不在的网络</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%9B%BE"><span class="toc-text">1.2 网络与图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-%E8%B7%AF%E5%BE%84%E4%B8%8E%E8%BF%9E%E9%80%9A"><span class="toc-text">1.3 路径与连通</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-4-%E4%BA%8C%E9%83%A8%E5%9B%BE%E4%B8%8E%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2"><span class="toc-text">1.4 二部图与广度优先搜索</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-5-%E4%B8%89%E5%85%83%E9%97%AD%E5%8C%85%E4%B8%8E%E8%81%9A%E9%9B%86%E7%B3%BB%E6%95%B0"><span class="toc-text">1.5 三元闭包与聚集系数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-6-%E4%B8%89%E5%85%83%E9%97%AD%E5%8C%85%E5%8E%9F%E7%90%86%E7%9A%84%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%AA%8C%E8%AF%81"><span class="toc-text">1.6 三元闭包原理的大数据验证</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-7-%E5%BC%BA%E5%85%B3%E7%B3%BB%E4%B8%8E%E5%BC%B1%E5%85%B3%E7%B3%BB"><span class="toc-text">1.7 强关系与弱关系</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-8-%E5%BC%B1%E5%85%B3%E7%B3%BB%E4%B8%8E%E6%8D%B7%E5%BE%84"><span class="toc-text">1.8 弱关系与捷径</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%90%8C%E8%B4%A8%E6%80%A7%E4%B8%8E%E7%A4%BE%E4%BA%A4%E5%85%B3%E7%B3%BB"><span class="toc-text">第二章 同质性与社交关系</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1-%E5%90%8C%E8%B4%A8%E6%80%A7%E4%B8%8E%E7%A4%BE%E4%BA%A4%E5%85%B3%E7%B3%BB"><span class="toc-text">1.1 同质性与社交关系</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E4%B8%AD%E5%90%8C%E8%B4%A8%E6%80%A7%E7%9A%84%E6%B5%8B%E9%87%8F"><span class="toc-text">1.2 社交网络中同质性的测量</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-%E7%89%A9%E4%BB%A5%E7%B1%BB%E8%81%9A%EF%BC%8C%E4%BA%BA%E4%BB%A5%E7%BE%A4%E5%88%86"><span class="toc-text">1.3 物以类聚，人以群分</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-4-%E8%BF%91%E6%9C%B1%E8%80%85%E8%B5%A4%EF%BC%8C%E8%BF%91%E5%A2%A8%E8%80%85%E9%BB%91"><span class="toc-text">1.4 近朱者赤，近墨者黑</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-5-%E6%9C%8B%E5%8F%8B%E4%B8%8E%E7%9B%B8%E4%BC%BC%EF%BC%88%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%AE%9E%E9%AA%8C%EF%BC%89"><span class="toc-text">1.5 朋友与相似（大数据实验）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-6-%E8%B0%A2%E6%9E%97%E6%A8%A1%E5%9E%8B%E5%8F%8A%E5%85%B6%E6%84%8F%E4%B9%89"><span class="toc-text">1.6 谢林模型及其意义</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93-1"><span class="toc-text">小结</span></a></li></ol></li></ol></li></ol>
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <p>本文为课程《社会科学中的计算思维方法》的课程笔记，这门课在Mooc上似乎也有，不过是SPOC的来着。本来打算等期末的时候再一股脑地整理成一篇Blog，不过我发现内容是实在有些多，只好份部分放出，本篇是这门课的<strong>前两章</strong>内容。</p>
+<span id="more"></span>
+
+<hr>
+<h3 id="第一章-网络与图论"><a href="#第一章-网络与图论" class="headerlink" title="第一章 网络与图论"></a>第一章 网络与图论</h3><h5 id="1-1-无处不在的网络"><a href="#1-1-无处不在的网络" class="headerlink" title="1.1 无处不在的网络"></a>1.1 无处不在的网络</h5><p>ICT：信息与沟通技术</p>
+<h5 id="1-2-网络与图"><a href="#1-2-网络与图" class="headerlink" title="1.2 网络与图"></a>1.2 网络与图</h5><p>图的两个基本元素：节点 + 边</p>
+<p>图 &#x3D; 事物 + 联系</p>
+<p>同构：画法不同，但结构相同</p>
+<h5 id="1-3-路径与连通"><a href="#1-3-路径与连通" class="headerlink" title="1.3 路径与连通"></a>1.3 路径与连通</h5><p>路径&#x2F;通路：怎么走可以到达，可以有很多</p>
+<p>最短路径  体现  距离</p>
+<p>连通：若图中有两节点没有路径，则说这个图：</p>
+<p>连通分量：每个连通的最大的部分</p>
+<h5 id="1-4-二部图与广度优先搜索"><a href="#1-4-二部图与广度优先搜索" class="headerlink" title="1.4 二部图与广度优先搜索"></a>1.4 二部图与广度优先搜索</h5><p>一个图所表达的关系可能正好将节点分为两类，所有边跨在两组之间，这样的图被称为二部图。</p>
+<p>很多看起来不是的，也可以是二部图。</p>
+<p>判断方法：</p>
+<p>一个图是二部图 充要于 它没有长度为奇数的圈。</p>
+<p>图上的广度优先搜索：从一个任意节点开始，沿着边列举节点的算法。</p>
+<p>若出现层内边，则说明出现长度为奇数的圈，不是二部图</p>
+<h5 id="1-5-三元闭包与聚集系数"><a href="#1-5-三元闭包与聚集系数" class="headerlink" title="1.5 三元闭包与聚集系数"></a>1.5 三元闭包与聚集系数</h5><p>不仅要考虑瞬时快照，也要考虑随时间的变化</p>
+<p>三元闭包（结构性机制）：如果两个互不认识的人有了一个共同的朋友，则他们将来成为朋友的可能性提高。</p>
+<p>某个节点的重要性：</p>
+<p>结构洞：若拿掉该节点会分开网络，说明这个节点很重要</p>
+<p>聚集系数：定量测量：体现了凝聚力的大小</p>
+<p>A的聚集系数 &#x3D; 与A相邻的任意两个朋友也是朋友的概率</p>
+<p>&#x3D; 与A相邻的朋友对的个数&#x2F;总可能的对数</p>
+<h5 id="1-6-三元闭包原理的大数据验证"><a href="#1-6-三元闭包原理的大数据验证" class="headerlink" title="1.6 三元闭包原理的大数据验证"></a>1.6 三元闭包原理的大数据验证</h5><p>两个问题：</p>
+<ul>
+<li>定量化</li>
+<li>合适的社会网络数据&#x2F;提炼指标数据</li>
+</ul>
+<p>说法定量：共同朋友越多，未来成为朋友的可能性越大</p>
+<p>使用数据：电子邮件网络 约等于 社会网络</p>
+<p>可能性用发生的频率来代表</p>
+<h5 id="1-7-强关系与弱关系"><a href="#1-7-强关系与弱关系" class="headerlink" title="1.7 强关系与弱关系"></a>1.7 强关系与弱关系</h5><p>边的一种属性类型：表达新老关系的不一样：强 - 弱</p>
+<p>被动参与：三元闭包暗示了随时间推移，有的人会被动参与某些网络</p>
+<p>嵌入性：边的属性 &#x3D; 一条边两端共有的邻里数</p>
+<p>嵌入性越强，信任越多，社会资本越强（需要说明分析框架）</p>
+<p>结构洞：移除后，网络被分开，则该点为结构洞。</p>
+<p>冗余越小的结构洞，其社会资本就越多。</p>
+<p>对相邻节点具有「权力」</p>
+<h5 id="1-8-弱关系与捷径"><a href="#1-8-弱关系与捷径" class="headerlink" title="1.8 弱关系与捷径"></a>1.8 弱关系与捷径</h5><p>弱关系具有特定优势</p>
+<p>捷径：将两个相距较远的节点直接联系在一起的边。（没有它时距离至少为3）</p>
+<p>强三元闭包原理：若AB，AC间都为强关系，则BC应该形成边。</p>
+<p>若A符合强三元闭包，且至少有两个强关系邻居，那么与A相连的任何捷径必定为弱关系。（反证法易证）</p>
+<p>强三元闭包原理精神：没有共同朋友 - 捷径 - 弱关系</p>
+<p>定量化：共同朋友越多，关系强度越高</p>
+<h5 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h5><p>嵌入性，强三元闭包原理，结构洞，二部图，聚集系数，广度优先搜索</p>
+<hr>
+<h3 id="第二章-同质性与社交关系"><a href="#第二章-同质性与社交关系" class="headerlink" title="第二章 同质性与社交关系"></a>第二章 同质性与社交关系</h3><h5 id="1-1-同质性与社交关系"><a href="#1-1-同质性与社交关系" class="headerlink" title="1.1 同质性与社交关系"></a>1.1 同质性与社交关系</h5><p>同质性：身份同质性与价值同质性（社会性机制与个人性机制）</p>
+<p>同质性 ≠ 同构性</p>
+<p>同质性受到的影响：</p>
+<ul>
+<li>生态过程：场所的影响</li>
+<li>关系过程：交叉关系的影响</li>
+<li>网络过程：随时间变化的动态</li>
+</ul>
+<p>社会交往：</p>
+<p>每个人的特质：分为固有特质和可变特质</p>
+<p>同质性是社会网络结构形成的基本外部原因</p>
+<p>「选择在先，还是影响在先？」</p>
+<h5 id="1-2-社交网络中同质性的测量"><a href="#1-2-社交网络中同质性的测量" class="headerlink" title="1.2 社交网络中同质性的测量"></a>1.2 社交网络中同质性的测量</h5><p>设节点数为n，边数为e，不同颜色节点占比p，两端节点相同的边数s。</p>
+<p>s越大（占比越高），同质性越明显。</p>
+<p>So同质性用$\frac{s}{e}$和$p^2 + (1-p)^2$来衡量同质性，若前者大于后者（平均情况），则说明同质性有所体现。</p>
+<h5 id="1-3-物以类聚，人以群分"><a href="#1-3-物以类聚，人以群分" class="headerlink" title="1.3 物以类聚，人以群分"></a>1.3 物以类聚，人以群分</h5><p>身份&#x2F;价值同质性：人们通过属性来选择交流对象</p>
+<p>为什么会影响社会网络同质性的动态：</p>
+<ul>
+<li>个体具有「加入」的主动性和自主性</li>
+<li>也有「退出」的主动性</li>
+</ul>
+<p>同质性是一个「动态过程」</p>
+<p>从属网络：人们通过社会选择建立关系（都是主动的过程）</p>
+<p>「形成网络同质性的机制之一，是个体节点的主动选择」</p>
+<h5 id="1-4-近朱者赤，近墨者黑"><a href="#1-4-近朱者赤，近墨者黑" class="headerlink" title="1.4 近朱者赤，近墨者黑"></a>1.4 近朱者赤，近墨者黑</h5><p>由场所带来的影响，是同质性形成的另一个重要机制</p>
+<p>同质性是「选择」和「影响」共同作用的后果</p>
+<p>社会归属网：三类闭包：三元，会员，社团闭包</p>
+<ul>
+<li>社团闭包：共同参与的事情越多，建立联系的可能性越大</li>
+<li>会员闭包：参与某事的朋友越多，被影响而参与的可能性就越大</li>
+</ul>
+<p>「形成网络同质性的机制之一，是个体之间的相互影响」</p>
+<h5 id="1-5-朋友与相似（大数据实验）"><a href="#1-5-朋友与相似（大数据实验）" class="headerlink" title="1.5 朋友与相似（大数据实验）"></a>1.5 朋友与相似（大数据实验）</h5><p>数据支持：人们相似性随社会活动的增加而增加，且在某一点后进一步增加（认识后）</p>
+<p>Wiki百科数据样本：相似性用两人共同编辑文章数量&#x2F;两人共编辑的文章总数</p>
+<p>问题 - 模型 - 数据 - 映射的过程</p>
+<h5 id="1-6-谢林模型及其意义"><a href="#1-6-谢林模型及其意义" class="headerlink" title="1.6 谢林模型及其意义"></a>1.6 谢林模型及其意义</h5><p>谢林：隔离的动态模型：隔离不是个人刻意选择的后果</p>
+<p>模型：每一个居住者都要与一定数量的同居者为邻，否则会搬家。</p>
+<p>「以居住隔离为例，谢林模型模拟了同质性的动态变化」</p>
+<h5 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h5><p>人的特质，同质性的测量，同质性诞生机制，谢林模型</p>
+<blockquote>
+</blockquote>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>, <a class="article-tag-none-link" href="/tags/%E7%A4%BE%E4%BC%9A%E7%A7%91%E5%AD%A6/" rel="tag">社会科学</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2023/03/13/PCL%E5%9C%A8VS%E4%B8%8A%E7%9A%84%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          PCL在VS上的环境配置
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/02/28/%E7%A6%BB%E6%95%A3%E5%82%85%E7%AB%8B%E5%8F%B6%E5%8F%98%E6%8D%A2DFT/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          离散傅立叶变换DFT
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

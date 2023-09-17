@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="utf-8">
+  
+  <title>Swift语言基础 | DvJiang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="swift是ios开发的标准语言之一，大致看了下，和C蛮像的。感觉自己能做一个app蛮有意思的，苹果也有比较完整的官方文档，这篇文章便是阅读官方文档后留下来的笔记。 只打算看完最基础前面部分，至于后面的内容，还是在实践中学习吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift语言基础">
+<meta property="og:url" content="http://example.com/2023/02/27/Swift%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="DvJiang&#39;s Blog">
+<meta property="og:description" content="swift是ios开发的标准语言之一，大致看了下，和C蛮像的。感觉自己能做一个app蛮有意思的，苹果也有比较完整的官方文档，这篇文章便是阅读官方文档后留下来的笔记。 只打算看完最基础前面部分，至于后面的内容，还是在实践中学习吧。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-26T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-17T03:30:32.471Z">
+<meta property="article:author" content="DvJiang">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="Swift">
+<meta name="twitter:card" content="summary"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="DvJiang's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1 id="title">
+    <a href="/about">DvJiang</a><span>'s Blog</span>
+  </h1>
+  <nav>
+    
+    
+      
+      <a class="nav-link" href="/">Home</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/archives">Archives</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/tags">T&amp;C</a>
+    
+      
+        <span class="nav-spacer">×</span>
+      
+      <a class="nav-link" href="/search">Search</a>
+    
+
+    
+  </nav>
+</header>
+
+    
+    <div id="content">
+      <article id="post-Swift语言基础" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="headline name">
+      Swift语言基础
+    </h2>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2023-02-26T16:00:00.000Z" itemprop="datePublished">二月 27, 2023</time>
+
+          
+          
+        </div>
+      </header>
+    
+    
+        <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#01-The-Basics"><span class="toc-text">01  The Basics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#02-Basic-Operators"><span class="toc-text">02 Basic Operators</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#03-Strings-and-Characters"><span class="toc-text">03 Strings and Characters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#04-Collection-Types"><span class="toc-text">04 Collection Types</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#05-Control-Flow"><span class="toc-text">05 Control Flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#06-Functions"><span class="toc-text">06 Functions</span></a></li></ol>
+  </div>
+
+      <div id="settings-container-toc">
+        <div id="toc-mode">TOC</div>
+      </div>
+    
+    
+    <script type="text/javascript">
+        tm = document.getElementById("toc-mode");
+        let hide = localStorage.getItem("hide");
+        let rr=document.documentElement.style,ff=rr.setProperty.bind(rr);
+        hide = 2;
+        ff('--toc-show-end','none');
+        tm.onclick=()=>{
+            if(hide == 1){
+              ff('--toc-show-end','none');
+              tm.innerHTML="TOC";
+              hide = 2;
+              localStorage.setItem("hide",2);
+            }else{
+              ff('--toc-show-end','');
+              hide = 1;
+              tm.innerHTML="Toc";
+              localStorage.setItem("hide",1);
+            }
+        }
+    </script>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <p>swift是ios开发的标准语言之一，大致看了下，和C蛮像的。感觉自己能做一个app蛮有意思的，苹果也有比较完整的官方文档，这篇文章便是阅读官方文档后留下来的笔记。</p>
+<p>只打算看完最基础前面部分，至于后面的内容，还是在实践中学习吧。</p>
+<span id="more"></span>
+
+<hr>
+<h3 id="01-The-Basics"><a href="#01-The-Basics" class="headerlink" title="01  The Basics"></a>01  The Basics</h3><ul>
+<li>常量和变量：和js很像，用let和var，变量类型都差不多，可以自动推测变量类型。</li>
+<li>输出：println：输出换行，print：输出不换行，输出变量：(变量名)</li>
+<li>注释：和C++一样</li>
+<li>断句：行间不强求添加分号，但是行间为了区分两句子就要添加分号。</li>
+<li>整数转换：显式的：Double(int)</li>
+<li>If：要打大括号，判断部分必须是bool类型的，不能和C一样用0和1</li>
+<li>元组（tuples）：C没有的东西，相当于一个临时的结构体，使用方法很直观，用( _ ,_ )拆解即可。</li>
+<li>可选（optionals）：C没有这玩意，代表有值是x，或者没有值。可以用if来判断它有没有值，在名字后面添加！可以强制按照有值进行转换。nil有点像NULL，表示没有值。类型名字后面有？表示这是可选的。直接在类型后面加！表示这个是隐式可选，相当于在取值的时候自动在最后加了个！。</li>
+<li>断言（assert）：调试用，相当于if  print的概念，便于遇到某条件的时候跳出。</li>
+</ul>
+<hr>
+<h3 id="02-Basic-Operators"><a href="#02-Basic-Operators" class="headerlink" title="02 Basic Operators"></a>02 Basic Operators</h3><p>和C大同小异，改变的地方有：</p>
+<ul>
+<li>&#x3D; 不返回值，避免把“&#x3D;&#x3D;” 写成“&#x3D;”而不报错</li>
+<li>数值运算符会检测是否溢出，</li>
+<li>string可以用 + 拼接</li>
+<li>可以对浮点数求余，如 8 % 2.5 等于0.5</li>
+<li>区间值：在for里面用，闭区间a…b，半闭区间a..&lt;b</li>
+</ul>
+<hr>
+<h3 id="03-Strings-and-Characters"><a href="#03-Strings-and-Characters" class="headerlink" title="03 Strings and Characters"></a>03 Strings and Characters</h3><p>和C大同小异，改变之处有：</p>
+<ul>
+<li>可以用加号拼接</li>
+<li>character代替char，可以在for中直接用character来指代string的每一个字符。</li>
+<li>字符数量：函数countElements(字符串)</li>
+<li>用&#x3D;&#x3D;判断是否相等</li>
+<li>有前后缀判断函数 hasPrefix(前缀) 和 hasSuffix(后缀)</li>
+<li>有大小写转换函数uppercaseString和lowercaseString</li>
+<li>有转换为Int的函数toInt()</li>
+</ul>
+<hr>
+<h3 id="04-Collection-Types"><a href="#04-Collection-Types" class="headerlink" title="04 Collection Types"></a>04 Collection Types</h3><p>两种集合类型：Array（数组）和Dictionary（字典），看起来这一块和python有点像。</p>
+<ul>
+<li>数组定义：类型[]，也可以直接根据后面的内容简写，让编译器自行推断。</li>
+<li>数组可以用 +，+&#x3D;，append，count，isEmpty，下标[0]</li>
+<li>数组插入：insert(“A”, atIndex: 0)</li>
+<li>数组删除：removeAtIndex(0)，removeLast()</li>
+<li>for in 和python一样，有enumerate</li>
+<li>字典和python一样，令为nil时相当于删除</li>
+<li>空字典：Dictionary&lt;Int, String&gt;()</li>
+</ul>
+<hr>
+<h3 id="05-Control-Flow"><a href="#05-Control-Flow" class="headerlink" title="05 Control Flow"></a>05 Control Flow</h3><ul>
+<li>for循环：for in 和 for var index &#x3D; 0; index &lt; 3; index++{}两种，和python挺像。</li>
+<li>while循环：和C一样</li>
+<li>if判断：和C一样</li>
+<li>switch判断：和C相似，但注意它不会隐形掉入：在执行一个case后直接跳出整个switch。</li>
+<li>同样有break，continue，return，多了fallthrough（用来改变switch默认禁止掉落的情况）</li>
+<li>标签语句：name: XXX 便于精确控制break和continue的是啥。</li>
+</ul>
+<hr>
+<h3 id="06-Functions"><a href="#06-Functions" class="headerlink" title="06 Functions"></a>06 Functions</h3><ul>
+<li>函数声明：func A(input: String) → String{return B}</li>
+<li>函数外部参数与内部参数定义：用空格隔开，或用#表示共用一个，外部名称用于调用函数时使用。（也会缺省地令内外用同一个，就像已经添加了#一样）</li>
+<li>可变参数：在类型后加上…，可以传入不定数量的同一类型变量，在函数内表现为一个数组</li>
+<li>输入输出函数：inout类型，会直接修改传入的参数</li>
+<li>可以直接将函数作为参数之一：写法为(Int, Int) → Int</li>
+</ul>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <b>分类:</b>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+      
+      
+        <br/>
+      
+      
+        <b>标签:</b>
+        <a class="article-tag-none-link" href="/tags/Swift/" rel="tag">Swift</a>, <a class="article-tag-none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2023/02/28/%E7%A6%BB%E6%95%A3%E5%82%85%E7%AB%8B%E5%8F%B6%E5%8F%98%E6%8D%A2DFT/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          离散傅立叶变换DFT
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/02/25/%E9%9A%8F%E7%AC%94%C2%B7%E6%89%A7/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          随笔·执
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+    </div>
+  </div>
+  
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode">DAR</div>
+  <div id="sans-font">SON</div>
+</div>
+<script type="text/javascript">
+let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,s=l.getItem('s')||
+(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+,n=l.getItem('n'),m=d.getElementById("dark-mode"),
+b=()=>{f('--bg-color','#fafafa');f('--code-bg-color','#f4f4f4');f('--text-color','#212121');f('--secondary-color','#808080');f('--tertiary-color','#b0b0b0');f('--link-color','#b5c8cf');f('--link-hover-color','#618794');f('--link-bg-color','#dae4e7');f('--selection-color','#dae4e7');m.innerHTML="DAR"},
+c=()=>{f('--bg-color','#212121');f('--code-bg-color','#292929');f('--text-color','#fff');f('--secondary-color','#c0c0c0');f('--tertiary-color','#6e6e6e');f('--link-color','#4d6b75');f('--link-hover-color','#96b1bb');f('--link-bg-color','#5d828e');f('--selection-color','#acc1c9');m.innerHTML="LIG"},
+o=d.getElementById("sans-font"),
+e=()=>{f('--body-stack',' "Lora", "Georgia", "Times New Roman", serif');o.innerHTML="HEI"},
+g=()=>{f('--body-stack',' "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');o.innerHTML="SON"};
+m.onclick=()=>{if(s==2){s=1;l.setItem('s',s);c()}else{s=2;l.setItem('s',s);b()}};
+o.onclick=()=>{if(n==2){n=1;l.setItem('n',n);g()}else{n=2;l.setItem('n',n);e()}};
+if(!s){s=1;l.setItem('s',1)};if(s==1){c()};
+if(!n){n=1;l.setItem('n',1)};if(n==1){g()};
+</script>
+
+
+<div class = "page-nav">
+  ©2022 - 2023 , content by DvJiang. All Rights Reserved.
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div id="busuanzi_container_site_pv" class = "page-nav">
+Total site vist : <span id="busuanzi_value_site_pv"></span> |
+Total visitor : <span id="busuanzi_value_site_uv"></span> | 
+Total page visit : <span id="busuanzi_value_page_pv"></span>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>
